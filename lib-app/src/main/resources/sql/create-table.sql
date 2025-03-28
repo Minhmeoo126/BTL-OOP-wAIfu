@@ -1,66 +1,53 @@
-CREATE DATABASE IF NOT EXISTS lib;
-USE lib;
-
--- Bảng Users
 CREATE TABLE IF NOT EXISTS Users (
                                      id INT AUTO_INCREMENT PRIMARY KEY,
                                      username VARCHAR(50) NOT NULL UNIQUE,
                                      password VARCHAR(255) NOT NULL,
-                                     full_name VARCHAR(100) NOT NULL,
-                                     email VARCHAR(100) UNIQUE,
-                                     role ENUM('admin', 'member') NOT NULL DEFAULT 'member',  -- Bỏ librarian
+                                     full_name VARCHAR(100),
+                                     email VARCHAR(100) NOT NULL UNIQUE,
+                                     role ENUM('admin', 'member') NOT NULL,
                                      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Bảng Category
 CREATE TABLE IF NOT EXISTS Category (
                                         id INT AUTO_INCREMENT PRIMARY KEY,
-                                        name VARCHAR(100) NOT NULL UNIQUE
+                                        name VARCHAR(50) NOT NULL UNIQUE
 );
 
--- Bảng Author
 CREATE TABLE IF NOT EXISTS Author (
                                       id INT AUTO_INCREMENT PRIMARY KEY,
                                       name VARCHAR(100) NOT NULL,
-                                      bio TEXT NULL
+                                      bio TEXT
 );
 
--- Bảng Book
 CREATE TABLE IF NOT EXISTS Book (
                                     id INT AUTO_INCREMENT PRIMARY KEY,
                                     title VARCHAR(255) NOT NULL,
-                                    author_id INT NOT NULL,
-                                    category_id INT NOT NULL,
-                                    genre ENUM('Fiction', 'Non-Fiction', 'Science', 'Romance', 'Mystery', 'Fantasy', 'History', 'Biography') NOT NULL,
-                                    publication_year INT,
-                                    available_copies INT NOT NULL CHECK (available_copies >= 0),
-                                    total_copies INT NOT NULL CHECK (total_copies > 0),
-                                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                                    FOREIGN KEY (author_id) REFERENCES Author(id) ON DELETE CASCADE,
-                                    FOREIGN KEY (category_id) REFERENCES Category(id) ON DELETE CASCADE
+                                    author_id INT,
+                                    category_id INT,
+                                    total_copies INT NOT NULL,
+                                    available_copies INT NOT NULL,
+                                    FOREIGN KEY (author_id) REFERENCES Author(id),
+                                    FOREIGN KEY (category_id) REFERENCES Category(id),
+                                    CHECK (available_copies <= total_copies)
 );
 
--- Bảng BorrowingRecord (ĐÃ LOẠI BỎ CHECK)
 CREATE TABLE IF NOT EXISTS BorrowingRecord (
                                                id INT AUTO_INCREMENT PRIMARY KEY,
-                                               user_id INT NOT NULL,
-                                               book_id INT NOT NULL,
-                                               borrow_date DATE NOT NULL DEFAULT (CURRENT_DATE),
-                                               due_date DATE NOT NULL,  -- Loại bỏ CHECK constraint do MySQL không hỗ trợ
-                                               return_date DATE NULL,
-                                               status ENUM('borrowed', 'returned', 'overdue') NOT NULL DEFAULT 'borrowed',
-                                               FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
-                                               FOREIGN KEY (book_id) REFERENCES Book(id) ON DELETE CASCADE
+                                               user_id INT,
+                                               book_id INT,
+                                               borrow_date DATE NOT NULL,
+                                               return_date DATE,
+                                               FOREIGN KEY (user_id) REFERENCES Users(id),
+                                               FOREIGN KEY (book_id) REFERENCES Book(id)
 );
 
--- Bảng Reviews
 CREATE TABLE IF NOT EXISTS Reviews (
                                        id INT AUTO_INCREMENT PRIMARY KEY,
-                                       user_id INT NOT NULL,
-                                       book_id INT NOT NULL,
-                                       rating INT CHECK (rating BETWEEN 1 AND 5),
+                                       user_id INT,
+                                       book_id INT,
+                                       rating INT CHECK (rating >= 1 AND rating <= 5),
                                        comment TEXT,
-                                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                                       FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE,
-                                       FOREIGN KEY (book_id) REFERENCES Book(id) ON DELETE CASCADE
+                                       review_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                       FOREIGN KEY (user_id) REFERENCES Users(id),
+                                       FOREIGN KEY (book_id) REFERENCES Book(id)
 );
