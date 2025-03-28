@@ -6,6 +6,8 @@ module com.example.libapp {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires com.almasb.fxgl.all;
+    requires java.sql;
+    requires jbcrypt;
 
     opens com.example.libapp to javafx.fxml;
     exports com.example.libapp;
