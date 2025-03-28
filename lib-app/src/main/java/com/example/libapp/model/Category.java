@@ -9,20 +9,7 @@ public class Category {
         this.name = name;
     }
 
-    // Getters và Setters
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    // Getters
+    public int getId() { return id; }
+    public String getName() { return name; }
 }
