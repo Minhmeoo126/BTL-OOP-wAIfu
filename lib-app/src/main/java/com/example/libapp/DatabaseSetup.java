@@ -17,9 +17,9 @@ public class DatabaseSetup {
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD)) {
             System.out.println("Kết nối database thành công!");
 
-            runSQLScript(conn, "src/main/resources/sql/create-table.sql");
-            runSQLScript(conn, "src/main/resources/sql/create-triggers.sql");
-            runSQLScript(conn, "src/main/resources/sql/insert-data.sql");
+            runSQLScript(conn, "src/main/resources/com/example/libapp/sql/create-table.sql");
+            runSQLScript(conn, "src/main/resources/com/example/libapp/sql/create-triggers.sql");
+            runSQLScript(conn, "src/main/resources/com/example/libapp/sql/insert-data.sql");
 
             System.out.println("Database setup hoàn tất!");
         } catch (SQLException e) {
