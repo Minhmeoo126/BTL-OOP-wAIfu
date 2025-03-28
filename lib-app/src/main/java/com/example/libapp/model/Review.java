@@ -1,6 +1,6 @@
 package com.example.libapp.model;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class Review {
     private int id;
@@ -8,65 +8,22 @@ public class Review {
     private int bookId;
     private int rating;
     private String comment;
-    private Timestamp createdAt;
+    private Date reviewDate;
 
-    public Review(int id, int userId, int bookId, int rating, String comment, Timestamp createdAt) {
+    public Review(int id, int userId, int bookId, int rating, String comment, Date reviewDate) {
         this.id = id;
         this.userId = userId;
         this.bookId = bookId;
         this.rating = rating;
         this.comment = comment;
-        this.createdAt = createdAt;
+        this.reviewDate = reviewDate;
     }
 
-    // Getters và Setters
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public int getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
-
-
+    // Getters
+    public int getId() { return id; }
+    public int getUserId() { return userId; }
+    public int getBookId() { return bookId; }
+    public int getRating() { return rating; }
+    public String getComment() { return comment; }
+    public Date getReviewDate() { return reviewDate; }
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.libapp.controllers.BookController">
+    <TextField fx:id="titleField" promptText="Book Title"/>
+    <TextField fx:id="authorField" promptText="Author Name"/>
+    <TextField fx:id="categoryField" promptText="Category Name"/>
+    <Button text="Add Book" onAction="#handleAddBook"/>
+</VBox>

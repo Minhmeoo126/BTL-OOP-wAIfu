@@ -27,7 +27,7 @@ public class DatabaseSetup {
             runTriggerScript(conn, "src/main/resources/com/example/libapp/sql/create-triggers.sql");
 
             // Đồng bộ hóa cơ sở dữ liệu
-            synchronizeDatabase(conn);
+            //synchronizeDatabase(conn);
 
             // Chạy script chèn dữ liệu
             runSQLScript(conn, "src/main/resources/com/example/libapp/sql/insert-data.sql");
