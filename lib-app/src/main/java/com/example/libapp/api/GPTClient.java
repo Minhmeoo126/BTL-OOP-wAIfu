@@ -1,4 +1,4 @@
-package com.example.libapp.api;
+/*package com.example.libapp.api;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -51,3 +51,5 @@ public class GPTClient {
         }
     }
 }
+
+ */

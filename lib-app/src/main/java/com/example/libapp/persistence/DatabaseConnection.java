@@ -3,13 +3,17 @@ package com.example.libapp.persistence;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DatabaseConnection {
-    private static final String URL = "jdbc:mysql://localhost:3306/lib?serverTimezone=UTC";
-    private static final String USER = "root";
-    private static final String PASSWORD = "meomeomeo";
+    private static final String URL = "jdbc:sqlite:lib.db"; // File cơ sở dữ liệu SQLite
 
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+    public static Connection connect() throws SQLException {
+        Connection conn = DriverManager.getConnection(URL);
+        // Bật hỗ trợ khóa ngoại trong SQLite
+        try (Statement stmt = conn.createStatement()) {
+            stmt.execute("PRAGMA foreign_keys = ON;");
+        }
+        return conn;
     }
 }

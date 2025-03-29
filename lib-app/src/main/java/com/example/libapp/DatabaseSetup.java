@@ -1,36 +1,33 @@
 package com.example.libapp;
 
+import com.example.libapp.persistence.DatabaseConnection;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.DatabaseMetaData;
 
 public class DatabaseSetup {
-    private static final String URL = "jdbc:mysql://localhost:3306/lib?serverTimezone=UTC";
-    private static final String USER = "root";
-    private static final String PASSWORD = "meomeomeo";
-
     public static void main(String[] args) {
-        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+        try (Connection conn = DatabaseConnection.connect()) {
             System.out.println("Database connected successfully!");
 
             // Đảm bảo auto-commit được bật
             conn.setAutoCommit(true);
 
+            // Chạy script xóa bảng
+            runSQLScript(conn, "src/main/resources/sql/drop-table.sql");
+
             // Chạy script tạo bảng
-            runSQLScript(conn, "src/main/resources/com/example/libapp/sql/create-table.sql");
+            runSQLScript(conn, "src/main/resources/sql/create-table.sql");
 
             // Chạy script tạo trigger
-            runTriggerScript(conn, "src/main/resources/com/example/libapp/sql/create-triggers.sql");
-
-            // Đồng bộ hóa cơ sở dữ liệu
-            //synchronizeDatabase(conn);
+            runTriggerScript(conn, "src/main/resources/sql/create-triggers.sql");
 
             // Chạy script chèn dữ liệu
-            runSQLScript(conn, "src/main/resources/com/example/libapp/sql/insert-data.sql");
+            runSQLScript(conn, "src/main/resources/sql/insert-data.sql");
 
             System.out.println("Database setup completed!");
         } catch (SQLException e) {
@@ -88,29 +85,6 @@ public class DatabaseSetup {
         } catch (Exception e) {
             System.out.println("Error: " + filePath);
             e.printStackTrace();
-        }
-    }
-
-    private static void synchronizeDatabase(Connection conn) throws SQLException {
-        try {
-            // Lấy DatabaseMetaData để làm mới metadata của cơ sở dữ liệu
-            DatabaseMetaData metaData = conn.getMetaData();
-
-            // Kiểm tra danh sách bảng để đảm bảo metadata được làm mới
-            System.out.println("Synchronizing database metadata...");
-            try (var rs = metaData.getTables(null, null, null, new String[]{"TABLE"})) {
-                while (rs.next()) {
-                    String tableName = rs.getString("TABLE_NAME");
-                    System.out.println("Found table: " + tableName);
-                }
-            }
-
-            // Thêm độ trễ nhỏ (nếu cần)
-            Thread.sleep(1000);
-
-            System.out.println("Database synchronization completed!");
-        } catch (InterruptedException e) {
-            System.out.println("Synchronization interrupted: " + e.getMessage());
         }
     }
 }
