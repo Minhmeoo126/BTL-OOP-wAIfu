@@ -2,10 +2,9 @@ package com.example.libapp;
 
 import com.example.libapp.persistence.DatabaseConnection;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -18,16 +17,15 @@ public class DatabaseSetup {
             conn.setAutoCommit(true);
 
             // Chạy script xóa bảng
-            runSQLScript(conn, "src/main/resources/sql/drop-table.sql");
-
+            runSQLScript(conn, "com/example/libapp/sql/drop-table.sql");
             // Chạy script tạo bảng
-            runSQLScript(conn, "src/main/resources/sql/create-table.sql");
+            runSQLScript(conn, "com/example/libapp/sql/create-table.sql");
 
             // Chạy script tạo trigger
-            runTriggerScript(conn, "src/main/resources/sql/create-triggers.sql");
+            runTriggerScript(conn, "com/example/libapp/sql/create-triggers.sql");
 
             // Chạy script chèn dữ liệu
-            runSQLScript(conn, "src/main/resources/sql/insert-data.sql");
+            runSQLScript(conn, "com/example/libapp/sql/insert-data.sql");
 
             System.out.println("Database setup completed!");
         } catch (SQLException e) {
@@ -35,10 +33,12 @@ public class DatabaseSetup {
         }
     }
 
-    private static void runSQLScript(Connection conn, String filePath) throws SQLException {
-        try {
-            // Đọc file script
-            String sql = new String(Files.readAllBytes(Paths.get(filePath)));
+    private static void runSQLScript(Connection conn, String resourcePath) throws SQLException {
+        try (InputStream inputStream = DatabaseSetup.class.getClassLoader().getResourceAsStream(resourcePath)) {
+            if (inputStream == null) {
+                throw new IllegalArgumentException("File not found: " + resourcePath);
+            }
+            String sql = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
 
             // Loại bỏ các dòng comment (bắt đầu bằng --)
             sql = sql.replaceAll("(?m)^--.*\n?", "");
@@ -53,18 +53,20 @@ public class DatabaseSetup {
                         stmt.executeUpdate(statement);
                     }
                 }
-                System.out.println("Script executed: " + filePath);
+                System.out.println("Script executed: " + resourcePath);
             }
         } catch (Exception e) {
-            System.out.println("Error: " + filePath);
+            System.out.println("Error: " + resourcePath);
             e.printStackTrace();
         }
     }
 
-    private static void runTriggerScript(Connection conn, String filePath) throws SQLException {
-        try {
-            // Đọc file script
-            String sql = new String(Files.readAllBytes(Paths.get(filePath)));
+    private static void runTriggerScript(Connection conn, String resourcePath) throws SQLException {
+        try (InputStream inputStream = DatabaseSetup.class.getClassLoader().getResourceAsStream(resourcePath)) {
+            if (inputStream == null) {
+                throw new IllegalArgumentException("File not found: " + resourcePath);
+            }
+            String sql = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
 
             // Loại bỏ các dòng comment (bắt đầu bằng --)
             sql = sql.replaceAll("(?m)^--.*\n?", "");
@@ -76,14 +78,13 @@ public class DatabaseSetup {
                 for (String triggerStatement : triggerStatements) {
                     triggerStatement = triggerStatement.trim();
                     if (!triggerStatement.isEmpty()) {
-                        // Thực thi toàn bộ câu lệnh CREATE TRIGGER
                         stmt.execute(triggerStatement);
                     }
                 }
-                System.out.println("Script executed: " + filePath);
+                System.out.println("Script executed: " + resourcePath);
             }
         } catch (Exception e) {
-            System.out.println("Error: " + filePath);
+            System.out.println("Error: " + resourcePath);
             e.printStackTrace();
         }
     }

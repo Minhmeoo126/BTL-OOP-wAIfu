@@ -38,11 +38,9 @@ END;
 CREATE TRIGGER after_borrow_update
     AFTER UPDATE ON BorrowingRecord
     FOR EACH ROW
+    WHEN NEW.return_date IS NOT NULL AND OLD.return_date IS NULL
 BEGIN
-    SELECT CASE
-               WHEN NEW.return_date IS NOT NULL AND OLD.return_date IS NULL THEN
     UPDATE Book
     SET available_copies = available_copies + 1
-    WHERE id = NEW.book_id
-END;
+    WHERE id = NEW.book_id;
 END;
