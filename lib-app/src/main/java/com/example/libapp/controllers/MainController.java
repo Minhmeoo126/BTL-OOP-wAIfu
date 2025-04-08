@@ -41,7 +41,7 @@ public class MainController {
 
     @FXML
     private void handleLogout() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/login-view.fxml"));
         Parent root = loader.load();
 
         // Lấy stage hiện tại từ một nút bất kỳ trong cửa sổ hiện tại

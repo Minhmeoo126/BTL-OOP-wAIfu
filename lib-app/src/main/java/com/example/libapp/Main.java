@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/login-view.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("Login to Library App");
         primaryStage.setScene(new Scene(root));

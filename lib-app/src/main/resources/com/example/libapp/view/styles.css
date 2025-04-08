@@ -1,0 +1,78 @@
+.login_bg{
+    -fx-background-color : #133E87;
+}
+/*BUTTON_CSS*/
+.button {
+    -fx-background-color: #3498db; /* Màu nền xanh */
+    -fx-text-fill: #F3F3E0; /* Màu chữ trắng */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+/* Khi di chuột vào Button */
+.button:hover {
+    -fx-background-color: #2980b9; /* Màu xanh đậm hơn */
+    -fx-scale-x: 1.05; /* Phóng to nhẹ */
+    -fx-scale-y: 1.05;
+}
+
+/* Khi nhấn vào Button */
+.button:pressed {
+    -fx-background-color: #1f618d; /* Màu xanh tối hơn */
+    -fx-translate-y: 2px; /* Hiệu ứng nhấn xuống */
+}
+
+/* Khi Button được focus */
+.button:focused {
+    -fx-border-color: #F3F3E0; /* Màu viền vàng khi focus */
+    -fx-border-width: 2px;
+}
+
+.Btn_login {
+    -fx-background-color:#133E87;
+    -fx-text-fill:#F3F3E0;
+    -fx-font-size:24px;
+    -fx-font-weight: 600;
+    -fx-background-radius:8px;
+}
+
+/* Áp dụng chung cho cả TextField và PasswordField */
+.text-field, .password-field {
+    -fx-border-color: #ccc;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+/* Khi được chọn (focus), viền đổi màu và có hiệu ứng shadow */
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #CBDCEB; /* Màu viền xanh */
+    -fx-border-width: 2.5px;
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.6), 10, 0.5, 0, 0);
+}
+
+.lib_status {
+    -fx-background-color: #133E87; /* Màu nền xanh */
+    -fx-text-fill: #CF3F3E0; /* Màu chữ trắng */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+.tab-pane{
+    -fx-tab-max-height: 0px;
+}
+
+.tab-pane .tab-header-area{
+    visibility: hidden;
+}
+
