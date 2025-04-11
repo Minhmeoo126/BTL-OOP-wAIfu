@@ -10,7 +10,7 @@ public class MyAccountViewModel {
     private final StringProperty email = new SimpleStringProperty();
     private final StringProperty fullName = new SimpleStringProperty();
     private final StringProperty role = new SimpleStringProperty();
-
+/**
     public MyAccountViewModel() {
         User user = LoginController.getLoggedInUser();
         if (user != null) {
@@ -20,7 +20,7 @@ public class MyAccountViewModel {
             role.set(user.getRole());
         }
     }
-
+*/
     public StringProperty usernameProperty() {
         return username;
     }

@@ -22,7 +22,7 @@ public class BorrowingHistoryController {
     private TableColumn<BorrowingRecord, String> returnDateColumn;
 
     private BorrowingRecordDAO borrowingRecordDAO = new BorrowingRecordDAO();
-
+    /**
     @FXML
     public void initialize() {
         bookIdColumn.setCellValueFactory(new PropertyValueFactory<>("bookId"));
@@ -34,7 +34,7 @@ public class BorrowingHistoryController {
                 .collect(Collectors.toList());
         historyTable.getItems().addAll(userRecords);
     }
-
+*/
     @FXML
     private void backToMain() {
         Stage stage = (Stage) historyTable.getScene().getWindow();

@@ -14,7 +14,7 @@ public class MyAccountController {
     private Label fullNameLabel;
     @FXML
     private Label roleLabel;
-
+/**
     @FXML
     public void initialize() {
         User user = LoginController.getLoggedInUser();
@@ -25,7 +25,7 @@ public class MyAccountController {
             roleLabel.setText("Role: " + user.getRole());
         }
     }
-
+*/
     @FXML
     private void backToMain() {
         Stage stage = (Stage) usernameLabel.getScene().getWindow();

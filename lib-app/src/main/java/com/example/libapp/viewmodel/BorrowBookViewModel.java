@@ -20,7 +20,7 @@ public class BorrowBookViewModel {
     public StringProperty messageProperty() {
         return message;
     }
-
+/**
     public void borrowBook() {
         try {
             int bookIdValue = Integer.parseInt(bookId.get().trim());
@@ -38,4 +38,5 @@ public class BorrowBookViewModel {
             message.set("Error: " + e.getMessage());
         }
     }
+ */
 }

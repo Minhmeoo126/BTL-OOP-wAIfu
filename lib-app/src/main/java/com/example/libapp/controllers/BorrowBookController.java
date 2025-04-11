@@ -16,7 +16,7 @@ public class BorrowBookController {
     private Label messageLabel;
 
     private BorrowingRecordDAO borrowingRecordDAO = new BorrowingRecordDAO();
-
+/**
     @FXML
     private void handleBorrow() {
         try {
@@ -44,4 +44,5 @@ public class BorrowBookController {
         Stage stage = (Stage) bookIdField.getScene().getWindow();
         stage.close();
     }
+    */
 }

@@ -19,7 +19,8 @@ public class ReturnBookController {
     private Label messageLabel;
 
     private BorrowingRecordDAO borrowingRecordDAO = new BorrowingRecordDAO();
-
+}
+/**
     @FXML
     private void handleReturn() {
         try {
@@ -63,3 +64,4 @@ public class ReturnBookController {
         stage.close();
     }
 }
+ */

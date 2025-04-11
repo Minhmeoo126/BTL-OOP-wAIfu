@@ -23,7 +23,7 @@ public class ReturnBookViewModel {
     public StringProperty messageProperty() {
         return message;
     }
-
+/**
     public void returnBook() {
         try {
             int recordIdValue = Integer.parseInt(recordId.get().trim());
@@ -54,4 +54,5 @@ public class ReturnBookViewModel {
             message.set("Error: " + e.getMessage());
         }
     }
+ */
 }
