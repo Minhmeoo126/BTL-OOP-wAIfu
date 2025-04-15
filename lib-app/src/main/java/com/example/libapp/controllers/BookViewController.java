@@ -1,7 +1,7 @@
 package com.example.libapp.controllers;
 
 import com.example.libapp.model.Book;
-import com.example.libapp.persistence.BookDAO;
+import com.example.libapp.viewmodel.BookViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -22,7 +22,7 @@ public class BookViewController {
     @FXML
     private TableColumn<Book, Integer> availableCopiesColumn;
 
-    private BookDAO bookDAO = new BookDAO();
+    private final BookViewModel viewModel = new BookViewModel();
 
     @FXML
     public void initialize() {
@@ -32,7 +32,8 @@ public class BookViewController {
         totalCopiesColumn.setCellValueFactory(new PropertyValueFactory<>("totalCopies"));
         availableCopiesColumn.setCellValueFactory(new PropertyValueFactory<>("availableCopies"));
 
-        bookTable.getItems().addAll(bookDAO.getAllBooks());
+        bookTable.setItems(viewModel.getBooks());
+        viewModel.loadBooks();
     }
 
     @FXML

@@ -2,43 +2,30 @@ package com.example.libapp.viewmodel;
 
 import com.example.libapp.model.Book;
 import com.example.libapp.persistence.BookDAO;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class SearchBookViewModel {
     private final BookDAO bookDAO = new BookDAO();
-    private final ObservableList<Book> allBooks = FXCollections.observableArrayList();
-    private final ObservableList<Book> filteredBooks = FXCollections.observableArrayList();
-    private final StringProperty searchQuery = new SimpleStringProperty();
+    private final ObservableList<Book> books = FXCollections.observableArrayList();
 
-    public SearchBookViewModel() {
-        allBooks.addAll(bookDAO.getAllBooks());
-        filteredBooks.addAll(allBooks);
+    public ObservableList<Book> getBooks() {
+        return books;
     }
 
-    public StringProperty searchQueryProperty() {
-        return searchQuery;
+    public void loadBooks() {
+        books.setAll(bookDAO.getAllBooks());
     }
 
-    public ObservableList<Book> getFilteredBooks() {
-        return filteredBooks;
-    }
-
-    public void search() {
-        String query = searchQuery.get() != null ? searchQuery.get().trim().toLowerCase() : "";
-        if (query.isEmpty()) {
-            filteredBooks.setAll(allBooks);
+    public void searchBooks(String query) {
+        if (query == null || query.trim().isEmpty()) {
+            loadBooks();
         } else {
-            List<Book> filtered = allBooks.stream()
-                    .filter(book -> book.getTitle().toLowerCase().contains(query) ||
-                            book.getAuthorName().toLowerCase().contains(query))
-                    .collect(Collectors.toList());
-            filteredBooks.setAll(filtered);
+            String lowerQuery = query.trim().toLowerCase();
+            books.setAll(bookDAO.getAllBooks().stream()
+                    .filter(book -> book.getTitle().toLowerCase().contains(lowerQuery) ||
+                            book.getAuthorName().toLowerCase().contains(lowerQuery))
+                    .collect(java.util.stream.Collectors.toList()));
         }
     }
 }

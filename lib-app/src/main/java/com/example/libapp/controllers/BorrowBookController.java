@@ -1,13 +1,11 @@
 package com.example.libapp.controllers;
 
-import com.example.libapp.model.BorrowingRecord;
-import com.example.libapp.persistence.BorrowingRecordDAO;
+import com.example.libapp.viewmodel.BorrowBookViewModel;
+import com.example.libapp.SessionManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.time.LocalDate;
 
 public class BorrowBookController {
     @FXML
@@ -15,28 +13,20 @@ public class BorrowBookController {
     @FXML
     private Label messageLabel;
 
-    private BorrowingRecordDAO borrowingRecordDAO = new BorrowingRecordDAO();
-/**
+    private final BorrowBookViewModel viewModel = new BorrowBookViewModel();
+
+    @FXML
+    public void initialize() {
+        messageLabel.textProperty().bind(viewModel.messageProperty());
+        viewModel.setLoggedInUser(SessionManager.getInstance().getLoggedInUser());
+    }
+
     @FXML
     private void handleBorrow() {
-        try {
-            int bookId = Integer.parseInt(bookIdField.getText().trim());
-            BorrowingRecord record = new BorrowingRecord();
-            record.setUserId(LoginController.getLoggedInUser().getId());
-            record.setBookId(bookId);
-            record.setBorrowDate(LocalDate.now().toString());
-            record.setReturnDate(null);
-
-            borrowingRecordDAO.addBorrowingRecord(record);
-            messageLabel.setText("Book borrowed successfully!");
-            messageLabel.setStyle("-fx-text-fill: green;");
-        } catch (NumberFormatException e) {
-            messageLabel.setText("Please enter a valid Book ID.");
-            messageLabel.setStyle("-fx-text-fill: red;");
-        } catch (Exception e) {
-            messageLabel.setText("Error: " + e.getMessage());
-            messageLabel.setStyle("-fx-text-fill: red;");
-        }
+        viewModel.borrowBook(bookIdField.getText());
+        // Thêm hiệu ứng cho thông báo
+        messageLabel.setStyle(viewModel.messageProperty().get().contains("successfully") ?
+                "-fx-text-fill: green;" : "-fx-text-fill: red;");
     }
 
     @FXML
@@ -44,5 +34,4 @@ public class BorrowBookController {
         Stage stage = (Stage) bookIdField.getScene().getWindow();
         stage.close();
     }
-    */
 }

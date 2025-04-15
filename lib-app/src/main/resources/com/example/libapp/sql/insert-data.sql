@@ -1,8 +1,8 @@
 -- Insert data into Users
 INSERT INTO Users (username, password, role, email, full_name) VALUES
-                                                                   ('admin', 'admin123', 'admin', 'admin@example.com', 'Admin User'),
-                                                                   ('john_doe', 'password123', 'user', 'john.doe@example.com', 'John Doe'),
-                                                                   ('jane_smith', 'password123', 'user', 'jane.smith@example.com', 'Jane Smith');
+                                                                   ('admin', 'admin123', 'ADMIN', 'admin@example.com', 'Admin User'),
+                                                                   ('john_doe', 'password123', 'USER', 'john.doe@example.com', 'John Doe'),
+                                                                   ('jane_smith', 'password123', 'USER', 'jane.smith@example.com', 'Jane Smith');
 
 -- Insert data into Category
 INSERT INTO Category (name) VALUES

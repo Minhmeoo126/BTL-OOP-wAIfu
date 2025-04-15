@@ -14,33 +14,26 @@ public class UserController {
     @FXML
     private TextField fullNameField;
     @FXML
-    private Label messageLabel; // Thêm Label để hiển thị thông báo
+    private Label messageLabel;
 
-    private final UserViewModel userViewModel = new UserViewModel();
+    private final UserViewModel viewModel = new UserViewModel();
 
     @FXML
     public void initialize() {
-        messageLabel.textProperty().bind(userViewModel.messageProperty());
+        messageLabel.textProperty().bind(viewModel.messageProperty());
     }
 
     @FXML
     private void handleAddUser() {
-        String username = usernameField.getText().trim();
-        String email = emailField.getText().trim();
-        String fullName = fullNameField.getText().trim();
-
-        if (username.isEmpty() || email.isEmpty() || fullName.isEmpty()) {
-            messageLabel.setText("Please fill in all fields.");
-            messageLabel.setStyle("-fx-text-fill: red;");
-            return;
-        }
-
-        userViewModel.addUser(username, "password123", "user", email, fullName); // Default password and role
-        if (messageLabel.getText().contains("successfully")) {
-            messageLabel.setStyle("-fx-text-fill: green;");
-        } else {
-            messageLabel.setStyle("-fx-text-fill: red;");
-        }
+        viewModel.addUser(
+                usernameField.getText().trim(),
+                "password123", // Mật khẩu mặc định, nên thay bằng input
+                "USER", // Vai trò mặc định
+                emailField.getText().trim(),
+                fullNameField.getText().trim()
+        );
+        messageLabel.setStyle(viewModel.messageProperty().get().contains("successfully") ?
+                "-fx-text-fill: green;" : "-fx-text-fill: red;");
     }
 
     @FXML

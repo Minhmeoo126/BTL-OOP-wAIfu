@@ -2,32 +2,35 @@ package com.example.libapp.viewmodel;
 
 import com.example.libapp.model.BorrowingRecord;
 import com.example.libapp.persistence.BorrowingRecordDAO;
-import com.example.libapp.controllers.LoginController;
+import com.example.libapp.model.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.time.LocalDate;
-
 public class BorrowBookViewModel {
     private final BorrowingRecordDAO borrowingRecordDAO = new BorrowingRecordDAO();
-    private final StringProperty bookId = new SimpleStringProperty();
-    private final StringProperty message = new SimpleStringProperty();
-
-    public StringProperty bookIdProperty() {
-        return bookId;
-    }
+    private final StringProperty message = new SimpleStringProperty("");
+    private User loggedInUser; // Giả định có cơ chế lấy user đã đăng nhập
 
     public StringProperty messageProperty() {
         return message;
     }
-/**
-    public void borrowBook() {
+
+    public void setLoggedInUser(User user) {
+        this.loggedInUser = user;
+    }
+
+    public void borrowBook(String bookIdText) {
         try {
-            int bookIdValue = Integer.parseInt(bookId.get().trim());
+            int bookId = Integer.parseInt(bookIdText.trim());
+            if (loggedInUser == null) {
+                message.set("Please log in to borrow a book.");
+                return;
+            }
+
             BorrowingRecord record = new BorrowingRecord();
-            record.setUserId(LoginController.getLoggedInUser().getId());
-            record.setBookId(bookIdValue);
-            record.setBorrowDate(LocalDate.now().toString());
+            record.setUserId(loggedInUser.getId());
+            record.setBookId(bookId);
+            record.setBorrowDate(java.time.LocalDate.now().toString());
             record.setReturnDate(null);
 
             borrowingRecordDAO.addBorrowingRecord(record);
@@ -38,5 +41,4 @@ public class BorrowBookViewModel {
             message.set("Error: " + e.getMessage());
         }
     }
- */
 }

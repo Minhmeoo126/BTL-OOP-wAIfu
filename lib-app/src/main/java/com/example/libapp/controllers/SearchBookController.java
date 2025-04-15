@@ -1,16 +1,13 @@
 package com.example.libapp.controllers;
 
 import com.example.libapp.model.Book;
-import com.example.libapp.persistence.BookDAO;
+import com.example.libapp.viewmodel.SearchBookViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class SearchBookController {
     @FXML
@@ -28,8 +25,7 @@ public class SearchBookController {
     @FXML
     private TableColumn<Book, Integer> availableCopiesColumn;
 
-    private BookDAO bookDAO = new BookDAO();
-    private List<Book> allBooks;
+    private final SearchBookViewModel viewModel = new SearchBookViewModel();
 
     @FXML
     public void initialize() {
@@ -39,23 +35,13 @@ public class SearchBookController {
         totalCopiesColumn.setCellValueFactory(new PropertyValueFactory<>("totalCopies"));
         availableCopiesColumn.setCellValueFactory(new PropertyValueFactory<>("availableCopies"));
 
-        allBooks = bookDAO.getAllBooks();
-        bookTable.getItems().addAll(allBooks);
+        bookTable.setItems(viewModel.getBooks());
+        viewModel.loadBooks();
     }
 
     @FXML
     private void handleSearch() {
-        String query = searchField.getText().trim().toLowerCase();
-        if (query.isEmpty()) {
-            bookTable.getItems().setAll(allBooks);
-            return;
-        }
-
-        List<Book> filteredBooks = allBooks.stream()
-                .filter(book -> book.getTitle().toLowerCase().contains(query) ||
-                        book.getAuthorName().toLowerCase().contains(query))
-                .collect(Collectors.toList());
-        bookTable.getItems().setAll(filteredBooks);
+        viewModel.searchBooks(searchField.getText());
     }
 
     @FXML

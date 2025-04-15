@@ -59,7 +59,7 @@
 
 .lib_status {
     -fx-background-color: #133E87; /* Màu nền xanh */
-    -fx-text-fill: #CF3F3E0; /* Màu chữ trắng */
+    -fx-text-fill: #F3F3E0; /* Màu chữ trắng */
     -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-padding: 10px 20px;

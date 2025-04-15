@@ -1,0 +1,37 @@
+@startuml
+actor User
+
+participant "BorrowBookController" as Controller
+participant "BorrowBookViewModel" as ViewModel
+participant "BorrowingRecordDAO" as RecordDAO
+participant "BookDAO" as BookDAO
+participant "DatabaseConnection" as DBConn
+participant "Database" as DB
+
+User -> Controller: click "Borrow" button
+Controller -> ViewModel: borrowBook(bookIdText)
+ViewModel -> BookDAO: getAllBooks()
+BookDAO -> DBConn: connect()
+DBConn -> DB: query Books
+DB --> BookDAO: return book list
+BookDAO --> ViewModel: return books
+ViewModel -> ViewModel: check book availability
+alt book available
+  ViewModel -> RecordDAO: addBorrowingRecord(record)
+  RecordDAO -> DBConn: connect()
+  DBConn -> DB: insert into BorrowingRecord
+  DB --> RecordDAO: success
+  RecordDAO --> ViewModel: success
+  ViewModel -> BookDAO: update availableCopies
+  BookDAO -> DBConn: connect()
+  DBConn -> DB: update Book (decrease availableCopies)
+  DB --> BookDAO: success
+  BookDAO --> ViewModel: success
+  ViewModel --> Controller: set message "Book borrowed successfully!"
+  Controller --> User: show success message
+else book not available or invalid ID
+  ViewModel --> Controller: set message "Error: Book not available or invalid ID"
+  Controller --> User: show error message
+end
+
+@enduml

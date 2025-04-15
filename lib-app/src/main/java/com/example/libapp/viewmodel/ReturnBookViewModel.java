@@ -2,44 +2,44 @@ package com.example.libapp.viewmodel;
 
 import com.example.libapp.model.BorrowingRecord;
 import com.example.libapp.persistence.BorrowingRecordDAO;
-import com.example.libapp.controllers.LoginController;
 import com.example.libapp.persistence.DatabaseConnection;
+import com.example.libapp.model.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.time.LocalDate;
-
 public class ReturnBookViewModel {
     private final BorrowingRecordDAO borrowingRecordDAO = new BorrowingRecordDAO();
-    private final StringProperty recordId = new SimpleStringProperty();
-    private final StringProperty message = new SimpleStringProperty();
-
-    public StringProperty recordIdProperty() {
-        return recordId;
-    }
+    private final StringProperty message = new SimpleStringProperty("");
+    private User loggedInUser;
 
     public StringProperty messageProperty() {
         return message;
     }
-/**
-    public void returnBook() {
+
+    public void setLoggedInUser(User user) {
+        this.loggedInUser = user;
+    }
+
+    public void returnBook(String recordIdText) {
         try {
-            int recordIdValue = Integer.parseInt(recordId.get().trim());
+            int recordId = Integer.parseInt(recordIdText.trim());
+            if (loggedInUser == null) {
+                message.set("Please log in to return a book.");
+                return;
+            }
+
             for (BorrowingRecord record : borrowingRecordDAO.getAllBorrowingRecords()) {
-                if (record.getId() == recordIdValue && record.getUserId() == LoginController.getLoggedInUser().getId()) {
+                if (record.getId() == recordId && record.getUserId() == loggedInUser.getId()) {
                     if (record.getReturnDate() != null) {
                         message.set("Book already returned.");
                         return;
                     }
 
-                    // Cập nhật return_date
-                    try (Connection conn = DatabaseConnection.connect();
-                         PreparedStatement pstmt = conn.prepareStatement(
+                    try (java.sql.Connection conn = DatabaseConnection.connect();
+                         java.sql.PreparedStatement pstmt = conn.prepareStatement(
                                  "UPDATE BorrowingRecord SET return_date = ? WHERE id = ?")) {
-                        pstmt.setString(1, LocalDate.now().toString());
-                        pstmt.setInt(2, recordIdValue);
+                        pstmt.setString(1, java.time.LocalDate.now().toString());
+                        pstmt.setInt(2, recordId);
                         pstmt.executeUpdate();
                     }
 
@@ -54,5 +54,4 @@ public class ReturnBookViewModel {
             message.set("Error: " + e.getMessage());
         }
     }
- */
 }

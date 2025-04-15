@@ -9,11 +9,11 @@ public class BookViewModel {
     private final BookDAO bookDAO = new BookDAO();
     private final ObservableList<Book> books = FXCollections.observableArrayList();
 
-    public BookViewModel() {
-        books.addAll(bookDAO.getAllBooks());
-    }
-
     public ObservableList<Book> getBooks() {
         return books;
+    }
+
+    public void loadBooks() {
+        books.setAll(bookDAO.getAllBooks());
     }
 }

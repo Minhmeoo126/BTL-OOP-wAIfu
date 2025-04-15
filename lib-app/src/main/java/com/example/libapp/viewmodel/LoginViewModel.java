@@ -6,49 +6,48 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 public class LoginViewModel {
+    private static final Logger logger = Logger.getLogger(LoginViewModel.class.getName());
     private final UserDAO userDAO = new UserDAO();
-    private final StringProperty username = new SimpleStringProperty();
-    private final StringProperty password = new SimpleStringProperty();
-    private final StringProperty errorMessage = new SimpleStringProperty();
-    private User loggedInUser;
+    private final StringProperty message = new SimpleStringProperty("");
 
-    public StringProperty usernameProperty() {
-        return username;
+    public StringProperty messageProperty() {
+        return message;
     }
 
-    public StringProperty passwordProperty() {
-        return password;
-    }
-
-    public StringProperty errorMessageProperty() {
-        return errorMessage;
-    }
-
-    public User getLoggedInUser() {
-        return loggedInUser;
-    }
-
-    public boolean login() {
-        String usernameValue = username.get();
-        String passwordValue = password.get();
-
-        if (usernameValue == null || usernameValue.isEmpty() || passwordValue == null || passwordValue.isEmpty()) {
-            errorMessage.set("Please enter both username and password.");
-            return false;
+    public User login(String username, String password, String role) {
+        if (username.isEmpty() || password.isEmpty()) {
+            message.set("Username and password cannot be empty.");
+            return null;
         }
 
-        List<User> users = userDAO.getAllUsers();
-        for (User user : users) {
-            if (user.getUsername().equals(usernameValue) && user.getPassword().equals(passwordValue)) {
-                loggedInUser = user;
-                errorMessage.set("");
-                return true;
+        try {
+            List<User> users = userDAO.getAllUsers();
+            for (User user : users) {
+                if (user.getUsername().equals(username)) {
+                    if (user.getPassword().equals(password)) {
+                        if (user.getRole().equalsIgnoreCase(role)) {
+                            message.set("Login successful!");
+                            logger.info("Login successful for username: " + username);
+                            return user;
+                        } else {
+                            message.set("Invalid role. Expected: " + role + ", Found: " + user.getRole());
+                            return null;
+                        }
+                    } else {
+                        message.set("Incorrect password for username: " + username);
+                        return null;
+                    }
+                }
             }
+            message.set("Username not found: " + username);
+            return null;
+        } catch (RuntimeException e) {
+            message.set("Error accessing database: " + e.getMessage());
+            logger.severe("Login failed: " + e.getMessage());
+            return null;
         }
-
-        errorMessage.set("Invalid username or password.");
-        return false;
     }
 }
