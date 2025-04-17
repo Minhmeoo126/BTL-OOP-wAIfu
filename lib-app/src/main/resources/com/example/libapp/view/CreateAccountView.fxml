@@ -124,7 +124,7 @@
                   <Font name="Californian FB Bold" size="36.0" />
                </font>
             </Label>
-            <Hyperlink layoutX="114.0" layoutY="422.0" onAction="#GoToLogin" prefHeight="24.0" prefWidth="170.0" text="I have a account ? Log in" />
+            <Hyperlink alignment="CENTER" layoutX="114.0" layoutY="422.0" onAction="#GoToLogin" prefHeight="24.0" prefWidth="170.0" text="I have a account ? Log in" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="246.0" prefHeight="82.0" prefWidth="335.0">

@@ -134,7 +134,7 @@
                         <Label fx:id="lblStatus" alignment="CENTER" layoutX="10.0" prefHeight="36.0" prefWidth="161.0" styleClass="lib_status" text="ADMINISTRATOR" textFill="#f3f3e0" />
                      </children>
                   </Group>
-                  <Hyperlink layoutX="123.0" layoutY="371.0" onAction="#GoToRegister" prefHeight="24.0" prefWidth="161.0" text="New here ? Create Account" />
+                  <Hyperlink alignment="CENTER" layoutX="123.0" layoutY="371.0" onAction="#GoToRegister" prefHeight="24.0" prefWidth="161.0" text="New here ? Create Account" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="-8.0" layoutY="90.0" prefHeight="436.0" prefWidth="416.0">

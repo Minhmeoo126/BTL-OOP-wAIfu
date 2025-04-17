@@ -25,15 +25,70 @@ public class DatabaseConnection {
                 logger.info("Created database directory: " + dbDir.getAbsolutePath());
             }
             File dbFile = new File(DB_DIR + "/lib.db");
+            // Kiểm tra xem file có tồn tại và là file cơ sở dữ liệu hợp lệ không
+            if (dbFile.exists()) {
+                // Kiểm tra xem file có phải là file văn bản không (đọc byte đầu tiên)
+                if (isTextFile(dbFile)) {
+                    logger.warning("File lib.db is a text file, not a valid SQLite database. Deleting...");
+                    dbFile.delete();
+                } else {
+                    Connection tempConn = null;
+                    try {
+                        tempConn = DriverManager.getConnection(URL);
+                        if (!tableExists(tempConn, "Users")) {
+                            logger.info("Existing database file is invalid or missing tables. Deleting and reinitializing...");
+                            tempConn.close();
+                            dbFile.delete();
+                        } else {
+                            tempConn.close();
+                            return DriverManager.getConnection(URL);
+                        }
+                    } catch (SQLException e) {
+                        logger.warning("Existing database file is invalid: " + e.getMessage());
+                        if (tempConn != null) tempConn.close();
+                        dbFile.delete();
+                    }
+                }
+            }
+            // Tạo kết nối mới
             Connection conn = DriverManager.getConnection(URL);
-            if (!dbFile.exists()) {
-                logger.info("Database file created: " + dbFile.getAbsolutePath());
+            logger.info("Database file path: " + dbFile.getAbsolutePath());
+            // Khởi tạo cơ sở dữ liệu nếu cần
+            if (!tableExists(conn, "Users")) {
+                logger.info("Table 'Users' does not exist. Initializing database...");
                 initializeDatabase(conn);
             }
             return conn;
         } catch (SQLException e) {
             logger.severe("Database connection error: " + e.getMessage());
             throw new RuntimeException(e);
+        }
+    }
+
+    // Phương thức kiểm tra xem file có phải là file văn bản không
+    private static boolean isTextFile(File file) {
+        try {
+            // Đọc vài byte đầu tiên của file
+            byte[] buffer = new byte[5];
+            java.io.FileInputStream fis = new java.io.FileInputStream(file);
+            int bytesRead = fis.read(buffer);
+            fis.close();
+            if (bytesRead < 5) return true; // File quá nhỏ, có thể là văn bản
+            // SQLite database file bắt đầu bằng "SQLite format 3"
+            String header = new String(buffer, StandardCharsets.UTF_8);
+            return !header.startsWith("SQLit");
+        } catch (Exception e) {
+            logger.warning("Error checking file type: " + e.getMessage());
+            return true; // Nếu không đọc được, giả định là file văn bản để an toàn
+        }
+    }
+
+    private static boolean tableExists(Connection conn, String tableName) throws SQLException {
+        try (var stmt = conn.createStatement()) {
+            stmt.executeQuery("SELECT 1 FROM " + tableName + " LIMIT 1");
+            return true;
+        } catch (SQLException e) {
+            return false;
         }
     }
 
@@ -68,6 +123,7 @@ public class DatabaseConnection {
                 for (String statement : statements) {
                     statement = statement.trim();
                     if (!statement.isEmpty()) {
+                        logger.info("Executing SQL: " + statement);
                         stmt.executeUpdate(statement);
                     }
                 }
