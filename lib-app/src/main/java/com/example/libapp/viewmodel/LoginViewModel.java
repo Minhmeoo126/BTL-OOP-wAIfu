@@ -37,12 +37,12 @@ public class LoginViewModel {
                             return null;
                         }
                     } else {
-                        message.set("Incorrect password for username: " + username);
+                        message.set("Incorrect password");
                         return null;
                     }
                 }
             }
-            message.set("Username not found: " + username);
+            message.set("Username " + username + " not found");
             return null;
         } catch (RuntimeException e) {
             message.set("Error accessing database: " + e.getMessage());

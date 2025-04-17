@@ -17,9 +17,13 @@ import java.io.IOException;
 
 public class LoginController {
     @FXML
-    private TextField username;
+    private TextField adminUsername;
     @FXML
-    private PasswordField password;
+    private PasswordField adminPassword;
+    @FXML
+    private TextField userUsername;
+    @FXML
+    private PasswordField userPassword;
     @FXML
     private Label loginlabel;
     @FXML
@@ -67,7 +71,7 @@ public class LoginController {
 
     @FXML
     public void adminlogin(ActionEvent event) {
-        User user = viewModel.login(username.getText(), password.getText(), "ADMIN");
+        User user = viewModel.login(adminUsername.getText(), adminPassword.getText(), "ADMIN");
         if (user != null) {
             SessionManager.getInstance().setLoggedInUser(user);
             try {
@@ -77,7 +81,7 @@ public class LoginController {
                     return;
                 }
                 Parent root = loader.load();
-                Stage stage = (Stage) username.getScene().getWindow();
+                Stage stage = (Stage) adminUsername.getScene().getWindow();
                 stage.setScene(new Scene(root, 900, 600));
                 stage.setTitle("Library App");
                 stage.show();
@@ -89,7 +93,7 @@ public class LoginController {
 
     @FXML
     public void userlogin(ActionEvent event) {
-        User user = viewModel.login(username.getText(), password.getText(), "USER");
+        User user = viewModel.login(userUsername.getText(), userPassword.getText(), "USER");
         if (user != null) {
             SessionManager.getInstance().setLoggedInUser(user);
             try {
@@ -99,7 +103,7 @@ public class LoginController {
                     return;
                 }
                 Parent root = loader.load();
-                Stage stage = (Stage) username.getScene().getWindow();
+                Stage stage = (Stage) userUsername.getScene().getWindow();
                 stage.setScene(new Scene(root, 900, 600));
                 stage.setTitle("Library App");
                 stage.show();
@@ -118,7 +122,7 @@ public class LoginController {
                 return;
             }
             Parent root = loader.load();
-            Stage stage = (Stage) username.getScene().getWindow();
+            Stage stage = (Stage) userUsername.getScene().getWindow();
             stage.setScene(new Scene(root, 900, 600));
             stage.setTitle("Register");
             stage.show();
