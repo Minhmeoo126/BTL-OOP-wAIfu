@@ -4,11 +4,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.libapp.controllers.MyAccountController" spacing="10" alignment="CENTER">
-    <Label fx:id="usernameLabel" text="Username: "/>
-    <Label fx:id="emailLabel" text="Email: "/>
-    <Label fx:id="fullNameLabel" text="Full Name: "/>
-    <Label fx:id="roleLabel" text="Role: "/>
-    <Button text="Back to Main" onAction="#backToMain"/>
+<VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.MyAccountController">
+    <Label fx:id="usernameLabel" text="Username: " />
+    <Label fx:id="emailLabel" text="Email: " />
+    <Label fx:id="fullNameLabel" text="Full Name: " />
+    <Label fx:id="roleLabel" text="Role: " />
+    <Button fx:id="backToMain" onAction="#backToMain" text="Back to Main" />
 </VBox>

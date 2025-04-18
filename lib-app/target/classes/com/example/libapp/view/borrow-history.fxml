@@ -5,14 +5,13 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.libapp.controllers.BorrowingHistoryController" spacing="10" alignment="CENTER">
+<VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.BorrowingHistoryController">
     <TableView fx:id="historyTable">
         <columns>
-            <TableColumn fx:id="bookIdColumn" text="Book ID"/>
-            <TableColumn fx:id="borrowDateColumn" text="Borrow Date"/>
-            <TableColumn fx:id="returnDateColumn" text="Return Date"/>
+            <TableColumn fx:id="bookIdColumn" text="Book ID" />
+            <TableColumn fx:id="borrowDateColumn" text="Borrow Date" />
+            <TableColumn fx:id="returnDateColumn" text="Return Date" />
         </columns>
     </TableView>
-    <Button text="Back to Main" onAction="#backToMain"/>
+    <Button fx:id="backToMain" onAction="#backToMain" text="Back to Main" />
 </VBox>

@@ -13,4 +13,5 @@ module com.example.libapp {
     exports com.example.libapp.controllers;
     exports com.example.libapp.persistence;
     opens com.example.libapp.controllers to javafx.fxml;
+    opens com.example.libapp.model to javafx.base;
 }

@@ -4,14 +4,13 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.libapp.controllers.MainController" spacing="10" alignment="CENTER">
-    <Label text="Library App" style="-fx-font-size: 24px;"/>
-    <Button text="View Books" onAction="#openBookView"/>
-    <Button text="Search Books" onAction="#openSearchBook"/>
-    <Button text="My Account" onAction="#openMyAccount"/>
-    <Button text="Borrowing History" onAction="#openBorrowingHistory"/>
-    <Button text="Borrow Book" onAction="#openBorrowBook"/>
-    <Button text="Return Book" onAction="#openReturnBook"/>
-    <Button text="Logout" onAction="#handleLogout"/>
+<VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.MainController">
+    <Label style="-fx-font-size: 24px;" text="Library App" />
+    <Button fx:id="viewBooks" onAction="#openBookView" text="View Books" />
+    <Button fx:id="searchBooks" onAction="#openSearchBook" text="Search Books" />
+    <Button fx:id="myAccount" onAction="#openMyAccount" text="My Account" />
+    <Button fx:id="borrowingHistory" onAction="#openBorrowingHistory" text="Borrowing History" />
+    <Button fx:id="borrowBooks" onAction="#openBorrowBook" text="Borrow Book" />
+    <Button fx:id="returnBook" onAction="#openReturnBook" text="Return Book" />
+    <Button fx:id="Logout" onAction="#handleLogout" text="Logout" />
 </VBox>
