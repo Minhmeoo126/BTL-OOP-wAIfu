@@ -95,7 +95,7 @@
         <dependency>
             <groupId>com.github.AlmasB</groupId>
             <artifactId>FXGL</artifactId>
-            <version>11.4</version>
+            <version>11.17</version>
         </dependency>
 
         <!-- API: OpenAI GPT -->
