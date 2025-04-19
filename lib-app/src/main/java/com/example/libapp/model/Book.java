@@ -9,6 +9,7 @@ public class Book {
     private String categoryName; // Thêm để lưu tên danh mục từ truy vấn JOIN
     private int totalCopies;
     private int availableCopies;
+    private String description; // Added for book introduction/preview
 
     // Getters and setters
     public int getId() {
@@ -75,6 +76,14 @@ public class Book {
         this.availableCopies = availableCopies;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -86,6 +95,7 @@ public class Book {
                 ", categoryName='" + categoryName + '\'' +
                 ", totalCopies=" + totalCopies +
                 ", availableCopies=" + availableCopies +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
