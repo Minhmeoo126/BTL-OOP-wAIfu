@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.libapp.controllers.BorrowingHistoryController" spacing="10" alignment="CENTER">
+    <TableView fx:id="historyTable">
+        <columns>
+            <TableColumn fx:id="bookIdColumn" text="Book ID"/>
+            <TableColumn fx:id="borrowDateColumn" text="Borrow Date"/>
+            <TableColumn fx:id="returnDateColumn" text="Return Date"/>
+        </columns>
+    </TableView>
+    <Button text="Back to Main" onAction="#backToMain"/>
+</VBox>
