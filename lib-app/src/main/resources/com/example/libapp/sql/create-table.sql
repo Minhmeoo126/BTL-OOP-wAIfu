@@ -28,6 +28,7 @@ CREATE TABLE Book (
                       category_id INTEGER NOT NULL,
                       total_copies INTEGER NOT NULL,
                       available_copies INTEGER NOT NULL,
+                      description TEXT, -- Added for book introduction/preview
                       FOREIGN KEY (author_id) REFERENCES Author(id),
                       FOREIGN KEY (category_id) REFERENCES Category(id)
 );

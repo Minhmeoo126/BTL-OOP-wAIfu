@@ -16,4 +16,12 @@ public class BookViewModel {
     public void loadBooks() {
         books.setAll(bookDAO.getAllBooks());
     }
+
+    // Method to get a specific book by ID (useful for Book Info view)
+    public Book getBookById(int bookId) {
+        return books.stream()
+                .filter(book -> book.getId() == bookId)
+                .findFirst()
+                .orElse(null);
+    }
 }
