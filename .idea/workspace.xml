@@ -5,89 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e728ec86-4eb6-4d98-910e-b3696689695e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/FXGL_11_17.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/libs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/BTL-OOP-wAIfu.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BTL-OOP-wAIfu.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib-app/lib.db" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/lib.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/DatabaseSetup.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/SessionManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/api/BookService$BookDetails.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/api/BookService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/BookViewController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/BorrowBookController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/BorrowingHistoryController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/MainController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/MyAccountController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/RegisterController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/ReturnBookController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/SearchBookController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/image/ADDBOOK.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/image/email.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/image/key.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/image/spell-book.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/image/sword.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/image/user.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/model/Author.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/model/Book.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/model/BorrowingRecord.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/model/Category.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/model/Review.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/model/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/persistence/AuthorDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/persistence/BookDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/persistence/BorrowingRecordDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/persistence/CategoryDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/persistence/DatabaseConnection.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/persistence/ReviewDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/persistence/UserDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/sql/create-table.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/sql/create-triggers.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/sql/drop-table.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/sql/insert-data.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/CreateAccountView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/book-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/borrow-book.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/borrow-history.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/login-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/main.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/my-account.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/return-book.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/search-book.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/viewmodel/BookViewModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/viewmodel/BorrowBookViewModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/viewmodel/BorrowingHistoryViewModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/viewmodel/LoginViewModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/viewmodel/MainViewModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/viewmodel/MyAccountViewModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/viewmodel/ReturnBookViewModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/viewmodel/SearchBookViewModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/viewmodel/UserViewModel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/module-info.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/lib-app-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP-wAIfu/com/example/libapp/image/ADDBOOK.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP-wAIfu/com/example/libapp/image/email.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP-wAIfu/com/example/libapp/image/key.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP-wAIfu/com/example/libapp/image/spell-book.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP-wAIfu/com/example/libapp/image/sword.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP-wAIfu/com/example/libapp/image/user.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP-wAIfu/com/example/libapp/sql/create-table.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP-wAIfu/com/example/libapp/sql/create-triggers.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP-wAIfu/com/example/libapp/sql/drop-table.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP-wAIfu/com/example/libapp/view/CreateAccountView.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP-wAIfu/com/example/libapp/view/book-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP-wAIfu/com/example/libapp/view/borrow-book.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP-wAIfu/com/example/libapp/view/borrow-history.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP-wAIfu/com/example/libapp/view/login-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP-wAIfu/com/example/libapp/view/main.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP-wAIfu/com/example/libapp/view/my-account.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP-wAIfu/com/example/libapp/view/return-book.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP-wAIfu/com/example/libapp/view/search-book.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BTL-OOP-wAIfu/com/example/libapp/view/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/login-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/login-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/module-info.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,12 +34,12 @@
     &quot;assignee&quot;: &quot;Minhmeoo126&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Minhmeoo126/BTL-OOP-wAIfu.git&quot;,
-    &quot;accountId&quot;: &quot;d79de7e5-87e1-458d-83a8-ec5c1dbba1f2&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Minhmeoo126/BTL-OOP-wAIfu.git",
+    "accountId": "2ad3af17-83ee-41f5-aa60-0a7f25c0b2eb"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 8
@@ -123,24 +54,22 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "newController",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/ADMIN/OneDrive/Documents/GitHub/BTL-OOP-wAIfu/lib-app/libs/FXGL-11.17.jar",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
-      </set>
-    </attachedChunks>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
