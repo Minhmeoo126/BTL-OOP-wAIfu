@@ -5,9 +5,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.BorrowBookController">
-    <TextField fx:id="bookIdField" promptText="Enter Book ID" />
-    <Button fx:id="borrow" onAction="#handleBorrow" text="Borrow" />
-    <Label fx:id="messageLabel" style="-fx-text-fill: green;" text="" />
-    <Button fx:id="backToMain" onAction="#backToMain" text="Back to Main" />
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.libapp.controllers.BorrowBookController" spacing="10" alignment="CENTER">
+    <TextField fx:id="bookIdField" promptText="Enter Book ID"/>
+    <Button text="Borrow" onAction="#handleBorrow"/>
+    <Label fx:id="messageLabel" text="" style="-fx-text-fill: green;"/>
+    <Button text="Back to Main" onAction="#backToMain"/>
 </VBox>
