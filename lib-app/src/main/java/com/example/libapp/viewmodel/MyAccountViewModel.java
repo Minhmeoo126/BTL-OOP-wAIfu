@@ -47,4 +47,17 @@ public class MyAccountViewModel {
             role.set("Role: N/A");
         }
     }
+
+    public void openAI() {
+    }
+
+    public void openUserManagement() {
+    }
+
+    public void openBookMangagement() {
+    }
+
+    public void openmyaccount() {
+
+    }
 }

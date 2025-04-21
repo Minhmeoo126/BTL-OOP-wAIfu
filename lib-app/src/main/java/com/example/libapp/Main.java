@@ -40,7 +40,7 @@ public class Main extends Application {
         }).start();
 
         // Load JavaFX UI
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/example/libapp/view/login-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/example/libapp/view/main.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 600);
         stage.setTitle("Library Management App");
         stage.setScene(scene);

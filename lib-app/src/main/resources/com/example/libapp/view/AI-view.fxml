@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.MyAccountController">
     <left>
         <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="65.0" spacing="3.0" style="-fx-border-color: #F3F3E0; -fx-background-radius: 10px;" styleClass="login_bg" stylesheets="@styles.css" BorderPane.alignment="CENTER">
             <children>
@@ -34,7 +34,7 @@
                     </children>
                 </VBox>
                 <Pane prefHeight="60.0" prefWidth="84.0" />
-                <Button graphicTextGap="1.0" mnemonicParsing="false">
+                <Button fx:id="myAccount" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openMyAccount">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -47,7 +47,7 @@
                         <String fx:value="transparent" />
                     </styleClass>
                 </Button>
-                <Button graphicTextGap="1.0" mnemonicParsing="false">
+                <Button fx:id="addBook" graphicTextGap="1.0" mnemonicParsing="false" onAction="#addNewBook">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                             <image>
@@ -60,7 +60,7 @@
                         <String fx:value="transparent" />
                     </styleClass>
                 </Button>
-                <Button graphicTextGap="1.0" mnemonicParsing="false">
+                <Button fx:id="bookManage" graphicTextGap="1.0" mnemonicParsing="false" onAction="#goToBookManage">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                             <image>
@@ -73,7 +73,7 @@
                         <String fx:value="transparent" />
                     </styleClass>
                 </Button>
-                <Button graphicTextGap="1.0" mnemonicParsing="false">
+                <Button fx:id="userManagement" graphicTextGap="1.0" mnemonicParsing="false" onAction="#goToUserManagement">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                             <image>

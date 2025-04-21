@@ -23,15 +23,12 @@
 
 /* Khi nhấn vào Button */
 .button:pressed {
-    -fx-background-color: #F3F3E0; /* Màu xanh tối hơn */
+    -fx-background-color: #133E87; /* Màu xanh tối hơn */
     -fx-translate-y: 2px; /* Hiệu ứng nhấn xuống */
 }
 
 /* Khi Button được focus */
-.button:focused {
-    -fx-background-color:#F3F3E0 ;
-    -fx-border-color: #F3F3E0; /* Màu viền vàng khi focus */
-}
+
 
 .Btn_login {
     -fx-background-color:#133E87;

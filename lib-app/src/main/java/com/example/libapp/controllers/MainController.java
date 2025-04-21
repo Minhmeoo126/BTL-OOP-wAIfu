@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainController {
-    private final MainViewModel viewModel = new MainViewModel();
+    public Button AI;
     public Button viewBooks;
     public Button searchBooks;
     public Button myAccount;
@@ -20,7 +20,7 @@ public class MainController {
     public Button borrowBooks;
     public Button returnBook;
     public Button Logout;
-
+    private final MainViewModel viewModel = new MainViewModel();
     @FXML
     private void openBookView() throws IOException {
         viewModel.openBookView();
@@ -56,7 +56,11 @@ public class MainController {
         viewModel.openReturnBook();
         loadView("return-book.fxml", returnBook);
     }
-
+    @FXML
+    private void openAI() throws IOException {
+        viewModel.openAI();
+        loadView("AI-view.fxml", AI);
+    }
     @FXML
     private void handleLogout() throws IOException {
         viewModel.logout();
