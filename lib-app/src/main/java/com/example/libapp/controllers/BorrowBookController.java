@@ -14,10 +14,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class BorrowBookController {
+    public Button back;
     @FXML
     private Button borrow;
-    @FXML
-    private Button backToMain;
     @FXML
     private TextField bookIdField;
     @FXML
@@ -44,7 +43,7 @@ public class BorrowBookController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/main.fxml" ));
             Parent root = loader.load();
-            Stage stage = (Stage) backToMain.getScene().getWindow();
+            Stage stage = (Stage) back.getScene().getWindow();
             stage.setScene(new Scene(root, 900, 600));
             stage.show();
         } catch (IOException e) {

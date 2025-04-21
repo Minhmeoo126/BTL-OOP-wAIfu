@@ -14,12 +14,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class ReturnBookController {
+    public Button back;
     @FXML
     private TextField recordIdField;
     @FXML
     private Label messageLabel;
     @FXML
-    private Button backToMain;
     private final ReturnBookViewModel viewModel = new ReturnBookViewModel();
 
     @FXML
@@ -40,7 +40,7 @@ public class ReturnBookController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/main.fxml" ));
             Parent root = loader.load();
-            Stage stage = (Stage) backToMain.getScene().getWindow();
+            Stage stage = (Stage) back.getScene().getWindow();
             stage.setScene(new Scene(root, 900, 600));
             stage.show();
         } catch (IOException e) {

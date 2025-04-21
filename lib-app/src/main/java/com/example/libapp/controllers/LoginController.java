@@ -75,7 +75,7 @@ public class LoginController {
         if (user != null) {
             SessionManager.getInstance().setLoggedInUser(user);
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/main.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/main-admin-view.fxml"));
                 if (loader.getLocation() == null) {
                     viewModel.messageProperty().set("Error: main.fxml not found");
                     return;
