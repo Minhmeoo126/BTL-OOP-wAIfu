@@ -3,6 +3,14 @@ package com.example.libapp.viewmodel;
 import com.example.libapp.model.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class MyAccountViewModel {
     private final StringProperty username = new SimpleStringProperty("");

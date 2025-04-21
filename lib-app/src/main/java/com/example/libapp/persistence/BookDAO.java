@@ -17,13 +17,14 @@ public class BookDAO {
         try {
             conn = DatabaseConnection.connect();
 
-            String sql = "INSERT INTO Book (title, author_id, category_id, total_copies, available_copies) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Book (title, author_id, category_id, total_copies, available_copies, description) VALUES (?, ?, ?, ?, ?, ?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, book.getTitle());
             pstmt.setInt(2, book.getAuthorId());
             pstmt.setInt(3, book.getCategoryId());
             pstmt.setInt(4, book.getTotalCopies());
             pstmt.setInt(5, book.getAvailableCopies());
+            pstmt.setString(6, book.getDescription()); // Can be null
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -47,7 +48,7 @@ public class BookDAO {
             conn = DatabaseConnection.connect();
 
             String sql = "SELECT b.id, b.title, b.author_id, a.name AS author_name, " +
-                    "b.category_id, c.name AS category_name, b.total_copies, b.available_copies " +
+                    "b.category_id, c.name AS category_name, b.total_copies, b.available_copies, b.description " +
                     "FROM Book b " +
                     "JOIN Author a ON b.author_id = a.id " +
                     "JOIN Category c ON b.category_id = c.id";
@@ -64,6 +65,7 @@ public class BookDAO {
                 book.setCategoryName(rs.getString("category_name"));
                 book.setTotalCopies(rs.getInt("total_copies"));
                 book.setAvailableCopies(rs.getInt("available_copies"));
+                book.setDescription(rs.getString("description"));
                 books.add(book);
             }
         } catch (SQLException e) {

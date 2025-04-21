@@ -5,6 +5,14 @@ import com.example.libapp.persistence.BorrowingRecordDAO;
 import com.example.libapp.model.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class BorrowingHistoryViewModel {
     private final BorrowingRecordDAO borrowingRecordDAO = new BorrowingRecordDAO();
@@ -28,4 +36,5 @@ public class BorrowingHistoryViewModel {
                 .filter(record -> record.getUserId() == loggedInUser.getId())
                 .collect(java.util.stream.Collectors.toList()));
     }
+
 }

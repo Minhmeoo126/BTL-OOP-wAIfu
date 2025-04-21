@@ -3,13 +3,21 @@ package com.example.libapp.controllers;
 import com.example.libapp.model.Book;
 import com.example.libapp.viewmodel.SearchBookViewModel;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class SearchBookController {
+    @FXML
+    private Button backToMain;
     @FXML
     private TextField searchField;
     @FXML
@@ -46,7 +54,14 @@ public class SearchBookController {
 
     @FXML
     private void backToMain() {
-        Stage stage = (Stage) bookTable.getScene().getWindow();
-        stage.close();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/main.fxml" ));
+            Parent root = loader.load();
+            Stage stage = (Stage) backToMain.getScene().getWindow();
+            stage.setScene(new Scene(root, 900, 600));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -28,4 +28,5 @@ public class SearchBookViewModel {
                     .collect(java.util.stream.Collectors.toList()));
         }
     }
+
 }

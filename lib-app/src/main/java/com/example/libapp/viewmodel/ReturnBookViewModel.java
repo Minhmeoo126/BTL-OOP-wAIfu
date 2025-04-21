@@ -6,12 +6,19 @@ import com.example.libapp.persistence.DatabaseConnection;
 import com.example.libapp.model.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class ReturnBookViewModel {
     private final BorrowingRecordDAO borrowingRecordDAO = new BorrowingRecordDAO();
     private final StringProperty message = new SimpleStringProperty("");
     private User loggedInUser;
-
     public StringProperty messageProperty() {
         return message;
     }

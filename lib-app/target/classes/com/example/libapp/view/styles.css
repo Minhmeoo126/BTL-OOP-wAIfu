@@ -1,6 +1,9 @@
 .login_bg{
     -fx-background-color : #133E87;
 }
+.MAIN_bg{
+    -fx-background-color :#F3F3E0;
+}
 /*BUTTON_CSS*/
 .button {
     -fx-background-color: #3498db; /* Màu nền xanh */
@@ -8,8 +11,6 @@
     -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-padding: 10px 20px;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
     -fx-transition: all 0.3s ease-in-out;
 }
 
@@ -22,14 +23,14 @@
 
 /* Khi nhấn vào Button */
 .button:pressed {
-    -fx-background-color: #1f618d; /* Màu xanh tối hơn */
+    -fx-background-color: #F3F3E0; /* Màu xanh tối hơn */
     -fx-translate-y: 2px; /* Hiệu ứng nhấn xuống */
 }
 
 /* Khi Button được focus */
 .button:focused {
+    -fx-background-color:#F3F3E0 ;
     -fx-border-color: #F3F3E0; /* Màu viền vàng khi focus */
-    -fx-border-width: 2px;
 }
 
 .Btn_login {
@@ -76,3 +77,26 @@
     visibility: hidden;
 }
 
+.transparent {
+    -fx-background-color : rgba(0,0,0,0);
+}
+
+.search-container {
+    -fx-border-color : #133E87 ;
+    -fx-border-radius: 8px
+}
+
+.tag-gerne {
+     -fx-border-color : #133E87 ;
+     -fx-border-radius: 8px
+}
+.image-border {
+    -fx-border-color: #133E87;
+    -fx-border-width: 10;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+.selected {
+     -fx-background-color:#F3F3E0 ;
+     -fx-border-color: #F3F3E0;
+}
