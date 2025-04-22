@@ -2,6 +2,7 @@ package com.example.libapp.controllers;
 
 import com.example.libapp.SessionManager;
 import com.example.libapp.viewmodel.MainViewModel;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,6 +22,8 @@ public class MainController {
     public Button returnBook;
     public Button Logout;
     private final MainViewModel viewModel = new MainViewModel();
+    public Button addBook;
+
     @FXML
     private void openBookView() throws IOException {
         viewModel.openBookView();
@@ -77,5 +80,8 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void addNewBook(ActionEvent event) {
     }
 }
