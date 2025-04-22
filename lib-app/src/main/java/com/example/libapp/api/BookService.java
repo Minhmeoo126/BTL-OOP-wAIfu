@@ -20,7 +20,7 @@ import java.util.Set;
 
 public class BookService {
     private static final String API_KEY = "AIzaSyBzoGmsExfyPpiqoVOAjkvxzp8R1V-Wb2o"; // Your Google Books API key
-    private static final String DB_URL = "jdbc:sqlite:lib.db"; // Align with DatabaseConnection
+    private static final String DB_URL = "jdbc:sqlite:lib-app/lib.db"; // Align with DatabaseConnection
     private static final int MAX_RESULTS_PER_CALL = 40; // Google Books API max results per request
     private static final Set<String> processedBookIds = new HashSet<>(); // Track processed book IDs to avoid duplicates
 
