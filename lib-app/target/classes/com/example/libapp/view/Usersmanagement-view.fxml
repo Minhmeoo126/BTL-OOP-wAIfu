@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.MyAccountController">
     <left>
         <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="65.0" spacing="3.0" style="-fx-border-color: #F3F3E0; -fx-background-radius: 10px;" styleClass="login_bg" stylesheets="@styles.css" BorderPane.alignment="CENTER">
             <children>
@@ -35,7 +35,7 @@
                     </children>
                 </VBox>
                 <Pane prefHeight="60.0" prefWidth="84.0" />
-                <Button graphicTextGap="1.0" mnemonicParsing="false">
+                <Button fx:id="myAccount" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openMyAccount">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -48,7 +48,7 @@
                         <String fx:value="transparent" />
                     </styleClass>
                 </Button>
-                <Button graphicTextGap="1.0" mnemonicParsing="false">
+                <Button fx:id="addBook" graphicTextGap="1.0" mnemonicParsing="false" onAction="#addNewBook">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                             <image>
@@ -61,7 +61,7 @@
                         <String fx:value="transparent" />
                     </styleClass>
                 </Button>
-                <Button graphicTextGap="1.0" mnemonicParsing="false" styleClass="transparent">
+                <Button fx:id="bookManage" graphicTextGap="1.0" mnemonicParsing="false" onAction="#goToBookManage" styleClass="transparent">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                             <image>
@@ -70,7 +70,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button graphicTextGap="1.0" mnemonicParsing="false">
+                <Button fx:id="userManagement" graphicTextGap="1.0" mnemonicParsing="false" onAction="#goToUserManagement">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                             <image>
@@ -83,7 +83,7 @@
                         <String fx:value="transparent" />
                     </styleClass>
                 </Button>
-                <Button graphicTextGap="1.0" layoutX="11.0" layoutY="222.0" mnemonicParsing="false">
+                <Button fx:id="AI" graphicTextGap="1.0" layoutX="11.0" layoutY="222.0" mnemonicParsing="false" onAction="#goToAI">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                             <image>
@@ -97,6 +97,19 @@
                     </styleClass>
                 </Button>
                 <Pane prefHeight="98.0" prefWidth="87.0" />
+            <Button fx:id="AI1" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openAI" prefHeight="96.0" prefWidth="72.0">
+               <styleClass>
+                  <String fx:value="transperant" />
+                  <String fx:value="transparent" />
+               </styleClass>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                     <image>
+                        <Image url="@../image/exit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             </children>
         </VBox>
     </left>
@@ -150,11 +163,11 @@
                     <children>
                         <TableView fx:id="bookTable" layoutX="19.0" prefHeight="514.0" prefWidth="968.0">
                             <columns>
-                                <TableColumn fx:id="titleColumn" text="Title" />
-                                <TableColumn fx:id="authorColumn" text="Author" />
+                                <TableColumn fx:id="titleColumn" prefWidth="101.59997940063477" text="Title" />
+                                <TableColumn fx:id="authorColumn" prefWidth="58.40003967285156" text="Author" />
                                 <TableColumn fx:id="categoryColumn" text="Category" />
-                                <TableColumn fx:id="totalCopiesColumn" text="Total Copies" />
-                                <TableColumn fx:id="availableCopiesColumn" text="Available Copies" />
+                                <TableColumn fx:id="totalCopiesColumn" prefWidth="116.79998779296875" text="Total Copies" />
+                                <TableColumn fx:id="availableCopiesColumn" minWidth="1.5999755859375" prefWidth="203.20001220703125" text="Available Copies" />
                             </columns>
                         </TableView>
                     </children>

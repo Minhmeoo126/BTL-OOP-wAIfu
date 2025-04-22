@@ -23,4 +23,8 @@ public class MainViewModel {
 
     public void logout() {
     }
+
+    public void openAI() {
+
+    }
 }
