@@ -78,6 +78,19 @@
                </styleClass>
             </Button>
             <Pane prefHeight="98.0" prefWidth="87.0" />
+            <Button fx:id="logout" graphicTextGap="1.0" layoutX="11.0" layoutY="355.0" mnemonicParsing="false" onAction="#Logout">
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                     <image>
+                        <Image url="@../image/exit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <styleClass>
+                  <String fx:value="transperant" />
+                  <String fx:value="transparent" />
+               </styleClass>
+            </Button>
          </children>
       </VBox>
    </left>

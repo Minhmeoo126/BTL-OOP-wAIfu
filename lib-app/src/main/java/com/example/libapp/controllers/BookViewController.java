@@ -1,6 +1,8 @@
 package com.example.libapp.controllers;
 
+import com.example.libapp.SessionManager;
 import com.example.libapp.model.Book;
+import com.example.libapp.model.User;
 import com.example.libapp.viewmodel.BookViewModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,11 +50,21 @@ public class BookViewController {
     @FXML
     private void backToMain() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/main.fxml" ));
-            Parent root = loader.load();
-            Stage stage = (Stage) backToMain.getScene().getWindow();
-            stage.setScene(new Scene(root, 900, 600));
-            stage.show();
+            User currentUser = SessionManager.getInstance().getLoggedInUser();
+            String role = currentUser.getRole();
+            if (role.equals("ADMIN")) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/main-admin-view.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) backToMain.getScene().getWindow();
+                stage.setScene(new Scene(root, 900, 600));
+                stage.show();
+            } else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/main.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) backToMain.getScene().getWindow();
+                stage.setScene(new Scene(root, 900, 600));
+                stage.show();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

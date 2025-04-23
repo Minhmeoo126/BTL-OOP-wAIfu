@@ -1,5 +1,6 @@
 package com.example.libapp.controllers;
 
+import com.example.libapp.utils.SceneNavigator;
 import com.example.libapp.viewmodel.ReturnBookViewModel;
 import com.example.libapp.SessionManager;
 import javafx.fxml.FXML;
@@ -37,14 +38,6 @@ public class ReturnBookController {
 
     @FXML
     private void backToMain() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/main.fxml" ));
-            Parent root = loader.load();
-            Stage stage = (Stage) back.getScene().getWindow();
-            stage.setScene(new Scene(root, 900, 600));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        SceneNavigator.backToMain(back);
     }
 }

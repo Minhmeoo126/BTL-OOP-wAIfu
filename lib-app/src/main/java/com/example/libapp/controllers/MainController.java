@@ -12,17 +12,33 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static com.example.libapp.utils.SceneNavigator.loadView;
+
 public class MainController {
+    @FXML
     public Button AI;
+    @FXML
     public Button viewBooks;
+    @FXML
     public Button searchBooks;
+    @FXML
     public Button myAccount;
+    @FXML
     public Button borrowingHistory;
+    @FXML
     public Button borrowBooks;
+    @FXML
     public Button returnBook;
+    @FXML
     public Button Logout;
-    private final MainViewModel viewModel = new MainViewModel();
+    @FXML
     public Button addBook;
+    @FXML
+    public Button logout;
+
+    private final MainViewModel viewModel = new MainViewModel();
+    public Button bookManagement;
+    public Button userManagement;
 
     @FXML
     private void openBookView() throws IOException {
@@ -64,24 +80,22 @@ public class MainController {
         viewModel.openAI();
         loadView("AI-view.fxml", AI);
     }
-    @FXML
-    private void handleLogout() throws IOException {
-        viewModel.logout();
-        loadView("login-view.fxml" , Logout);
-    }
-
-    private void loadView(String fxmlFile, Button button) throws IOException {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/" + fxmlFile));
-            Parent root = loader.load();
-            Stage stage = (Stage) button.getScene().getWindow();
-            stage.setScene(new Scene(root, 900, 600));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void addNewBook(ActionEvent event) {
+    }
+
+    public void Logout() throws IOException {
+        viewModel.logout();
+        loadView("login-view.fxml",Logout);
+    }
+
+    public void goToBookManagement() throws IOException {
+        viewModel.openBookManagement();
+        loadView("bookmanagement-view.fxml" , bookManagement);
+    }
+
+    public void goToUserManagement(ActionEvent event) throws IOException {
+        viewModel.openUserManagement();
+        loadView("Usersmanagement-view.fxml" , userManagement);
     }
 }

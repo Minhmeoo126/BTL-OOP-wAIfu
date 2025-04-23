@@ -60,7 +60,7 @@
                         <String fx:value="transparent" />
                     </styleClass>
                 </Button>
-                <Button graphicTextGap="1.0" mnemonicParsing="false">
+                <Button fx:id="bookManagement" graphicTextGap="1.0" mnemonicParsing="false" onAction="#goToBookManagement">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                             <image>
@@ -73,7 +73,7 @@
                         <String fx:value="transparent" />
                     </styleClass>
                 </Button>
-            <Button graphicTextGap="1.0" mnemonicParsing="false">
+            <Button fx:id="userManagement" graphicTextGap="1.0" mnemonicParsing="false" onAction="#goToUserManagement">
                <graphic>
                   <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                      <image>
@@ -99,7 +99,20 @@
                         <String fx:value="transparent" />
                     </styleClass>
                 </Button>
-                <Pane prefHeight="98.0" prefWidth="87.0" />
+                <Pane prefHeight="98.0" prefWidth="84.0" />
+            <Button fx:id="logout" graphicTextGap="1.0" mnemonicParsing="false" onAction="#Logout" prefHeight="96.0" prefWidth="72.0">
+               <styleClass>
+                  <String fx:value="transperant" />
+                  <String fx:value="transparent" />
+               </styleClass>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                     <image>
+                        <Image url="@../image/exit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             </children>
         </VBox>
     </left>

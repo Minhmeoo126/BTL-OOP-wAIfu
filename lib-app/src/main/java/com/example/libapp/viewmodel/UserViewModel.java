@@ -39,4 +39,20 @@ public class UserViewModel {
         userDAO.addUser(user);
         message.set("User added successfully!");
     }
+
+    public void openMyAccount() {
+    }
+
+    public void openBookManage() {
+    }
+
+    public void openUserManagement() {
+    }
+
+    public void openAI() {
+    }
+
+    public void Logout() {
+
+    }
 }
