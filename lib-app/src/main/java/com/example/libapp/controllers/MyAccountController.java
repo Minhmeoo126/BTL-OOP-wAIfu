@@ -68,7 +68,7 @@ public class MyAccountController {
     public void returnBooks(ActionEvent event) {
     }
 
-    public void openAI(ActionEvent event) throws IOException {
+    public void goToAI(ActionEvent event) throws IOException {
         viewModel.openAI();
         loadView("AI-view.fxml" , AI);
     }
@@ -76,5 +76,9 @@ public class MyAccountController {
     public void Logout() throws IOException {
         viewModel.logout();
         loadView("login-view.fxml",logout);
+    }
+
+
+    public void openAI(ActionEvent event) {
     }
 }
