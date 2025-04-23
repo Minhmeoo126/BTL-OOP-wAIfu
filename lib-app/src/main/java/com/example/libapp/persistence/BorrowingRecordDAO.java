@@ -1,5 +1,6 @@
 package com.example.libapp.persistence;
 
+import com.example.libapp.model.Book;
 import com.example.libapp.model.BorrowingRecord;
 
 import java.sql.Connection;
@@ -7,9 +8,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BorrowingRecordDAO {
+
     public void addBorrowingRecord(BorrowingRecord record) {
         Connection conn = null;
         PreparedStatement pstmt = null;

@@ -207,13 +207,13 @@
                         </VBox>
                      </children>
                   </StackPane>
-                  <TableView fx:id="bookTable" layoutX="369.0" layoutY="10.0" prefHeight="417.0" prefWidth="625.0">
+                  <TableView fx:id="BorrowHistoryTable" layoutX="369.0" layoutY="10.0" prefHeight="417.0" prefWidth="625.0">
                      <columns>
-                        <TableColumn fx:id="titleColumn" text="Title" />
-                        <TableColumn fx:id="authorColumn" text="Author" />
-                        <TableColumn fx:id="categoryColumn" text="Category" />
-                        <TableColumn fx:id="totalCopiesColumn" text="Total Copies" />
-                        <TableColumn fx:id="availableCopiesColumn" text="Available Copies" />
+                        <TableColumn fx:id="IDColumn" text="ID" />
+                        <TableColumn fx:id="nameBookColumn" text="NameBook" />
+                        <TableColumn fx:id="AuthorColumn" prefWidth="127.20001220703125" text="Author" />
+                        <TableColumn fx:id="borowDateColumn" prefWidth="176.79998779296875" text="Borrow_Date" />
+                        <TableColumn fx:id="returnDateColumn" prefWidth="158.40008544921875" text="Return_Date" />
                      </columns>
                   </TableView>
                   <ImageView fitHeight="125.0" fitWidth="84.0" layoutX="397.0" layoutY="392.0" pickOnBounds="true" preserveRatio="true">

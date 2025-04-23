@@ -1,5 +1,7 @@
 package com.example.libapp.controllers;
 
+import com.example.libapp.model.Book;
+import com.example.libapp.model.BorrowingRecord;
 import com.example.libapp.model.User;
 import com.example.libapp.utils.SceneNavigator;
 import com.example.libapp.viewmodel.MyAccountViewModel;
@@ -11,10 +13,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Date;
 
 import static com.example.libapp.utils.SceneNavigator.loadView;
 
@@ -39,7 +44,15 @@ public class MyAccountController {
     public Label Role;
     @FXML
     public Label BorrowedBooks;
+    @FXML
     public Button borrowBooks;
+    @FXML
+    public TableView<BorrowingRecord> BorrowHistoryTable;
+    public TableColumn<BorrowingRecord, Integer> IDColumn;
+    public TableColumn<BorrowingRecord, String> nameBookColumn;
+    public TableColumn<BorrowingRecord, String> AuthorColumn;
+    public TableColumn<BorrowingRecord, String> borowDateColumn;
+    public TableColumn<BorrowingRecord, String> returnDateColumn;
     @FXML
     private Button backToMain;
 
@@ -145,7 +158,8 @@ public class MyAccountController {
         loadView("borrow-book.fxml", borrowBooks);
     }
 
-    public void returnBooks(ActionEvent event) {
-
+    public void returnBooks() throws IOException {
+        viewModel.openReturnBook();
+        loadView("return-book.fxml", returnBook);
     }
 }
