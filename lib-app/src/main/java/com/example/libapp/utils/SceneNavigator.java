@@ -38,7 +38,7 @@ public class SceneNavigator {
             FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/" + fxmlFile));
             Parent root = loader.load();
             Stage stage = (Stage) button.getScene().getWindow();
-            stage.setScene(new Scene(root, 900, 600));
+            stage.setScene(new Scene(root, 1100, 600));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

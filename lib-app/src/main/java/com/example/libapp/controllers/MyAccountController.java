@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,12 +17,14 @@ import java.io.IOException;
 import static com.example.libapp.utils.SceneNavigator.loadView;
 
 public class MyAccountController {
+    public Button AI1 ;
     public Button AI;
     public Button addBook;
     public Button bookManage;
     public Button userManagement;
     public Button myAccount;
     public Button returnBook;
+    public Button logout;
     @FXML
     private Label usernameLabel;
     @FXML
@@ -57,16 +60,21 @@ public class MyAccountController {
         loadView("Usersmanagement-view.fxml",userManagement);
     }
 
-    public void goToAI() throws IOException {
-        viewModel.openAI();
-        loadView("AI-view.fxml" , AI);
-    }
-
     public void openMyAccount() throws IOException{
         viewModel.openmyaccount();
         loadView("my-account.fxml",myAccount);
     }
 
     public void returnBooks(ActionEvent event) {
+    }
+
+    public void openAI(ActionEvent event) throws IOException {
+        viewModel.openAI();
+        loadView("AI-view.fxml" , AI);
+    }
+
+    public void Logout() throws IOException {
+        viewModel.logout();
+        loadView("login-view.fxml",logout);
     }
 }

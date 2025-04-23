@@ -60,4 +60,7 @@ public class MyAccountViewModel {
     public void openmyaccount() {
 
     }
+
+    public void logout() {
+    }
 }

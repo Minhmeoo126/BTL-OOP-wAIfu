@@ -139,3 +139,9 @@
 .table-view .filler {
     -fx-background-color: #F3F3E0;
 }
+
+.rice_message {
+    -fx-border-color : #212121;
+    -fx-border-width : 3px;
+    -fx-background-color:#F7F7F7;
+}

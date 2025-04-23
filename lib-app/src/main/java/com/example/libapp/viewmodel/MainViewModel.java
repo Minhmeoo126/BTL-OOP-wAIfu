@@ -27,4 +27,10 @@ public class MainViewModel {
     public void openAI() {
 
     }
+
+    public void openBookManagement() {
+    }
+
+    public void openUserManagement() {
+    }
 }
