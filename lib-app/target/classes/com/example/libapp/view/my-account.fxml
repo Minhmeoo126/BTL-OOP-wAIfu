@@ -175,17 +175,17 @@
                                     </ImageView>
                                  </children>
                               </StackPane>
-                              <Label alignment="CENTER" prefHeight="69.0" prefWidth="326.0" text="Name : UserName">
+                              <Label fx:id="nameAccount" alignment="CENTER" prefHeight="69.0" prefWidth="326.0" text="Name: ">
                                  <font>
                                     <Font name="Gill Sans MT" size="29.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="70.0" prefWidth="326.0" text="Age : 1000">
+                              <Label fx:id="Role" alignment="CENTER" prefHeight="70.0" prefWidth="326.0" text="Role: ">
                                  <font>
                                     <Font name="Gill Sans MT" size="29.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="73.0" prefWidth="326.0" text="Borrowed books : 8">
+                              <Label fx:id="BorrowedBooks" alignment="CENTER" prefHeight="73.0" prefWidth="326.0" text="Borrowed books : 8">
                                  <font>
                                     <Font name="Gill Sans MT" size="29.0" />
                                  </font>

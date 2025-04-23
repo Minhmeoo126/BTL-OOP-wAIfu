@@ -1,5 +1,6 @@
 package com.example.libapp.controllers;
 
+import com.example.libapp.model.User;
 import com.example.libapp.viewmodel.MyAccountViewModel;
 import com.example.libapp.SessionManager;
 import javafx.event.ActionEvent;
@@ -17,7 +18,6 @@ import java.io.IOException;
 import static com.example.libapp.utils.SceneNavigator.loadView;
 
 public class MyAccountController {
-    public Button AI1 ;
     public Button AI;
     public Button addBook;
     public Button bookManage;
@@ -25,14 +25,9 @@ public class MyAccountController {
     public Button myAccount;
     public Button returnBook;
     public Button logout;
-    @FXML
-    private Label usernameLabel;
-    @FXML
-    private Label emailLabel;
-    @FXML
-    private Label fullNameLabel;
-    @FXML
-    private Label roleLabel;
+    public Label nameAccount;
+    public Label Role;
+    public Label BorrowedBooks;
     @FXML
     private Button backToMain;
     private final MyAccountViewModel viewModel = new MyAccountViewModel();
@@ -44,6 +39,18 @@ public class MyAccountController {
        // roleLabel.textProperty().bind(viewModel.roleProperty());
        // viewModel.loadUserInfo(SessionManager.getInstance().getLoggedInUser());
    // }
+    public void initialize(){
+        User currentUser = SessionManager.getInstance().getLoggedInUser();
+        if (currentUser != null) {
+            nameAccount.setText("Name: " + currentUser.getUsername());
+            Role.setText("Role: " + currentUser.getRole());
+            BorrowedBooks.setText("Borrowed: " + "0");
+        } else {
+            nameAccount.setText("Không có người dùng");
+            Role.setText("Không xác định");
+            BorrowedBooks.setText("0");
+        }
+    }
 
     public void addNewBook(ActionEvent event) {
 
@@ -77,4 +84,5 @@ public class MyAccountController {
         viewModel.logout();
         loadView("login-view.fxml",logout);
     }
+
 }
