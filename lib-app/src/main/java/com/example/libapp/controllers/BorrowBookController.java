@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
+import com.example.libapp.utils.SceneNavigator;
 import java.io.IOException;
 
 public class BorrowBookController {
@@ -40,14 +40,6 @@ public class BorrowBookController {
 
     @FXML
     private void backToMain() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/main.fxml" ));
-            Parent root = loader.load();
-            Stage stage = (Stage) back.getScene().getWindow();
-            stage.setScene(new Scene(root, 900, 600));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        SceneNavigator.backToMain(back);
     }
 }

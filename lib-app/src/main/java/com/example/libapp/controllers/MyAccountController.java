@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static com.example.libapp.utils.SceneNavigator.loadView;
+
 public class MyAccountController {
     public Button AI;
     public Button addBook;
@@ -39,30 +41,6 @@ public class MyAccountController {
        // roleLabel.textProperty().bind(viewModel.roleProperty());
        // viewModel.loadUserInfo(SessionManager.getInstance().getLoggedInUser());
    // }
-
-    @FXML
-    private void backToMain() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/main.fxml" ));
-            Parent root = loader.load();
-            Stage stage = (Stage) backToMain.getScene().getWindow();
-            stage.setScene(new Scene(root, 900, 600));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    private void loadView(String fxmlFile, Button button) throws IOException {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/" + fxmlFile));
-            Parent root = loader.load();
-            Stage stage = (Stage) button.getScene().getWindow();
-            stage.setScene(new Scene(root, 900, 600));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void addNewBook(ActionEvent event) {
 

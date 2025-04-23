@@ -5,17 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e728ec86-4eb6-4d98-910e-b3696689695e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/utils/SceneNavigator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/lib.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/persistence/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/persistence/DatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/persistence/DatabaseConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/persistence/DatabaseConnection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/lib.db" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/lib.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/BookViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/BookViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/BorrowBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/BorrowBookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/BorrowingHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/BorrowingHistoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/MyAccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/MyAccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/ReturnBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/ReturnBookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/SearchBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/SearchBookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -26,12 +39,12 @@
     &quot;assignee&quot;: &quot;Minhmeoo126&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Minhmeoo126/BTL-OOP-wAIfu.git&quot;,
-    &quot;accountId&quot;: &quot;d79de7e5-87e1-458d-83a8-ec5c1dbba1f2&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Minhmeoo126/BTL-OOP-wAIfu.git",
+    "accountId": "4552e430-ddc8-4887-9e30-0ccbb8e27414"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 8
@@ -41,31 +54,99 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Controller",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/BTL-OOP-wAIfu",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Controller&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/BTL-OOP-wAIfu&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.libapp" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="BTL-OOP-wAIfu" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="BTL-OOP-wAIfu" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="BTL-OOP-wAIfu" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Python.FlaskServer">
+      <module name="BTL-OOP-wAIfu" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="BTL-OOP-wAIfu" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.59" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.59" />
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.24978.46" />
+        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-IU-243.24978.46" />
       </set>
     </attachedChunks>
   </component>
@@ -82,6 +163,7 @@
       <workItem from="1745334599462" duration="220000" />
       <workItem from="1745334835975" duration="1860000" />
       <workItem from="1745336722963" duration="1754000" />
+      <workItem from="1745368091751" duration="2121000" />
     </task>
     <servers />
   </component>
