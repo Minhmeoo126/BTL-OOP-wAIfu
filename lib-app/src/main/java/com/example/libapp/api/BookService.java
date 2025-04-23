@@ -15,21 +15,54 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.nio.charset.StandardCharsets;
+import java.util.HashSet;
+import java.util.Set;
 
 public class BookService {
     private static final String API_KEY = "AIzaSyBzoGmsExfyPpiqoVOAjkvxzp8R1V-Wb2o"; // Your Google Books API key
     private static final String DB_URL = "jdbc:sqlite:lib-app/lib.db"; // Align with DatabaseConnection
+    private static final int MAX_RESULTS_PER_CALL = 40; // Google Books API max results per request
+    private static final Set<String> processedBookIds = new HashSet<>(); // Track processed book IDs to avoid duplicates
 
     public static void initializeDatabase() throws SQLException {
         // Schema updates are handled by DatabaseConnection
     }
 
-    public static void fetchAndStoreBooks(String query) throws Exception {
-        // Encode the query parameter to handle spaces and special characters
-        String encodedQuery = URLEncoder.encode(query, StandardCharsets.UTF_8);
-        String apiUrl = "https://www.googleapis.com/books/v1/volumes?q=" + encodedQuery + "&key=" + API_KEY;
-        String jsonResponse = fetchBooksFromApi(apiUrl);
-        parseAndStoreBooks(jsonResponse);
+    public static int countBooks() throws SQLException {
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             PreparedStatement pstmt = conn.prepareStatement("SELECT COUNT(*) FROM Book");
+             ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+            return 0;
+        }
+    }
+
+    public static void fetchAndStoreBooks(String query, int maxBooks) throws Exception {
+        int startIndex = 0;
+        int booksFetched = 0;
+
+        while (booksFetched < maxBooks) {
+            // Encode the query parameter to handle spaces and special characters
+            String encodedQuery = URLEncoder.encode(query, StandardCharsets.UTF_8);
+            String apiUrl = "https://www.googleapis.com/books/v1/volumes?q=" + encodedQuery +
+                    "&maxResults=" + MAX_RESULTS_PER_CALL + "&startIndex=" + startIndex + "&key=" + API_KEY;
+
+            String jsonResponse = fetchBooksFromApi(apiUrl);
+            int booksInThisBatch = parseAndStoreBooks(jsonResponse);
+
+            booksFetched += booksInThisBatch;
+            startIndex += MAX_RESULTS_PER_CALL;
+
+            // Break if no more books are returned
+            if (booksInThisBatch == 0) {
+                break;
+            }
+
+            // Avoid overwhelming the API
+            Thread.sleep(100); // Respect API rate limits
+        }
     }
 
     private static String fetchBooksFromApi(String apiUrl) throws Exception {
@@ -43,22 +76,35 @@ public class BookService {
         return response.body();
     }
 
-    private static void parseAndStoreBooks(String jsonResponse) throws Exception {
+    private static int parseAndStoreBooks(String jsonResponse) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode root = mapper.readTree(jsonResponse);
         JsonNode items = root.path("items");
 
+        if (items.isMissingNode() || items.size() == 0) {
+            return 0; // No books in this response
+        }
+
         try (Connection conn = DriverManager.getConnection(DB_URL)) {
-            // Ensure a default category exists
-            int categoryId = getOrCreateCategory(conn, "Programming");
+            // Map query to appropriate category
+            String categoryName = determineCategoryFromQuery(root.path("items").path(0).path("volumeInfo").path("categories"));
+            int categoryId = getOrCreateCategory(conn, categoryName);
 
             // Insert books
             try (PreparedStatement pstmt = conn.prepareStatement(
                     "INSERT INTO Book (title, author_id, category_id, total_copies, available_copies, description) VALUES (?, ?, ?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS)) {
 
+                int booksAdded = 0;
+
                 for (JsonNode item : items) {
                     JsonNode volumeInfo = item.path("volumeInfo");
+                    String bookId = item.path("id").asText("");
+
+                    // Skip if book already processed
+                    if (processedBookIds.contains(bookId)) {
+                        continue;
+                    }
 
                     String title = volumeInfo.path("title").asText("");
                     if (title.isEmpty()) continue; // Skip books with missing titles
@@ -89,9 +135,21 @@ public class BookService {
                     pstmt.setInt(5, availableCopies);
                     pstmt.setString(6, description); // Can be null
                     pstmt.executeUpdate();
+
+                    // Mark book as processed
+                    processedBookIds.add(bookId);
+                    booksAdded++;
                 }
+                return booksAdded;
             }
         }
+    }
+
+    private static String determineCategoryFromQuery(JsonNode categoriesNode) {
+        if (categoriesNode.isArray() && categoriesNode.size() > 0) {
+            return categoriesNode.get(0).asText("General");
+        }
+        return "General"; // Default category if none specified
     }
 
     private static int getOrCreateAuthor(Connection conn, String authorName) throws SQLException {

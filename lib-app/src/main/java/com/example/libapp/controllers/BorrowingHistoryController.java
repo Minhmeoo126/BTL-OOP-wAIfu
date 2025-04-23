@@ -1,6 +1,7 @@
 package com.example.libapp.controllers;
 
 import com.example.libapp.model.BorrowingRecord;
+import com.example.libapp.utils.SceneNavigator;
 import com.example.libapp.viewmodel.BorrowingHistoryViewModel;
 import com.example.libapp.SessionManager;
 import javafx.fxml.FXML;
@@ -42,14 +43,6 @@ public class BorrowingHistoryController {
 
     @FXML
     private void backToMain() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/main.fxml" ));
-            Parent root = loader.load();
-            Stage stage = (Stage) backToMain.getScene().getWindow();
-            stage.setScene(new Scene(root, 900, 600));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        SceneNavigator.backToMain(backToMain);
     }
 }
