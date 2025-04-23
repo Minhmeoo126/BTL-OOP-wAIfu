@@ -18,15 +18,25 @@ import java.io.IOException;
 import static com.example.libapp.utils.SceneNavigator.loadView;
 
 public class MyAccountController {
+    @FXML
     public Button AI;
+    @FXML
     public Button addBook;
+    @FXML
     public Button bookManage;
+    @FXML
     public Button userManagement;
+    @FXML
     public Button myAccount;
+    @FXML
     public Button returnBook;
+    @FXML
     public Button logout;
+    @FXML
     public Label nameAccount;
+    @FXML
     public Label Role;
+    @FXML
     public Label BorrowedBooks;
     @FXML
     private Button backToMain;
