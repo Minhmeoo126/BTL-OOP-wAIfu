@@ -25,6 +25,20 @@
                </font>
             </Label>
             <Pane prefHeight="82.0" prefWidth="86.0" />
+            <Button fx:id="myAccount1" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openMyAccount">
+               <graphic>
+                  <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/home.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <styleClass>
+                  <String fx:value="transperant" />
+                  <String fx:value="selected" />
+                  <String fx:value="transparent" />
+               </styleClass>
+            </Button>
             <Button fx:id="myAccount" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openMyAccount">
                <graphic>
                   <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">

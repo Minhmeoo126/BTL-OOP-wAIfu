@@ -75,7 +75,7 @@
                                           <Font name="Californian FB Bold" size="24.0" />
                                        </font>
                                     </Button>
-                                    <Label fx:id="loginlabel" layoutX="66.0" layoutY="128.0" prefHeight="22.0" prefWidth="246.0" textFill="#c90c0c">
+                                    <Label fx:id="loginlabel" alignment="CENTER" layoutX="25.0" layoutY="128.0" prefHeight="22.0" prefWidth="328.0" textAlignment="CENTER" textFill="#c90c0c" wrapText="true">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -129,7 +129,7 @@
                                           <Font name="Californian FB Bold" size="24.0" />
                                        </font>
                                     </Button>
-                                    <Label fx:id="userloginlabel" layoutX="67.0" layoutY="128.0" prefHeight="18.0" prefWidth="241.0" textFill="#c90c0c">
+                                    <Label fx:id="userloginlabel" alignment="CENTER" layoutX="25.0" layoutY="128.0" prefHeight="20.0" prefWidth="327.0" textAlignment="CENTER" textFill="#c90c0c" wrapText="true">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
