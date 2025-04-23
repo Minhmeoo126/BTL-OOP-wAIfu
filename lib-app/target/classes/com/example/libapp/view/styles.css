@@ -97,3 +97,45 @@
      -fx-background-color:#F3F3E0 ;
      -fx-border-color: #F3F3E0;
 }
+
+
+
+
+.table-view {
+    -fx-background-color: #F3F3E0;
+    -fx-text-fill: #133E87;
+    -fx-font-family: "Courier New", "Consolas", monospace;
+    -fx-font-size: 14px;
+    -fx-border-color: #133E87;
+    -fx-border-width: 2px;
+
+}
+
+.table-view .column-header {
+    -fx-background-color: #455D7A;
+    -fx-text-fill: #F3F3E0;
+    -fx-font-weight: bold;
+    -fx-border-color: #F3F3E0;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: #F3F3E0;
+    -fx-border-color: #133E87;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-view .table-row-cell:filled:selected {
+    -fx-background-color: #133E87;
+    -fx-text-fill: #F3F3E0;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: #133E87;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 4px;
+}
+
+.table-view .filler {
+    -fx-background-color: #F3F3E0;
+}
