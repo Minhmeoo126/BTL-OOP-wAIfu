@@ -24,4 +24,16 @@ public class BookViewModel {
                 .findFirst()
                 .orElse(null);
     }
+
+    public void openMyAccount() {
+    }
+
+    public void openBookManage() {
+    }
+
+    public void openUserManage() {
+    }
+
+    public void openAI() {
+    }
 }
