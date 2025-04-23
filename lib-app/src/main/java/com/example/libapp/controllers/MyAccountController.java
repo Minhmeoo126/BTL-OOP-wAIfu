@@ -77,8 +77,4 @@ public class MyAccountController {
         viewModel.logout();
         loadView("login-view.fxml",logout);
     }
-
-
-    public void openAI(ActionEvent event) {
-    }
 }

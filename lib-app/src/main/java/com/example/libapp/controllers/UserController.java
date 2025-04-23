@@ -98,12 +98,12 @@ public class UserController {
 
     public void goToBookManage() throws IOException {
         viewModel.openBookManage();
-        loadView("bookmanagement.fxml",bookManage);
+        loadView("bookmanagement-view.fxml",bookManage);
     }
 
     public void goToUserManagement() throws IOException {
         viewModel.openUserManagement();
-        loadView("Usersmanagement.fxml",userManagement);
+        loadView("Usersmanagement-view.fxml",userManagement);
     }
 
     public void goToAI() throws IOException {
