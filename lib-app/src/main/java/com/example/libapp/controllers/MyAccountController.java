@@ -1,6 +1,7 @@
 package com.example.libapp.controllers;
 
 import com.example.libapp.model.User;
+import com.example.libapp.utils.SceneNavigator;
 import com.example.libapp.viewmodel.MyAccountViewModel;
 import com.example.libapp.SessionManager;
 import javafx.event.ActionEvent;
@@ -38,18 +39,21 @@ public class MyAccountController {
     public Label Role;
     @FXML
     public Label BorrowedBooks;
+    public Button borrowBooks;
     @FXML
     private Button backToMain;
+
     private final MyAccountViewModel viewModel = new MyAccountViewModel();
+
     //@FXML
     //public void initialize() {
-      //  usernameLabel.textProperty().bind(viewModel.usernameProperty());
-       // emailLabel.textProperty().bind(viewModel.emailProperty());
-        //fullNameLabel.textProperty().bind(viewModel.fullNameProperty());
-       // roleLabel.textProperty().bind(viewModel.roleProperty());
-       // viewModel.loadUserInfo(SessionManager.getInstance().getLoggedInUser());
-   // }
-    public void initialize(){
+    //  usernameLabel.textProperty().bind(viewModel.usernameProperty());
+    // emailLabel.textProperty().bind(viewModel.emailProperty());
+    //fullNameLabel.textProperty().bind(viewModel.fullNameProperty());
+    // roleLabel.textProperty().bind(viewModel.roleProperty());
+    // viewModel.loadUserInfo(SessionManager.getInstance().getLoggedInUser());
+    // }
+    public void initialize() {
         User currentUser = SessionManager.getInstance().getLoggedInUser();
         if (currentUser != null) {
             nameAccount.setText("Name: " + currentUser.getUsername());
@@ -68,31 +72,80 @@ public class MyAccountController {
 
     public void goToBookManage(ActionEvent event) throws IOException {
         viewModel.openBookMangagement();
-        loadView("bookmanagement-view.fxml",bookManage);
+        loadView("bookmanagement-view.fxml", bookManage);
 
     }
 
     public void goToUserManagement() throws IOException {
         viewModel.openUserManagement();
-        loadView("Usersmanagement-view.fxml",userManagement);
+        loadView("Usersmanagement-view.fxml", userManagement);
     }
 
-    public void openMyAccount() throws IOException{
-        viewModel.openmyaccount();
-        loadView("my-account.fxml",myAccount);
-    }
-
-    public void returnBooks(ActionEvent event) {
+    public void openMyAccount() {
+        try {
+            User currentUser = SessionManager.getInstance().getLoggedInUser();
+            String role = currentUser.getRole();
+            if (role.equals("ADMIN")) {
+                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/my-account.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) myAccount.getScene().getWindow();
+                stage.setScene(new Scene(root, 1100, 600));
+                stage.show();
+            } else {
+                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/User-my-account-view.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) myAccount.getScene().getWindow();
+                stage.setScene(new Scene(root, 1100, 600));
+                stage.show();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void goToAI(ActionEvent event) throws IOException {
-        viewModel.openAI();
-        loadView("AI-view.fxml" , AI);
+        try {
+            User currentUser = SessionManager.getInstance().getLoggedInUser();
+            String role = currentUser.getRole();
+            if (role.equals("ADMIN")) {
+                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/AI-view.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) AI.getScene().getWindow();
+                stage.setScene(new Scene(root, 1100, 600));
+                stage.show();
+            } else {
+                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/User-Ai-view.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) AI.getScene().getWindow();
+                stage.setScene(new Scene(root, 1100, 600));
+                stage.show();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void Logout() throws IOException {
         viewModel.logout();
-        loadView("login-view.fxml",logout);
+        loadView("login-view.fxml", logout);
     }
 
+    public void backToMain() {
+        SceneNavigator.backToMain(backToMain);
+    }
+
+    public void openReturnBook() throws IOException {
+        viewModel.openReturnBook();
+        loadView("return-book.fxml", returnBook);
+
+    }
+
+    public void openBorrowBook() throws IOException {
+        viewModel.openBorrowBook();
+        loadView("borrow-book.fxml", borrowBooks);
+    }
+
+    public void returnBooks(ActionEvent event) {
+
+    }
 }

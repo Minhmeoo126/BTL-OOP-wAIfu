@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.ReturnBookController">
     <left>
         <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="65.0" spacing="3.0" style="-fx-border-color: #F3F3E0; -fx-background-radius: 10px;" styleClass="login_bg" stylesheets="@styles.css" BorderPane.alignment="CENTER">
             <children>
@@ -24,7 +24,7 @@
                     </font>
                 </Label>
                 <Pane prefHeight="82.0" prefWidth="86.0" />
-            <Button fx:id="myAccount1" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openMyAccount">
+            <Button fx:id="backToMain" graphicTextGap="1.0" mnemonicParsing="false" onAction="#backToMain">
                <graphic>
                   <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -91,7 +91,7 @@
                     </styleClass>
                 </Button>
                 <Pane prefHeight="98.0" prefWidth="87.0" />
-                <Button fx:id="AI1" graphicTextGap="1.0" layoutX="11.0" layoutY="355.0" mnemonicParsing="false" onAction="#openAI">
+                <Button fx:id="logout" graphicTextGap="1.0" layoutX="11.0" layoutY="355.0" mnemonicParsing="false" onAction="#Logout">
                     <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                             <image>
@@ -189,7 +189,7 @@
                            </children>
                         </HBox>
                         <Button layoutX="218.0" layoutY="246.0" mnemonicParsing="false" styleClass="Btn_login" text="Return" />
-                        <Label layoutX="39.0" layoutY="206.0" prefHeight="29.0" prefWidth="490.0" />
+                        <Label fx:id="messageLabel" layoutX="39.0" layoutY="206.0" prefHeight="29.0" prefWidth="490.0" />
                      </children>
                   </AnchorPane>
                   <Label alignment="CENTER" layoutX="86.0" layoutY="59.0" prefHeight="41.0" prefWidth="156.0" styleClass="rice_message" text="Return my book !!">

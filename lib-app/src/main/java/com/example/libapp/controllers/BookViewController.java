@@ -20,11 +20,17 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 
 public class BookViewController {
+    @FXML
     public Button AI;
+    @FXML
     public Button myAccount;
+    @FXML
     public Button addBook;
+    @FXML
     public Button bookManage;
+    @FXML
     public Button userManagement;
+    public Button logout;
     @FXML
     private Button backToMain;
     @FXML
@@ -80,5 +86,10 @@ public class BookViewController {
     public void goToAI() throws IOException {
         viewModel.openAI();
         loadView("AI-view.fxml" , AI);
+    }
+
+    public void Logout() throws IOException {
+        viewModel.logout();
+        loadView("login-view.fxml" , logout);
     }
 }

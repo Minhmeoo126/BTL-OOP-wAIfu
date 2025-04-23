@@ -36,4 +36,8 @@ public class BookViewModel {
 
     public void openAI() {
     }
+
+    public void logout() {
+
+    }
 }

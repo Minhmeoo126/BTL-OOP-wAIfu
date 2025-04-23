@@ -63,4 +63,11 @@ public class MyAccountViewModel {
 
     public void logout() {
     }
+
+    public void openReturnBook() {
+    }
+
+    public void openBorrowBook() {
+
+    }
 }

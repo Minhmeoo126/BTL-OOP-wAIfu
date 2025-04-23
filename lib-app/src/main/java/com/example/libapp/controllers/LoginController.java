@@ -82,7 +82,7 @@ public class LoginController {
                 }
                 Parent root = loader.load();
                 Stage stage = (Stage) adminUsername.getScene().getWindow();
-                stage.setScene(new Scene(root, 900, 600));
+                stage.setScene(new Scene(root, 1100, 600));
                 stage.setTitle("Library App");
                 stage.show();
             } catch (IOException e) {

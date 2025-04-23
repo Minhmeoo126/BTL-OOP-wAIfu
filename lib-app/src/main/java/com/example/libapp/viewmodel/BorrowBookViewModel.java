@@ -41,4 +41,14 @@ public class BorrowBookViewModel {
             message.set("Error: " + e.getMessage());
         }
     }
+
+    public void openReturnBook() {
+    }
+
+    public void openBorrowBook() {
+    }
+
+    public void Logout() {
+
+    }
 }

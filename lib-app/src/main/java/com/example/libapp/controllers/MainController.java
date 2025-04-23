@@ -1,6 +1,7 @@
 package com.example.libapp.controllers;
 
 import com.example.libapp.SessionManager;
+import com.example.libapp.utils.SceneNavigator;
 import com.example.libapp.viewmodel.MainViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,6 +40,7 @@ public class MainController {
     private final MainViewModel viewModel = new MainViewModel();
     public Button bookManagement;
     public Button userManagement;
+    public Button backToMain;
 
     @FXML
     private void openBookView() throws IOException {
@@ -97,5 +99,9 @@ public class MainController {
     public void goToUserManagement(ActionEvent event) throws IOException {
         viewModel.openUserManagement();
         loadView("Usersmanagement-view.fxml" , userManagement);
+    }
+
+    public void backToMain() {
+        SceneNavigator.backToMain(backToMain);
     }
 }

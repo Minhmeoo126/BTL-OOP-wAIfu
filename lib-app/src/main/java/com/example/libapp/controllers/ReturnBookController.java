@@ -1,8 +1,10 @@
 package com.example.libapp.controllers;
 
+import com.example.libapp.model.User;
 import com.example.libapp.utils.SceneNavigator;
 import com.example.libapp.viewmodel.ReturnBookViewModel;
 import com.example.libapp.SessionManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,8 +16,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static com.example.libapp.utils.SceneNavigator.loadView;
+
 public class ReturnBookController {
-    public Button back;
+    public Button AI;
+    public Button myAccount;
+    public Button returnBook;
+    public Button borrowBooks;
+    public Button logout;
+    public Button backToMain;
     @FXML
     private TextField recordIdField;
     @FXML
@@ -36,8 +45,66 @@ public class ReturnBookController {
                 "-fx-text-fill: green;" : "-fx-text-fill: red;");
     }
 
-    @FXML
-    private void backToMain() {
-        SceneNavigator.backToMain(back);
+    public void openMyAccount(ActionEvent event) {
+        try {
+            User currentUser = SessionManager.getInstance().getLoggedInUser();
+            String role = currentUser.getRole();
+            if (role.equals("ADMIN")) {
+                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/my-account.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) myAccount.getScene().getWindow();
+                stage.setScene(new Scene(root, 1100, 600));
+                stage.show();
+            } else {
+                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/User-my-account-view.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) myAccount.getScene().getWindow();
+                stage.setScene(new Scene(root, 1100, 600));
+                stage.show();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void openReturnBook() throws IOException {
+        viewModel.openReturnBook();
+        loadView("return-book.fxml" , returnBook);
+    }
+
+    public void openBorrowBook() throws IOException {
+        viewModel.openBorrowBook();
+        loadView("borrow-book.fxml",borrowBooks);
+    }
+
+    public void openAI(ActionEvent event) {
+        try {
+            User currentUser = SessionManager.getInstance().getLoggedInUser();
+            String role = currentUser.getRole();
+            if (role.equals("ADMIN")) {
+                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/AI-view.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) AI.getScene().getWindow();
+                stage.setScene(new Scene(root, 1100, 600));
+                stage.show();
+            } else {
+                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/User-Ai-view.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) AI.getScene().getWindow();
+                stage.setScene(new Scene(root, 1100, 600));
+                stage.show();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void Logout() throws IOException {
+        viewModel.logout();
+        loadView("login-view.fxml",logout);
+    }
+
+    public void backToMain() {
+        SceneNavigator.backToMain(backToMain);
     }
 }

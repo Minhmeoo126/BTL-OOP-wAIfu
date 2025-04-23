@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import static com.example.libapp.utils.SceneNavigator.loadView;
 
-public class AIController {
+public class AIUserController {
     @FXML
     public Button AI;
     @FXML
@@ -26,36 +26,36 @@ public class AIController {
     @FXML
     public Button backToMain;
     private final MainViewModel viewModel = new MainViewModel();
+    public Button returnBook;
+    public Button borrowBooks;
 
     public void openMyAccount() throws IOException {
         viewModel.openMyAccount();
-        loadView("my-account.fxml",myAccount);
-    }
-
-    public void addNewBook(ActionEvent event) {
-    }
-
-    public void goToBookManage() throws IOException {
-        viewModel.openBookManagement();
-        loadView("bookmanagement-view.fxml" , bookManage);
-    }
-
-    public void goToUserManagement() throws IOException {
-        viewModel.openUserManagement();
-        loadView("Usersmanagement-view.fxml" , userManagement);
+        loadView("User-my-account-view.fxml", myAccount);
     }
 
     public void Logout() throws IOException {
         viewModel.logout();
-        loadView("login-view.fxml" ,logout);
+        loadView("login-view.fxml", logout);
     }
 
     public void backToMain(ActionEvent event) {
         SceneNavigator.backToMain(backToMain);
     }
 
+    public void openReturnBook() throws IOException {
+        viewModel.openReturnBook();
+        loadView("return-book.fxml", returnBook);
+    }
+
+    public void openBorrowBook() throws IOException {
+        viewModel.openBorrowBook();
+        loadView("borrow-book.fxml", borrowBooks);
+    }
+
     public void openAI() throws IOException {
         viewModel.openAI();
-        loadView("AI-view.fxml" , AI);
+        loadView("User-Ai-view.fxml", AI);
     }
 }
+
