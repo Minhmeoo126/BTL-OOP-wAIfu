@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -159,56 +160,64 @@
                         <Insets bottom="9.0" top="2.0" />
                     </VBox.margin>
                 </HBox>
-            <Pane prefHeight="552.0" prefWidth="1013.0">
+            <Pane>
                <children>
-                  <StackPane layoutX="17.0" layoutY="11.0" prefHeight="520.0" prefWidth="325.0" style="-fx-background-color: #F5F5F5;" styleClass="image-border" stylesheets="@styles.css">
+                  <AnchorPane>
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                        <Pane prefHeight="552.0" prefWidth="1013.0">
                            <children>
-                              <Pane prefHeight="25.0" prefWidth="326.0" style="-fx-background-color: #133E87;" />
-                              <StackPane prefHeight="125.0" prefWidth="326.0" style="-fx-background-color: #BCCCDC;">
+                              <StackPane layoutX="17.0" layoutY="11.0" prefHeight="520.0" prefWidth="325.0" style="-fx-background-color: #F5F5F5;" styleClass="image-border" stylesheets="@styles.css">
                                  <children>
-                                    <ImageView fitHeight="97.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../image/user.png" />
-                                       </image>
-                                    </ImageView>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                                       <children>
+                                          <Pane prefHeight="25.0" prefWidth="326.0" style="-fx-background-color: #133E87;" />
+                                          <StackPane prefHeight="125.0" prefWidth="326.0" style="-fx-background-color: #BCCCDC;">
+                                             <children>
+                                                <ImageView fitHeight="97.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../image/user.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </StackPane>
+                                          <Label alignment="CENTER" prefHeight="69.0" prefWidth="326.0" text="Name : UserName">
+                                             <font>
+                                                <Font name="Gill Sans MT" size="29.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="70.0" prefWidth="326.0" text="Age : 1000">
+                                             <font>
+                                                <Font name="Gill Sans MT" size="29.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" prefHeight="73.0" prefWidth="326.0" text="Borrowed books : 8">
+                                             <font>
+                                                <Font name="Gill Sans MT" size="29.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
                                  </children>
                               </StackPane>
-                              <Label alignment="CENTER" prefHeight="69.0" prefWidth="326.0" text="Name : UserName">
-                                 <font>
-                                    <Font name="Gill Sans MT" size="29.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" prefHeight="70.0" prefWidth="326.0" text="Age : 1000">
-                                 <font>
-                                    <Font name="Gill Sans MT" size="29.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" prefHeight="73.0" prefWidth="326.0" text="Borrowed books : 8">
-                                 <font>
-                                    <Font name="Gill Sans MT" size="29.0" />
-                                 </font>
-                              </Label>
+                              <TableView fx:id="bookTable" layoutX="369.0" layoutY="10.0" prefHeight="417.0" prefWidth="625.0">
+                                 <columns>
+                                    <TableColumn fx:id="titleColumn" text="Title" />
+                                    <TableColumn fx:id="authorColumn" text="Author" />
+                                    <TableColumn fx:id="categoryColumn" text="Category" />
+                                    <TableColumn fx:id="totalCopiesColumn" text="Total Copies" />
+                                    <TableColumn fx:id="availableCopiesColumn" text="Available Copies" />
+                                 </columns>
+                              </TableView>
+                              <ImageView fitHeight="125.0" fitWidth="84.0" layoutX="397.0" layoutY="392.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../image/castoria_account.png" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="returnBook" layoutX="389.0" layoutY="465.0" mnemonicParsing="false" onAction="#returnBooks" styleClass="Btn_login" stylesheets="@styles.css" text="Return" />
                            </children>
-                        </VBox>
+                        </Pane>
                      </children>
-                  </StackPane>
-                  <TableView fx:id="bookTable" layoutX="369.0" layoutY="10.0" prefHeight="417.0" prefWidth="625.0">
-                     <columns>
-                        <TableColumn fx:id="titleColumn" text="Title" />
-                        <TableColumn fx:id="authorColumn" text="Author" />
-                        <TableColumn fx:id="categoryColumn" text="Category" />
-                        <TableColumn fx:id="totalCopiesColumn" text="Total Copies" />
-                        <TableColumn fx:id="availableCopiesColumn" text="Available Copies" />
-                     </columns>
-                  </TableView>
-                  <ImageView fitHeight="125.0" fitWidth="84.0" layoutX="397.0" layoutY="392.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/castoria_account.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="returnBook" layoutX="389.0" layoutY="465.0" mnemonicParsing="false" onAction="#returnBooks" styleClass="Btn_login" stylesheets="@styles.css" text="Return" />
+                  </AnchorPane>
                </children>
             </Pane>
             </children>
