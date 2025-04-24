@@ -92,7 +92,7 @@ public class BookService {
 
             // Insert books
             try (PreparedStatement pstmt = conn.prepareStatement(
-                    "INSERT INTO Book (title, author_id, category_id, total_copies, available_copies, description) VALUES (?, ?, ?, ?, ?, ?)",
+                    "INSERT INTO Book (title, author_id, category_id, total_copies, available_copies, description, thumbnail) VALUES (?, ?, ?, ?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS)) {
 
                 int booksAdded = 0;
@@ -120,6 +120,9 @@ public class BookService {
                     // Get the description (introduction/preview)
                     String description = volumeInfo.path("description").asText(null); // Null if not present
 
+                    // Get the thumbnail URL
+                    String thumbnailUrl = volumeInfo.path("imageLinks").path("thumbnail").asText(null);
+
                     // Insert or get author_id
                     int authorId = getOrCreateAuthor(conn, author);
 
@@ -134,6 +137,7 @@ public class BookService {
                     pstmt.setInt(4, totalCopies);
                     pstmt.setInt(5, availableCopies);
                     pstmt.setString(6, description); // Can be null
+                    pstmt.setString(7, thumbnailUrl); // Store the thumbnail URL
                     pstmt.executeUpdate();
 
                     // Mark book as processed
@@ -204,7 +208,7 @@ public class BookService {
     public static BookDetails getBookDetails(int bookId) throws SQLException {
         try (Connection conn = DriverManager.getConnection(DB_URL);
              PreparedStatement pstmt = conn.prepareStatement(
-                     "SELECT b.title, a.name AS author, c.name AS category, b.description " +
+                     "SELECT b.title, a.name AS author, c.name AS category, b.description, b.thumbnail " +
                              "FROM Book b " +
                              "JOIN Author a ON b.author_id = a.id " +
                              "JOIN Category c ON b.category_id = c.id " +
@@ -216,7 +220,8 @@ public class BookService {
                         rs.getString("title"),
                         rs.getString("author"),
                         rs.getString("category"),
-                        rs.getString("description")
+                        rs.getString("description"),
+                        rs.getString("thumbnail") // Fetch thumbnail
                 );
             }
         }
@@ -229,12 +234,14 @@ public class BookService {
         private final String author;
         private final String category;
         private final String description;
+        private final String thumbnail;
 
-        public BookDetails(String title, String author, String category, String description) {
+        public BookDetails(String title, String author, String category, String description, String thumbnail) {
             this.title = title;
             this.author = author;
             this.category = category;
             this.description = description;
+            this.thumbnail = thumbnail;
         }
 
         public String getTitle() {
@@ -252,5 +259,11 @@ public class BookService {
         public String getDescription() {
             return description;
         }
+
+        public String getThumbnail() {
+            return thumbnail;
+        }
     }
+
+
 }

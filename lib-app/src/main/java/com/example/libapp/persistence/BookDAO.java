@@ -2,10 +2,7 @@ package com.example.libapp.persistence;
 
 import com.example.libapp.model.Book;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +45,7 @@ public class BookDAO {
             conn = DatabaseConnection.connect();
 
             String sql = "SELECT b.id, b.title, b.author_id, a.name AS author_name, " +
-                    "b.category_id, c.name AS category_name, b.total_copies, b.available_copies, b.description " +
+                    "b.category_id, c.name AS category_name, b.total_copies, b.available_copies, b.description, b.thumbnail " +
                     "FROM Book b " +
                     "JOIN Author a ON b.author_id = a.id " +
                     "JOIN Category c ON b.category_id = c.id";
@@ -66,6 +63,7 @@ public class BookDAO {
                 book.setTotalCopies(rs.getInt("total_copies"));
                 book.setAvailableCopies(rs.getInt("available_copies"));
                 book.setDescription(rs.getString("description"));
+                book.setThumbnail(rs.getString("thumbnail"));
                 books.add(book);
             }
         } catch (SQLException e) {
