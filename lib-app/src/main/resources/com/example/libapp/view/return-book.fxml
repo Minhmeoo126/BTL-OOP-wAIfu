@@ -163,31 +163,23 @@
                   <AnchorPane layoutX="381.0" layoutY="107.0" prefHeight="315.0" prefWidth="547.0" style="-fx-background-color: #F7F7F7;" styleClass="search-container">
                      <children>
                         <Label layoutX="253.0" layoutY="25.0" />
-                        <HBox alignment="CENTER" layoutX="6.0" layoutY="30.0" prefHeight="54.0" prefWidth="521.0" spacing="10.0">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="37.0" prefWidth="68.0" text="Book Id">
-                                 <font>
-                                    <Font name="Gill Sans MT Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField alignment="CENTER" prefHeight="32.0" prefWidth="392.0" styleClass="search-container" />
-                           </children>
-                        </HBox>
+                        <Label alignment="CENTER" layoutX="31.600000381469727" layoutY="38.0" prefHeight="37.0" prefWidth="68.0" text="Book Id">
+                           <font>
+                              <Font name="Gill Sans MT Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField alignment="CENTER" layoutX="110.0" layoutY="41.20000076293945" prefHeight="32.0" prefWidth="392.0" styleClass="search-container" />
                         <Label alignment="CENTER" layoutX="240.0" layoutY="86.0" prefHeight="49.0" prefWidth="52.0" text="Or">
                            <font>
                               <Font name="Gill Sans MT Bold" size="26.0" />
                            </font>
                         </Label>
-                        <HBox alignment="CENTER" layoutX="6.0" layoutY="134.0" prefHeight="54.0" prefWidth="521.0" spacing="10.0">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="38.0" prefWidth="102.0" text="Book name">
-                                 <font>
-                                    <Font name="Gill Sans MT Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField alignment="CENTER" prefHeight="32.0" prefWidth="378.0" styleClass="search-container" />
-                           </children>
-                        </HBox>
+                        <Label alignment="CENTER" layoutX="14.0" layoutY="142.0" prefHeight="38.0" prefWidth="102.0" text="Book name">
+                           <font>
+                              <Font name="Gill Sans MT Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField alignment="CENTER" layoutX="110.0" layoutY="145.1999969482422" prefHeight="32.0" prefWidth="392.0" styleClass="search-container" />
                         <Button layoutX="218.0" layoutY="246.0" mnemonicParsing="false" styleClass="Btn_login" text="Return" />
                         <Label layoutX="39.0" layoutY="206.0" prefHeight="29.0" prefWidth="490.0" />
                      </children>
