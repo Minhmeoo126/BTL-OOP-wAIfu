@@ -7,20 +7,13 @@ import com.example.libapp.utils.SceneNavigator;
 import com.example.libapp.viewmodel.BookViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
+import javafx.scene.text.Text;
+
+import java.io.IOException;
 
 import static com.example.libapp.utils.SceneNavigator.loadView;
-
-import java.io.BufferedWriter;
-import java.io.IOException;
 
 public class BookViewController {
     @FXML
@@ -59,6 +52,59 @@ public class BookViewController {
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
         totalCopiesColumn.setCellValueFactory(new PropertyValueFactory<>("totalCopies"));
         availableCopiesColumn.setCellValueFactory(new PropertyValueFactory<>("availableCopies"));
+
+
+        titleColumn.setCellFactory(column -> {
+            return new TableCell<>() {
+                private final Text text = new Text();
+
+                {
+                    text.wrappingWidthProperty().bind(titleColumn.widthProperty().subtract(10));
+                    setGraphic(text);
+                }
+
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    text.setText(empty || item == null ? "" : item);
+                }
+            };
+        });
+
+
+        authorColumn.setCellFactory(column -> {
+            return new TableCell<>() {
+                private final Text text = new Text();
+
+                {
+                    text.wrappingWidthProperty().bind(authorColumn.widthProperty().subtract(10));
+                    setGraphic(text);
+                }
+
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    text.setText(empty || item == null ? "" : item);
+                }
+            };
+        });
+
+        categoryColumn.setCellFactory(column -> {
+            return new TableCell<>() {
+                private final Text text = new Text();
+
+                {
+                    text.wrappingWidthProperty().bind(categoryColumn.widthProperty().subtract(10));
+                    setGraphic(text);
+                }
+
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    text.setText(empty || item == null ? "" : item);
+                }
+            };
+        });
 
         bookTable.setItems(viewModel.getBooks());
         viewModel.loadBooks();
