@@ -79,7 +79,7 @@ public class UserManagementController {
 
     private void addViewHistoryColumn() {
         actionColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button viewBtn = new Button("View History");
+            private final Button viewBtn = new Button("View");
 
             {
                 viewBtn.setStyle("-fx-cursor: hand;");

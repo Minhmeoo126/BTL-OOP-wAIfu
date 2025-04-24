@@ -5,23 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e728ec86-4eb6-4d98-910e-b3696689695e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/UserManagementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib-app/lib.db" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/lib.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/BorrowingHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/BorrowingHistoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/MyAccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/MyAccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/UserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/model/BorrowingRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/model/BorrowingRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/viewmodel/MyAccountViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/viewmodel/MyAccountViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/User-my-account-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/User-my-account-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/Usersmanagement-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/Usersmanagement-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/BorrowingHistoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/BorrowingHistoryController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/MyAccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/MyAccountController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/model/BorrowingRecord.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/model/BorrowingRecord.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/User-my-account-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/User-my-account-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/Usersmanagement-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/Usersmanagement-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/viewmodel/MyAccountViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/viewmodel/MyAccountViewModel.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +93,7 @@
       <workItem from="1745334599462" duration="220000" />
       <workItem from="1745334835975" duration="1860000" />
       <workItem from="1745336722963" duration="4160000" />
-      <workItem from="1745404329991" duration="24235000" />
+      <workItem from="1745404329991" duration="24559000" />
     </task>
     <servers />
   </component>
