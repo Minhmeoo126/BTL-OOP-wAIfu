@@ -25,6 +25,7 @@ public class ReturnBookController {
     public Button borrowBooks;
     public Button logout;
     public Button backToMain;
+    public Label UserName;
     @FXML
     private TextField recordIdField;
     @FXML
@@ -34,6 +35,12 @@ public class ReturnBookController {
 
     @FXML
     public void initialize() {
+        User currentUser = SessionManager.getInstance().getLoggedInUser();
+        if (currentUser != null) {
+            UserName.setText(currentUser.getUsername());
+        } else {
+            UserName.setText("khong co nguoi dung");
+        }
         messageLabel.textProperty().bind(viewModel.messageProperty());
         viewModel.setLoggedInUser(SessionManager.getInstance().getLoggedInUser());
     }
@@ -69,12 +76,12 @@ public class ReturnBookController {
 
     public void openReturnBook() throws IOException {
         viewModel.openReturnBook();
-        loadView("return-book.fxml" , returnBook);
+        loadView("return-book.fxml", returnBook);
     }
 
     public void openBorrowBook() throws IOException {
         viewModel.openBorrowBook();
-        loadView("borrow-book.fxml",borrowBooks);
+        loadView("borrow-book.fxml", borrowBooks);
     }
 
     public void openAI(ActionEvent event) {
@@ -101,7 +108,7 @@ public class ReturnBookController {
 
     public void Logout() throws IOException {
         viewModel.logout();
-        loadView("login-view.fxml",logout);
+        loadView("login-view.fxml", logout);
     }
 
     public void backToMain() {

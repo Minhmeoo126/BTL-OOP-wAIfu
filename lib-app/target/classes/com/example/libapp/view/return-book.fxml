@@ -133,7 +133,7 @@
                         <Pane prefHeight="38.0" prefWidth="114.0" />
                         <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="206.0" spacing="10.0">
                             <children>
-                                <Label alignment="CENTER" prefHeight="31.0" prefWidth="105.0" text="USERNAME">
+                                <Label fx:id="UserName" alignment="CENTER" prefHeight="31.0" prefWidth="105.0" text="USERNAME">
                                     <font>
                                         <Font name="Gill Sans MT Bold" size="16.0" />
                                     </font>
@@ -170,7 +170,7 @@
                                     <Font name="Gill Sans MT Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <TextField alignment="CENTER" prefHeight="32.0" prefWidth="392.0" styleClass="search-container" />
+                              <TextField fx:id="recordIdField" alignment="CENTER" prefHeight="32.0" prefWidth="392.0" styleClass="search-container" />
                            </children>
                         </HBox>
                         <Label alignment="CENTER" layoutX="240.0" layoutY="86.0" prefHeight="49.0" prefWidth="52.0" text="Or">
@@ -188,7 +188,7 @@
                               <TextField alignment="CENTER" prefHeight="32.0" prefWidth="378.0" styleClass="search-container" />
                            </children>
                         </HBox>
-                        <Button layoutX="218.0" layoutY="246.0" mnemonicParsing="false" styleClass="Btn_login" text="Return" />
+                        <Button layoutX="218.0" layoutY="246.0" mnemonicParsing="false" onAction="#handleReturn" styleClass="Btn_login" text="Return" />
                         <Label fx:id="messageLabel" layoutX="39.0" layoutY="206.0" prefHeight="29.0" prefWidth="490.0" />
                      </children>
                   </AnchorPane>

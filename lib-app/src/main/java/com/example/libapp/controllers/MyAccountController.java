@@ -52,6 +52,7 @@ public class MyAccountController {
     public TableColumn<BorrowingRecord, String> AuthorColumn;
     public TableColumn<BorrowingRecord, String> borrowDateColumn;
     public TableColumn<BorrowingRecord, String> returnDateColumn;
+    public Label UserName;
     @FXML
     private Button backToMain;
 
@@ -71,10 +72,12 @@ public class MyAccountController {
             nameAccount.setText("Name: " + currentUser.getUsername());
             Role.setText("Role: " + currentUser.getRole());
             BorrowedBooks.setText("Borrowed: " + viewModel.getRecords().size());
+            UserName.setText(currentUser.getUsername());
         } else {
             nameAccount.setText("Không có người dùng");
             Role.setText("Không xác định");
             BorrowedBooks.setText("0");
+            UserName.setText("khong co nguoi dung");
         }
         IDColumn.setCellValueFactory(new PropertyValueFactory<>("bookId"));
         nameBookColumn.setCellValueFactory(new PropertyValueFactory<>("BookName"));

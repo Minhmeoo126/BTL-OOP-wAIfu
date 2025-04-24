@@ -11,11 +11,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
 import static com.example.libapp.utils.SceneNavigator.loadView;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 
@@ -31,6 +34,7 @@ public class BookViewController {
     @FXML
     public Button userManagement;
     public Button logout;
+    public Label UserName;
     @FXML
     private Button backToMain;
     @FXML
@@ -58,6 +62,12 @@ public class BookViewController {
 
         bookTable.setItems(viewModel.getBooks());
         viewModel.loadBooks();
+        User currentUser = SessionManager.getInstance().getLoggedInUser();
+        if (currentUser != null) {
+            UserName.setText(currentUser.getUsername());
+        } else {
+            UserName.setText("khong co nguoi dung");
+        }
     }
 
     @FXML
@@ -67,7 +77,7 @@ public class BookViewController {
 
     public void openMyAccount(ActionEvent event) throws IOException {
         viewModel.openMyAccount();
-        loadView("my-account.fxml" , myAccount);
+        loadView("my-account.fxml", myAccount);
     }
 
     public void addNewBook(ActionEvent event) {
@@ -75,21 +85,21 @@ public class BookViewController {
 
     public void goToBookManage() throws IOException {
         viewModel.openBookManage();
-        loadView("bookmanagement-view.fxml" , bookManage);
+        loadView("bookmanagement-view.fxml", bookManage);
     }
 
     public void goToUserManagement() throws IOException {
         viewModel.openUserManage();
-        loadView("Usersmanagement-view.fxml"  ,userManagement);
+        loadView("Usersmanagement-view.fxml", userManagement);
     }
 
     public void goToAI() throws IOException {
         viewModel.openAI();
-        loadView("AI-view.fxml" , AI);
+        loadView("AI-view.fxml", AI);
     }
 
     public void Logout() throws IOException {
         viewModel.logout();
-        loadView("login-view.fxml" , logout);
+        loadView("login-view.fxml", logout);
     }
 }

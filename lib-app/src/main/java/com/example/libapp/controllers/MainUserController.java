@@ -1,9 +1,12 @@
 package com.example.libapp.controllers;
 
+import com.example.libapp.SessionManager;
+import com.example.libapp.model.User;
 import com.example.libapp.utils.SceneNavigator;
 import com.example.libapp.viewmodel.MainViewModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 import java.io.IOException;
 
@@ -22,7 +25,19 @@ public class MainUserController {
     public Button borrowBooks;
     @FXML
     public Button logout;
+    @FXML
+    public Label UserName;
+
     private final MainViewModel viewModel = new MainViewModel();
+
+    public void initialize(){
+        User currentUser = SessionManager.getInstance().getLoggedInUser();
+        if (currentUser != null) {
+            UserName.setText(currentUser.getUsername());
+        } else{
+            UserName.setText("khong co nguoi dung");
+        }
+    }
 
     public void backToMain() {
         SceneNavigator.backToMain(backToMain);

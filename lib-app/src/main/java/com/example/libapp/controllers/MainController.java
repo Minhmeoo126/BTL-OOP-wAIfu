@@ -1,6 +1,7 @@
 package com.example.libapp.controllers;
 
 import com.example.libapp.SessionManager;
+import com.example.libapp.model.User;
 import com.example.libapp.utils.SceneNavigator;
 import com.example.libapp.viewmodel.MainViewModel;
 import javafx.event.ActionEvent;
@@ -9,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -41,6 +43,16 @@ public class MainController {
     public Button bookManagement;
     public Button userManagement;
     public Button backToMain;
+    public Label UserName;
+
+    public void initialize() {
+        User currentUser = SessionManager.getInstance().getLoggedInUser();
+        if (currentUser != null) {
+            UserName.setText(currentUser.getUsername());
+        } else {
+            UserName.setText("khong co nguoi dung");
+        }
+    }
 
     @FXML
     private void openBookView() throws IOException {

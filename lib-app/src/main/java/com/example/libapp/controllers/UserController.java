@@ -1,5 +1,6 @@
 package com.example.libapp.controllers;
 
+import com.example.libapp.SessionManager;
 import com.example.libapp.model.User;
 import com.example.libapp.persistence.UserDAO;
 import com.example.libapp.utils.SceneNavigator;
@@ -16,6 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
 import static com.example.libapp.utils.SceneNavigator.loadView;
 
 public class UserController {
@@ -25,6 +27,7 @@ public class UserController {
     public Button bookManage;
     public Button userManagement;
     public Button logout;
+    public Label UserName;
     @FXML
     private TableView<User> UsersTable;
 
@@ -60,6 +63,12 @@ public class UserController {
         fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         loadUser();
         messageLabel.textProperty().bind(viewModel.messageProperty());
+        User currentUser = SessionManager.getInstance().getLoggedInUser();
+        if (currentUser != null) {
+            UserName.setText(currentUser.getUsername());
+        } else {
+            UserName.setText("khong co nguoi dung");
+        }
     }
 
     private void loadUser() {
@@ -67,7 +76,6 @@ public class UserController {
         users.setAll(dao.getAllUsers()); // Lấy danh sách từ database
         UsersTable.setItems(users);
     }
-
 
 
     @FXML
@@ -98,17 +106,17 @@ public class UserController {
 
     public void goToBookManage() throws IOException {
         viewModel.openBookManage();
-        loadView("bookmanagement-view.fxml",bookManage);
+        loadView("bookmanagement-view.fxml", bookManage);
     }
 
     public void goToUserManagement() throws IOException {
         viewModel.openUserManagement();
-        loadView("Usersmanagement-view.fxml",userManagement);
+        loadView("Usersmanagement-view.fxml", userManagement);
     }
 
     public void goToAI() throws IOException {
         viewModel.openAI();
-        loadView("AI-view.fxml",AI);
+        loadView("AI-view.fxml", AI);
     }
 
     public void Logout() throws IOException {

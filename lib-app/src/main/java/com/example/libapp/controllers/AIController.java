@@ -1,10 +1,14 @@
 package com.example.libapp.controllers;
 
+import com.example.libapp.SessionManager;
+import com.example.libapp.model.User;
 import com.example.libapp.utils.SceneNavigator;
 import com.example.libapp.viewmodel.MainViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 
@@ -25,8 +29,19 @@ public class AIController {
     public Button logout;
     @FXML
     public Button backToMain;
+    @FXML
+    public Label UserName;
+
     private final MainViewModel viewModel = new MainViewModel();
 
+    public void initialize(){
+        User currentUser = SessionManager.getInstance().getLoggedInUser();
+        if (currentUser != null) {
+            UserName.setText(currentUser.getUsername());
+        } else{
+            UserName.setText("khong co nguoi dung");
+        }
+    }
     public void openMyAccount() throws IOException {
         viewModel.openMyAccount();
         loadView("my-account.fxml",myAccount);

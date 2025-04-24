@@ -18,12 +18,20 @@ import java.io.IOException;
 import static com.example.libapp.utils.SceneNavigator.loadView;
 
 public class BorrowBookController {
+    @FXML
     public Button AI;
+    @FXML
     public Button myAccount;
+    @FXML
     public Button returnBook;
+    @FXML
     public Button borrowBooks;
+    @FXML
     public Button logout;
+    @FXML
     public Button backToMain;
+    @FXML
+    public Label UserName;
     @FXML
     private TextField bookIdField;
     @FXML
@@ -35,6 +43,12 @@ public class BorrowBookController {
     public void initialize() {
         messageLabel.textProperty().bind(viewModel.messageProperty());
         viewModel.setLoggedInUser(SessionManager.getInstance().getLoggedInUser());
+        User currentUser = SessionManager.getInstance().getLoggedInUser();
+        if (currentUser != null) {
+            UserName.setText(currentUser.getUsername());
+        } else {
+            UserName.setText("khong co nguoi dung");
+        }
     }
 
     @FXML
