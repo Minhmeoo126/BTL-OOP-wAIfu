@@ -126,7 +126,9 @@ public class BookViewController {
         loadView("my-account.fxml", myAccount);
     }
 
-    public void addNewBook(ActionEvent event) {
+    public void addNewBook(ActionEvent event) throws IOException {
+        viewModel.openAddBook();
+        loadView("add-book-view.fxml",addBook);
     }
 
     public void goToBookManage() throws IOException {

@@ -5,33 +5,24 @@ import com.example.libapp.model.User;
 import com.example.libapp.utils.SceneNavigator;
 import com.example.libapp.viewmodel.MainViewModel;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
+
 
 import java.io.IOException;
 
 import static com.example.libapp.utils.SceneNavigator.loadView;
 
-public class AIController {
-    @FXML
-    public Button AI;
-    @FXML
-    public Button myAccount;
-    @FXML
-    public Button addBook;
-    @FXML
-    public Button bookManage;
-    @FXML
-    public Button userManagement;
-    @FXML
-    public Button logout;
-    @FXML
-    public Button backToMain;
-    @FXML
-    public Label UserName;
+public class addBookController {
 
+    public Button AI;
+    public Button backToMain;
+    public Button myAccount;
+    public Button addBook;
+    public Button bookManagement;
+    public Button userManagement;
+    public Button logout;
+    public Label UserName;
     private final MainViewModel viewModel = new MainViewModel();
 
     public void initialize(){
@@ -42,19 +33,24 @@ public class AIController {
             UserName.setText("khong co nguoi dung");
         }
     }
+    public void backToMain() {
+        SceneNavigator.backToMain(backToMain);
+    }
+
     public void openMyAccount() throws IOException {
         viewModel.openMyAccount();
-        loadView("my-account.fxml",myAccount);
+        loadView("my-account.fxml" , myAccount);
+
     }
 
     public void addNewBook() throws IOException {
         viewModel.openAddBook();
-        loadView("add-book-view.fxml" , addBook);
+        loadView("add-book-view.fxml",addBook);
     }
 
-    public void goToBookManage() throws IOException {
+    public void goToBookManagement() throws IOException {
         viewModel.openBookManagement();
-        loadView("bookmanagement-view.fxml" , bookManage);
+        loadView("bookmanagement-view.fxml" , bookManagement);
     }
 
     public void goToUserManagement() throws IOException {
@@ -62,17 +58,14 @@ public class AIController {
         loadView("Usersmanagement-view.fxml" , userManagement);
     }
 
-    public void Logout() throws IOException {
-        viewModel.logout();
-        loadView("login-view.fxml" ,logout);
-    }
-
-    public void backToMain(ActionEvent event) {
-        SceneNavigator.backToMain(backToMain);
-    }
-
     public void openAI() throws IOException {
         viewModel.openAI();
         loadView("AI-view.fxml" , AI);
     }
+
+    public void Logout() throws IOException {
+        viewModel.logout();
+        loadView("login-view.fxml" ,logout);
+    }
 }
+

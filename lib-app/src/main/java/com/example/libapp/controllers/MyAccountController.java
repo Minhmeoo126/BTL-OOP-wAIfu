@@ -54,7 +54,11 @@ public class MyAccountController {
         BorrowedBooks.setText("Borrowed: " + viewModel.getRecords().size());
     }
 
-    public void addNewBook(ActionEvent event) {}
+    public void addNewBook() throws IOException {
+        viewModel.openAddBook();
+        loadView("add-book-view.fxml" ,addBook);
+    }
+
     public void goToBookManage(ActionEvent event) throws IOException {
         viewModel.openBookMangagement();
         loadView("bookmanagement-view.fxml", bookManage);

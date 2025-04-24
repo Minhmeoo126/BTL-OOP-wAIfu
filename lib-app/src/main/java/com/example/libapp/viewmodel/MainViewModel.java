@@ -33,4 +33,7 @@ public class MainViewModel {
 
     public void openUserManagement() {
     }
+
+    public void openAddBook() {
+    }
 }

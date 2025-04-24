@@ -155,8 +155,10 @@ public class UserManagementController {
         }
     }
 
-    public void addNewBook(ActionEvent event) {
+    public void addNewBook() throws IOException {
         // Tùy chọn: logic thêm sách
+        viewModel.openAddBook();
+        loadView("add-book-view.fxml",addBook);
     }
 
     public void goToBookManage() throws IOException {

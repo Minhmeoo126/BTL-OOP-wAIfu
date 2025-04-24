@@ -40,4 +40,8 @@ public class BookViewModel {
     public void logout() {
 
     }
+
+    public void openAddBook() {
+
+    }
 }

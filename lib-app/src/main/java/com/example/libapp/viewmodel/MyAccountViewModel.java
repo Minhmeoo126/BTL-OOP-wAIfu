@@ -72,4 +72,6 @@ public class MyAccountViewModel {
                 .collect(Collectors.toList()));
     }
 
+    public void openAddBook() {
+    }
 }

@@ -55,4 +55,7 @@ public class UserViewModel {
     public void Logout() {
 
     }
+
+    public void openAddBook() {
+    }
 }

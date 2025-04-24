@@ -95,7 +95,9 @@ public class MainController {
         loadView("AI-view.fxml", AI);
     }
 
-    public void addNewBook(ActionEvent event) {
+    public void addNewBook() throws IOException {
+        viewModel.openAddBook();
+        loadView("add-book-view.fxml",addBook);
     }
 
     public void Logout() throws IOException {
