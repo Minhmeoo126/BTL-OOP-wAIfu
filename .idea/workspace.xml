@@ -5,76 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e728ec86-4eb6-4d98-910e-b3696689695e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/08936ccf-188f-4dc2-956a-dce142194771.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/08936ccf-188f-4dc2-956a-dce142194771/storage_v2/_src_/schema/main.uQUzAA.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/AIController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/utils/SceneNavigator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/sql/insert-data.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/AIController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/sql/insert-data.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/utils/SceneNavigator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/add-book-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib-app/lib.db" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/lib.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/api/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/api/BookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/BookViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/BookViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/BorrowBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/BorrowBookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/BorrowingHistoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/BorrowingHistoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/MyAccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/MyAccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/ReturnBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/ReturnBookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/SearchBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/SearchBookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/persistence/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/persistence/DatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/viewmodel/BookViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/viewmodel/BookViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/viewmodel/MainViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/viewmodel/MainViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/viewmodel/MyAccountViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/viewmodel/MyAccountViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/viewmodel/UserViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/viewmodel/UserViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/image/castorice_honkai__star_rail_by_max80072_djcdusm-414w-2x-removebg-preview (1).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/sql/create-table.sql" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/sql/create-table.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/sql/create-triggers.sql" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/sql/create-triggers.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/AI-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/AI-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/User-Ai-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/User-Ai-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/User-my-account-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/User-my-account-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/Usersmanagement-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/Usersmanagement-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/bookmanagement-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/bookmanagement-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/borrow-book.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/borrow-book.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/main-admin-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/main-admin-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/my-account.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/my-account.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/return-book.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/return-book.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/api/BookService$BookDetails.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/api/BookService$BookDetails.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/api/BookService.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/api/BookService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/BookViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/BookViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/BorrowBookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/BorrowBookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/BorrowingHistoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/BorrowingHistoryController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/MyAccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/MyAccountController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/ReturnBookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/ReturnBookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/SearchBookController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/SearchBookController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/persistence/DatabaseConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/persistence/DatabaseConnection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/sql/create-table.sql" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/sql/create-table.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/sql/create-triggers.sql" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/sql/create-triggers.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/AI-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/AI-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/Usersmanagement-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/Usersmanagement-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/bookmanagement-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/bookmanagement-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/borrow-book.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/borrow-book.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/main-admin-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/main-admin-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/my-account.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/my-account.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/return-book.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/return-book.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/viewmodel/BookViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/viewmodel/BookViewModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/viewmodel/MainViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/viewmodel/MainViewModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/viewmodel/MyAccountViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/viewmodel/MyAccountViewModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/viewmodel/UserViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/viewmodel/UserViewModel.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,22 +45,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "CASTORICE",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/ASUS/OneDrive/Desktop/BTL-OOP-wAIfu",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;CASTORICE&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ASUS/OneDrive/Desktop/BTL-OOP-wAIfu&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
