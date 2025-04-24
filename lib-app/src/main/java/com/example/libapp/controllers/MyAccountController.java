@@ -28,8 +28,7 @@ public class MyAccountController {
     private final MyAccountViewModel viewModel = new MyAccountViewModel();
     private User user;
 
-    // viewModel.loadUserInfo(SessionManager.getInstance().getLoggedInUser());
-    // }
+    @FXML
     public void initialize() {
         if (user == null) {
             user = SessionManager.getInstance().getLoggedInUser();  // Dùng khi không có thông tin từ bên ngoài
