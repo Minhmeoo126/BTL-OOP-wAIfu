@@ -6,8 +6,27 @@ public class BorrowingRecord {
     private int bookId;
     private String borrowDate; // Lưu dưới dạng String vì SQLite dùng TEXT
     private String returnDate; // Có thể null
+    private String AuthorName;
+    private String BookName;
 
     // Getters and setters
+
+    public String getAuthorName() {
+        return AuthorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        AuthorName = authorName;
+    }
+
+    public String getBookName() {
+        return BookName;
+    }
+
+    public void setBookName(String bookName) {
+        BookName = bookName;
+    }
+
     public int getId() {
         return id;
     }

@@ -212,7 +212,7 @@
                         <TableColumn fx:id="IDColumn" text="ID" />
                         <TableColumn fx:id="nameBookColumn" text="NameBook" />
                         <TableColumn fx:id="AuthorColumn" prefWidth="127.20001220703125" text="Author" />
-                        <TableColumn fx:id="borowDateColumn" prefWidth="176.79998779296875" text="Borrow_Date" />
+                        <TableColumn fx:id="borrowDateColumn" prefWidth="176.79998779296875" text="Borrow_Date" />
                         <TableColumn fx:id="returnDateColumn" prefWidth="158.40008544921875" text="Return_Date" />
                      </columns>
                   </TableView>

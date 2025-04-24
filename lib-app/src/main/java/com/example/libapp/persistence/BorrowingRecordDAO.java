@@ -49,7 +49,10 @@ public class BorrowingRecordDAO {
         try {
             conn = DatabaseConnection.connect();
 
-            String sql = "SELECT * FROM BorrowingRecord";
+            String sql = "SELECT br.id, br.user_id, br.book_id, br.borrow_date, br.return_date, b.title, a.name "
+                    + "FROM BorrowingRecord br "
+                    + "JOIN Book b ON br.book_id = b.id "
+                    + "JOIN Author a ON b.author_id = a.id";
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
 
@@ -60,6 +63,9 @@ public class BorrowingRecordDAO {
                 record.setBookId(rs.getInt("book_id"));
                 record.setBorrowDate(rs.getString("borrow_date"));
                 record.setReturnDate(rs.getString("return_date"));
+                record.setBookName(rs.getString("title"));
+                record.setAuthorName(rs.getString("name"));
+
                 records.add(record);
             }
         } catch (SQLException e) {
@@ -75,4 +81,5 @@ public class BorrowingRecordDAO {
         }
         return records;
     }
+
 }

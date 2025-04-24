@@ -19,7 +19,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Date;
 
 import static com.example.libapp.utils.SceneNavigator.loadView;
 
@@ -51,7 +50,7 @@ public class MyAccountController {
     public TableColumn<BorrowingRecord, Integer> IDColumn;
     public TableColumn<BorrowingRecord, String> nameBookColumn;
     public TableColumn<BorrowingRecord, String> AuthorColumn;
-    public TableColumn<BorrowingRecord, String> borowDateColumn;
+    public TableColumn<BorrowingRecord, String> borrowDateColumn;
     public TableColumn<BorrowingRecord, String> returnDateColumn;
     @FXML
     private Button backToMain;
@@ -71,12 +70,20 @@ public class MyAccountController {
         if (currentUser != null) {
             nameAccount.setText("Name: " + currentUser.getUsername());
             Role.setText("Role: " + currentUser.getRole());
-            BorrowedBooks.setText("Borrowed: " + "0");
+            BorrowedBooks.setText("Borrowed: " + viewModel.getRecords().size());
         } else {
             nameAccount.setText("Không có người dùng");
             Role.setText("Không xác định");
             BorrowedBooks.setText("0");
         }
+        IDColumn.setCellValueFactory(new PropertyValueFactory<>("bookId"));
+        nameBookColumn.setCellValueFactory(new PropertyValueFactory<>("BookName"));
+        AuthorColumn.setCellValueFactory(new PropertyValueFactory<>("AuthorName"));
+        borrowDateColumn.setCellValueFactory(new PropertyValueFactory<>("borrowDate"));
+        returnDateColumn.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
+
+        viewModel.loadHistory();
+        BorrowHistoryTable.setItems(viewModel.getRecords());
     }
 
     public void addNewBook(ActionEvent event) {

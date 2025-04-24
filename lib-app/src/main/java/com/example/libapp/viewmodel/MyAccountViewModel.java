@@ -1,8 +1,13 @@
 package com.example.libapp.viewmodel;
 
+import com.example.libapp.SessionManager;
+import com.example.libapp.model.BorrowingRecord;
 import com.example.libapp.model.User;
+import com.example.libapp.persistence.BorrowingRecordDAO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +16,8 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MyAccountViewModel {
     private final StringProperty username = new SimpleStringProperty("");
@@ -69,5 +76,25 @@ public class MyAccountViewModel {
 
     public void openBorrowBook() {
 
+    }
+
+
+    // lay tu borrowBookviewModel
+    private final BorrowingRecordDAO borrowingRecordDAO = new BorrowingRecordDAO();
+    private final ObservableList<BorrowingRecord> records = FXCollections.observableArrayList();
+    private final User loggedInUser = SessionManager.getInstance().getLoggedInUser();
+
+    public ObservableList<BorrowingRecord> getRecords() {
+        return records;
+    }
+
+    public void loadHistory() {
+        if (loggedInUser == null) {
+            records.clear();
+            return;
+        }
+        records.setAll(borrowingRecordDAO.getAllBorrowingRecords().stream()
+                .filter(record -> record.getUserId() == loggedInUser.getId())
+                .collect(java.util.stream.Collectors.toList()));
     }
 }
