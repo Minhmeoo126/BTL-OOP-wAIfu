@@ -145,3 +145,9 @@
     -fx-border-width : 3px;
     -fx-background-color:#F7F7F7;
 }
+
+.Hbox_border {
+    -fx-border-color: #133E87;
+    -fx-border-radius: 10px;
+    -fx-border-width: 3px;
+}

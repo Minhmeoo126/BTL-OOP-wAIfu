@@ -132,11 +132,11 @@
                      </padding>
                   </HBox>
                   <Pane prefHeight="38.0" prefWidth="114.0" />
-                  <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="206.0" spacing="10.0">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="201.0" spacing="10.0" style="-fx-border-color: #133E87; -fx-border-radius: 10px; -fx-border-width: 3px;">
                      <children>
-                        <Label alignment="CENTER" prefHeight="31.0" prefWidth="105.0" text="USERNAME">
+                        <Label alignment="CENTER" prefHeight="22.0" prefWidth="106.0" styleClass="tag-gerne" text="123" wrapText="true">
                            <font>
-                              <Font name="Gill Sans MT Bold" size="16.0" />
+                              <Font name="Gill Sans MT Bold" size="18.0" />
                            </font>
                         </Label>
                         <ImageView fitHeight="28.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
