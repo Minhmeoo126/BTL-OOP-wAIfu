@@ -102,8 +102,21 @@ public class MainUserController {
         Book newBook = new Book();
         newBook.setAuthorName("lam");
         newBook.setTitle("lam");
-        newBook.setThumbnail("/com/example/libapp/image/oremoi.jpg");
+        newBook.setThumbnail("/com/example/libapp/image/castorice_book.png");
         recentlyAdded.add(newBook);
+
+        Book Book = new Book();
+        Book.setAuthorName("gao so cute");
+        Book.setTitle("hahah");
+        Book.setThumbnail("/com/example/libapp/image/oremoi.jpg");
+        recentlyAdded.add(Book);
+
+        Book newbook = new Book();
+        newbook.setAuthorName("cas chan");
+        newbook.setTitle("hehefh");
+        newbook.setThumbnail("/com/example/libapp/image/key.png");
+        recentlyAdded.add(newbook);
+
         return recentlyAdded;
     }
 }
