@@ -3,6 +3,7 @@ package com.example.libapp.controllers;
 import com.example.libapp.SessionManager;
 import com.example.libapp.model.Book;
 import com.example.libapp.model.User;
+import com.example.libapp.persistence.BookDAO;
 import com.example.libapp.utils.SceneNavigator;
 import com.example.libapp.viewmodel.MainViewModel;
 import javafx.event.ActionEvent;
@@ -50,6 +51,8 @@ public class MainController {
     public Button backToMain;
     public Label UserName;
     public HBox cardLayout;
+
+    private final BookDAO bookDAO = new BookDAO();
 
     public void initialize() {
 
@@ -140,24 +143,10 @@ public class MainController {
     }
     private List<Book> recentlyAdded(){
         List<Book> recentlyAdded = new ArrayList<>();
-        Book newBook = new Book();
-        newBook.setAuthorName("lam");
-        newBook.setTitle("lam");
-        newBook.setThumbnail("/com/example/libapp/image/castorice_book.png");
-        recentlyAdded.add(newBook);
-
-        Book Book = new Book();
-        Book.setAuthorName("gao so cute");
-        Book.setTitle("hahah");
-        Book.setThumbnail("/com/example/libapp/image/oremoi.jpg");
-        recentlyAdded.add(Book);
-
-        Book newbook = new Book();
-        newbook.setAuthorName("cas chan");
-        newbook.setTitle("hehefh");
-        newbook.setThumbnail("/com/example/libapp/image/key.png");
-        recentlyAdded.add(newbook);
-
+        List<Book> a = new ArrayList<>(bookDAO.getAllBooks());
+        for(int i = a.size() - 1; i >= a.size() - 10 ;i--){
+            recentlyAdded.add(a.get(i));
+        }
         return recentlyAdded;
     }
 }

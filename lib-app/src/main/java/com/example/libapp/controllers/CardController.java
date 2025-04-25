@@ -19,9 +19,23 @@ public class CardController {
     @FXML
     public VBox box;
 
-    public void setData(Book newBook){
-        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(newBook.getThumbnail())));
-        bookImage.setImage(image);
+    public void setData(Book newBook) {
+        try {
+            Image image;
+            if (newBook.getThumbnail() != null && !newBook.getThumbnail().isEmpty()) {
+                image = new Image(newBook.getThumbnail(), true); // true để load nền tránh trườn hợp ảnh nặng
+            } else {
+                System.out.println("Thumbnail rỗng cho sách: " + newBook.getTitle());
+                image = new Image(getClass().getResourceAsStream("/com/example/libapp/image/castorice_book.png"));
+            }
+
+            bookImage.setImage(image);
+        } catch (Exception e) {
+            System.err.println("Lỗi khi load ảnh: " + e.getMessage());
+            Image fallback = new Image(getClass().getResourceAsStream("/com/example/libapp/image/castorice_book.png"));
+            bookImage.setImage(fallback);
+        }
+
         bookName.setText(newBook.getTitle());
         AuthorName.setText(newBook.getAuthorName());
     }

@@ -7,9 +7,12 @@
     <list default="true" id="e728ec86-4eb6-4d98-910e-b3696689695e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib-app/lib.db" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/lib.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/CardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/CardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/MainUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/MainUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/MainUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/MainUserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/CardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/CardController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/MainController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,12 +35,12 @@
     &quot;assignee&quot;: &quot;Minhmeoo126&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Minhmeoo126/BTL-OOP-wAIfu.git",
-    "accountId": "4552e430-ddc8-4887-9e30-0ccbb8e27414"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Minhmeoo126/BTL-OOP-wAIfu.git&quot;,
+    &quot;accountId&quot;: &quot;4552e430-ddc8-4887-9e30-0ccbb8e27414&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 8
@@ -99,7 +102,8 @@
       <workItem from="1745336722963" duration="4160000" />
       <workItem from="1745404329991" duration="25585000" />
       <workItem from="1745487642074" duration="3715000" />
-      <workItem from="1745541236745" duration="5458000" />
+      <workItem from="1745541236745" duration="5639000" />
+      <workItem from="1745551778337" duration="2077000" />
     </task>
     <servers />
   </component>
