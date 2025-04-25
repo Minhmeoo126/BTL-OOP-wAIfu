@@ -9,10 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="269.0" prefWidth="150.0" style="-fx-border-radius: 14px;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="box" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="269.0" prefWidth="150.0" style="-fx-border-radius: 14px;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.CardController">
    <children>
-      <ImageView fitHeight="181.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="bookImage" fitHeight="181.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/oremoi.jpg" />
          </image>
@@ -20,12 +19,12 @@
             <Insets top="6.0" />
          </VBox.margin>
       </ImageView>
-      <Label prefHeight="28.0" prefWidth="142.0" text="My sister can't be this cute" wrapText="true">
+      <Label fx:id="bookName" prefHeight="28.0" prefWidth="142.0" text="My sister can't be this cute" wrapText="true">
          <font>
             <Font name="Gill Sans MT Bold" size="12.0" />
          </font>
       </Label>
-      <Label prefHeight="17.0" prefWidth="150.0" text=" Author: Tsukasa Fushimi">
+      <Label fx:id="AuthorName" prefHeight="17.0" prefWidth="150.0" text=" Author: Tsukasa Fushimi">
          <font>
             <Font name="Gill Sans MT Bold" size="8.0" />
          </font>

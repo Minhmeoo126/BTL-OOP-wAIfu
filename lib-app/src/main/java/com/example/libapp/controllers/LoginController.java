@@ -108,6 +108,7 @@ public class LoginController {
                 stage.setTitle("Library App");
                 stage.show();
             } catch (IOException e) {
+                System.err.println("Lỗi khi load Mainview: " + e.getMessage());
                 viewModel.messageProperty().set("Error loading main view: " + e.getMessage());
             }
         }

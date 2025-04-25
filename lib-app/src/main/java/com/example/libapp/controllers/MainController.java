@@ -1,7 +1,9 @@
 package com.example.libapp.controllers;
 
 import com.example.libapp.SessionManager;
+import com.example.libapp.model.Book;
 import com.example.libapp.model.User;
+import com.example.libapp.persistence.BookDAO;
 import com.example.libapp.utils.SceneNavigator;
 import com.example.libapp.viewmodel.MainViewModel;
 import javafx.event.ActionEvent;
@@ -11,9 +13,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.libapp.utils.SceneNavigator.loadView;
 
@@ -44,13 +50,30 @@ public class MainController {
     public Button userManagement;
     public Button backToMain;
     public Label UserName;
+    public HBox cardLayout;
+
+    private final BookDAO bookDAO = new BookDAO();
 
     public void initialize() {
+
         User currentUser = SessionManager.getInstance().getLoggedInUser();
         if (currentUser != null) {
             UserName.setText(currentUser.getUsername());
-        } else {
+        } else{
             UserName.setText("khong co nguoi dung");
+        }
+        List<Book> recentlyAdd = new ArrayList<>(recentlyAdded());
+        try{
+            for(Book newBook : recentlyAdd){
+                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/Bookcard-view.fxml"));
+                VBox cardBook = loader.load();
+                CardController cardController = loader.getController();
+                cardController.setData(newBook);
+                cardLayout.getChildren().add(cardBook);
+            }
+        }catch (IOException e){
+            System.err.println("Lỗi khi load Bookcard: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -117,5 +140,13 @@ public class MainController {
 
     public void backToMain() {
         SceneNavigator.backToMain(backToMain);
+    }
+    private List<Book> recentlyAdded(){
+        List<Book> recentlyAdded = new ArrayList<>();
+        List<Book> a = new ArrayList<>(bookDAO.getAllBooks());
+        for(int i = a.size() - 1; i >= a.size() - 10 ;i--){
+            recentlyAdded.add(a.get(i));
+        }
+        return recentlyAdded;
     }
 }
