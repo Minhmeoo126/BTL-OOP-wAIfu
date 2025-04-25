@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e728ec86-4eb6-4d98-910e-b3696689695e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/Gridpane_bookcard-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/AI-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/AI-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/add-book-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/add-book-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/bookmanagement-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/bookmanagement-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/borrow-book.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/borrow-book.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/main-admin-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/main-admin-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/my-account.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/my-account.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/return-book.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/return-book.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/Bookcard-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/Bookcard-view.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
