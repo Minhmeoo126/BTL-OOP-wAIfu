@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.UserController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.UserManagementController">
     <left>
         <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="65.0" spacing="3.0" style="-fx-border-color: #F3F3E0; -fx-background-radius: 10px;" styleClass="login_bg" stylesheets="@styles.css" BorderPane.alignment="CENTER">
             <children>
@@ -35,19 +35,19 @@
                     </children>
                 </VBox>
                 <Pane prefHeight="60.0" prefWidth="84.0" />
-            <Button fx:id="myAccount1" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openMyAccount">
-               <graphic>
-                  <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/home.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <styleClass>
-                  <String fx:value="transperant" />
-                  <String fx:value="transparent" />
-               </styleClass>
-            </Button>
+                <Button fx:id="backToMain" graphicTextGap="1.0" mnemonicParsing="false" onAction="#backToMain">
+                    <graphic>
+                        <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../image/home.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <styleClass>
+                        <String fx:value="transperant" />
+                        <String fx:value="transparent" />
+                    </styleClass>
+                </Button>
                 <Button fx:id="myAccount" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openMyAccount">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
@@ -110,19 +110,19 @@
                     </styleClass>
                 </Button>
                 <Pane prefHeight="98.0" prefWidth="87.0" />
-            <Button fx:id="logout" graphicTextGap="1.0" mnemonicParsing="false" onAction="#Logout" prefHeight="96.0" prefWidth="72.0">
-               <styleClass>
-                  <String fx:value="transperant" />
-                  <String fx:value="transparent" />
-               </styleClass>
-               <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
-                     <image>
-                        <Image url="@../image/exit.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
+                <Button fx:id="logout" graphicTextGap="1.0" mnemonicParsing="false" onAction="#Logout" prefHeight="96.0" prefWidth="72.0">
+                    <styleClass>
+                        <String fx:value="transperant" />
+                        <String fx:value="transparent" />
+                    </styleClass>
+                    <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                            <image>
+                                <Image url="@../image/exit.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
             </children>
         </VBox>
     </left>
@@ -132,10 +132,11 @@
                 <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="1014.0">
                     <children>
                         <Pane prefHeight="38.0" prefWidth="278.0">
-                     <children>
-                        <Label fx:id="messageLabel" layoutX="76.0" layoutY="5.0" />
-                     </children></Pane>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="38.0" prefWidth="415.0" spacing="5.0" styleClass="search-container" stylesheets="@styles.css">
+                            <children>
+                                <Label fx:id="messageLabel" layoutX="76.0" layoutY="5.0" />
+                            </children>
+                        </Pane>
+                        <HBox alignment="CENTER" prefHeight="38.0" prefWidth="415.0" spacing="5.0" styleClass="search-container" stylesheets="@styles.css">
                             <children>
                                 <TextField prefHeight="31.0" prefWidth="358.0" promptText="Search" styleClass="transparent" stylesheets="@styles.css">
                                     <font>
@@ -153,9 +154,9 @@
                             </padding>
                         </HBox>
                         <Pane prefHeight="38.0" prefWidth="114.0" />
-                        <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="206.0" spacing="10.0" styleClass="Hbox_border">
+                        <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="206.0" spacing="10.0">
                             <children>
-                                <Label alignment="CENTER" prefHeight="28.0" prefWidth="135.0" styleClass="tag-gerne" text="ADMINNAME" wrapText="true">
+                                <Label fx:id="UserName" alignment="CENTER" prefHeight="28.0" prefWidth="135.0" text="ADMINNAME" wrapText="true">
                                     <font>
                                         <Font name="Gill Sans MT Bold" size="16.0" />
                                     </font>
@@ -179,10 +180,11 @@
                     <children>
                         <TableView fx:id="UsersTable" layoutX="19.0" prefHeight="514.0" prefWidth="968.0">
                             <columns>
-                                <TableColumn fx:id="nameAccountColumn" prefWidth="140.79998779296875" text="NameAccount" />
-                                <TableColumn fx:id="PassWordColumn" minWidth="9.600021362304688" prefWidth="130.4000244140625" text="PassWord" />
-                                <TableColumn fx:id="EmailColumn" prefWidth="365.59991455078125" text="Email" />
-                                <TableColumn fx:id="fullNameColumn" minWidth="1.5999755859375" prefWidth="225.60003662109375" text="FullName" />
+                                <TableColumn fx:id="nameAccountColumn" prefWidth="140.8" text="NameAccount" />
+                                <TableColumn fx:id="PassWordColumn" prefWidth="130.4" text="PassWord" />
+                                <TableColumn fx:id="EmailColumn" prefWidth="365.6" text="Email" />
+                                <TableColumn fx:id="fullNameColumn" prefWidth="225.6" text="FullName" />
+                                <TableColumn fx:id="actionColumn" prefWidth="106.0" text="History" />
                             </columns>
                         </TableView>
                     </children>

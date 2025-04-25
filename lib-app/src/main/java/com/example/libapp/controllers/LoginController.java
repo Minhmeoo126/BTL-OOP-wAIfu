@@ -82,7 +82,7 @@ public class LoginController {
                 }
                 Parent root = loader.load();
                 Stage stage = (Stage) adminUsername.getScene().getWindow();
-                stage.setScene(new Scene(root, 900, 600));
+                stage.setScene(new Scene(root, 1100, 600));
                 stage.setTitle("Library App");
                 stage.show();
             } catch (IOException e) {
@@ -108,6 +108,7 @@ public class LoginController {
                 stage.setTitle("Library App");
                 stage.show();
             } catch (IOException e) {
+                System.err.println("Lỗi khi load Mainview: " + e.getMessage());
                 viewModel.messageProperty().set("Error loading main view: " + e.getMessage());
             }
         }

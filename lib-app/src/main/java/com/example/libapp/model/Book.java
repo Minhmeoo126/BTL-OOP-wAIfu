@@ -10,6 +10,23 @@ public class Book {
     private int totalCopies;
     private int availableCopies;
     private String description; // Added for book introduction/preview
+    private String thumbnail;
+
+    public Book() {
+    }
+
+    public Book(int id, String title, int authorId, String authorName, int categoryId, String categoryName, int totalCopies, int availableCopies, String description, String thumbnail) {
+        this.id = id;
+        this.title = title;
+        this.authorId = authorId;
+        this.authorName = authorName;
+        this.categoryId = categoryId;
+        this.categoryName = categoryName;
+        this.totalCopies = totalCopies;
+        this.availableCopies = availableCopies;
+        this.description = description;
+        this.thumbnail = thumbnail;
+    }
 
     // Getters and setters
     public int getId() {
@@ -84,6 +101,14 @@ public class Book {
         this.description = description;
     }
 
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -96,6 +121,7 @@ public class Book {
                 ", totalCopies=" + totalCopies +
                 ", availableCopies=" + availableCopies +
                 ", description='" + description + '\'' +
+                ", thumbnail='" + thumbnail + '\'' +
                 '}';
     }
 }

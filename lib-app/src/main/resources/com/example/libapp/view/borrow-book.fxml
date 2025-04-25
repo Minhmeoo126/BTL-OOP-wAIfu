@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.BorrowBookController">
     <left>
         <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="65.0" spacing="3.0" style="-fx-border-color: #F3F3E0; -fx-background-radius: 10px;" styleClass="login_bg" stylesheets="@styles.css" BorderPane.alignment="CENTER">
             <children>
@@ -24,7 +24,7 @@
                     </font>
                 </Label>
                 <Pane prefHeight="82.0" prefWidth="86.0" />
-            <Button fx:id="myAccount1" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openMyAccount">
+            <Button fx:id="backToMain" graphicTextGap="1.0" mnemonicParsing="false" onAction="#backToMain">
                <graphic>
                   <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -91,7 +91,7 @@
                     </styleClass>
                 </Button>
                 <Pane prefHeight="98.0" prefWidth="87.0" />
-                <Button fx:id="AI1" graphicTextGap="1.0" layoutX="11.0" layoutY="355.0" mnemonicParsing="false" onAction="#openAI">
+                <Button fx:id="logout" graphicTextGap="1.0" layoutX="11.0" layoutY="355.0" mnemonicParsing="false" onAction="#Logout">
                     <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                             <image>
@@ -131,9 +131,9 @@
                             </padding>
                         </HBox>
                         <Pane prefHeight="38.0" prefWidth="114.0" />
-                        <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="206.0" spacing="10.0" styleClass="Hbox_border">
+                        <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="206.0" spacing="10.0">
                             <children>
-                                <Label alignment="CENTER" prefHeight="31.0" prefWidth="105.0" styleClass="tag-gerne" text="USERNAME">
+                                <Label fx:id="UserName" alignment="CENTER" prefHeight="31.0" prefWidth="105.0" text="USERNAME">
                                     <font>
                                         <Font name="Gill Sans MT Bold" size="16.0" />
                                     </font>
@@ -163,25 +163,33 @@
                   <AnchorPane layoutX="153.0" layoutY="96.0" prefHeight="315.0" prefWidth="547.0" style="-fx-background-color: #F7F7F7;" styleClass="search-container">
                      <children>
                         <Label layoutX="253.0" layoutY="25.0" />
-                        <Label alignment="CENTER" layoutX="20.0" layoutY="39.0" prefHeight="37.0" prefWidth="68.0" text="BOOK ID">
-                           <font>
-                              <Font name="Gill Sans MT Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField alignment="CENTER" layoutX="110.0" layoutY="42.0" prefHeight="32.0" prefWidth="392.0" styleClass="search-container" />
-                        <Label alignment="CENTER" layoutX="258.0" layoutY="95.0" prefHeight="49.0" prefWidth="52.0" text="Or">
+                        <HBox alignment="CENTER" layoutX="6.0" layoutY="30.0" prefHeight="54.0" prefWidth="521.0" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="37.0" prefWidth="68.0" text="Book Id">
+                                 <font>
+                                    <Font name="Gill Sans MT Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="bookIdField" alignment="CENTER" prefHeight="32.0" prefWidth="392.0" styleClass="search-container" />
+                           </children>
+                        </HBox>
+                        <Label alignment="CENTER" layoutX="240.0" layoutY="86.0" prefHeight="49.0" prefWidth="52.0" text="Or">
                            <font>
                               <Font name="Gill Sans MT Bold" size="26.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutX="14.0" layoutY="145.0" prefHeight="38.0" prefWidth="95.0" text="BOOK NAME">
-                           <font>
-                              <Font name="Gill Sans MT Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <TextField alignment="CENTER" layoutX="110.0" layoutY="148.0" prefHeight="32.0" prefWidth="392.0" styleClass="search-container" />
-                        <Button layoutX="226.0" layoutY="245.0" mnemonicParsing="false" styleClass="Btn_login" text="Borrow" />
-                        <Label layoutX="39.0" layoutY="206.0" prefHeight="29.0" prefWidth="490.0" />
+                        <HBox alignment="CENTER" layoutX="6.0" layoutY="134.0" prefHeight="54.0" prefWidth="521.0" spacing="10.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="38.0" prefWidth="102.0" text="Book name">
+                                 <font>
+                                    <Font name="Gill Sans MT Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="bookNameField" alignment="CENTER" prefHeight="32.0" prefWidth="378.0" styleClass="search-container" />
+                           </children>
+                        </HBox>
+                        <Button layoutX="218.0" layoutY="246.0" mnemonicParsing="false" onAction="#handleBorrow" styleClass="Btn_login" text="Borrow" />
+                        <Label fx:id="messageLabel" layoutX="39.0" layoutY="206.0" prefHeight="29.0" prefWidth="490.0" />
                      </children>
                   </AnchorPane>
                   <Label alignment="CENTER" layoutX="763.0" layoutY="106.0" prefHeight="46.0" prefWidth="168.0" styleClass="rice_message" text="Choose your book!!">

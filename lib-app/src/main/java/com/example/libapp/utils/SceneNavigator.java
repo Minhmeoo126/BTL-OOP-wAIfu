@@ -19,13 +19,13 @@ public class SceneNavigator {
                 FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/main-admin-view.fxml"));
                 Parent root = loader.load();
                 Stage stage = (Stage) button.getScene().getWindow();
-                stage.setScene(new Scene(root, 900, 600));
+                stage.setScene(new Scene(root, 1100, 600));
                 stage.show();
             } else {
                 FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/main.fxml"));
                 Parent root = loader.load();
                 Stage stage = (Stage) button.getScene().getWindow();
-                stage.setScene(new Scene(root, 900, 600));
+                stage.setScene(new Scene(root, 1100, 600));
                 stage.show();
             }
         } catch (IOException e) {
@@ -44,4 +44,5 @@ public class SceneNavigator {
             e.printStackTrace();
         }
     }
+
 }

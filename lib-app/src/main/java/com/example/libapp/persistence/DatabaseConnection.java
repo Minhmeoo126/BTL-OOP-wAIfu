@@ -1,10 +1,7 @@
 package com.example.libapp.persistence;
 
 import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.logging.Logger;
 
 public class DatabaseConnection {
@@ -144,6 +141,29 @@ public class DatabaseConnection {
             executeRawSql(stmt, "create-tables", CREATE_TABLE_SQL);
             executeRawSql(stmt, "create-triggers", CREATE_TRIGGERS_SQL);
             executeRawSql(stmt, "insert-data", INSERT_DATA_SQL);
+
+            // Add thumbnail column to Book table if it doesn't exist
+            addColumnIfNotExists(conn, "Book", "thumbnail", "TEXT");
+        }
+    }
+
+    private static void addColumnIfNotExists(Connection connection, String tableName, String columnName, String columnDefinition) throws SQLException {
+        boolean exists = false;
+        DatabaseMetaData meta = connection.getMetaData();
+        try (ResultSet rs = meta.getColumns(null, null, tableName, columnName)) {
+            if (rs.next()) {
+                exists = true;
+            }
+        }
+
+        if (!exists) {
+            String sql = "ALTER TABLE " + tableName + " ADD COLUMN " + columnName + " " + columnDefinition + ";";
+            try (Statement stmt = connection.createStatement()) {
+                stmt.execute(sql);
+                logger.info("Added column '" + columnName + "' to table '" + tableName + "'.");
+            }
+        } else {
+            logger.info("Column '" + columnName + "' already exists in table '" + tableName + "'. Skipping...");
         }
     }
 
