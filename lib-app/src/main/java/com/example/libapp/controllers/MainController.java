@@ -72,27 +72,26 @@ public class MainController {
         try{
             for(Book newBook : recentlyAdd){
                 FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/Bookcard-view.fxml"));
-                VBox cardBook = loader.load();
+                HBox cardBook = loader.load();
                 CardController cardController = loader.getController();
                 cardController.setData(newBook);
                 cardLayout.getChildren().add(cardBook);
             }
-
-            for(Book book : allBook){
-                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/bookCardTest.fxml"));
-                VBox bookBox = loader.load();
-                BookController bookController = loader.getController();
-                bookController.setData(book);
-
-                if(col == 6){
-                    col = 0;
-                    ++row;
-                }
-                bookContainer.add(bookBox,col++,row);
-                GridPane.setMargin(bookBox,new Insets(10));
-            }
-
-
+            /**
+             * for(Book book : allBook){
+             *                 FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/bookCardTest.fxml"));
+             *                 VBox bookBox = loader.load();
+             *                 BookController bookController = loader.getController();
+             *                 bookController.setData(book);
+             *
+             *                 if(col == 6){
+             *                     col = 0;
+             *                     ++row;
+             *                 }
+             *                 bookContainer.add(bookBox,col++,row);
+             *                 GridPane.setMargin(bookBox,new Insets(10));
+             *             }
+             */
         }catch (IOException e){
             System.err.println("Lỗi khi load Bookcard: " + e.getMessage());
             e.printStackTrace();

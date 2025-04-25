@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -9,42 +8,45 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="box" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="269.0" prefWidth="150.0" style="-fx-border-radius: 14px;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.CardController">
+<HBox fx:id="box" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="108.0" prefWidth="297.0" spacing="5.0" styleClass="Book_Card" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.CardController">
    <children>
-      <ImageView fx:id="bookImage" fitHeight="181.0" fitWidth="131.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../image/oremoi.jpg" />
-         </image>
-         <VBox.margin>
-            <Insets top="6.0" />
-         </VBox.margin>
-      </ImageView>
-      <Label fx:id="bookName" prefHeight="28.0" prefWidth="142.0" text="My sister can't be this cute" wrapText="true">
-         <font>
-            <Font name="Gill Sans MT Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label fx:id="AuthorName" prefHeight="17.0" prefWidth="150.0" text=" Author: Tsukasa Fushimi">
-         <font>
-            <Font name="Gill Sans MT Bold" size="8.0" />
-         </font>
-      </Label>
-      <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="150.0">
-         <children>
-            <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="54.0" text="5.0/5.0" />
-            <ImageView fitHeight="16.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+      <Button mnemonicParsing="false" prefHeight="134.0" prefWidth="112.0" styleClass="transparent">
+         <graphic>
+            <ImageView fx:id="bookImage" fitHeight="126.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                <image>
-                  <Image url="@../image/star.png" />
+                  <Image url="@../image/oremoi.jpg" />
                </image>
             </ImageView>
+         </graphic>
+      </Button>
+      <VBox prefHeight="100.0" prefWidth="155.0" spacing="8.0">
+         <children>
+            <Label fx:id="bookName" prefHeight="46.0" prefWidth="142.0" text="My sister can't be this cute" wrapText="true">
+               <font>
+                  <Font name="Gill Sans MT Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="AuthorName" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="17.0" prefWidth="150.0" text=" Author: Tsukasa Fushimi">
+               <font>
+                  <Font name="Gill Sans MT Bold" size="12.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="150.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="54.0" text="5.0/5.0" underline="true" wrapText="true" />
+                  <ImageView fitHeight="21.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/star.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="17.0" prefWidth="150.0" text="&lt;&lt; click the image" textFill="#3d5c61">
+               <font>
+                  <Font name="Gill Sans MT Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
-         <VBox.margin>
-            <Insets right="10.0" />
-         </VBox.margin>
-      </HBox>
+      </VBox>
    </children>
-   <styleClass>
-      <String fx:value="MAIN_bg" />
-      <String fx:value="login_bg" />
-   </styleClass>
-</VBox>
+</HBox>

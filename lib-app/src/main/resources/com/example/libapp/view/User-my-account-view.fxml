@@ -134,9 +134,9 @@
                             </padding>
                         </HBox>
                         <Pane prefHeight="38.0" prefWidth="114.0" />
-                        <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="206.0" spacing="10.0">
+                        <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="190.0" spacing="10.0" styleClass="Hbox_border">
                             <children>
-                                <Label fx:id="UserName" alignment="CENTER" prefHeight="31.0" prefWidth="105.0" text="USERNAME">
+                                <Label fx:id="UserName" alignment="CENTER" prefHeight="31.0" prefWidth="105.0" styleClass="tag-gerne" text="USERNAME">
                                     <font>
                                         <Font name="Gill Sans MT Bold" size="16.0" />
                                     </font>
@@ -213,6 +213,9 @@
                     </children>
                 </AnchorPane>
             </children>
+         <BorderPane.margin>
+            <Insets top="5.0" />
+         </BorderPane.margin>
         </VBox>
     </center>
 </BorderPane>

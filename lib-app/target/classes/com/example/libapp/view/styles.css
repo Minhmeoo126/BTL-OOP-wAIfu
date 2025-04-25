@@ -151,3 +151,10 @@
     -fx-border-radius: 10px;
     -fx-border-width: 3px;
 }
+
+.Book_Card  {
+        -fx-background-color: #F3F3E0;
+        -fx-border-color: #133E87;
+        -fx-border-radius: 10px;
+        -fx-border-width: 3px;
+}
