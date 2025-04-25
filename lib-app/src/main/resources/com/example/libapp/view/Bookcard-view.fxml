@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -8,15 +10,22 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <HBox prefHeight="155.0" prefWidth="286.0" spacing="5.0" styleClass="Book_Card" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="149.0" fitWidth="105.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../image/oremoi.jpg" />
-         </image>
-      </ImageView>
-      <VBox spacing="8.0">
+      <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="163.0" prefWidth="107.0">
+         <graphic>
+            <ImageView fitHeight="119.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/oremoi.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+         <styleClass>
+            <String fx:value="transparent" />
+            <String fx:value="button-book" />
+         </styleClass>
+      </Button>
+      <VBox prefHeight="169.0" prefWidth="164.0" spacing="8.0">
          <children>
             <Label prefHeight="47.0" prefWidth="172.0" text="My sister can't be this cute" wrapText="true">
                <font>
@@ -38,7 +47,18 @@
                   </ImageView>
                </children>
             </HBox>
+            <Label prefHeight="17.0" prefWidth="150.0" text="&lt;&lt; click the image ">
+               <font>
+                  <Font name="Gill Sans MT Italic" size="10.0" />
+               </font>
+            </Label>
          </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <HBox.margin>
+            <Insets top="10.0" />
+         </HBox.margin>
       </VBox>
    </children>
    <padding>
