@@ -9,6 +9,7 @@ module com.example.libapp {
     requires com.almasb.fxgl.all;
     requires java.net.http;
     requires com.fasterxml.jackson.databind;
+    requires java.desktop;
 
     opens com.example.libapp to javafx.fxml;
     exports com.example.libapp;
