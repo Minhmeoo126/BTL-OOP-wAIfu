@@ -65,14 +65,14 @@ public class MainUserController {
         try{
             for(Book newBook : recentlyAdd){
                 FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/Bookcard-view.fxml"));
-                VBox cardBook = loader.load();
+                HBox cardBook = loader.load();
                 CardController cardController = loader.getController();
                 cardController.setData(newBook);
                 cardLayout.getChildren().add(cardBook);
             }
 
             for(Book book : allBook){
-                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/bookCardTest.fxml"));
+                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/Gridpane_bookcard-view.fxml"));
                 VBox bookBox = loader.load();
                 BookController bookController = loader.getController();
                 bookController.setData(book);
