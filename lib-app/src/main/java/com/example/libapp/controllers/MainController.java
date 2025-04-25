@@ -9,10 +9,12 @@ import com.example.libapp.viewmodel.MainViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -53,6 +55,7 @@ public class MainController {
     public HBox cardLayout;
 
     private final BookDAO bookDAO = new BookDAO();
+    public GridPane bookContainer;
 
     public void initialize() {
 
@@ -63,6 +66,9 @@ public class MainController {
             UserName.setText("khong co nguoi dung");
         }
         List<Book> recentlyAdd = new ArrayList<>(recentlyAdded());
+        List<Book> allBook = new ArrayList<>(allBooks());
+        int col = 0;
+        int row = 1;
         try{
             for(Book newBook : recentlyAdd){
                 FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/Bookcard-view.fxml"));
@@ -71,6 +77,22 @@ public class MainController {
                 cardController.setData(newBook);
                 cardLayout.getChildren().add(cardBook);
             }
+
+            for(Book book : allBook){
+                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/bookCardTest.fxml"));
+                VBox bookBox = loader.load();
+                BookController bookController = loader.getController();
+                bookController.setData(book);
+
+                if(col == 6){
+                    col = 0;
+                    ++row;
+                }
+                bookContainer.add(bookBox,col++,row);
+                GridPane.setMargin(bookBox,new Insets(10));
+            }
+
+
         }catch (IOException e){
             System.err.println("Lỗi khi load Bookcard: " + e.getMessage());
             e.printStackTrace();
@@ -148,5 +170,14 @@ public class MainController {
             recentlyAdded.add(a.get(i));
         }
         return recentlyAdded;
+    }
+
+    private List<Book> allBooks() {
+        List<Book> allbooks = new ArrayList<>();
+        List<Book> a = new ArrayList<>(bookDAO.getAllBooks());
+        for(int i = 0; i <= 20 ;i++){
+            allbooks.add(a.get(i));
+        }
+        return allbooks;
     }
 }

@@ -5,14 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e728ec86-4eb6-4d98-910e-b3696689695e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/BookController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/bookCardTest.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib-app/lib.db" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/lib.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/CardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/CardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/MainUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/MainUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/main-admin-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/main-admin-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/main.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/CardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/CardController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/MainUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/MainUserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/main.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +27,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -103,7 +108,8 @@
       <workItem from="1745404329991" duration="25585000" />
       <workItem from="1745487642074" duration="3715000" />
       <workItem from="1745541236745" duration="5639000" />
-      <workItem from="1745551778337" duration="2077000" />
+      <workItem from="1745551778337" duration="4011000" />
+      <workItem from="1745561423641" duration="3275000" />
     </task>
     <servers />
   </component>
