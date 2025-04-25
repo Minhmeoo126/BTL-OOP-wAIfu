@@ -5,18 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e728ec86-4eb6-4d98-910e-b3696689695e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/lib.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/api/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/api/BookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/UserManagementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/UserManagementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/model/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/lib.db" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/lib.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/BorrowBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/BorrowBookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/ReturnBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/ReturnBookController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/persistence/BookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/persistence/BookDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/persistence/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/persistence/DatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/api/BookService$BookDetails.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/api/BookService$BookDetails.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/api/BookService.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/api/BookService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/UserManagementController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/UserManagementController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/UserManagementController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/UserManagementController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/persistence/DatabaseConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/persistence/DatabaseConnection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/persistence/BorrowingRecordDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/persistence/BorrowingRecordDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/viewmodel/BorrowBookViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/viewmodel/BorrowBookViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/viewmodel/ReturnBookViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/viewmodel/ReturnBookViewModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +102,8 @@
       <workItem from="1745334835975" duration="1860000" />
       <workItem from="1745336722963" duration="4160000" />
       <workItem from="1745404329991" duration="25585000" />
-      <workItem from="1745487642074" duration="3715000" />
+      <workItem from="1745487642074" duration="4524000" />
+      <workItem from="1745514071760" duration="3327000" />
     </task>
     <servers />
   </component>

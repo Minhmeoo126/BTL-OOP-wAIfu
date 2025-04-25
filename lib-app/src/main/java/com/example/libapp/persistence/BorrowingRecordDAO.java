@@ -82,4 +82,31 @@ public class BorrowingRecordDAO {
         return records;
     }
 
+    public void updateBorrowingRecord(BorrowingRecord record) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            conn = DatabaseConnection.connect();
+
+            // Cập nhật ngày trả sách dựa trên user_id và book_id
+            String sql = "UPDATE BorrowingRecord SET return_date = ? WHERE user_id = ? AND book_id = ? AND return_date IS NULL";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, record.getReturnDate());  // Cập nhật ngày trả sách
+            pstmt.setInt(2, record.getUserId());  // user_id
+            pstmt.setInt(3, record.getBookId());  // book_id
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 }

@@ -53,7 +53,7 @@ public class BorrowBookController {
 
     @FXML
     private void handleBorrow() {
-        viewModel.borrowBook(bookIdField.getText());
+        viewModel.borrowBookByID(bookIdField.getText());
         // Thêm hiệu ứng cho thông báo
         messageLabel.setStyle(viewModel.messageProperty().get().contains("successfully") ?
                 "-fx-text-fill: green;" : "-fx-text-fill: red;");

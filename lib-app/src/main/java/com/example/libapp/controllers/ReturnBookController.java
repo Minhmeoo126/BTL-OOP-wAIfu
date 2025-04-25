@@ -47,7 +47,7 @@ public class ReturnBookController {
 
     @FXML
     private void handleReturn() {
-        viewModel.returnBook(recordIdField.getText());
+        viewModel.returnBookByID(recordIdField.getText());
         messageLabel.setStyle(viewModel.messageProperty().get().contains("successfully") ?
                 "-fx-text-fill: green;" : "-fx-text-fill: red;");
     }
