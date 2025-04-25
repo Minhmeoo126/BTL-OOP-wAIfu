@@ -151,3 +151,9 @@
     -fx-border-radius: 10px;
     -fx-border-width: 3px;
 }
+
+.tag-gerne {
+    -fx-background-color: #F3F3E0;
+    -fx-padding: 10px;
+    -fx-background-radius: 10px;
+}

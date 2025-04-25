@@ -177,52 +177,18 @@
                   <Insets left="19.0" />
                </VBox.margin>
                <children>
-                  <StackPane layoutX="91.0" layoutY="48.0" prefHeight="296.0" prefWidth="795.0" styleClass="image-border">
+                  <StackPane layoutX="91.0" layoutY="48.0" prefHeight="384.0" prefWidth="795.0" styleClass="image-border">
                      <children>
-                        <ScrollPane prefHeight="282.0" prefWidth="790.0">
+                        <ScrollPane prefHeight="282.0" prefWidth="803.0">
                           <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="279.0" prefWidth="778.0">
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="340.0" prefWidth="752.0">
                                  <children>
-                                    <VBox layoutY="-6.0" prefHeight="194.0" prefWidth="790.0">
-                                       <children>
-                                          <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="70.0" prefWidth="500.0">
-                                             <children>
-                                                <Pane prefHeight="70.0" prefWidth="501.0" />
-                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="170.0" styleClass="tag-gerne" text="Oniichan daisuki">
-                                                         <font>
-                                                            <Font name="Californian FB" size="18.0" />
-                                                         </font>
-                                                      </Label>
-                                                      <ImageView fitHeight="45.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@../image/AI.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                   </children>
-                                                </HBox>
-                                             </children>
-                                          </HBox>
-                                          <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="70.0" prefWidth="500.0">
-                                             <children>
-                                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
-                                                   <children>
-                                                      <ImageView fitHeight="45.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@../image/user.png" />
-                                                         </image>
-                                                      </ImageView>
-                                                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="170.0" styleClass="tag-gerne" text="Yaaaaaaaaaaaaaaaaaa">
-                                                         <font>
-                                                            <Font name="Californian FB" size="18.0" />
-                                                         </font>
-                                                      </Label>
-                                                   </children>
-                                                </HBox>
-                                                <Pane prefHeight="70.0" prefWidth="570.0" />
-                                             </children>
-                                          </HBox>
+                                     <VBox fx:id="chatBox" layoutY="-6.0" prefHeight="0.0" prefWidth="790.0" spacing="10.0">
+                                         <padding>
+                                             <Insets bottom="10" left="10" right="10" top="10" />
+                                         </padding>
+                                         <children>
+                                          <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="70.0" prefWidth="500.0" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -238,17 +204,12 @@
                               <Image url="@../image/Ai (2).png" />
                            </image>
                         </ImageView>
-                        <Label alignment="CENTER" layoutX="8.0" layoutY="163.0" prefHeight="62.0" prefWidth="209.0" styleClass="rice_message" text="May I borrow your warm forever &lt;3" textAlignment="CENTER" wrapText="true">
-                           <font>
-                              <Font name="Californian FB Bold" size="19.0" />
-                           </font>
-                        </Label>
                      </children>
                   </Pane>
-                  <HBox alignment="CENTER" layoutX="212.0" layoutY="387.0" prefHeight="0.0" prefWidth="550.0" spacing="5.0" styleClass="search-container">
+                  <HBox alignment="CENTER" layoutX="214.0" layoutY="452.0" prefHeight="0.0" prefWidth="550.0" spacing="5.0" styleClass="search-container">
                      <children>
-                        <TextField prefHeight="39.0" prefWidth="448.0" promptText="Send your problems!!" />
-                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="41.0" styleClass="transparent">
+                        <TextField fx:id="promptField" onAction="#handleSendMessage" prefHeight="39.0" prefWidth="448.0" promptText="Send your problems!!" />
+                        <Button fx:id="sendButton" mnemonicParsing="false" onAction="#handleSendMessage" prefHeight="40.0" prefWidth="41.0" styleClass="transparent">
                            <graphic>
                               <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

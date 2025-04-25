@@ -61,6 +61,16 @@ public class DatabaseConnection {
                 FOREIGN KEY (user_id) REFERENCES Users(id),
                 FOREIGN KEY (book_id) REFERENCES Book(id)
             );
+            
+            CREATE TABLE IF NOT EXISTS chat_history (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER NOT NULL,
+                message TEXT NOT NULL,
+                response TEXT NOT NULL,
+                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY(user_id) REFERENCES Users(id)
+            );
+            
             """;
 
     private static final String CREATE_TRIGGERS_SQL = """
@@ -177,4 +187,29 @@ public class DatabaseConnection {
             throw e;
         }
     }
+
+    public void saveChatHistory(int userId, String message, String response) throws SQLException {
+        String sql = "INSERT INTO chat_history (user_id, message, response) VALUES (?, ?, ?)";
+
+        try (Connection conn = connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            pstmt.setString(2, message);
+            pstmt.setString(3, response);
+            pstmt.executeUpdate();
+        }
+    }
+
+    public ResultSet getChatHistory(int userId) throws SQLException {
+        // Kết nối cơ sở dữ liệu
+        String sql = "SELECT message, response, timestamp FROM chat_history WHERE user_id = ? ORDER BY timestamp DESC";
+
+        // Kết nối với cơ sở dữ liệu và chuẩn bị câu lệnh truy vấn
+        Connection conn = connect();  // Kết nối với cơ sở dữ liệu
+        PreparedStatement pstmt = conn.prepareStatement(sql);  // Tạo PreparedStatement từ câu lệnh SQL
+        pstmt.setInt(1, userId);  // Gán ID người dùng vào câu lệnh SQL
+
+        // Thực hiện truy vấn và trả về ResultSet
+        return pstmt.executeQuery();  // Trả về kết quả truy vấn
+    }
+
 }
