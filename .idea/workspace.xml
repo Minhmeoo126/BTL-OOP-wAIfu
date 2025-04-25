@@ -5,23 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e728ec86-4eb6-4d98-910e-b3696689695e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/api/AIService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/image/Rice_ava.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/08936ccf-188f-4dc2-956a-dce142194771.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/08936ccf-188f-4dc2-956a-dce142194771.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/lib.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/api/GPTClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/AIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/AIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/persistence/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/persistence/DatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/AI-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/AI-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/lib.db" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/lib.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/AIUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/java/com/example/libapp/controllers/AIUserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/User-Ai-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/User-Ai-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/src/main/resources/com/example/libapp/view/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/AIController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/AIController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/persistence/DatabaseConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/persistence/DatabaseConnection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/AI-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/AI-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/api/AIService.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/api/AIService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/AIUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/controllers/AIUserController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/User-Ai-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/User-Ai-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/lib-app/target/classes/com/example/libapp/view/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +101,7 @@
       <workItem from="1745336722963" duration="4160000" />
       <workItem from="1745404329991" duration="25585000" />
       <workItem from="1745487642074" duration="4524000" />
-      <workItem from="1745514071760" duration="27094000" />
+      <workItem from="1745514071760" duration="28795000" />
     </task>
     <servers />
   </component>
