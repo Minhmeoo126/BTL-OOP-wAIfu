@@ -10,7 +10,7 @@
 
 <HBox fx:id="box" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="108.0" prefWidth="297.0" spacing="5.0" styleClass="Book_Card" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.CardController">
    <children>
-      <Button mnemonicParsing="false" prefHeight="134.0" prefWidth="112.0" styleClass="transparent">
+      <Button fx:id="image" mnemonicParsing="false" onAction="#goToBookView" prefHeight="134.0" prefWidth="112.0" styleClass="transparent">
          <graphic>
             <ImageView fx:id="bookImage" fitHeight="126.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                <image>
