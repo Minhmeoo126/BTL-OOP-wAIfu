@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="FXGL-11.17">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib-app/libs/FXGL-11.17.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
