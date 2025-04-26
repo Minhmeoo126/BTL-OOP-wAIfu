@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import com.example.libapp.utils.SceneNavigator;
+
 import java.io.IOException;
 
 import static com.example.libapp.utils.SceneNavigator.loadView;
@@ -32,6 +33,8 @@ public class BorrowBookController {
     public Button backToMain;
     @FXML
     public Label UserName;
+    @FXML
+    public TextField bookNameField;
     @FXML
     private TextField bookIdField;
     @FXML
@@ -53,7 +56,11 @@ public class BorrowBookController {
 
     @FXML
     private void handleBorrow() {
-        viewModel.borrowBookByID(bookIdField.getText());
+        if (bookNameField.getText().isEmpty()) {
+            viewModel.borrowBookByID(bookIdField.getText());
+        } else {
+            viewModel.borrowBookByTitle(bookNameField.getText());
+        }
         // Thêm hiệu ứng cho thông báo
         messageLabel.setStyle(viewModel.messageProperty().get().contains("successfully") ?
                 "-fx-text-fill: green;" : "-fx-text-fill: red;");
@@ -83,12 +90,12 @@ public class BorrowBookController {
 
     public void openReturnBook() throws IOException {
         viewModel.openReturnBook();
-        loadView("return-book.fxml",returnBook);
+        loadView("return-book.fxml", returnBook);
     }
 
     public void openBorrowBook(ActionEvent event) throws IOException {
         viewModel.openBorrowBook();
-        loadView("borrow-book.fxml",borrowBooks);
+        loadView("borrow-book.fxml", borrowBooks);
     }
 
     public void openAI() {
@@ -115,7 +122,7 @@ public class BorrowBookController {
 
     public void Logout() throws IOException {
         viewModel.Logout();
-        loadView("login-view.fxml" , logout);
+        loadView("login-view.fxml", logout);
     }
 
     public void backToMain(ActionEvent event) {

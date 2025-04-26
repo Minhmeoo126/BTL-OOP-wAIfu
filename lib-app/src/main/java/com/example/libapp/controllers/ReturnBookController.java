@@ -26,6 +26,7 @@ public class ReturnBookController {
     public Button logout;
     public Button backToMain;
     public Label UserName;
+    public TextField bookNameField;
     @FXML
     private TextField recordIdField;
     @FXML
@@ -47,7 +48,11 @@ public class ReturnBookController {
 
     @FXML
     private void handleReturn() {
-        viewModel.returnBookByID(recordIdField.getText());
+        if(bookNameField.getText().isEmpty()){
+            viewModel.returnBookByID(recordIdField.getText());
+        }else{
+            viewModel.returnBookByTitle(bookNameField.getText());
+        }
         messageLabel.setStyle(viewModel.messageProperty().get().contains("successfully") ?
                 "-fx-text-fill: green;" : "-fx-text-fill: red;");
     }

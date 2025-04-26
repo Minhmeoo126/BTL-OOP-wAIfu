@@ -10,22 +10,21 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="login_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="login_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.BookInformationController">
    <children>
       <Pane layoutX="274.0" layoutY="49.0" prefHeight="501.0" prefWidth="738.0" style="-fx-background-radius: 10;" styleClass="MAIN_bg" stylesheets="@styles.css">
          <children>
-            <Label layoutX="75.0" layoutY="75.0" prefHeight="56.0" prefWidth="628.0" text="My sister can't be this cute" wrapText="true">
+            <Label fx:id="BookName" layoutX="66.0" layoutY="14.0" prefHeight="144.0" prefWidth="628.0" text="My sister can't be this cute" wrapText="true">
                <font>
                   <Font name="Gill Sans MT Bold" size="49.0" />
                </font>
             </Label>
-            <Label layoutX="73.0" layoutY="140.0" text="Author : Tsukasa Fushimi (伏見 つかさ)">
+            <Label fx:id="AuthorName" layoutX="82.0" layoutY="158.0" text="Author : Tsukasa Fushimi (伏見 つかさ)">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <Label alignment="TOP_LEFT" layoutX="79.0" layoutY="192.0" prefHeight="135.0" prefWidth="601.0" text="&quot;Oreimo&quot; kể về Kyousuke – một nam sinh trung học phát hiện em gái mình, Kirino, tuy ngoài đời hoàn hảo nhưng thật ra là một otaku cuồng anime và game về &quot;em gái moe&quot;. Bị kéo vào thế giới otaku của Kirino, Kyousuke dần giúp em giải quyết các rắc rối, từ đó cả hai trở nên thân thiết hơn theo cách... không ai ngờ tới." wrapText="true">
+            <Label fx:id="description" alignment="TOP_LEFT" layoutX="79.0" layoutY="192.0" prefHeight="135.0" prefWidth="601.0" text="&quot;Oreimo&quot; kể về Kyousuke – một nam sinh trung học phát hiện em gái mình, Kirino, tuy ngoài đời hoàn hảo nhưng thật ra là một otaku cuồng anime và game về &quot;em gái moe&quot;. Bị kéo vào thế giới otaku của Kirino, Kyousuke dần giúp em giải quyết các rắc rối, từ đó cả hai trở nên thân thiết hơn theo cách... không ai ngờ tới." wrapText="true">
                <font>
                   <Font size="16.0" />
                </font>
@@ -59,29 +58,32 @@
                   </ImageView>
                </children>
             </HBox>
-            <Button layoutX="98.0" layoutY="385.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="119.0" styleClass="Btn_login" stylesheets="@styles.css" text="Borrow" textFill="WHITE" />
+            <Button layoutX="98.0" layoutY="385.0" mnemonicParsing="false" onAction="#BorrowBook" prefHeight="35.0" prefWidth="119.0" styleClass="Btn_login" stylesheets="@styles.css" text="Borrow" textFill="WHITE" />
             <Line endX="-7.5333251953125" layoutX="457.0" layoutY="349.0" startX="-116.3333740234375" />
-            <Label layoutX="255.0" layoutY="388.0" prefHeight="44.0" prefWidth="151.0" text="Còn lại 5 bản" textAlignment="CENTER">
+            <Label fx:id="bookAvailable" layoutX="255.0" layoutY="388.0" prefHeight="44.0" prefWidth="475.0" text="Còn lại 5 bản" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="21.0" />
                </font>
             </Label>
+            <Label fx:id="messagelabel" layoutX="87.0" layoutY="360.0" prefHeight="17.0" prefWidth="151.0" />
          </children>
       </Pane>
-      <StackPane layoutX="36.0" layoutY="92.0" prefHeight="150.0" prefWidth="200.0" styleClass="image-border" stylesheets="@styles.css">
+      <StackPane layoutX="36.0" layoutY="92.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #ffff;" styleClass="image-border" stylesheets="@styles.css">
          <children>
-            <ImageView fitHeight="419.0" fitWidth="272.0" pickOnBounds="true" preserveRatio="true" styleClass="image-border">
+            <ImageView fx:id="bookImage" fitHeight="419.0" fitWidth="272.0" pickOnBounds="true" preserveRatio="true" styleClass="image-border">
                <image>
-                  <Image url="@../image/oremoi.jpg" />
+                  <Image url="@../image/castorice_book.png" />
                </image>
             </ImageView>
          </children>
       </StackPane>
-      <Button layoutY="-4.0" mnemonicParsing="false" styleClass="transparent" stylesheets="@styles.css" />
-      <ImageView fitHeight="32.0" fitWidth="77.0" layoutX="19.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../image/undo.png" />
-         </image>
-      </ImageView>
+      <Button fx:id="backToMain" layoutY="-4.0" mnemonicParsing="false" onAction="#backToMain" styleClass="transparent" stylesheets="@styles.css">
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/undo.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
    </children>
 </Pane>
