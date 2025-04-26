@@ -28,7 +28,9 @@ public class CardController {
     public ImageView bookImage;
     @FXML
     public HBox box;
+    @FXML
     public Button image;
+    @FXML
     private Book selectedBook ;
 
     public void setData(Book newBook) {
@@ -48,7 +50,6 @@ public class CardController {
             Image fallback = new Image(getClass().getResourceAsStream("/com/example/libapp/image/castorice_book.png"));
             bookImage.setImage(fallback);
         }
-
         bookName.setText(newBook.getTitle());
         AuthorName.setText(newBook.getAuthorName());
     }
@@ -60,7 +61,7 @@ public class CardController {
             Parent root = loader.load();
 
             BookInformationController controller = loader.getController();
-            controller.setBook(selectedBook);
+            controller.loadBookData(selectedBook);
 
             Stage stage = (Stage) image.getScene().getWindow();
             stage.setScene(new Scene(root, 1100, 600));

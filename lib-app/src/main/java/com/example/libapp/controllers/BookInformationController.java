@@ -1,7 +1,12 @@
 package com.example.libapp.controllers;
 
+import com.example.libapp.SessionManager;
 import com.example.libapp.model.Book;
+import com.example.libapp.model.User;
 import com.example.libapp.utils.SceneNavigator;
+import com.example.libapp.viewmodel.BorrowBookViewModel;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,19 +28,27 @@ public class BookInformationController {
     @FXML
     public Button backToMain;
     @FXML
+    private Label messagelabel;
+    @FXML
     private Book selectedBook;
 
-    public void setBook(Book book) {
-        this.selectedBook = book;
-        loadBookData();
+    private final StringProperty message = new SimpleStringProperty("");
+    private final BorrowBookViewModel viewModel = new BorrowBookViewModel();
+
+    @FXML
+    public void initialize() {
+        messagelabel.textProperty().bind(viewModel.messageProperty());
+        viewModel.setLoggedInUser(SessionManager.getInstance().getLoggedInUser());
     }
 
-    public void loadBookData() {
+    public void loadBookData(Book selectedBook) {
+        this.selectedBook = selectedBook;
         if (selectedBook == null) {
             System.err.println("chua co sach duoc chon");
         } else {
             BookName.setText(selectedBook.getTitle());
             AuthorName.setText(selectedBook.getAuthorName());
+            bookAvailable.setText("Số lượng sách còn lại là: " + selectedBook.getAvailableCopies());
             if (selectedBook.getDescription() == null) {
                 description.setText("ko co description");
             } else {
@@ -61,5 +74,11 @@ public class BookInformationController {
 
     public void backToMain() {
         SceneNavigator.backToMain(backToMain);
+    }
+
+    public void BorrowBook() {
+        viewModel.borrowBookByTitle(selectedBook.getTitle());
+        messagelabel.setStyle(viewModel.messageProperty().get().contains("successfully") ?
+                "-fx-text-fill: green;" : "-fx-text-fill: red;");
     }
 }

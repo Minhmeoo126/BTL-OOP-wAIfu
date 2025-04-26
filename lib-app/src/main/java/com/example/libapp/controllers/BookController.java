@@ -54,7 +54,7 @@ public class BookController {
             Parent root = loader.load();
 
             BookInformationController controller = loader.getController();
-            controller.setBook(selectedBook);
+            controller.loadBookData(selectedBook);
 
             Stage stage = (Stage) image.getScene().getWindow();
             stage.setScene(new Scene(root, 1100, 600));
