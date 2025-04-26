@@ -32,7 +32,6 @@ public class BookInformationController {
     @FXML
     private Book selectedBook;
 
-    private final StringProperty message = new SimpleStringProperty("");
     private final BorrowBookViewModel viewModel = new BorrowBookViewModel();
 
     @FXML
