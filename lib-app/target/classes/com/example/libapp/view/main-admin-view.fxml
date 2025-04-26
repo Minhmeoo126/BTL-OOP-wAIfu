@@ -155,9 +155,9 @@
                             </padding>
                         </HBox>
                         <Pane prefHeight="38.0" prefWidth="114.0" />
-                        <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="206.0" spacing="10.0">
+                        <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="190.0" spacing="10.0" styleClass="Hbox_border">
                             <children>
-                                <Label fx:id="UserName" alignment="CENTER" prefHeight="28.0" prefWidth="135.0" text="ADMINNAME" wrapText="true">
+                                <Label fx:id="UserName" alignment="CENTER" prefHeight="28.0" prefWidth="135.0" styleClass="tag-gerne" text="ADMINNAME" wrapText="true">
                                     <font>
                                         <Font name="Gill Sans MT Bold" size="16.0" />
                                     </font>
@@ -179,13 +179,19 @@
                 </HBox>
             <VBox prefHeight="566.0" prefWidth="1013.0">
                <children>
-                  <Label text="Recently add" />
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                  <Label text="Recently add">
+                     <font>
+                        <Font name="Gill Sans MT Bold" size="12.0" />
+                     </font></Label>
+                  <ScrollPane fitToHeight="true" hbarPolicy="ALWAYS" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" styleClass="transparent">
                      <content>
-                        <HBox fx:id="cardLayout" prefHeight="198.0" prefWidth="998.0" />
+                        <HBox fx:id="cardLayout" alignment="CENTER" maxWidth="-Infinity" prefHeight="139.0" spacing="10.0" />
                      </content>
                   </ScrollPane>
-                  <Label prefHeight="18.0" prefWidth="154.0" text="All Book" />
+                  <Label prefHeight="18.0" prefWidth="154.0" text="All Book">
+                     <font>
+                        <Font name="Gill Sans MT Bold" size="15.0" />
+                     </font></Label>
                   <ScrollPane prefHeight="317.0" prefWidth="1013.0">
                      <content>
                         <GridPane fx:id="bookContainer" prefHeight="3.0" prefWidth="6.0">
@@ -196,6 +202,9 @@
                      </content>
                   </ScrollPane>
                </children>
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </VBox.margin>
             </VBox>
             </children>
         </VBox>

@@ -154,9 +154,9 @@
                             </padding>
                         </HBox>
                         <Pane prefHeight="38.0" prefWidth="114.0" />
-                        <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="206.0" spacing="10.0">
+                        <HBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="190.0" spacing="10.0" styleClass="Hbox_border">
                             <children>
-                                <Label fx:id="UserName" alignment="CENTER" prefHeight="28.0" prefWidth="135.0" text="ADMINNAME" wrapText="true">
+                                <Label fx:id="UserName" alignment="CENTER" prefHeight="28.0" prefWidth="135.0" styleClass="tag-gerne" text="ADMINNAME" wrapText="true">
                                     <font>
                                         <Font name="Gill Sans MT Bold" size="16.0" />
                                     </font>

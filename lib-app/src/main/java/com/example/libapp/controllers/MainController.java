@@ -72,14 +72,14 @@ public class MainController {
         try{
             for(Book newBook : recentlyAdd){
                 FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/Bookcard-view.fxml"));
-                VBox cardBook = loader.load();
+                HBox cardBook = loader.load();
                 CardController cardController = loader.getController();
                 cardController.setData(newBook);
                 cardLayout.getChildren().add(cardBook);
             }
 
             for(Book book : allBook){
-                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/bookCardTest.fxml"));
+                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/Gridpane_bookcard-view.fxml"));
                 VBox bookBox = loader.load();
                 BookController bookController = loader.getController();
                 bookController.setData(book);
@@ -134,6 +134,7 @@ public class MainController {
         viewModel.openReturnBook();
         loadView("return-book.fxml", returnBook);
     }
+
     @FXML
     private void openAI() throws IOException {
         viewModel.openAI();
@@ -142,31 +143,32 @@ public class MainController {
 
     public void addNewBook() throws IOException {
         viewModel.openAddBook();
-        loadView("add-book-view.fxml",addBook);
+        loadView("add-book-view.fxml", addBook);
     }
 
     public void Logout() throws IOException {
         viewModel.logout();
-        loadView("login-view.fxml",Logout);
+        loadView("login-view.fxml", Logout);
     }
 
     public void goToBookManagement() throws IOException {
         viewModel.openBookManagement();
-        loadView("bookmanagement-view.fxml" , bookManagement);
+        loadView("bookmanagement-view.fxml", bookManagement);
     }
 
     public void goToUserManagement(ActionEvent event) throws IOException {
         viewModel.openUserManagement();
-        loadView("Usersmanagement-view.fxml" , userManagement);
+        loadView("Usersmanagement-view.fxml", userManagement);
     }
 
     public void backToMain() {
         SceneNavigator.backToMain(backToMain);
     }
-    private List<Book> recentlyAdded(){
+
+    private List<Book> recentlyAdded() {
         List<Book> recentlyAdded = new ArrayList<>();
         List<Book> a = new ArrayList<>(bookDAO.getAllBooks());
-        for(int i = a.size() - 1; i >= a.size() - 10 ;i--){
+        for (int i = a.size() - 1; i >= a.size() - 10; i--) {
             recentlyAdded.add(a.get(i));
         }
         return recentlyAdded;
@@ -175,7 +177,7 @@ public class MainController {
     private List<Book> allBooks() {
         List<Book> allbooks = new ArrayList<>();
         List<Book> a = new ArrayList<>(bookDAO.getAllBooks());
-        for(int i = 0; i <= 20 ;i++){
+        for (int i = 0; i <= 20; i++) {
             allbooks.add(a.get(i));
         }
         return allbooks;

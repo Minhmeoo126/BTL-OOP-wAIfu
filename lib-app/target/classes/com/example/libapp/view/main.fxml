@@ -133,9 +133,9 @@
                      </padding>
                   </HBox>
                   <Pane prefHeight="38.0" prefWidth="114.0" />
-                  <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="206.0" spacing="10.0">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="190.0" spacing="10.0" styleClass="Hbox_border">
                      <children>
-                        <Label fx:id="UserName" alignment="CENTER" prefHeight="31.0" prefWidth="105.0" text="USERNAME">
+                        <Label fx:id="UserName" alignment="CENTER" prefHeight="31.0" prefWidth="105.0" styleClass="tag-gerne" text="USERNAME">
                            <font>
                               <Font name="Gill Sans MT Bold" size="16.0" />
                            </font>
@@ -158,15 +158,15 @@
             <VBox prefHeight="551.0" prefWidth="1013.0">
                <children>
                   <Label text="Recently add" />
-                  <ScrollPane prefHeight="225.0" prefWidth="1013.0">
+                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
                      <content>
-                        <HBox fx:id="cardLayout" prefHeight="210.0" prefWidth="1014.0" />
+                        <HBox fx:id="cardLayout" maxWidth="-Infinity" prefHeight="139.0" />
                      </content>
                   </ScrollPane>
                   <Label text="All Book " />
-                  <ScrollPane prefHeight="290.0" prefWidth="1013.0">
+                  <ScrollPane prefHeight="317.0" prefWidth="1013.0">
                      <content>
-                        <GridPane fx:id="bookContainer" prefHeight="0.0" prefWidth="2.0">
+                        <GridPane fx:id="bookContainer" prefHeight="3.0" prefWidth="6.0">
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
