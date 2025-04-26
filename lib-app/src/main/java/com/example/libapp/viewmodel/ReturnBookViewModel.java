@@ -62,7 +62,7 @@ public class ReturnBookViewModel {
 
             message.set("Book returned successfully!");
         } catch (NumberFormatException e) {
-            message.set("Please enter a valid Book ID.");
+            message.set("Please enter a valid Book ID or Title.");
         } catch (Exception e) {
             message.set("Error: " + e.getMessage());
         }
