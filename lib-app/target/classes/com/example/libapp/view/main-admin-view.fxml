@@ -20,35 +20,35 @@
     <left>
         <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="65.0" spacing="3.0" style="-fx-border-color: #F3F3E0; -fx-background-radius: 10px;" styleClass="login_bg" stylesheets="@styles.css" BorderPane.alignment="CENTER">
             <children>
-            <VBox alignment="TOP_CENTER" prefHeight="22.0" prefWidth="84.0">
-               <children>
-                  <ImageView fitHeight="31.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/spell-book.png" />
-                     </image>
-                  </ImageView>
-                      <Label alignment="CENTER" prefHeight="34.0" prefWidth="84.0" text="WAIFU" textFill="WHITE">
-                          <font>
-                              <Font name="Californian FB Bold" size="23.0" />
-                          </font>
-                      </Label>
-               </children>
-            </VBox>
+                <VBox alignment="TOP_CENTER" prefHeight="22.0" prefWidth="84.0">
+                    <children>
+                        <ImageView fitHeight="31.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../image/spell-book.png" />
+                            </image>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="34.0" prefWidth="84.0" text="WAIFU" textFill="WHITE">
+                            <font>
+                                <Font name="Californian FB Bold" size="23.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
                 <Pane prefHeight="60.0" prefWidth="84.0" />
-            <Button fx:id="backToMain" graphicTextGap="1.0" mnemonicParsing="false" onAction="#backToMain">
-               <graphic>
-                  <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/home.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <styleClass>
-                  <String fx:value="transperant" />
-                  <String fx:value="selected" />
-                  <String fx:value="transparent" />
-               </styleClass>
-            </Button>
+                <Button fx:id="backToMain" graphicTextGap="1.0" mnemonicParsing="false" onAction="#backToMain">
+                    <graphic>
+                        <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../image/home.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <styleClass>
+                        <String fx:value="transperant" />
+                        <String fx:value="selected" />
+                        <String fx:value="transparent" />
+                    </styleClass>
+                </Button>
                 <Button fx:id="myAccount" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openMyAccount">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
@@ -88,19 +88,19 @@
                         <String fx:value="transparent" />
                     </styleClass>
                 </Button>
-            <Button fx:id="userManagement" graphicTextGap="1.0" mnemonicParsing="false" onAction="#goToUserManagement">
-               <graphic>
-                  <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
-                     <image>
-                        <Image url="@../image/group-users.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <styleClass>
-                  <String fx:value="transperant" />
-                  <String fx:value="transparent" />
-               </styleClass>
-            </Button>
+                <Button fx:id="userManagement" graphicTextGap="1.0" mnemonicParsing="false" onAction="#goToUserManagement">
+                    <graphic>
+                        <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                            <image>
+                                <Image url="@../image/group-users.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <styleClass>
+                        <String fx:value="transperant" />
+                        <String fx:value="transparent" />
+                    </styleClass>
+                </Button>
                 <Button fx:id="AI" graphicTextGap="1.0" layoutX="11.0" layoutY="222.0" mnemonicParsing="false" onAction="#openAI">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
@@ -115,19 +115,19 @@
                     </styleClass>
                 </Button>
                 <Pane prefHeight="98.0" prefWidth="84.0" />
-            <Button fx:id="Logout" graphicTextGap="1.0" mnemonicParsing="false" onAction="#Logout" prefHeight="96.0" prefWidth="72.0">
-               <styleClass>
-                  <String fx:value="transperant" />
-                  <String fx:value="transparent" />
-               </styleClass>
-               <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
-                     <image>
-                        <Image url="@../image/exit.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
+                <Button fx:id="Logout" graphicTextGap="1.0" mnemonicParsing="false" onAction="#Logout" prefHeight="96.0" prefWidth="72.0">
+                    <styleClass>
+                        <String fx:value="transperant" />
+                        <String fx:value="transparent" />
+                    </styleClass>
+                    <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                            <image>
+                                <Image url="@../image/exit.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
             </children>
         </VBox>
     </left>
@@ -177,35 +177,35 @@
                         <Insets bottom="9.0" top="2.0" />
                     </VBox.margin>
                 </HBox>
-            <VBox prefHeight="566.0" prefWidth="1013.0">
-               <children>
-                  <Label text="Recently add">
-                     <font>
-                        <Font name="Gill Sans MT Bold" size="12.0" />
-                     </font></Label>
-                  <ScrollPane fitToHeight="true" hbarPolicy="ALWAYS" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" styleClass="transparent">
-                     <content>
-                        <HBox fx:id="cardLayout" alignment="CENTER" maxWidth="-Infinity" prefHeight="139.0" spacing="10.0" />
-                     </content>
-                  </ScrollPane>
-                  <Label prefHeight="18.0" prefWidth="154.0" text="All Book">
-                     <font>
-                        <Font name="Gill Sans MT Bold" size="15.0" />
-                     </font></Label>
-                  <ScrollPane prefHeight="317.0" prefWidth="1013.0">
-                     <content>
-                        <GridPane fx:id="bookContainer" prefHeight="3.0" prefWidth="6.0">
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                        </GridPane>
-                     </content>
-                  </ScrollPane>
-               </children>
-               <VBox.margin>
-                  <Insets left="5.0" right="5.0" />
-               </VBox.margin>
-            </VBox>
+                <VBox prefHeight="566.0" prefWidth="1013.0">
+                    <children>
+                        <Label text="Recently add">
+                            <font>
+                                <Font name="Gill Sans MT Bold" size="12.0" />
+                            </font></Label>
+                        <ScrollPane fitToHeight="true" hbarPolicy="ALWAYS" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" styleClass="transparent">
+                            <content>
+                                <HBox fx:id="cardLayout" alignment="CENTER" maxWidth="-Infinity" prefHeight="139.0" spacing="10.0" />
+                            </content>
+                        </ScrollPane>
+                        <Label prefHeight="18.0" prefWidth="154.0" text="All Book">
+                            <font>
+                                <Font name="Gill Sans MT Bold" size="15.0" />
+                            </font></Label>
+                        <ScrollPane prefHeight="317.0" prefWidth="1013.0">
+                            <content>
+                                <GridPane fx:id="bookContainer" prefHeight="3.0" prefWidth="6.0">
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                </GridPane>
+                            </content>
+                        </ScrollPane>
+                    </children>
+                    <VBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                    </VBox.margin>
+                </VBox>
             </children>
         </VBox>
     </center>

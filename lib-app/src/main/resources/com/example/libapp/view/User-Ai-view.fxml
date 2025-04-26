@@ -8,7 +8,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -16,16 +15,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.AIUserController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.AIController">
     <left>
         <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="65.0" spacing="3.0" style="-fx-border-color: #F3F3E0; -fx-background-radius: 10px;" styleClass="login_bg" stylesheets="@styles.css" BorderPane.alignment="CENTER">
             <children>
-                <Label alignment="CENTER" prefHeight="51.0" prefWidth="84.0" text="WAIFU" textFill="WHITE">
-                    <font>
-                        <Font name="Californian FB Bold" size="23.0" />
-                    </font>
-                </Label>
-                <Pane prefHeight="82.0" prefWidth="86.0" />
+                <VBox alignment="TOP_CENTER" prefHeight="22.0" prefWidth="84.0">
+                    <children>
+                        <ImageView fitHeight="31.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../image/spell-book.png" />
+                            </image>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="34.0" prefWidth="84.0" text="WAIFU" textFill="WHITE">
+                            <font>
+                                <Font name="Californian FB Bold" size="23.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </VBox>
+                <Pane prefHeight="60.0" prefWidth="84.0" />
                 <Button fx:id="backToMain" graphicTextGap="1.0" mnemonicParsing="false" onAction="#backToMain">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
@@ -52,11 +60,11 @@
                         <String fx:value="transparent" />
                     </styleClass>
                 </Button>
-                <Button fx:id="returnBook" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openReturnBook">
+                <Button fx:id="addBook" graphicTextGap="1.0" mnemonicParsing="false" onAction="#addNewBook">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                             <image>
-                                <Image url="@../image/return.png" />
+                                <Image url="@../image/add.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -65,11 +73,11 @@
                         <String fx:value="transparent" />
                     </styleClass>
                 </Button>
-                <Button fx:id="borrowBooks" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openBorrowBook">
+                <Button fx:id="bookManage" graphicTextGap="1.0" mnemonicParsing="false" onAction="#goToBookManage">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                             <image>
-                                <Image url="@../image/borrow.png" />
+                                <Image url="@../image/book.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -78,7 +86,20 @@
                         <String fx:value="transparent" />
                     </styleClass>
                 </Button>
-                <Button fx:id="AI" graphicTextGap="1.0" layoutX="11.0" layoutY="222.0" mnemonicParsing="false" onAction="#openAI">
+                <Button fx:id="userManagement" graphicTextGap="1.0" mnemonicParsing="false" onAction="#goToUserManagement">
+                    <graphic>
+                        <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                            <image>
+                                <Image url="@../image/group-users.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <styleClass>
+                        <String fx:value="transperant" />
+                        <String fx:value="transparent" />
+                    </styleClass>
+                </Button>
+                <Button fx:id="AI" graphicTextGap="1.0" layoutX="11.0" layoutY="222.0" mnemonicParsing="false" onAction="#openAI" style="-fx-background-color: #F3F3E0;" styleClass="transparent">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                             <image>
@@ -86,14 +107,13 @@
                             </image>
                         </ImageView>
                     </graphic>
-                    <styleClass>
-                        <String fx:value="transperant" />
-                        <String fx:value="selected" />
-                        <String fx:value="transparent" />
-                    </styleClass>
                 </Button>
                 <Pane prefHeight="98.0" prefWidth="87.0" />
-                <Button fx:id="logout" graphicTextGap="1.0" layoutX="11.0" layoutY="355.0" mnemonicParsing="false" onAction="#Logout">
+                <Button fx:id="logout" graphicTextGap="1.0" mnemonicParsing="false" onAction="#Logout" prefHeight="96.0" prefWidth="72.0">
+                    <styleClass>
+                        <String fx:value="transperant" />
+                        <String fx:value="transparent" />
+                    </styleClass>
                     <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                             <image>
@@ -101,16 +121,12 @@
                             </image>
                         </ImageView>
                     </graphic>
-                    <styleClass>
-                        <String fx:value="transperant" />
-                        <String fx:value="transparent" />
-                    </styleClass>
                 </Button>
             </children>
         </VBox>
     </left>
     <center>
-        <VBox prefHeight="600.0" prefWidth="1022.0" BorderPane.alignment="CENTER">
+        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
             <children>
                 <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="1014.0">
                     <children>
@@ -135,7 +151,7 @@
                         <Pane prefHeight="38.0" prefWidth="114.0" />
                         <HBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="190.0" spacing="10.0" styleClass="Hbox_border">
                             <children>
-                                <Label fx:id="UserName" alignment="CENTER" prefHeight="31.0" prefWidth="105.0" styleClass="tag-gerne" text="USERNAME">
+                                <Label fx:id="UserName" alignment="CENTER" prefHeight="28.0" prefWidth="135.0" styleClass="tag-gerne" text="ADMINNAME" wrapText="true">
                                     <font>
                                         <Font name="Gill Sans MT Bold" size="16.0" />
                                     </font>
@@ -156,20 +172,26 @@
                     </VBox.margin>
                 </HBox>
                 <Pane prefHeight="530.0" prefWidth="977.0" style="-fx-border-color: #213448; -fx-border-width: 3;">
+                    <VBox.margin>
+                        <Insets left="19.0" />
+                    </VBox.margin>
                     <children>
-                        <StackPane layoutX="91.0" layoutY="48.0" prefHeight="296.0" prefWidth="795.0" styleClass="image-border">
+                        <StackPane layoutX="91.0" layoutY="48.0" prefHeight="384.0" prefWidth="795.0" styleClass="image-border">
                             <children>
-                                <ScrollPane prefHeight="282.0" prefWidth="790.0">
+                                <ScrollPane fx:id="chatScroll" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" pannable="true">
                                     <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="279.0" prefWidth="778.0">
+                                        <HBox>
                                             <children>
-                                                <VBox fx:id="chatBox" layoutY="-6.0" prefHeight="194.0" prefWidth="790.0">
+                                                <VBox fx:id="chatBox" prefWidth="780.0" spacing="10.0">
+                                                    <padding>
+                                                        <Insets bottom="10" left="10" right="10" top="10" />
+                                                    </padding>
                                                     <children>
                                                         <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="70.0" prefWidth="500.0" />
                                                     </children>
                                                 </VBox>
                                             </children>
-                                        </AnchorPane>
+                                        </HBox>
                                     </content>
                                 </ScrollPane>
                             </children>
@@ -178,17 +200,12 @@
                             <children>
                                 <ImageView fitHeight="531.0" fitWidth="366.0" layoutX="-35.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../image/Ai%20(2).png" />
+                                        <Image url="@../image/Ai (2).png" />
                                     </image>
                                 </ImageView>
-                                <Label alignment="CENTER" layoutX="8.0" layoutY="163.0" prefHeight="62.0" prefWidth="209.0" styleClass="rice_message" text="May I borrow your warm forever &lt;3" textAlignment="CENTER" wrapText="true">
-                                    <font>
-                                        <Font name="Californian FB Bold" size="19.0" />
-                                    </font>
-                                </Label>
                             </children>
                         </Pane>
-                        <HBox alignment="CENTER" layoutX="212.0" layoutY="387.0" prefHeight="0.0" prefWidth="550.0" spacing="5.0" styleClass="search-container">
+                        <HBox alignment="CENTER" layoutX="214.0" layoutY="452.0" prefHeight="0.0" prefWidth="550.0" spacing="5.0" styleClass="search-container">
                             <children>
                                 <TextField fx:id="promptField" onAction="#handleSendMessage" prefHeight="39.0" prefWidth="448.0" promptText="Send your problems!!" />
                                 <Button fx:id="sendButton" mnemonicParsing="false" onAction="#handleSendMessage" prefHeight="40.0" prefWidth="41.0" styleClass="transparent">

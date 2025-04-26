@@ -19,9 +19,9 @@
             </ImageView>
          </graphic>
       </Button>
-      <VBox prefHeight="100.0" prefWidth="155.0" spacing="8.0">
+      <VBox prefHeight="100.0" prefWidth="155.0" spacing="4.0">
          <children>
-            <Label fx:id="bookName" prefHeight="46.0" prefWidth="142.0" text="My sister can't be this cute" wrapText="true">
+            <Label fx:id="bookName" prefHeight="70.0" prefWidth="155.0" text="My sister can't be this cute" wrapText="true">
                <font>
                   <Font name="Gill Sans MT Bold" size="14.0" />
                </font>
