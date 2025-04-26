@@ -185,7 +185,7 @@
                                     <Font name="Gill Sans MT Bold" size="14.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="bookNameField" alignment="CENTER" prefHeight="32.0" prefWidth="378.0" styleClass="search-container" />
+                              <TextField alignment="CENTER" prefHeight="32.0" prefWidth="378.0" styleClass="search-container" />
                            </children>
                         </HBox>
                         <Button layoutX="218.0" layoutY="246.0" mnemonicParsing="false" onAction="#handleReturn" styleClass="Btn_login" text="Return" />

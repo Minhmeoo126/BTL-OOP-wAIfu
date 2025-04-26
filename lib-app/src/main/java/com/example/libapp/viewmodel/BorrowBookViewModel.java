@@ -62,7 +62,7 @@ public class BorrowBookViewModel {
 
             message.set("Book borrowed successfully!");
         } catch (NumberFormatException e) {
-            message.set("Please enter a valid Book ID or Title.");
+            message.set("Please enter a valid Book ID.");
         } catch (Exception e) {
             message.set("Error: " + e.getMessage());
         }
