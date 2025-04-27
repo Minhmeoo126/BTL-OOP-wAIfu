@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.MyAccountController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.UserInformationController">
     <left>
         <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="65.0" spacing="3.0" style="-fx-border-color: #F3F3E0; -fx-background-radius: 10px;" styleClass="login_bg" stylesheets="@styles.css" BorderPane.alignment="CENTER">
             <children>
@@ -27,7 +27,7 @@
                     </font>
                 </Label>
                 <Pane prefHeight="82.0" prefWidth="86.0" />
-                <Button fx:id="backToMain" graphicTextGap="1.0" mnemonicParsing="false" onAction="#backToMain">
+                <Button fx:id="backToUserManagement" graphicTextGap="1.0" mnemonicParsing="false" onAction="#backToUserManagement">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -54,46 +54,7 @@
                         <String fx:value="transparent" />
                     </styleClass>
                 </Button>
-                <Button fx:id="returnBook" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openReturnBook">
-                    <graphic>
-                        <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
-                            <image>
-                                <Image url="@../image/return.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <styleClass>
-                        <String fx:value="transperant" />
-                        <String fx:value="transparent" />
-                    </styleClass>
-                </Button>
-                <Button fx:id="borrowBooks" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openBorrowBook">
-                    <graphic>
-                        <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
-                            <image>
-                                <Image url="@../image/borrow.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <styleClass>
-                        <String fx:value="transperant" />
-                        <String fx:value="transparent" />
-                    </styleClass>
-                </Button>
-                <Button fx:id="AI" graphicTextGap="1.0" layoutX="11.0" layoutY="222.0" mnemonicParsing="false" onAction="#goToAI">
-                    <graphic>
-                        <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
-                            <image>
-                                <Image url="@../image/artificial-intelligence.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <styleClass>
-                        <String fx:value="transperant" />
-                        <String fx:value="transparent" />
-                    </styleClass>
-                </Button>
-                <Pane prefHeight="98.0" prefWidth="87.0" />
+                <Pane prefHeight="241.0" prefWidth="86.0" />
                 <Button fx:id="logout" graphicTextGap="1.0" layoutX="11.0" layoutY="355.0" mnemonicParsing="false" onAction="#Logout">
                     <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
@@ -199,7 +160,7 @@
                                         <TableColumn fx:id="nameBookColumn" text="BookName" />
                                         <TableColumn fx:id="AuthorColumn" text="Author" />
                                         <TableColumn fx:id="borrowDateColumn" text="BorrowDate" />
-                                        <TableColumn fx:id="returnDateColumn" text="ReturnDate" />
+                                        <TableColumn fx:id="returnDateColumn" prefWidth="301.800048828125" text="ReturnDate" />
                                     </columns>
                                 </TableView>
                                 <ImageView fitHeight="125.0" fitWidth="84.0" layoutX="397.0" layoutY="392.0" pickOnBounds="true" preserveRatio="true">
@@ -207,15 +168,14 @@
                                         <Image url="@../image/castoria_account.png" />
                                     </image>
                                 </ImageView>
-                                <Button fx:id="returnBook1" layoutX="389.0" layoutY="465.0" mnemonicParsing="false" onAction="#returnBooks" styleClass="Btn_login" stylesheets="@styles.css" text="Return" />
                             </children>
                         </Pane>
                     </children>
                 </AnchorPane>
             </children>
-         <BorderPane.margin>
-            <Insets top="5.0" />
-         </BorderPane.margin>
+            <BorderPane.margin>
+                <Insets top="5.0" />
+            </BorderPane.margin>
         </VBox>
     </center>
 </BorderPane>

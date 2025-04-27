@@ -82,5 +82,8 @@ public class BookInformationController {
         viewModel.borrowBookByTitle(selectedBook.getTitle());
         messagelabel.setStyle(viewModel.messageProperty().get().contains("successfully") ?
                 "-fx-text-fill: green;" : "-fx-text-fill: red;");
+        if (selectedBook.getAvailableCopies() > 0) {
+            bookAvailable.setText("Số lượng sách còn lại là: " + (selectedBook.getAvailableCopies() - 1));
+        }
     }
 }

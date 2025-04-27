@@ -104,13 +104,13 @@ public class UserManagementController {
     private void openUserHistory(User user) {
         try {
             // Mở cửa sổ lịch sử người dùng với thông tin đúng
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/User-my-account-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/UserInformation-view.fxml"));
             Parent root = loader.load();
 
-            MyAccountController controller = loader.getController();
+            UserInformationController controller = loader.getController();
             controller.setUser(user);  // Truyền đúng user vào controller
 
-            Stage stage = new Stage();
+            Stage stage = (Stage) myAccount.getScene().getWindow();
             stage.setTitle("User History - " + user.getUsername());  // Hiển thị đúng tên tài khoản
             stage.setScene(new Scene(root));
             stage.show();
@@ -147,7 +147,7 @@ public class UserManagementController {
             MyAccountController controller = loader.getController();
             controller.setUser(currentUser);  // Truyền user hiện tại vào MyAccountController
 
-            Stage stage = new Stage();
+            Stage stage = (Stage) myAccount.getScene().getWindow();
             stage.setTitle("My Account - " + currentUser.getUsername());
             stage.setScene(new Scene(root));
             stage.show();

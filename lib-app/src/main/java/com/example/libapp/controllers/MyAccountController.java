@@ -73,7 +73,12 @@ public class MyAccountController {
         try {
             User currentUser = SessionManager.getInstance().getLoggedInUser();
             if (currentUser != null) {
-                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/my-account.fxml"));
+                FXMLLoader loader;
+                if(currentUser.getRole().equals("ADMIN")){
+                    loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/my-account.fxml"));
+                } else{
+                    loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/User-my-account-view.fxml"));
+                }
                 Parent root = loader.load();
                 MyAccountController controller = loader.getController();
                 controller.setUser(currentUser);

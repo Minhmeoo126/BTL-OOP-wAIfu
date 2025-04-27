@@ -60,6 +60,7 @@ public class BorrowBookViewModel {
             book.setAvailableCopies(book.getAvailableCopies() - 1);
             bookDAO.updateBookAvailableCopies(book.getId(), book.getAvailableCopies());
 
+
             message.set("Book borrowed successfully!");
         } catch (NumberFormatException e) {
             message.set("Please enter a valid Book ID.");

@@ -5,26 +5,22 @@ import com.example.libapp.model.Book;
 import com.example.libapp.model.User;
 import com.example.libapp.persistence.BookDAO;
 import com.example.libapp.utils.SceneNavigator;
+import com.example.libapp.utils.SearchFunction;
 import com.example.libapp.viewmodel.MainViewModel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
-import java.awt.*;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import static com.example.libapp.utils.SceneNavigator.loadView;
 
@@ -49,6 +45,7 @@ public class MainUserController {
     private final MainViewModel viewModel = new MainViewModel();
     private final BookDAO bookDAO = new BookDAO();
     public GridPane bookContainer;
+    public TextField search;
 
     public void initialize() {
 
@@ -138,5 +135,11 @@ public class MainUserController {
             allbooks.add(a.get(i));
         }
         return allbooks;
+    }
+
+    public void Search() {
+        String keyWord = search.getText();
+        ObservableList<Book> allBook = FXCollections.observableArrayList(bookDAO.getAllBooks());
+        ObservableList<Book> searchBook = SearchFunction.searchFunction(allBook,keyWord);
     }
 }
