@@ -180,11 +180,12 @@
                <children>
                   <TableView fx:id="bookTable" layoutX="19.0" prefHeight="514.0" prefWidth="968.0">
                      <columns>
-                        <TableColumn fx:id="titleColumn" prefWidth="294.91191482543945" text="Title" />
-                        <TableColumn fx:id="authorColumn" prefWidth="205.82406616210938" text="Author" />
-                        <TableColumn fx:id="categoryColumn" prefWidth="159.74395751953125" text="Category" />
-                        <TableColumn fx:id="totalCopiesColumn" prefWidth="146.68798828125" text="Total Copies" />
-                        <TableColumn fx:id="availableCopiesColumn" prefWidth="162.81597900390625" text="Available Copies" />
+                        <TableColumn fx:id="IDColumn" prefWidth="75.0" text="ID" />
+                        <TableColumn fx:id="titleColumn" prefWidth="212.79995727539062" text="Title" />
+                        <TableColumn fx:id="authorColumn" prefWidth="226.4000244140625" text="AuthorName" />
+                        <TableColumn fx:id="categoryColumn" prefWidth="165.5999755859375" text="Category" />
+                        <TableColumn fx:id="totalCopiesColumn" prefWidth="128.79998779296875" text="Total Copies" />
+                        <TableColumn fx:id="availableCopiesColumn" prefWidth="159.20013427734375" text="Available Copies" />
                      </columns>
                   </TableView>
                </children>

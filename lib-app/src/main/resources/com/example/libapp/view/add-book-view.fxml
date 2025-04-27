@@ -182,7 +182,7 @@
                      <children>
                         <StackPane layoutX="75.0" layoutY="83.0" prefWidth="282.0" styleClass="image-border">
                            <children>
-                              <ImageView fitHeight="384.0" fitWidth="262.0" pickOnBounds="true" preserveRatio="true" styleClass="image-border">
+                              <ImageView fx:id="image" fitHeight="384.0" fitWidth="262.0" pickOnBounds="true" preserveRatio="true" styleClass="image-border">
                                  <image>
                                     <Image url="@../image/oremoi.jpg" />
                                  </image>
@@ -198,7 +198,7 @@
                                           <Font name="Gill Sans MT Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField alignment="CENTER" layoutX="87.0" layoutY="60.0" prefHeight="32.0" prefWidth="294.0" />
+                                    <TextField fx:id="imageLink" alignment="CENTER" layoutX="87.0" layoutY="60.0" prefHeight="32.0" prefWidth="294.0" />
                                     <Label layoutX="139.0" layoutY="20.0" text="Adding book" textFill="WHITE">
                                        <font>
                                           <Font name="Californian FB Bold" size="26.0" />
@@ -209,25 +209,26 @@
                                           <Font name="Gill Sans MT Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField alignment="CENTER" layoutX="85.4000015258789" layoutY="124.19999694824219" prefHeight="32.0" prefWidth="294.0" />
-                                    <TextField alignment="CENTER" layoutX="85.0" layoutY="191.0" prefHeight="32.0" prefWidth="294.0" />
+                                    <TextField fx:id="bookName" alignment="CENTER" layoutX="85.4000015258789" layoutY="124.19999694824219" prefHeight="32.0" prefWidth="294.0" />
+                                    <TextField fx:id="AuthorName" alignment="CENTER" layoutX="85.0" layoutY="191.0" prefHeight="32.0" prefWidth="294.0" />
                                     <Label alignment="CENTER_RIGHT" layoutX="18.0" layoutY="188.0" prefHeight="38.0" prefWidth="48.0" text="Author" textFill="WHITE" wrapText="true">
                                        <font>
                                           <Font name="Gill Sans MT Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField alignment="CENTER" layoutX="80.0" layoutY="252.0" prefHeight="158.0" prefWidth="300.0" />
+                                    <TextField fx:id="description" alignment="CENTER" layoutX="80.0" layoutY="252.0" prefHeight="158.0" prefWidth="300.0" />
                                     <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="248.0" prefHeight="38.0" prefWidth="59.0" text="Describe" textFill="WHITE" wrapText="true">
                                        <font>
                                           <Font name="Gill Sans MT Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Button layoutX="168.0" layoutY="426.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="88.0" text="ADD" />
+                                    <Button layoutX="168.0" layoutY="426.0" mnemonicParsing="false" onAction="#AddNewBook" prefHeight="41.0" prefWidth="88.0" text="ADD" />
                                  </children>
                               </Pane>
                            </children>
                         </VBox>
                         <Line endX="6.13336181640625" endY="464.13336181640625" layoutX="864.0" layoutY="25.0" startX="6.13336181640625" startY="8.666675567626953" stroke="#133e87" strokeWidth="5.0" />
+                        <Label fx:id="messageLabel" layoutX="114.0" layoutY="490.0" prefHeight="17.0" prefWidth="117.0" text="Label" />
                      </children>
                   </Pane>
                </children>

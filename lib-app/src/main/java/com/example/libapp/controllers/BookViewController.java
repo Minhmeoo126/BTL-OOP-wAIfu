@@ -33,6 +33,8 @@ public class BookViewController {
     @FXML
     private TableView<Book> bookTable;
     @FXML
+    private TableColumn<Book,Integer> IDColumn;
+    @FXML
     private TableColumn<Book, String> titleColumn;
     @FXML
     private TableColumn<Book, String> authorColumn;
@@ -47,12 +49,12 @@ public class BookViewController {
 
     @FXML
     public void initialize() {
+        IDColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("authorName"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
         totalCopiesColumn.setCellValueFactory(new PropertyValueFactory<>("totalCopies"));
         availableCopiesColumn.setCellValueFactory(new PropertyValueFactory<>("availableCopies"));
-
 
         titleColumn.setCellFactory(column -> {
             return new TableCell<>() {
