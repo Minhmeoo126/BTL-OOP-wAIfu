@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Pagination;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -46,54 +47,52 @@ public class MainController {
     public Button addBook;
     @FXML
     public Button logout;
+    @FXML
+    public Button bookManagement;
+    @FXML
+    public Button userManagement;
+    @FXML
+    public Button backToMain;
+    @FXML
+    public Label UserName;
+    @FXML
+    public HBox cardLayout;
+    @FXML
+    public GridPane bookContainer;
+    @FXML
+    public Pagination pagination;
+
+    public static final int BOOKS_PER_PAGE = 12;
 
     private final MainViewModel viewModel = new MainViewModel();
-    public Button bookManagement;
-    public Button userManagement;
-    public Button backToMain;
-    public Label UserName;
-    public HBox cardLayout;
-
     private final BookDAO bookDAO = new BookDAO();
-    public GridPane bookContainer;
+    private List<Book> allBooks = bookDAO.getAllBooks();
+
 
     public void initialize() {
 
         User currentUser = SessionManager.getInstance().getLoggedInUser();
         if (currentUser != null) {
             UserName.setText(currentUser.getUsername());
-        } else{
+        } else {
             UserName.setText("khong co nguoi dung");
         }
         List<Book> recentlyAdd = new ArrayList<>(recentlyAdded());
-        List<Book> allBook = new ArrayList<>(allBooks());
+        List<Book> allBook = new ArrayList<>(allBooks);
         int col = 0;
         int row = 1;
-        try{
-            for(Book newBook : recentlyAdd){
+        try {
+            for (Book newBook : recentlyAdd) {
                 FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/Bookcard-view.fxml"));
                 HBox cardBook = loader.load();
                 CardController cardController = loader.getController();
                 cardController.setData(newBook);
                 cardLayout.getChildren().add(cardBook);
             }
-
-            for(Book book : allBook){
-                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/Gridpane_bookcard-view.fxml"));
-                VBox bookBox = loader.load();
-                BookController bookController = loader.getController();
-                bookController.setData(book);
-
-                if(col == 6){
-                    col = 0;
-                    ++row;
-                }
-                bookContainer.add(bookBox,col++,row);
-                GridPane.setMargin(bookBox,new Insets(10));
-            }
-
-
-        }catch (IOException e){
+            int totalPages = (int) Math.ceil(allBooks.size() / (double) BOOKS_PER_PAGE);
+            pagination.setPageCount(totalPages);
+            pagination.setPageFactory(this::createPage);
+        } catch (IOException e) {
             System.err.println("Lỗi khi load Bookcard: " + e.getMessage());
             e.printStackTrace();
         }
@@ -174,12 +173,31 @@ public class MainController {
         return recentlyAdded;
     }
 
-    private List<Book> allBooks() {
-        List<Book> allbooks = new ArrayList<>();
-        List<Book> a = new ArrayList<>(bookDAO.getAllBooks());
-        for (int i = 0; i <= 20; i++) {
-            allbooks.add(a.get(i));
+
+    private GridPane createPage(int pageIndex) {
+        GridPane gridPane = new GridPane();
+        int start = pageIndex * BOOKS_PER_PAGE;
+        int end = Math.min(start + BOOKS_PER_PAGE, allBooks.size());
+        int col = 0;
+        int row = 1;
+        try {
+            for (int i = start; i < end; i++) {
+                Book book = allBooks.get(i);
+                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/Gridpane_bookcard-view.fxml"));
+                VBox bookBox = loader.load();
+                BookController bookController = loader.getController();
+                bookController.setData(book);
+
+                if (col == 6) {
+                    col = 0;
+                    ++row;
+                }
+                gridPane.add(bookBox, col++, row);
+                GridPane.setMargin(bookBox, new Insets(10));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return allbooks;
+        return gridPane;
     }
 }
