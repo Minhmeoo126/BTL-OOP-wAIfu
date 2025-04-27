@@ -22,6 +22,8 @@ public class BookService {
     private static final String API_KEY = "AIzaSyBzoGmsExfyPpiqoVOAjkvxzp8R1V-Wb2o"; // Your Google Books API key
     private static final String DB_URL = "jdbc:sqlite:lib-app/lib.db"; // Align with DatabaseConnection
     private static final int MAX_RESULTS_PER_CALL = 40; // Google Books API max results per request
+    private static final Set<String> processedBookIds = new HashSet<>(); // Track processed book IDs to avoid duplicates
+
     public static void initializeDatabase() throws SQLException {
         // Schema updates are handled by DatabaseConnection
     }
@@ -84,79 +86,65 @@ public class BookService {
         }
 
         try (Connection conn = DriverManager.getConnection(DB_URL)) {
-            String categoryName = determineCategoryFromQuery(items.path(0).path("volumeInfo").path("categories"));
+            // Map query to appropriate category
+            String categoryName = determineCategoryFromQuery(root.path("items").path(0).path("volumeInfo").path("categories"));
             int categoryId = getOrCreateCategory(conn, categoryName);
 
+            // Insert books
             try (PreparedStatement pstmt = conn.prepareStatement(
-                    "INSERT INTO Book (id, title, author_id, category_id, total_copies, available_copies, description, thumbnail) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")) {
+                    "INSERT INTO Book (title, author_id, category_id, total_copies, available_copies, description, thumbnail) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                    Statement.RETURN_GENERATED_KEYS)) {
 
                 int booksAdded = 0;
 
                 for (JsonNode item : items) {
                     JsonNode volumeInfo = item.path("volumeInfo");
+                    String bookId = item.path("id").asText("");
 
-                    // 👉 Fetch ISBN
-                    String isbn = extractIsbn(volumeInfo);
-                    if (isbn == null) continue; // Skip nếu không có ISBN
-
-                    // 👉 Skip nếu đã tồn tại trong database
-                    if (isBookExists(conn, isbn)) {
+                    // Skip if book already processed
+                    if (processedBookIds.contains(bookId)) {
                         continue;
                     }
 
                     String title = volumeInfo.path("title").asText("");
-                    if (title.isEmpty()) continue;
+                    if (title.isEmpty()) continue; // Skip books with missing titles
 
                     String author = "";
                     JsonNode authorsNode = volumeInfo.path("authors");
                     if (authorsNode.isArray() && authorsNode.size() > 0) {
                         String[] authors = mapper.treeToValue(authorsNode, String[].class);
-                        author = authors[0];
+                        author = authors[0]; // Take the first author
                     }
                     if (author.isEmpty()) author = "Unknown Author";
 
-                    String description = volumeInfo.path("description").asText(null);
+                    // Get the description (introduction/preview)
+                    String description = volumeInfo.path("description").asText(null); // Null if not present
+
+                    // Get the thumbnail URL
                     String thumbnailUrl = volumeInfo.path("imageLinks").path("thumbnail").asText(null);
 
+                    // Insert or get author_id
                     int authorId = getOrCreateAuthor(conn, author);
+
+                    // Set default values for copies
                     int totalCopies = 1;
                     int availableCopies = 1;
 
-                    pstmt.setString(1, isbn); // 🛠 Set id = ISBN
-                    pstmt.setString(2, title);
-                    pstmt.setInt(3, authorId);
-                    pstmt.setInt(4, categoryId);
-                    pstmt.setInt(5, totalCopies);
-                    pstmt.setInt(6, availableCopies);
-                    pstmt.setString(7, description);
-                    pstmt.setString(8, thumbnailUrl);
-
+                    // Insert into Book table
+                    pstmt.setString(1, title);
+                    pstmt.setInt(2, authorId);
+                    pstmt.setInt(3, categoryId);
+                    pstmt.setInt(4, totalCopies);
+                    pstmt.setInt(5, availableCopies);
+                    pstmt.setString(6, description); // Can be null
+                    pstmt.setString(7, thumbnailUrl); // Store the thumbnail URL
                     pstmt.executeUpdate();
+
+                    // Mark book as processed
+                    processedBookIds.add(bookId);
                     booksAdded++;
                 }
                 return booksAdded;
-            }
-        }
-    }
-
-    private static String extractIsbn(JsonNode volumeInfo) {
-        JsonNode identifiers = volumeInfo.path("industryIdentifiers");
-        if (identifiers.isArray()) {
-            for (JsonNode identifier : identifiers) {
-                String type = identifier.path("type").asText();
-                if ("ISBN_13".equals(type) || "ISBN_10".equals(type)) {
-                    return identifier.path("identifier").asText();
-                }
-            }
-        }
-        return null; // Không có ISBN
-    }
-
-    private static boolean isBookExists(Connection conn, String isbn) throws SQLException {
-        try (PreparedStatement pstmt = conn.prepareStatement("SELECT 1 FROM Book WHERE id = ?")) {
-            pstmt.setString(1, isbn);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                return rs.next();
             }
         }
     }
