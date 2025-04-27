@@ -30,7 +30,7 @@ public class DatabaseConnection {
             );
             
             CREATE TABLE IF NOT EXISTS Book (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                id TEXT PRIMARY KEY,
                 title TEXT NOT NULL,
                 author_id INTEGER NOT NULL,
                 category_id INTEGER NOT NULL,
@@ -44,7 +44,7 @@ public class DatabaseConnection {
             CREATE TABLE IF NOT EXISTS BorrowingRecord (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 user_id INTEGER NOT NULL,
-                book_id INTEGER NOT NULL,
+                book_id TEXT NOT NULL,
                 borrow_date TEXT NOT NULL,
                 return_date TEXT,
                 FOREIGN KEY (user_id) REFERENCES Users(id),
@@ -54,7 +54,7 @@ public class DatabaseConnection {
             CREATE TABLE IF NOT EXISTS Reviews (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 user_id INTEGER NOT NULL,
-                book_id INTEGER NOT NULL,
+                book_id TEXT NOT NULL,
                 rating INTEGER NOT NULL CHECK (rating >= 1 AND rating <= 5),
                 comment TEXT,
                 review_date TEXT NOT NULL,
