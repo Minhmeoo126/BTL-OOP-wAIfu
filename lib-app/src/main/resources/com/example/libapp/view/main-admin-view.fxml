@@ -195,14 +195,14 @@
                             </font></Label>
                         <ScrollPane prefHeight="317.0" prefWidth="1013.0">
                      <content>
-                        <VBox prefHeight="304.0" prefWidth="1034.0">
+                        <VBox prefHeight="0.0" prefWidth="89.0">
                            <children>
-                              <GridPane fx:id="bookContainer">
+                              <GridPane fx:id="bookContainer" prefHeight="30.0" prefWidth="962.0">
                                 <rowConstraints>
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                               </GridPane>
-                              <Pagination fx:id="pagination" prefHeight="200.0" prefWidth="200.0" />
+                              <Pagination fx:id="pagination" prefHeight="276.0" prefWidth="990.0" />
                            </children>
                         </VBox>
                      </content>

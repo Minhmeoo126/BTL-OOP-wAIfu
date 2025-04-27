@@ -167,7 +167,7 @@
                   <Label text="All Book " />
                   <ScrollPane prefHeight="317.0" prefWidth="1013.0">
                      <content>
-                        <VBox prefHeight="297.0" prefWidth="1014.0">
+                        <VBox prefHeight="0.0" prefWidth="89.0">
                            <children>
                               <GridPane fx:id="bookContainer" prefHeight="129.0" prefWidth="74.0">
                                 <rowConstraints>

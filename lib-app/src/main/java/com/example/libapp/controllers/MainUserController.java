@@ -139,7 +139,7 @@ public class MainUserController {
                     ++row;
                 }
                 gridPane.add(bookBox, col++, row);
-                GridPane.setMargin(bookBox, new Insets(10));
+                GridPane.setMargin(bookBox, new Insets(6));
             }
         } catch (IOException e) {
             e.printStackTrace();
