@@ -207,7 +207,7 @@
                                         <Image url="@../image/castoria_account.png" />
                                     </image>
                                 </ImageView>
-                                <Button fx:id="returnBook1" layoutX="389.0" layoutY="465.0" mnemonicParsing="false" onAction="#returnBooks" styleClass="Btn_login" stylesheets="@styles.css" text="Return" />
+                                <Button fx:id="returnBook1" layoutX="389.0" layoutY="465.0" mnemonicParsing="false" onAction="#returnSelectedBook" styleClass="Btn_login" stylesheets="@styles.css" text="Return" />
                             </children>
                         </Pane>
                     </children>

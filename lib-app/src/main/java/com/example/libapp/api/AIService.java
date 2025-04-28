@@ -57,7 +57,7 @@ public class AIService {
 
             // Root JSON object
             ObjectNode requestBody = mapper.createObjectNode();
-            requestBody.put("model", "gpt-3.5-turbo");
+            requestBody.put("model", "gpt-4o");
             requestBody.put("temperature", 0.75);
 
             // Mảng messages
