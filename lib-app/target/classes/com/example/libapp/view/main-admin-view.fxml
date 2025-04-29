@@ -180,20 +180,20 @@
                 </HBox>
                 <VBox prefHeight="566.0" prefWidth="1013.0">
                     <children>
-                        <Label text="Recently add">
+                        <Label alignment="CENTER" stylesheets="@styles.css" text="Recently add">
                             <font>
                                 <Font name="Gill Sans MT Bold" size="12.0" />
                             </font></Label>
-                        <ScrollPane fitToHeight="true" hbarPolicy="ALWAYS" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" styleClass="transparent">
+                        <ScrollPane fitToHeight="true" hbarPolicy="ALWAYS" minWidth="-Infinity" prefHeight="150.0" prefWidth="1003.0" styleClass="transparent">
                             <content>
                                 <HBox fx:id="cardLayout" alignment="CENTER" maxWidth="-Infinity" prefHeight="139.0" spacing="10.0" />
                             </content>
                         </ScrollPane>
-                        <Label prefHeight="18.0" prefWidth="154.0" text="All Book">
+                        <Label prefHeight="25.0" prefWidth="124.0" stylesheets="@styles.css" text="All Book">
                             <font>
-                                <Font name="Gill Sans MT Bold" size="15.0" />
+                                <Font name="Gill Sans MT Bold" size="18.0" />
                             </font></Label>
-                        <ScrollPane prefHeight="317.0" prefWidth="1013.0">
+                        <ScrollPane prefHeight="350.0" prefWidth="1003.0">
                      <content>
                         <VBox prefHeight="0.0" prefWidth="89.0">
                            <children>
