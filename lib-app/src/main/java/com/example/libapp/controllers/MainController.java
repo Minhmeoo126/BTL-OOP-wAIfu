@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -66,11 +67,10 @@ public class MainController {
 
     private final MainViewModel viewModel = new MainViewModel();
     private final BookDAO bookDAO = new BookDAO();
-    private List<Book> allBooks = bookDAO.getAllBooks();
+    private final List<Book> allBooks = bookDAO.getAllBooks();
 
 
     public void initialize() {
-
         User currentUser = SessionManager.getInstance().getLoggedInUser();
         if (currentUser != null) {
             UserName.setText(currentUser.getUsername());
@@ -78,7 +78,6 @@ public class MainController {
             UserName.setText("khong co nguoi dung");
         }
         List<Book> recentlyAdd = new ArrayList<>(recentlyAdded());
-        List<Book> allBook = new ArrayList<>(allBooks);
         int col = 0;
         int row = 1;
         try {

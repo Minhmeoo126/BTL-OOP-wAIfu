@@ -14,174 +14,189 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.MainUserController">
-   <left>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="65.0" spacing="3.0" style="-fx-border-color: #F3F3E0; -fx-background-radius: 10px;" styleClass="login_bg" stylesheets="@styles.css" BorderPane.alignment="CENTER">
-         <children>
-            <Label alignment="CENTER" prefHeight="51.0" prefWidth="84.0" text="WAIFU" textFill="WHITE">
-               <font>
-                  <Font name="Californian FB Bold" size="23.0" />
-               </font>
-            </Label>
-            <Pane prefHeight="82.0" prefWidth="86.0" />
-            <Button fx:id="backToMain" graphicTextGap="1.0" mnemonicParsing="false" onAction="#backToMain">
-               <graphic>
-                  <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/home.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <styleClass>
-                  <String fx:value="transperant" />
-                  <String fx:value="selected" />
-                  <String fx:value="transparent" />
-               </styleClass>
-            </Button>
-            <Button fx:id="myAccount" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openMyAccount">
-               <graphic>
-                  <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/user.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <styleClass>
-                  <String fx:value="transperant" />
-                  <String fx:value="transparent" />
-               </styleClass>
-            </Button>
-            <Button fx:id="returnBook" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openReturnBook">
-               <graphic>
-                  <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
-                     <image>
-                        <Image url="@../image/return.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <styleClass>
-                  <String fx:value="transperant" />
-                  <String fx:value="transparent" />
-               </styleClass>
-            </Button>
-            <Button fx:id="borrowBooks" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openBorrowBook">
-               <graphic>
-                  <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
-                     <image>
-                        <Image url="@../image/borrow.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <styleClass>
-                  <String fx:value="transperant" />
-                  <String fx:value="transparent" />
-               </styleClass>
-            </Button>
-            <Button fx:id="AI" graphicTextGap="1.0" layoutX="11.0" layoutY="222.0" mnemonicParsing="false" onAction="#openAI">
-               <graphic>
-                  <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
-                     <image>
-                        <Image url="@../image/artificial-intelligence.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <styleClass>
-                  <String fx:value="transperant" />
-                  <String fx:value="transparent" />
-               </styleClass>
-            </Button>
-            <Pane prefHeight="98.0" prefWidth="87.0" />
-            <Button fx:id="logout" graphicTextGap="1.0" layoutX="11.0" layoutY="355.0" mnemonicParsing="false" onAction="#Logout">
-               <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
-                     <image>
-                        <Image url="@../image/exit.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <styleClass>
-                  <String fx:value="transperant" />
-                  <String fx:value="transparent" />
-               </styleClass>
-            </Button>
-         </children>
-      </VBox>
-   </left>
-   <center>
-      <VBox prefHeight="600.0" prefWidth="1022.0" BorderPane.alignment="CENTER">
-         <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="1014.0">
+
+<StackPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.MainUserController">
+   <children>
+      <ScrollPane fx:id="pane" visible="false">
+         <content>
+            <GridPane fx:id="Box" prefHeight="555.0" prefWidth="1037.0">
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css">
+         <left>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="65.0" spacing="3.0" style="-fx-border-color: #F3F3E0; -fx-background-radius: 10px;" styleClass="login_bg" stylesheets="@styles.css" BorderPane.alignment="CENTER">
                <children>
-                  <Pane prefHeight="38.0" prefWidth="278.0" />
-                  <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="38.0" prefWidth="415.0" spacing="5.0" styleClass="search-container" stylesheets="@styles.css">
-                     <children>
-                        <TextField fx:id="search" onAction="#Search" prefHeight="31.0" prefWidth="358.0" promptText="Search" styleClass="transparent" stylesheets="@styles.css">
-                           <font>
-                              <Font name="Gill Sans MT" size="14.0" />
-                           </font>
-                        </TextField>
-                        <ImageView fitHeight="28.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                  <Label alignment="CENTER" prefHeight="51.0" prefWidth="84.0" text="WAIFU" textFill="WHITE">
+                     <font>
+                        <Font name="Californian FB Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Pane prefHeight="82.0" prefWidth="86.0" />
+                  <Button fx:id="backToMain" graphicTextGap="1.0" mnemonicParsing="false" onAction="#backToMain">
+                     <graphic>
+                        <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../image/loupe.png" />
+                              <Image url="@../image/home.png" />
                            </image>
                         </ImageView>
-                     </children>
-                     <padding>
-                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                     </padding>
-                  </HBox>
-                  <Pane prefHeight="38.0" prefWidth="114.0" />
-                  <HBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="190.0" spacing="10.0" styleClass="Hbox_border">
-                     <children>
-                        <Label fx:id="UserName" alignment="CENTER" prefHeight="31.0" prefWidth="105.0" styleClass="tag-gerne" text="USERNAME">
-                           <font>
-                              <Font name="Gill Sans MT Bold" size="16.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="28.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="transperant" />
+                        <String fx:value="selected" />
+                        <String fx:value="transparent" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="myAccount" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openMyAccount">
+                     <graphic>
+                        <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../image/user.png" />
                            </image>
                         </ImageView>
-                     </children>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
-                     </padding>
-                  </HBox>
-               </children>
-               <VBox.margin>
-                  <Insets bottom="9.0" top="2.0" />
-               </VBox.margin>
-            </HBox>
-            <VBox prefHeight="551.0" prefWidth="1013.0">
-               <children>
-                  <Label text="Recently add" />
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
-                     <content>
-                        <HBox fx:id="cardLayout" maxWidth="-Infinity" prefHeight="139.0" />
-                     </content>
-                  </ScrollPane>
-                  <Label text="All Book " />
-                  <ScrollPane prefHeight="317.0" prefWidth="1013.0">
-                     <content>
-                        <VBox prefHeight="0.0" prefWidth="89.0">
-                           <children>
-                              <GridPane fx:id="bookContainer" prefHeight="129.0" prefWidth="74.0">
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                              </GridPane>
-                              <Pagination fx:id="pagination" prefHeight="200.0" prefWidth="236.0" />
-                           </children>
-                        </VBox>
-                     </content>
-                  </ScrollPane>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="transperant" />
+                        <String fx:value="transparent" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="returnBook" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openReturnBook">
+                     <graphic>
+                        <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                           <image>
+                              <Image url="@../image/return.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="transperant" />
+                        <String fx:value="transparent" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="borrowBooks" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openBorrowBook">
+                     <graphic>
+                        <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                           <image>
+                              <Image url="@../image/borrow.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="transperant" />
+                        <String fx:value="transparent" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="AI" graphicTextGap="1.0" layoutX="11.0" layoutY="222.0" mnemonicParsing="false" onAction="#openAI">
+                     <graphic>
+                        <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                           <image>
+                              <Image url="@../image/artificial-intelligence.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="transperant" />
+                        <String fx:value="transparent" />
+                     </styleClass>
+                  </Button>
+                  <Pane prefHeight="98.0" prefWidth="87.0" />
+                  <Button fx:id="logout" graphicTextGap="1.0" layoutX="11.0" layoutY="355.0" mnemonicParsing="false" onAction="#Logout">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                           <image>
+                              <Image url="@../image/exit.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="transperant" />
+                        <String fx:value="transparent" />
+                     </styleClass>
+                  </Button>
                </children>
             </VBox>
-         </children>
-      </VBox>
-   </center>
-</BorderPane>
+         </left>
+         <center>
+            <VBox prefHeight="600.0" prefWidth="1022.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="1014.0">
+                     <children>
+                        <Pane prefHeight="38.0" prefWidth="278.0" />
+                        <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="38.0" prefWidth="415.0" spacing="5.0" styleClass="search-container" stylesheets="@styles.css">
+                           <children>
+                              <VBox prefHeight="32.0" prefWidth="374.0">
+                                 <children>
+                                    <TextField fx:id="search" onAction="#Search" />
+                                 </children>
+                              </VBox>
+                              <ImageView fitHeight="28.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../image/loupe.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                        </HBox>
+                        <Pane prefHeight="38.0" prefWidth="114.0" />
+                        <HBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="190.0" spacing="10.0" styleClass="Hbox_border">
+                           <children>
+                              <Label fx:id="UserName" alignment="CENTER" prefHeight="31.0" prefWidth="105.0" styleClass="tag-gerne" text="USERNAME">
+                                 <font>
+                                    <Font name="Gill Sans MT Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="28.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../image/user.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="9.0" top="2.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <VBox prefHeight="551.0" prefWidth="1013.0">
+                     <children>
+                        <Label text="Recently add" />
+                        <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                           <content>
+                              <HBox fx:id="cardLayout" maxWidth="-Infinity" prefHeight="139.0" />
+                           </content>
+                        </ScrollPane>
+                        <Label text="All Book " />
+                        <ScrollPane prefHeight="317.0" prefWidth="1013.0">
+                           <content>
+                              <VBox prefHeight="0.0" prefWidth="89.0">
+                                 <children>
+                                    <GridPane fx:id="bookContainer" prefHeight="129.0" prefWidth="74.0">
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                    </GridPane>
+                                    <Pagination fx:id="pagination" prefHeight="200.0" prefWidth="236.0" />
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>

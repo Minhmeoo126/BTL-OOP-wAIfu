@@ -14,9 +14,9 @@ public class SearchFunction {
         } else {
             String filter = keyword.toLowerCase();
             for (Book book : booklist) {
-                if (book.getTitle().toLowerCase().contains(filter)
-                        || String.valueOf(book.getId()).contains(filter)
-                        || book.getAuthorName().toLowerCase().contains(filter)) {
+                if (book.getTitle().toLowerCase().startsWith(filter)
+                        || String.valueOf(book.getId()).startsWith(filter)
+                        || book.getAuthorName().toLowerCase().startsWith(filter)) {
                     filteredBooklist.add(book);
                 }
             }

@@ -11,12 +11,20 @@ import com.example.libapp.viewmodel.MainViewModel;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -37,12 +45,14 @@ public class addBookController {
     public TextField imageLink;
     public TextField bookName;
     public TextField AuthorName;
-    public TextField description;
     private final BookDAO bookDAO = new BookDAO();
     private final AuthorDAO authorDAO = new AuthorDAO();
     private final List<Book> allBook = bookDAO.getAllBooks();
     private final List<Author> allAuthor = authorDAO.getAllAuthors();
     public Label messageLabel;
+    public TextArea description;
+    public Button ChooseImage;
+    private String selectedImagePath;// biến lưu đường dẫn tương đối ảnh để lưu vào DB
 
     public void initialize() {
         User currentUser = SessionManager.getInstance().getLoggedInUser();
@@ -167,5 +177,46 @@ public class addBookController {
         bookDAO.addBook(newBook);
         messageLabel.setText("success");
     }
+
+
+    public void ChooseImage () {
+        // Mở FileChooser cho phép người dùng chọn ảnh
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        File selectedFile = fileChooser.showOpenDialog(null);  // null là cửa sổ chính của ứng dụng
+
+        if (selectedFile != null) {
+            // Lấy đường dẫn thư mục gốc của ứng dụng
+            Path projectRoot = Paths.get("").toAbsolutePath();
+
+            // Xác định thư mục lưu ảnh
+            Path imageFolder = projectRoot.resolve("Images");
+
+            // Tạo đường dẫn file đích
+            Path targetPath = imageFolder.resolve(selectedFile.getName());
+
+            try {
+                // Copy file vào thư mục Images
+                Files.copy(selectedFile.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+
+                // Cập nhật đường dẫn file ảnh vào TextField imageLink
+                imageLink.setText(targetPath.toString());  // Gán đường dẫn vào TextField imageLink
+
+                // Cập nhật ảnh lên ImageView (nếu có)
+                Image im = new Image(targetPath.toUri().toString());
+                image.setImage(im);  // Giả sử imageView là ImageView hiển thị ảnh
+
+                // Cập nhật UI nếu cần (chẳng hạn thêm vào một label, hoặc thông báo thành công)
+                System.out.println("Ảnh đã lưu thành công tại: " + targetPath.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("Lỗi khi lưu ảnh.");
+            }
+        }
+    }
+
+
+
+
 }
 
