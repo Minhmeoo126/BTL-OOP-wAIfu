@@ -14,17 +14,17 @@
    <children>
       <Pane layoutX="274.0" layoutY="49.0" prefHeight="501.0" prefWidth="738.0" style="-fx-background-radius: 10;" styleClass="MAIN_bg" stylesheets="@styles.css">
          <children>
-            <Label fx:id="BookName" layoutX="66.0" layoutY="14.0" prefHeight="144.0" prefWidth="628.0" text="My sister can't be this cute" wrapText="true">
+            <Label fx:id="BookName" layoutX="64.0" layoutY="56.0" prefHeight="77.0" prefWidth="660.0" text="My sister can't be this cute" wrapText="true">
                <font>
-                  <Font name="Gill Sans MT Bold" size="49.0" />
+                  <Font name="Arial Bold" size="49.0" />
                </font>
             </Label>
-            <Label fx:id="AuthorName" layoutX="82.0" layoutY="158.0" text="Author : Tsukasa Fushimi (伏見 つかさ)">
+            <Label fx:id="AuthorName" layoutX="79.0" layoutY="158.0" prefHeight="31.0" prefWidth="377.0" text="Author : Tsukasa Fushimi (伏見 つかさ)">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <Label fx:id="description" alignment="TOP_LEFT" layoutX="79.0" layoutY="192.0" prefHeight="135.0" prefWidth="601.0" text="&quot;Oreimo&quot; kể về Kyousuke – một nam sinh trung học phát hiện em gái mình, Kirino, tuy ngoài đời hoàn hảo nhưng thật ra là một otaku cuồng anime và game về &quot;em gái moe&quot;. Bị kéo vào thế giới otaku của Kirino, Kyousuke dần giúp em giải quyết các rắc rối, từ đó cả hai trở nên thân thiết hơn theo cách... không ai ngờ tới." wrapText="true">
+            <Label fx:id="description" alignment="TOP_LEFT" layoutX="79.0" layoutY="192.0" prefHeight="119.0" prefWidth="601.0" text="&quot;Oreimo&quot; kể về Kyousuke – một nam sinh trung học phát hiện em gái mình, Kirino, tuy ngoài đời hoàn hảo nhưng thật ra là một otaku cuồng anime và game về &quot;em gái moe&quot;. Bị kéo vào thế giới otaku của Kirino, Kyousuke dần giúp em giải quyết các rắc rối, từ đó cả hai trở nên thân thiết hơn theo cách... không ai ngờ tới." wrapText="true">
                <font>
                   <Font size="16.0" />
                </font>

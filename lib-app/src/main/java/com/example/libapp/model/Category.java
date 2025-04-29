@@ -1,6 +1,6 @@
 package com.example.libapp.model;
 
-public class Category {
+public class Category extends NamedEntity {
     private int id;
     private String name;
 

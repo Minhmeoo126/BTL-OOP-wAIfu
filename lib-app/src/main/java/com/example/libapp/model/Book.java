@@ -1,6 +1,6 @@
 package com.example.libapp.model;
 
-public class Book {
+public class Book extends DescribableEntity {
     private int id;
     private String title;
     private int authorId;

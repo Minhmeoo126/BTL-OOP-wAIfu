@@ -25,14 +25,14 @@
             <String fx:value="button" />
          </styleClass>
       </Button>
-        <Label fx:id="bookName" prefHeight="35.0" prefWidth="142.0" text="My sister can't be this cute" wrapText="true">
+        <Label fx:id="bookName" prefHeight="44.0" prefWidth="142.0" text="My sister can't be this cute" wrapText="true">
             <font>
-                <Font name="Gill Sans MT Bold" size="12.0" />
+                <Font name="Arial Bold" size="12.0" />
             </font>
         </Label>
         <Label fx:id="AuthorName" prefHeight="17.0" prefWidth="150.0" text=" Author: Tsukasa Fushimi">
             <font>
-                <Font name="Gill Sans MT Bold" size="8.0" />
+                <Font name="Arial Bold" size="8.0" />
             </font>
         </Label>
         <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="150.0">

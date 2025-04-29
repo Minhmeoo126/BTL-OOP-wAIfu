@@ -1,6 +1,6 @@
 package com.example.libapp.model;
 
-public class User {
+public class User extends BaseEntity {
     private int id;
     private String username;
     private String password;

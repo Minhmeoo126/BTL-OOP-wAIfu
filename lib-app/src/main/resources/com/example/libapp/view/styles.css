@@ -48,16 +48,16 @@
     -fx-transition: all 0.3s ease-in-out;
 }
 
-/* Khi được chọn (focus), viền đổi màu và có hiệu ứng shadow */
+
 .text-field:focused, .password-field:focused {
-    -fx-border-color: #CBDCEB; /* Màu viền xanh */
+    -fx-border-color: #CBDCEB;
     -fx-border-width: 2.5px;
     -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.6), 10, 0.5, 0, 0);
 }
 
 .lib_status {
-    -fx-background-color: #133E87; /* Màu nền xanh */
-    -fx-text-fill: #F3F3E0; /* Màu chữ trắng */
+    -fx-background-color: #133E87;
+    -fx-text-fill: #F3F3E0;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-padding: 10px 20px;
@@ -112,7 +112,7 @@
 }
 
 .table-view .column-header {
-    -fx-background-color: #455D7A;
+    -fx-background-color:#BCCCDC;
     -fx-text-fill: #F3F3E0;
     -fx-font-weight: bold;
     -fx-border-color: #F3F3E0;
@@ -126,8 +126,7 @@
 }
 
 .table-view .table-row-cell:filled:selected {
-    -fx-background-color: #133E87;
-    -fx-text-fill: #F3F3E0;
+    -fx-background-color: #D4C9BE;
 }
 
 .table-view .table-cell {
