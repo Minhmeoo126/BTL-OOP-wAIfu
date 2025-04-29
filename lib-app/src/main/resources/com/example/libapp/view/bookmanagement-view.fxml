@@ -177,17 +177,18 @@
                 </HBox>
             <Pane prefHeight="564.0" prefWidth="1013.0">
                <children>
-                  <TableView fx:id="bookTable" layoutX="19.0" prefHeight="439.0" prefWidth="968.0">
-                     <columns>
-                        <TableColumn fx:id="IDColumn" prefWidth="75.0" text="ID" />
-                        <TableColumn fx:id="titleColumn" prefWidth="212.79995727539062" text="Title" />
-                        <TableColumn fx:id="authorColumn" prefWidth="226.4000244140625" text="AuthorName" />
-                        <TableColumn fx:id="categoryColumn" prefWidth="165.5999755859375" text="Category" />
-                        <TableColumn fx:id="totalCopiesColumn" prefWidth="128.79998779296875" text="Total Copies" />
-                        <TableColumn fx:id="availableCopiesColumn" prefWidth="159.20013427734375" text="Available Copies" />
-                     </columns>
-                  </TableView>
-                  <Button layoutX="439.0" layoutY="460.0" mnemonicParsing="false" onAction="#deleteSelectedBook" styleClass="Btn_login" stylesheets="@styles.css" text="Delete" />
+                   <TableView fx:id="bookTable" layoutX="19.0" prefHeight="439.0" prefWidth="968.0">
+                       <columns>
+                           <TableColumn fx:id="isbnColumn" prefWidth="120.0" text="ISBN" />
+                           <TableColumn fx:id="IDColumn" prefWidth="75.0" text="ID" />
+                           <TableColumn fx:id="titleColumn" prefWidth="212.8" text="Title" />
+                           <TableColumn fx:id="authorColumn" prefWidth="226.4" text="AuthorName" />
+                           <TableColumn fx:id="categoryColumn" prefWidth="165.6" text="Category" />
+                           <TableColumn fx:id="totalCopiesColumn" prefWidth="128.8" text="Total Copies" />
+                           <TableColumn fx:id="availableCopiesColumn" prefWidth="159.2" text="Available Copies" />
+                       </columns>
+                   </TableView>
+                   <Button layoutX="439.0" layoutY="460.0" mnemonicParsing="false" onAction="#deleteSelectedBook" styleClass="Btn_login" stylesheets="@styles.css" text="Delete" />
                </children>
             </Pane>
             </children>

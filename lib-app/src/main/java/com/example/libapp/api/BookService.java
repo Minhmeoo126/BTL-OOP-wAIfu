@@ -22,7 +22,6 @@ public class BookService {
     private static final String API_KEY = "AIzaSyBzoGmsExfyPpiqoVOAjkvxzp8R1V-Wb2o"; // Your Google Books API key
     private static final String DB_URL = "jdbc:sqlite:lib-app/lib.db"; // Align with DatabaseConnection
     private static final int MAX_RESULTS_PER_CALL = 40; // Google Books API max results per request
-    private static final Set<String> processedBookIds = new HashSet<>(); // Track processed book IDs to avoid duplicates
 
     public static void initializeDatabase() throws SQLException {
         // Schema updates are handled by DatabaseConnection
@@ -87,24 +86,35 @@ public class BookService {
 
         try (Connection conn = DriverManager.getConnection(DB_URL)) {
             // Map query to appropriate category
-            String categoryName = determineCategoryFromQuery(root.path("items").path(0).path("volumeInfo").path("categories"));
-            int categoryId = getOrCreateCategory(conn, categoryName);
 
             // Insert books
             try (PreparedStatement pstmt = conn.prepareStatement(
-                    "INSERT INTO Book (title, author_id, category_id, total_copies, available_copies, description, thumbnail) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                    "INSERT INTO Book (title, author_id, category_id, total_copies, available_copies, description, thumbnail, isbn) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS)) {
 
                 int booksAdded = 0;
 
                 for (JsonNode item : items) {
                     JsonNode volumeInfo = item.path("volumeInfo");
+                    // Lấy category cho từng sách
+                    String categoryName = determineCategoryFromQuery(volumeInfo.path("categories"));
+                    int categoryId = getOrCreateCategory(conn, categoryName);
+
+
                     String bookId = item.path("id").asText("");
 
-                    // Skip if book already processed
-                    if (processedBookIds.contains(bookId)) {
-                        continue;
+                    String isbn = null;
+                    JsonNode industryIdentifiers = volumeInfo.path("industryIdentifiers");
+                    if (industryIdentifiers.isArray()) {
+                        for (JsonNode idNode : industryIdentifiers) {
+                            if (idNode.path("type").asText("").equals("ISBN_13")) {
+                                isbn = idNode.path("identifier").asText(null);
+                                break;
+                            }
+                        }
                     }
+                    if (isbn == null) continue; // skip nếu không có ISBN
+
 
                     String title = volumeInfo.path("title").asText("");
                     if (title.isEmpty()) continue; // Skip books with missing titles
@@ -130,18 +140,33 @@ public class BookService {
                     int totalCopies = 1;
                     int availableCopies = 1;
 
-                    // Insert into Book table
-                    pstmt.setString(1, title);
-                    pstmt.setInt(2, authorId);
-                    pstmt.setInt(3, categoryId);
-                    pstmt.setInt(4, totalCopies);
-                    pstmt.setInt(5, availableCopies);
-                    pstmt.setString(6, description); // Can be null
-                    pstmt.setString(7, thumbnailUrl); // Store the thumbnail URL
-                    pstmt.executeUpdate();
+                    // Insert into Book table check if isbn có trùng không
+                    try (PreparedStatement checkStmt = conn.prepareStatement("SELECT id FROM Book WHERE isbn = ?")) {
+                        checkStmt.setString(1, isbn);
+                        ResultSet rs = checkStmt.executeQuery();
+
+                        if (rs.next()) {
+                            // Nếu ISBN đã tồn tại, tăng số lượng
+                            try (PreparedStatement updateStmt = conn.prepareStatement(
+                                    "UPDATE Book SET total_copies = total_copies + 1, available_copies = available_copies + 1 WHERE isbn = ?")) {
+                                updateStmt.setString(1, isbn);
+                                updateStmt.executeUpdate();
+                            }
+                        } else {
+                            // Nếu chưa có thì thêm mới
+                            pstmt.setString(1, title);
+                            pstmt.setInt(2, authorId);
+                            pstmt.setInt(3, categoryId);
+                            pstmt.setInt(4, totalCopies);
+                            pstmt.setInt(5, availableCopies);
+                            pstmt.setString(6, description); // Can be null
+                            pstmt.setString(7, thumbnailUrl); // Can be null
+                            pstmt.setString(8, isbn);
+                            pstmt.executeUpdate();
+                        }
+                    }
 
                     // Mark book as processed
-                    processedBookIds.add(bookId);
                     booksAdded++;
                 }
                 return booksAdded;

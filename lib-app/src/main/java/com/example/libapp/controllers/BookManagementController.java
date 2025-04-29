@@ -42,6 +42,8 @@ public class BookManagementController {
     @FXML
     private TableColumn<Book,Integer> IDColumn;
     @FXML
+    private TableColumn<Book, String> isbnColumn;
+    @FXML
     private TableColumn<Book, String> titleColumn;
     @FXML
     private TableColumn<Book, String> authorColumn;
@@ -56,6 +58,7 @@ public class BookManagementController {
 
     @FXML
     public void initialize() {
+        isbnColumn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         IDColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("authorName"));

@@ -2,6 +2,7 @@ package com.example.libapp.model;
 
 public class Book {
     private int id;
+    private String isbn;
     private String title;
     private int authorId;
     private String authorName; // Thêm để lưu tên tác giả từ truy vấn JOIN
@@ -15,8 +16,9 @@ public class Book {
     public Book() {
     }
 
-    public Book(int id, String title, int authorId, String authorName, int categoryId, String categoryName, int totalCopies, int availableCopies, String description, String thumbnail) {
+    public Book(int id, String isbn, String title, int authorId, String authorName, int categoryId, String categoryName, int totalCopies, int availableCopies, String description, String thumbnail) {
         this.id = id;
+        this.isbn = isbn;
         this.title = title;
         this.authorId = authorId;
         this.authorName = authorName;
@@ -35,6 +37,14 @@ public class Book {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getTitle() {
@@ -113,6 +123,7 @@ public class Book {
     public String toString() {
         return "Book{" +
                 "id=" + id +
+                ", isbn='" + isbn + '\'' +
                 ", title='" + title + '\'' +
                 ", authorId=" + authorId +
                 ", authorName='" + authorName + '\'' +
