@@ -9,14 +9,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.BookViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.BookManagementController">
     <left>
         <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="65.0" spacing="3.0" style="-fx-border-color: #F3F3E0; -fx-background-radius: 10px;" styleClass="login_bg" stylesheets="@styles.css" BorderPane.alignment="CENTER">
             <children>
@@ -176,9 +175,9 @@
                         <Insets bottom="9.0" top="2.0" />
                     </VBox.margin>
                 </HBox>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <Pane prefHeight="564.0" prefWidth="1013.0">
                <children>
-                  <TableView fx:id="bookTable" layoutX="19.0" prefHeight="514.0" prefWidth="968.0">
+                  <TableView fx:id="bookTable" layoutX="19.0" prefHeight="439.0" prefWidth="968.0">
                      <columns>
                         <TableColumn fx:id="IDColumn" prefWidth="75.0" text="ID" />
                         <TableColumn fx:id="titleColumn" prefWidth="212.79995727539062" text="Title" />
@@ -188,8 +187,9 @@
                         <TableColumn fx:id="availableCopiesColumn" prefWidth="159.20013427734375" text="Available Copies" />
                      </columns>
                   </TableView>
+                  <Button layoutX="439.0" layoutY="460.0" mnemonicParsing="false" onAction="#deleteSelectedBook" styleClass="Btn_login" stylesheets="@styles.css" text="Delete" />
                </children>
-            </AnchorPane>
+            </Pane>
             </children>
         </VBox>
     </center>

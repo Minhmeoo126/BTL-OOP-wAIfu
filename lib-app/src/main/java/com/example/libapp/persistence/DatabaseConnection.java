@@ -108,6 +108,13 @@ public class DatabaseConnection {
                 WHERE id = NEW.book_id;
             END;
             
+            CREATE TRIGGER IF NOT EXISTS after_book_delete
+            AFTER DELETE ON Book
+            FOR EACH ROW
+            BEGIN
+            DELETE FROM BorrowingRecord WHERE book_id = OLD.id;
+            END;
+            
             CREATE TRIGGER IF NOT EXISTS after_borrow_update
             AFTER UPDATE ON BorrowingRecord
             FOR EACH ROW
