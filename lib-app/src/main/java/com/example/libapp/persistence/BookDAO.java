@@ -14,7 +14,7 @@ public class BookDAO {
         try {
             conn = DatabaseConnection.connect();
 
-            String sql = "INSERT INTO Book (title, author_id, category_id, total_copies, available_copies, description) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Book (title, author_id, category_id, total_copies, available_copies, description,thumbnail) VALUES (?, ?, ?, ?, ?, ? ,?)";
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, book.getTitle());
             pstmt.setInt(2, book.getAuthorId());
@@ -22,6 +22,7 @@ public class BookDAO {
             pstmt.setInt(4, book.getTotalCopies());
             pstmt.setInt(5, book.getAvailableCopies());
             pstmt.setString(6, book.getDescription()); // Can be null
+            pstmt.setString(7,book.getThumbnail());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
