@@ -198,7 +198,7 @@
                                           <Font name="Gill Sans MT Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="imageLink" alignment="CENTER" layoutX="87.0" layoutY="60.0" prefHeight="32.0" prefWidth="294.0" />
+                                    <TextField fx:id="thumbnail" alignment="CENTER" layoutX="87.0" layoutY="60.0" prefHeight="32.0" prefWidth="294.0" />
                                     <Label layoutX="139.0" layoutY="20.0" text="Adding book" textFill="WHITE">
                                        <font>
                                           <Font name="Californian FB Bold" size="26.0" />

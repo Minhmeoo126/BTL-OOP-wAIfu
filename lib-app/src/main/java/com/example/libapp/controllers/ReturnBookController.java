@@ -28,7 +28,7 @@ public class ReturnBookController {
     public Label UserName;
     public TextField bookNameField;
     @FXML
-    private TextField recordIdField;
+    private TextField ISBNField;
     @FXML
     private Label messageLabel;
     @FXML
@@ -49,7 +49,7 @@ public class ReturnBookController {
     @FXML
     private void handleReturn() {
         if(bookNameField.getText().isEmpty()){
-            viewModel.returnBookByID(recordIdField.getText());
+            viewModel.returnBookByISBN(ISBNField.getText());
         }else{
             viewModel.returnBookByTitle(bookNameField.getText());
         }

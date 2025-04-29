@@ -27,18 +27,18 @@ public class BorrowBookViewModel {
         this.loggedInUser = user;
     }
 
-    public void borrowBookByID(String bookIdText) {
+    public void borrowBookByISBN(String isbnText) {
         try {
-            int bookId = Integer.parseInt(bookIdText.trim());  // Parse the book ID
+            String isbn = isbnText.trim();
             if (loggedInUser == null) {
                 message.set("Please log in to borrow a book.");
                 return;
             }
 
-            // Find the book by ID in the database
-            Book book = bookDAO.getBookById(bookId);
+            // Find the book by ISBN in the database
+            Book book = bookDAO.getBookByISBN(isbn);
             if (book == null) {
-                message.set("No book found with the given ID.");
+                message.set("No book found with the given ISBN.");
                 return;
             }
 
@@ -60,14 +60,12 @@ public class BorrowBookViewModel {
             book.setAvailableCopies(book.getAvailableCopies() - 1);
             bookDAO.updateBookAvailableCopies(book.getId(), book.getAvailableCopies());
 
-
             message.set("Book borrowed successfully!");
-        } catch (NumberFormatException e) {
-            message.set("Please enter a valid Book ID.");
         } catch (Exception e) {
             message.set("Error: " + e.getMessage());
         }
     }
+
 
     public void borrowBookByTitle(String bookTitle) {
         try {

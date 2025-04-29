@@ -85,6 +85,55 @@ public class BookDAO {
         return books;
     }
 
+    public Book getBookByISBN(String isbn) {
+        Book book = null;
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+            conn = DatabaseConnection.connect();
+
+            String sql = "SELECT b.id, b.title, b.isbn, b.author_id, a.name AS author_name, " +
+                    "b.category_id, c.name AS category_name, b.total_copies, b.available_copies, b.description, b.thumbnail " +
+                    "FROM Book b " +
+                    "JOIN Author a ON b.author_id = a.id " +
+                    "JOIN Category c ON b.category_id = c.id " +
+                    "WHERE b.isbn = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, isbn);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                book = new Book();
+                book.setId(rs.getInt("id"));
+                book.setTitle(rs.getString("title"));
+                book.setIsbn(rs.getString("isbn"));
+                book.setAuthorId(rs.getInt("author_id"));
+                book.setAuthorName(rs.getString("author_name"));
+                book.setCategoryId(rs.getInt("category_id"));
+                book.setCategoryName(rs.getString("category_name"));
+                book.setTotalCopies(rs.getInt("total_copies"));
+                book.setAvailableCopies(rs.getInt("available_copies"));
+                book.setDescription(rs.getString("description"));
+                book.setThumbnail(rs.getString("thumbnail"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return book;
+    }
+
+
     public Book getBookById(int bookId) {
         Book book = null;
         Connection conn = null;

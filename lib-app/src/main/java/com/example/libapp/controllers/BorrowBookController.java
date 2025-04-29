@@ -57,7 +57,7 @@ public class BorrowBookController {
     @FXML
     private void handleBorrow() {
         if (bookNameField.getText().isEmpty()) {
-            viewModel.borrowBookByID(bookIdField.getText());
+            viewModel.borrowBookByISBN(bookIdField.getText());
         } else {
             viewModel.borrowBookByTitle(bookNameField.getText());
         }

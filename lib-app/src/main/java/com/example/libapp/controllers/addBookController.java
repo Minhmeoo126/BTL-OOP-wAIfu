@@ -34,7 +34,7 @@ public class addBookController {
     public Label UserName;
     private final MainViewModel viewModel = new MainViewModel();
     public ImageView image;
-    public TextField imageLink;
+    public TextField thumbnail;
     public TextField bookName;
     public TextField AuthorName;
     public TextField description;
@@ -93,7 +93,7 @@ public class addBookController {
         String newBookName;
         String newBookAuthor;
         String newBookDescription;
-        String newBookImageLink;
+        String newBookThumbnail;
         Image newimage;
         if (bookName.getText().isEmpty()) {
             newBookName = "Không có tên sách";
@@ -110,13 +110,13 @@ public class addBookController {
         } else {
             newBookDescription = description.getText();
         }
-        if (imageLink.getText().isEmpty()) {
-            newBookImageLink = "";
+        if (thumbnail.getText().isEmpty()) {
+            newBookThumbnail = "";
             System.out.println("Thumbnail rỗng cho sách: " + bookName);
             newimage = new Image(getClass().getResourceAsStream("/com/example/libapp/image/castorice_book.png"));
         } else {
-            newBookImageLink = imageLink.getText();
-            newimage = new Image(newBookImageLink, true);
+            newBookThumbnail = thumbnail.getText();
+            newimage = new Image(newBookThumbnail, true);
         }
         image.setImage(newimage);
 
@@ -160,7 +160,7 @@ public class addBookController {
         newBook.setAuthorId(authorId);
         newBook.setAuthorName(newBookAuthor);
         newBook.setDescription(newBookDescription);
-        newBook.setThumbnail(newBookImageLink);
+        newBook.setThumbnail(newBookThumbnail);
         newBook.setTotalCopies(1);
         newBook.setAvailableCopies(1);
         newBook.setCategoryId(1);
