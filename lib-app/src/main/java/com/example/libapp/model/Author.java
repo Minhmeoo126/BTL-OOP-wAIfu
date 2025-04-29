@@ -1,6 +1,6 @@
 package com.example.libapp.model;
 
-public class Author {
+public class Author extends NamedEntity {
     private int id;
     private String name;
     private String bio;
