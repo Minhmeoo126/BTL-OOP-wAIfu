@@ -91,7 +91,6 @@ public class ReturnBookViewModel {
                     }
                 }
             }
-
             if (recordToReturn == null) {
                 message.set("No borrowed book found with the given title.");
                 return;

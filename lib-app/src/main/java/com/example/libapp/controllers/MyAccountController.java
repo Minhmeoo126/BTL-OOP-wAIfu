@@ -3,6 +3,7 @@ package com.example.libapp.controllers;
 import com.example.libapp.SessionManager;
 import com.example.libapp.model.BorrowingRecord;
 import com.example.libapp.model.User;
+import com.example.libapp.persistence.DatabaseConnection;
 import com.example.libapp.utils.SceneNavigator;
 import com.example.libapp.viewmodel.MyAccountViewModel;
 import javafx.event.ActionEvent;
@@ -15,6 +16,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static com.example.libapp.utils.SceneNavigator.loadView;
 
@@ -31,7 +37,7 @@ public class MyAccountController {
     @FXML
     public void initialize() {
         if (user == null) {
-            user = SessionManager.getInstance().getLoggedInUser();  // Dùng khi không có thông tin từ bên ngoài
+            user = SessionManager.getInstance().getLoggedInUser();  // Lấy user từ session
         }
 
         if (user != null) {
@@ -41,22 +47,28 @@ public class MyAccountController {
             viewModel.loadUserInfo(user);
         }
 
-        // Các cột trong bảng mượn sách
+        // Setup cột bảng
         IDColumn.setCellValueFactory(new PropertyValueFactory<>("bookId"));
         nameBookColumn.setCellValueFactory(new PropertyValueFactory<>("BookName"));
         AuthorColumn.setCellValueFactory(new PropertyValueFactory<>("AuthorName"));
         borrowDateColumn.setCellValueFactory(new PropertyValueFactory<>("borrowDate"));
         returnDateColumn.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
 
-        // Load lịch sử mượn sách cho user
+        // Load dữ liệu
+        loadBorrowHistory();
+    }
+
+    private void loadBorrowHistory() {
         viewModel.loadHistory(user);
         BorrowHistoryTable.setItems(viewModel.getRecords());
-        BorrowedBooks.setText("Borrowed: " + viewModel.getRecords().size());
+        BorrowedBooks.setText("Borrowed: " + viewModel.getRecords().stream()
+                .filter(record -> record.getReturnDate() == null || record.getReturnDate().isEmpty())
+                .count() + "");
     }
 
     public void addNewBook() throws IOException {
         viewModel.openAddBook();
-        loadView("add-book-view.fxml" ,addBook);
+        loadView("add-book-view.fxml", addBook);
     }
 
     public void goToBookManage(ActionEvent event) throws IOException {
@@ -74,9 +86,9 @@ public class MyAccountController {
             User currentUser = SessionManager.getInstance().getLoggedInUser();
             if (currentUser != null) {
                 FXMLLoader loader;
-                if(currentUser.getRole().equals("ADMIN")){
+                if (currentUser.getRole().equals("ADMIN")) {
                     loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/my-account.fxml"));
-                } else{
+                } else {
                     loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/User-my-account-view.fxml"));
                 }
                 Parent root = loader.load();
@@ -136,14 +148,59 @@ public class MyAccountController {
         loadView("borrow-book.fxml", borrowBooks);
     }
 
-    public void returnBooks() throws IOException {
-        viewModel.openReturnBook();
-        loadView("return-book.fxml", returnBook);
-    }
-
     public void setUser(User user) {
         this.user = user;
-        // Gọi lại phương thức initialize để cập nhật giao diện
         initialize();
+    }
+
+    @FXML
+    public void returnSelectedBook() {
+        BorrowingRecord selectedRecord = BorrowHistoryTable.getSelectionModel().getSelectedItem();
+
+        if (selectedRecord != null) {
+            if (selectedRecord.getReturnDate() != null && !selectedRecord.getReturnDate().isEmpty()) {
+                showAlert(Alert.AlertType.INFORMATION, "Book Already Returned", "This book has already been returned.");
+                return;
+            }
+
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirm Return");
+            confirmationAlert.setHeaderText(null);
+            confirmationAlert.setContentText("Are you sure you want to return this book?");
+
+            confirmationAlert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    LocalDateTime now = LocalDateTime.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                    String formattedNow = now.format(formatter);
+
+                    try (Connection conn = DatabaseConnection.connect()) {
+                        String sql = "UPDATE BorrowingRecord SET return_date = ? WHERE id = ?";
+                        PreparedStatement pstmt = conn.prepareStatement(sql);
+                        pstmt.setString(1, formattedNow);
+                        pstmt.setInt(2, selectedRecord.getId());
+                        pstmt.executeUpdate();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
+                    // Reload toàn bộ TableView để đồng bộ dữ liệu
+                    loadBorrowHistory();
+
+                    showAlert(Alert.AlertType.INFORMATION, "Return Successful", "Book returned successfully!");
+                }
+            });
+
+        } else {
+            showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a record to return.");
+        }
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String content) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }
