@@ -36,15 +36,7 @@ public class MainController {
     @FXML
     public Button AI;
     @FXML
-    public Button viewBooks;
-    @FXML
-    public Button searchBooks;
-    @FXML
     public Button myAccount;
-    @FXML
-    public Button borrowingHistory;
-    @FXML
-    public Button borrowBooks;
     @FXML
     public Button returnBook;
     @FXML
@@ -67,16 +59,19 @@ public class MainController {
     public GridPane bookContainer;
     @FXML
     public Pagination pagination;
+    @FXML
+    public ScrollPane pane;
+    @FXML
+    public GridPane Box;
+    @FXML
+    public TextField search;
+    @FXML
+    public StackPane mainPane;
 
     public static final int BOOKS_PER_PAGE = 12;
-
     private final MainViewModel viewModel = new MainViewModel();
     private final BookDAO bookDAO = new BookDAO();
     private final List<Book> allBooks = bookDAO.getAllBooks();
-    public ScrollPane pane;
-    public GridPane Box;
-    public TextField search;
-    public StackPane mainPane;
 
 
     public void initialize() {

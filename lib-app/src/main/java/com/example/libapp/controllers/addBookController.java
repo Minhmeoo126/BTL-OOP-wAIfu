@@ -6,6 +6,7 @@ import com.example.libapp.model.Book;
 import com.example.libapp.model.User;
 import com.example.libapp.persistence.AuthorDAO;
 import com.example.libapp.persistence.BookDAO;
+import com.example.libapp.utils.AuthorAndCategoryInDatabase;
 import com.example.libapp.utils.SceneNavigator;
 import com.example.libapp.viewmodel.MainViewModel;
 import javafx.event.ActionEvent;
@@ -18,7 +19,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -52,6 +52,7 @@ public class addBookController {
     public Label messageLabel;
     public TextArea description;
     public Button ChooseImage;
+    public TextField category;
     private String selectedImagePath;// biến lưu đường dẫn tương đối ảnh để lưu vào DB
 
     public void initialize() {
@@ -98,30 +99,34 @@ public class addBookController {
         loadView("login-view.fxml", logout);
     }
 
-    public void AddNewBook(ActionEvent event) {
+
+    public void AddNewBook(ActionEvent event) throws SQLException {
         Book newBook = new Book();
-        String newBookName;
-        String newBookAuthor;
-        String newBookDescription;
-        String newBookImageLink;
-        Image newimage;
-        if (bookName.getText().isEmpty()) {
-            newBookName = "Không có tên sách";
-        } else {
+        String newBookName = "Không có tên sách";
+        String newBookAuthor = "Unknown Author";
+        if(!bookName.getText().isEmpty()){
             newBookName = bookName.getText();
         }
-        if (AuthorName.getText().isEmpty()) {
-            newBookAuthor = "Unknown Author";
-        } else {
+        if(!AuthorName.getText().isEmpty()){
             newBookAuthor = AuthorName.getText();
         }
+
+        if (bookDAO.getBookByTitle(newBookName) != null && authorDAO.getAuthorIdByName(newBookAuthor) != null) {
+            messageLabel.setText("Cuon sach nay da ton tai");
+            return;// neu muon xu li override thi them tai day
+        }
+
+        String newBookDescription;
         if (description.getText().isEmpty()) {
-            newBookDescription = "Không có description";
+            newBookDescription = null;
         } else {
             newBookDescription = description.getText();
         }
+
+        String newBookImageLink;
+        Image newimage;
         if (imageLink.getText().isEmpty()) {
-            newBookImageLink = "";
+            newBookImageLink = null;
             System.out.println("Thumbnail rỗng cho sách: " + bookName);
             newimage = new Image(getClass().getResourceAsStream("/com/example/libapp/image/castorice_book.png"));
         } else {
@@ -130,44 +135,16 @@ public class addBookController {
         }
         image.setImage(newimage);
 
-        if (bookDAO.getBookByTitle(newBookName) != null) {
-            messageLabel.setText("Tieu de nay da ton tai");
-            return;
-        }
-        Integer authorId = null;
-        try {
-            // Kiểm tra xem tác giả đã tồn tại trong cơ sở dữ liệu chưa
-            authorId = authorDAO.getAuthorIdByName(newBookAuthor);
-            if (authorId != null) {
-                System.out.println("Tác giả đã tồn tại với ID: " + authorId);
-            }
-        } catch (SQLException e) {
-            messageLabel.setText("Không thể xác định tác giả.");
-            e.printStackTrace();
-            return;
-        }
 
-        if (authorId == null) {
-            Author newAuthor = new Author();
-            newAuthor.setName(newBookAuthor);
-            newAuthor.setBio("");
-            try {
-                authorDAO.addAuthor(newAuthor);
-                // Lấy lại ID của tác giả sau khi thêm
-                authorId = authorDAO.getAuthorIdByName(newBookAuthor);
-                System.out.println("Tác giả mới đã được thêm với ID: " + authorId);
-            } catch (SQLException e) {
-                messageLabel.setText("Lỗi khi thêm tác giả.");
-                e.printStackTrace();
-                return;
-            }
+
+        AuthorAndCategoryInDatabase.checkAndAddIfAuthorNotInDataBase(newBookAuthor, messageLabel, newBook);
+        String newBookCategory = "General";
+        if(!category.getText().isEmpty()){
+            newBookCategory = category.getText();
         }
-        if (authorId == null) {
-            messageLabel.setText("Không thể xác định tác giả.");
-            return;
-        }
+        AuthorAndCategoryInDatabase.checkAndAddIfCategoryNotInDataBase(newBookCategory,messageLabel,newBook);
+
         newBook.setTitle(newBookName);
-        newBook.setAuthorId(authorId);
         newBook.setAuthorName(newBookAuthor);
         newBook.setDescription(newBookDescription);
         newBook.setThumbnail(newBookImageLink);
@@ -175,48 +152,10 @@ public class addBookController {
         newBook.setAvailableCopies(1);
         newBook.setCategoryId(1);
         bookDAO.addBook(newBook);
+        System.out.println("da them sach vao sql");
         messageLabel.setText("success");
+
     }
-
-
-    public void ChooseImage () {
-        // Mở FileChooser cho phép người dùng chọn ảnh
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
-        File selectedFile = fileChooser.showOpenDialog(null);  // null là cửa sổ chính của ứng dụng
-
-        if (selectedFile != null) {
-            // Lấy đường dẫn thư mục gốc của ứng dụng
-            Path projectRoot = Paths.get("").toAbsolutePath();
-
-            // Xác định thư mục lưu ảnh
-            Path imageFolder = projectRoot.resolve("Images");
-
-            // Tạo đường dẫn file đích
-            Path targetPath = imageFolder.resolve(selectedFile.getName());
-
-            try {
-                // Copy file vào thư mục Images
-                Files.copy(selectedFile.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
-
-                // Cập nhật đường dẫn file ảnh vào TextField imageLink
-                imageLink.setText(targetPath.toString());  // Gán đường dẫn vào TextField imageLink
-
-                // Cập nhật ảnh lên ImageView (nếu có)
-                Image im = new Image(targetPath.toUri().toString());
-                image.setImage(im);  // Giả sử imageView là ImageView hiển thị ảnh
-
-                // Cập nhật UI nếu cần (chẳng hạn thêm vào một label, hoặc thông báo thành công)
-                System.out.println("Ảnh đã lưu thành công tại: " + targetPath.toString());
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("Lỗi khi lưu ảnh.");
-            }
-        }
-    }
-
-
-
-
+    
 }
 
