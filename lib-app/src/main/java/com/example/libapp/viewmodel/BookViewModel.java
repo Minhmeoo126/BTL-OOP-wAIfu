@@ -25,6 +25,24 @@ public class BookViewModel {
                 .orElse(null);
     }
 
+    public void addOrUpdateBookByIsbn(Book book) {
+        bookDAO.addOrUpdateBookByIsbn(book);
+        loadBooks(); // Cập nhật lại danh sách sau khi thao tác
+    }
+
+    public boolean deleteBookByIsbn(String isbn) {
+        boolean success = bookDAO.deleteBookByIsbn(isbn);
+        if (success) {
+            loadBooks(); // Cập nhật lại danh sách sau khi xóa
+        }
+        return success;
+    }
+
+    public Book getBookByIsbn(String isbn) {
+        return bookDAO.getBookByISBN(isbn);
+    }
+
+
     public void openMyAccount() {
     }
 

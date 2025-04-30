@@ -30,16 +30,19 @@ public class DatabaseConnection {
             );
             
             CREATE TABLE IF NOT EXISTS Book (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                title TEXT NOT NULL,
-                author_id INTEGER NOT NULL,
-                category_id INTEGER NOT NULL,
-                total_copies INTEGER NOT NULL,
-                available_copies INTEGER NOT NULL,
-                description TEXT,
-                FOREIGN KEY (author_id) REFERENCES Author(id),
-                FOREIGN KEY (category_id) REFERENCES Category(id)
-            );
+                  id INTEGER PRIMARY KEY AUTOINCREMENT,
+                  title TEXT NOT NULL,
+                  author_id INTEGER NOT NULL,
+                  category_id INTEGER NOT NULL,
+                  total_copies INTEGER NOT NULL,
+                  available_copies INTEGER NOT NULL,
+                  description TEXT,
+                  thumbnail TEXT,
+                  isbn TEXT UNIQUE,
+                  FOREIGN KEY (author_id) REFERENCES Author(id),
+                  FOREIGN KEY (category_id) REFERENCES Category(id)
+              );
+            
             
             CREATE TABLE IF NOT EXISTS BorrowingRecord (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -106,6 +109,13 @@ public class DatabaseConnection {
                 UPDATE Book
                 SET available_copies = available_copies - 1
                 WHERE id = NEW.book_id;
+            END;
+            
+            CREATE TRIGGER IF NOT EXISTS after_book_delete
+            AFTER DELETE ON Book
+            FOR EACH ROW
+            BEGIN
+            DELETE FROM BorrowingRecord WHERE book_id = OLD.id;
             END;
             
             CREATE TRIGGER IF NOT EXISTS after_borrow_update

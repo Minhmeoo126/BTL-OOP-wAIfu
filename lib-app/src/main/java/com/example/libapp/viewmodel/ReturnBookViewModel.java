@@ -6,9 +6,7 @@ import com.example.libapp.model.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import com.example.libapp.model.Book;
-import com.example.libapp.model.BorrowingRecord;
 import com.example.libapp.persistence.BookDAO;
-import com.example.libapp.persistence.BorrowingRecordDAO;
 
 import java.util.List;
 
@@ -25,50 +23,60 @@ public class ReturnBookViewModel {
         this.loggedInUser = user;
     }
 
-    public void returnBookByID(String bookIdText) {
+    public void returnBookByISBN(String isbnText) {
         try {
-            int bookId = Integer.parseInt(bookIdText.trim());
+            String isbn = isbnText.trim();
+            if (isbn.isEmpty()) {
+                message.set("Please enter an ISBN.");
+                return;
+            }
+
             if (loggedInUser == null) {
                 message.set("Please log in to return a book.");
                 return;
             }
 
-            // Tìm kiếm bản ghi mượn sách với bookId và userId
+            // Tìm sách theo ISBN
+            Book book = bookDAO.getBookByISBN(isbn);
+            if (book == null) {
+                message.set("No book found with the given ISBN.");
+                return;
+            }
+
+            int bookId = book.getId();
+
+            // Tìm bản ghi mượn chưa trả của người dùng cho sách này
             List<BorrowingRecord> records = borrowingRecordDAO.getAllBorrowingRecords();
             BorrowingRecord recordToReturn = null;
 
             for (BorrowingRecord record : records) {
-                if (record.getUserId() == loggedInUser.getId() && record.getBookId() == bookId && record.getReturnDate() == null) {
+                if (record.getUserId() == loggedInUser.getId() &&
+                        record.getBookId() == bookId &&
+                        record.getReturnDate() == null) {
                     recordToReturn = record;
                     break;
                 }
             }
 
             if (recordToReturn == null) {
-                message.set("No borrowed book found with the given ID.");
+                message.set("No borrowed book found for this ISBN.");
                 return;
             }
 
-            // Cập nhật ngày trả sách
+            // Cập nhật ngày trả
             recordToReturn.setReturnDate(java.time.LocalDate.now().toString());
-            borrowingRecordDAO.updateBorrowingRecord(recordToReturn); // Cập nhật thông tin trả sách
+            borrowingRecordDAO.updateBorrowingRecord(recordToReturn);
 
-            // Cập nhật số lượng sách có sẵn
-            Book book = bookDAO.getBookById(bookId);
-            if (book != null) {
-                book.setAvailableCopies(book.getAvailableCopies() + 1);
-                bookDAO.updateBookAvailableCopies(bookId, book.getAvailableCopies());
-            }
+            // Tăng số lượng sách có sẵn
+            book.setAvailableCopies(book.getAvailableCopies() + 1);
+            bookDAO.updateBookAvailableCopies(bookId, book.getAvailableCopies());
 
             message.set("Book returned successfully!");
-        } catch (NumberFormatException e) {
-            message.set("Please enter a valid Book ID.");
+
         } catch (Exception e) {
             message.set("Error: " + e.getMessage());
         }
     }
-
-
 
     public void returnBookByTitle(String bookTitle) {
         try {

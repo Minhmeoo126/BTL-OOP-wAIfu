@@ -4,7 +4,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,6 +12,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
@@ -192,51 +194,75 @@
                         </StackPane>
                         <VBox layoutX="434.0" layoutY="25.0">
                            <children>
-                              <Pane prefHeight="488.0" prefWidth="450.0" style="-fx-background-radius: 10px;" styleClass="login_bg">
+                              <Pane prefHeight="497.0" prefWidth="425.0" style="-fx-background-radius: 10px;" styleClass="login_bg">
                                  <children>
-                                    <Label alignment="CENTER" layoutX="9.0" layoutY="59.0" prefHeight="37.0" prefWidth="68.0" text="Image" textFill="WHITE">
+                                    <Label alignment="CENTER" layoutX="10.0" layoutY="74.0" prefHeight="37.0" prefWidth="68.0" text="Image" textFill="WHITE">
                                        <font>
                                           <Font name="Gill Sans MT Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="imageLink" alignment="CENTER" layoutX="87.0" layoutY="60.0" prefHeight="32.0" prefWidth="294.0" />
-                                    <Label layoutX="139.0" layoutY="20.0" text="Adding book" textFill="WHITE">
+                                    <TextField fx:id="thumbnail" alignment="CENTER" layoutX="84.0" layoutY="77.0" prefHeight="32.0" prefWidth="296.0" />
+                                    <Label layoutX="25.0" layoutY="20.0" text="Add book (ISBN or Self - published)" textFill="WHITE">
                                        <font>
-                                          <Font name="Californian FB Bold" size="26.0" />
+                                          <Font size="24.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER_RIGHT" layoutX="23.0" layoutY="120.0" prefHeight="38.0" prefWidth="41.0" text="Book name" textFill="WHITE" wrapText="true">
-                                       <font>
-                                          <Font name="Gill Sans MT Bold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="bookName" alignment="CENTER" layoutX="85.4000015258789" layoutY="124.19999694824219" prefHeight="32.0" prefWidth="294.0" />
-                                    <TextField fx:id="AuthorName" alignment="CENTER" layoutX="87.0" layoutY="172.0" prefHeight="32.0" prefWidth="294.0" />
-                                    <Label alignment="CENTER_RIGHT" layoutX="16.0" layoutY="169.0" prefHeight="38.0" prefWidth="48.0" text="Author" textFill="WHITE" wrapText="true">
+                                    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="204.0" prefHeight="38.0" prefWidth="41.0" text="Title" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                                        <font>
                                           <Font name="Gill Sans MT Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label alignment="CENTER_RIGHT" layoutX="11.0" layoutY="326.0" prefHeight="38.0" prefWidth="59.0" text="Describe" textFill="WHITE" wrapText="true">
+                                    <TextField fx:id="bookName" alignment="CENTER" layoutX="85.4000015258789" layoutY="208.1999969482422" prefHeight="32.0" prefWidth="294.0" />
+                                    <TextField fx:id="AuthorName" alignment="CENTER" layoutX="85.0" layoutY="275.0" prefHeight="32.0" prefWidth="294.0" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="18.0" layoutY="270.0" prefHeight="38.0" prefWidth="48.0" text="Author" textFill="WHITE" wrapText="true">
                                        <font>
                                           <Font name="Gill Sans MT Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Button layoutX="188.0" layoutY="426.0" mnemonicParsing="false" onAction="#AddNewBook" prefHeight="41.0" prefWidth="88.0" text="ADD" />
-                                    <TextField fx:id="category" layoutX="87.0" layoutY="228.0" prefHeight="31.0" prefWidth="297.0" />
-                                    <TextArea fx:id="description" layoutX="87.0" layoutY="280.0" prefHeight="135.0" prefWidth="302.0" wrapText="true" />
-                                    <Label layoutX="16.0" layoutY="235.0" prefHeight="17.0" prefWidth="82.0" text="Category" textFill="WHITE">
+                                    <TextField fx:id="description" alignment="CENTER" layoutX="82.0" layoutY="339.0" prefHeight="86.0" prefWidth="300.0" />
+                                    <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="336.0" prefHeight="38.0" prefWidth="59.0" text="Describe" textFill="WHITE" wrapText="true">
                                        <font>
                                           <Font name="Gill Sans MT Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="ChooseImage" layoutX="384.0" layoutY="54.0" mnemonicParsing="false" onAction="#ChooseImage" prefHeight="28.0" prefWidth="45.0" text="Button" />
+                                    <Button layoutX="168.0" layoutY="442.0" mnemonicParsing="false" onAction="#AddNewBook" prefHeight="41.0" prefWidth="88.0" text="ADD" />
+                                    <Label alignment="CENTER" layoutX="8.0" layoutY="136.0" prefHeight="37.0" prefWidth="68.0" text="ISBN" textFill="WHITE">
+                                       <font>
+                                          <Font name="Gill Sans MT Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="isbnField" alignment="CENTER" layoutX="85.0" layoutY="141.0" prefHeight="32.0" prefWidth="295.0" />
+                                    <Button fx:id="chooseImageButton" layoutX="330.0" layoutY="73.0" mnemonicParsing="false" onAction="#chooseImageFromFileSystem" prefHeight="0.0" prefWidth="5.0" text="Button" />
+                                    <Label layoutX="182.0" layoutY="176.0" prefHeight="18.0" prefWidth="199.0" text="* for self-published books, leave ISBN empty!" textAlignment="RIGHT">
+                                       <textFill>
+                                          <LinearGradient endX="1.0" endY="1.0">
+                                             <stops>
+                                                <Stop>
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </Stop>
+                                                <Stop offset="1.0">
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </Stop>
+                                             </stops>
+                                          </LinearGradient>
+                                       </textFill>
+                                       <font>
+                                          <Font name="System Italic" size="10.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </Pane>
                            </children>
                         </VBox>
-                        <Line endX="6.13336181640625" endY="464.13336181640625" layoutX="891.0" layoutY="19.0" startX="6.13336181640625" startY="8.666675567626953" stroke="#133e87" strokeWidth="5.0" />
-                        <Label fx:id="messageLabel" layoutX="114.0" layoutY="490.0" prefHeight="17.0" prefWidth="117.0" text="Label" />
+                        <Line endX="6.13336181640625" endY="484.1119689941406" layoutX="864.0" layoutY="25.0" startX="6.13336181640625" startY="8.666675567626953" stroke="#133e87" strokeWidth="5.0" />
+                        <Label fx:id="messageLabel" layoutX="75.0" layoutY="495.0" prefHeight="28.0" prefWidth="236.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
                      </children>
                   </Pane>
                </children>

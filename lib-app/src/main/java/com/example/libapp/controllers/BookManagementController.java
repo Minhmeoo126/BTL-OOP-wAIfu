@@ -2,7 +2,9 @@ package com.example.libapp.controllers;
 
 import com.example.libapp.SessionManager;
 import com.example.libapp.model.Book;
+import com.example.libapp.model.BorrowingRecord;
 import com.example.libapp.model.User;
+import com.example.libapp.persistence.DatabaseConnection;
 import com.example.libapp.utils.SceneNavigator;
 import com.example.libapp.viewmodel.BookViewModel;
 import javafx.event.ActionEvent;
@@ -12,10 +14,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static com.example.libapp.utils.SceneNavigator.loadView;
 
-public class BookViewController {
+public class BookManagementController {
     @FXML
     public Button AI;
     @FXML
@@ -35,6 +42,8 @@ public class BookViewController {
     @FXML
     private TableColumn<Book,Integer> IDColumn;
     @FXML
+    private TableColumn<Book, String> isbnColumn;
+    @FXML
     private TableColumn<Book, String> titleColumn;
     @FXML
     private TableColumn<Book, String> authorColumn;
@@ -49,6 +58,7 @@ public class BookViewController {
 
     @FXML
     public void initialize() {
+        isbnColumn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         IDColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("authorName"));
@@ -151,5 +161,52 @@ public class BookViewController {
     public void Logout() throws IOException {
         viewModel.logout();
         loadView("login-view.fxml", logout);
+    }
+
+    @FXML
+    public void deleteSelectedBook() {
+        Book selectedBook = bookTable.getSelectionModel().getSelectedItem();
+
+        if (selectedBook != null) {
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirm Deletion");
+            confirmationAlert.setHeaderText(null);
+            confirmationAlert.setContentText("Are you sure you want to delete this book?");
+
+            confirmationAlert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    try (Connection conn = DatabaseConnection.connect()) {
+                        String sql = "DELETE FROM Book WHERE id = ?";
+                        PreparedStatement pstmt = conn.prepareStatement(sql);
+                        pstmt.setInt(1, selectedBook.getId());
+                        pstmt.executeUpdate();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
+                    updateBookList();
+
+                    showAlert(Alert.AlertType.INFORMATION, "Delete Successful", "Book deleted successfully!");
+                }
+            });
+
+        } else {
+            showAlert(Alert.AlertType.WARNING, "No Selection", "Please select book to delete.");
+        }
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String content) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    private void updateBookList() {
+        Book selectedBook = bookTable.getSelectionModel().getSelectedItem();
+        if (selectedBook != null) {
+            viewModel.getBooks().remove(selectedBook);
+        }
     }
 }
