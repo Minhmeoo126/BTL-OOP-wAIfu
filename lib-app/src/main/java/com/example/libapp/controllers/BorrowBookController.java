@@ -69,10 +69,11 @@ public class BorrowBookController {
         // Thêm hiệu ứng cho thông báo
         messageLabel.setStyle(viewModel.messageProperty().get().contains("successfully") ?
                 "-fx-text-fill: green;" : "-fx-text-fill: red;");
-        defaultImage.setVisible(false);
-        imageBorrow.setVisible(true);
-
-        label.setText("Hay tan huong cuon sach nhe");
+        if (viewModel.messageProperty().get().contains("successfully")) {
+            defaultImage.setVisible(false);
+            imageBorrow.setVisible(true);
+            label.setText("Hay tan huong cuon sach nhe");
+        }
     }
 
     public void openMyAccount() {

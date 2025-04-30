@@ -197,7 +197,7 @@
                         <Font name="Californian FB" size="19.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="imageBorrow" fitHeight="355.0" fitWidth="419.0" layoutX="633.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageBorrow" fitHeight="355.0" fitWidth="419.0" layoutX="633.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@../image/CasAndDragon.png" />
                      </image>
