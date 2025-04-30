@@ -28,4 +28,6 @@ public class SessionManager {
     public void clearSession() {
         loggedInUser = null;
     }
+
+
 }

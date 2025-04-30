@@ -32,6 +32,7 @@ public class MyAccountController {
     public TableColumn<BorrowingRecord, String> nameBookColumn, AuthorColumn, borrowDateColumn, returnDateColumn;
 
     private final MyAccountViewModel viewModel = new MyAccountViewModel();
+    public Button change;
     private User user;
 
     @FXML
@@ -202,5 +203,9 @@ public class MyAccountController {
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    public void changeInformation() throws IOException {
+        loadView("UserInformation-view.fxml" , myAccount);
     }
 }

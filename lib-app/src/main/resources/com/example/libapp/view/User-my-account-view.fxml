@@ -189,6 +189,11 @@
                                                         <Font name="Gill Sans MT" size="29.0" />
                                                     </font>
                                                 </Label>
+                                    <Pane prefHeight="212.0" prefWidth="306.0">
+                                       <children>
+                                          <Button fx:id="change" layoutX="66.0" layoutY="75.0" mnemonicParsing="false" onAction="#changeInformation" text="Change Information" />
+                                       </children>
+                                    </Pane>
                                             </children>
                                         </VBox>
                                     </children>
