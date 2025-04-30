@@ -2,58 +2,41 @@ package com.example.libapp.controllers;
 
 import com.example.libapp.SessionManager;
 import com.example.libapp.api.BookService;
-import com.example.libapp.model.Author;
 import com.example.libapp.model.Book;
 import com.example.libapp.model.User;
-import com.example.libapp.persistence.AuthorDAO;
 import com.example.libapp.persistence.BookDAO;
+import com.example.libapp.utils.AuthorAndCategoryInDatabase;
 import com.example.libapp.utils.SceneNavigator;
 import com.example.libapp.viewmodel.MainViewModel;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-
-
-
-
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
 
 import static com.example.libapp.utils.SceneNavigator.loadView;
 
 public class addBookController {
-
-    public Button AI;
-    public Button backToMain;
-    public Button myAccount;
-    public Button addBook;
-    public Button bookManagement;
-    public Button userManagement;
-    public Button logout;
-    public Button chooseImageButton;
-    public Label UserName;
-    private final MainViewModel viewModel = new MainViewModel();
+    @FXML
+    public Button AI,backToMain,myAccount,addBook,bookManagement,userManagement;
+    @FXML
+    public Button logout,chooseImageButton;
+    @FXML
+    public Label UserName,messageLabel;
+    @FXML
     public ImageView image;
-    public TextField isbnField;
-    public TextField thumbnail;
-    public TextField bookName;
-    public TextField AuthorName;
-    public TextField description;
+    @FXML
+    public TextField category,isbnField,thumbnail,bookName,AuthorName;
+    @FXML
+    public TextArea description;
+
     private final BookDAO bookDAO = new BookDAO();
-    private final AuthorDAO authorDAO = new AuthorDAO();
-    private final List<Book> allBook = bookDAO.getAllBooks();
-    private final List<Author> allAuthor = authorDAO.getAllAuthors();
-    public Label messageLabel;
+    private final MainViewModel viewModel = new MainViewModel();
 
     public void initialize() {
         User currentUser = SessionManager.getInstance().getLoggedInUser();
@@ -86,23 +69,9 @@ public class addBookController {
                 fetchedBook.setTotalCopies(5);
                 fetchedBook.setAvailableCopies(5);
 
-                try {
-                    Integer authorId = authorDAO.getAuthorIdByName(fetchedBook.getAuthorName());
-                    if (authorId == null) {
-                        Author author = new Author();
-                        author.setName(fetchedBook.getAuthorName());
-                        author.setBio("");
-                        authorDAO.addAuthor(author);
-                        authorId = authorDAO.getAuthorIdByName(fetchedBook.getAuthorName());
-                    }
-                    fetchedBook.setAuthorId(authorId);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    messageLabel.setText("Lỗi khi xử lý tác giả.");
-                    return;
-                }
+                AuthorAndCategoryInDatabase.checkAndAddIfAuthorNotInDataBase(fetchedBook.getAuthorName(),messageLabel,fetchedBook);
+                AuthorAndCategoryInDatabase.checkAndAddIfCategoryNotInDataBase(fetchedBook.getCategoryName(),messageLabel,fetchedBook);
 
-                fetchedBook.setCategoryId(5);
                 bookDAO.addBook(fetchedBook);
                 messageLabel.setText("Đã thêm sách từ Google Books API.");
                 return;
@@ -116,6 +85,7 @@ public class addBookController {
         String newBookName = bookName.getText().trim();
         String newBookAuthor = AuthorName.getText().trim();
         String newBookDescription = description.getText().trim();
+        String newBookCategory = category.getText().trim();
 
         if (newBookName.isEmpty() || newBookAuthor.isEmpty() || newBookDescription.isEmpty()) {
             messageLabel.setText("Vui lòng nhập đầy đủ thông tin cho sách tự xuất bản.");
@@ -147,25 +117,11 @@ public class addBookController {
         image.setImage(newimage);
         newBook.setThumbnail(newBookThumbnail);
 
-        try {
-            Integer authorId = authorDAO.getAuthorIdByName(newBookAuthor);
-            if (authorId == null) {
-                Author newAuthor = new Author();
-                newAuthor.setName(newBookAuthor);
-                newAuthor.setBio("");
-                authorDAO.addAuthor(newAuthor);
-                authorId = authorDAO.getAuthorIdByName(newBookAuthor);
-            }
-            newBook.setAuthorId(authorId);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            messageLabel.setText("Lỗi khi thêm tác giả.");
-            return;
-        }
+        AuthorAndCategoryInDatabase.checkAndAddIfAuthorNotInDataBase(newBookAuthor,messageLabel,newBook);
+        AuthorAndCategoryInDatabase.checkAndAddIfCategoryNotInDataBase(newBookCategory,messageLabel,newBook);
 
         newBook.setTotalCopies(5);
         newBook.setAvailableCopies(5);
-        newBook.setCategoryId(5);
 
         bookDAO.addBook(newBook);
         messageLabel.setText("Thêm sách tự xuất bản thành công.");
@@ -264,24 +220,9 @@ public class addBookController {
             fetchedBook.setTotalCopies(5);
             fetchedBook.setAvailableCopies(5);
 
-            try {
-                Integer authorId = authorDAO.getAuthorIdByName(fetchedBook.getAuthorName());
-                if (authorId == null) {
-                    Author author = new Author();
-                    author.setName(fetchedBook.getAuthorName());
-                    author.setBio("");
-                    authorDAO.addAuthor(author);
-                    authorId = authorDAO.getAuthorIdByName(fetchedBook.getAuthorName());
-                }
-                fetchedBook.setAuthorId(authorId);
-            } catch (Exception e) {
-                e.printStackTrace();
-                messageLabel.setText("Lỗi khi xử lý tác giả.");
-                return false;
-            }
+            AuthorAndCategoryInDatabase.checkAndAddIfAuthorNotInDataBase(fetchedBook.getAuthorName(),messageLabel,fetchedBook);
+            AuthorAndCategoryInDatabase.checkAndAddIfCategoryNotInDataBase(fetchedBook.getCategoryName(), messageLabel,fetchedBook);
 
-            // Gán category mặc định
-            fetchedBook.setCategoryId(5);
             bookDAO.addBook(fetchedBook);
             messageLabel.setText("Đã thêm sách từ Google Books API.");
             return true;

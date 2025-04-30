@@ -44,10 +44,8 @@ public class AIController {
     public Button backToMain;
     @FXML
     public Label UserName;
-
     @FXML
     private TextField promptField;
-
     @FXML
     private ScrollPane chatScroll;
 

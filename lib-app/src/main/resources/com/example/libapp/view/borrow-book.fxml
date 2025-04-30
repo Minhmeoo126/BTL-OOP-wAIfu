@@ -155,7 +155,7 @@
                 </HBox>
             <Pane prefHeight="549.0" prefWidth="1013.0">
                <children>
-                  <ImageView fitHeight="414.0" fitWidth="326.0" layoutX="701.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="defaultImage" fitHeight="414.0" fitWidth="326.0" layoutX="701.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../image/Borrow%20(2).png" />
                      </image>
@@ -192,11 +192,16 @@
                         <Label fx:id="messageLabel" layoutX="39.0" layoutY="206.0" prefHeight="29.0" prefWidth="490.0" />
                      </children>
                   </AnchorPane>
-                  <Label alignment="CENTER" layoutX="742.0" layoutY="107.0" prefHeight="46.0" prefWidth="242.0" styleClass="rice_message" text="Choose your book wisely!!">
+                  <Label fx:id="label" alignment="CENTER" layoutX="742.0" layoutY="107.0" prefHeight="46.0" prefWidth="242.0" styleClass="rice_message" text="Choose your book wisely!!">
                      <font>
                         <Font name="Californian FB" size="19.0" />
                      </font>
                   </Label>
+                  <ImageView fx:id="imageBorrow" fitHeight="355.0" fitWidth="419.0" layoutX="633.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/CasAndDragon.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
             </children>

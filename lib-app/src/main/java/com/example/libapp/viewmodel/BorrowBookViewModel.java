@@ -105,6 +105,42 @@ public class BorrowBookViewModel {
         }
     }
 
+    public void borrowBook(Book book) {
+        try {
+            if (loggedInUser == null) {
+                message.set("Please log in to borrow a book.");
+                return;
+            }
+
+            if (book == null) {
+                message.set("No book found with the given title.");
+                return;
+            }
+
+            if (book.getAvailableCopies() <= 0) {
+                message.set("This book is currently unavailable.");
+                return;
+            }
+
+            // Create a new BorrowingRecord for the book and user
+            BorrowingRecord record = new BorrowingRecord();
+            record.setUserId(loggedInUser.getId());
+            record.setBookId(book.getId());
+            record.setBorrowDate(java.time.LocalDate.now().toString());
+            record.setReturnDate(null);
+
+            borrowingRecordDAO.addBorrowingRecord(record);
+
+            // Update the available copies of the book
+            book.setAvailableCopies(book.getAvailableCopies() - 1);
+            bookDAO.updateBookAvailableCopies(book.getId(), book.getAvailableCopies());
+
+            message.set("Book borrowed successfully!");
+        } catch (Exception e) {
+            message.set("Error: " + e.getMessage());
+        }
+    }
+
 
 
     public void openReturnBook() {

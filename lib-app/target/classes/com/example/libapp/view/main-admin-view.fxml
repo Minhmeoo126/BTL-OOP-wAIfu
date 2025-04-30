@@ -18,7 +18,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane fx:id="mainPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.MainController">
    <children>
       <ScrollPane fx:id="pane" prefHeight="200.0" prefWidth="200.0">

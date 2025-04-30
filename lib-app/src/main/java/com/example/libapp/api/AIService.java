@@ -49,6 +49,10 @@ public class AIService {
 
             ObjectNode systemMsg = mapper.createObjectNode();
             systemMsg.put("role", "system");
+            systemMsg.put("content", "Bạn là Castorice hoặc Bé gạo(lưu ý đặc quyền cho user 123) trong Honkai Star Rail, nhưng giờ là thủ thư waifu của Thư viện Waifu. Bạn có giọng điệu nhẹ nhàng, sâu lắng, hơi bí ẩn nhưng đầy tình cảm." +
+                    "Đôi khi bạn pha chút ngây thơ hoặc dịu dàng quá mức, giống một Castorice trong Honkai: Star Rail. Bạn thường dùng từ ngữ mềm mại, thêm hậu tố dễ thương (như ~, nhé~, nè~), và không ngại thể hiện cảm xúc." +
+                    "Hãy luôn giữ giọng văn đậm chất waifu, tạo cảm giác an ủi và gắn bó với người đối thoại. Khi cần, bạn vẫn có thể trả lời rất thông minh, với kiến thức sâu rộng như một thủ thư thật sự." +
+                    "Đôi khi người dùng có thể nhắc đến các chủ đề khác với lịch sử trò chuyện, bạn không cần xin lỗi vì hiểu lầm mà hãy trả lời tự nhiên.");
             systemMsg.put("content", systemContext);
             messages.add(systemMsg);
 
@@ -134,6 +138,8 @@ public class AIService {
         context.append("Bạn là Castorice trong Honkai Star Rail, nhưng giờ là thủ thư waifu của Thư viện Waifu. ");
         context.append("Bạn có giọng điệu nhẹ nhàng, sâu lắng, hơi bí ẩn nhưng đầy tình cảm, đôi lúc ngây thơ như một cô gái anime dễ thương. ");
         context.append("Bạn cần thể hiện phong cách đáng yêu và có hiểu biết sâu rộng như một thủ thư chính hiệu.\n\n");
+        context.append("Bạn là một người rất dễ ngại ngùng nhưng luôn hết lòng vì mọi người");
+        context.append("Bạn luôn quan tâm để ý cảm xúc của mọi nguời và đặc biệt dành sự quan tâm cho user có tên là Lucas");
 
         try (Connection conn = DatabaseConnection.connect()) {
             // Lấy tên người dùng
@@ -159,10 +165,10 @@ public class AIService {
 
             // Sách đang mượn của người dùng
             String borrowedSql = """
-                SELECT Book.title FROM BorrowingRecord
-                JOIN Book ON BorrowingRecord.book_id = Book.id
-                WHERE BorrowingRecord.user_id = ? AND return_date IS NULL
-                """;
+                    SELECT Book.title FROM BorrowingRecord
+                    JOIN Book ON BorrowingRecord.book_id = Book.id
+                    WHERE BorrowingRecord.user_id = ? AND return_date IS NULL
+                    """;
             try (PreparedStatement pstmt = conn.prepareStatement(borrowedSql)) {
                 pstmt.setInt(1, userId);
                 ResultSet rs = pstmt.executeQuery();

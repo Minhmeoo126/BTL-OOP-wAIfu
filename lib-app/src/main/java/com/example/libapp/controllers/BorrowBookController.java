@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import com.example.libapp.utils.SceneNavigator;
 
@@ -35,6 +36,9 @@ public class BorrowBookController {
     public Label UserName;
     @FXML
     public TextField bookNameField;
+    public ImageView defaultImage;
+    public ImageView imageBorrow;
+    public Label label;
     @FXML
     private TextField bookIdField;
     @FXML
@@ -44,6 +48,7 @@ public class BorrowBookController {
 
     @FXML
     public void initialize() {
+        imageBorrow.setVisible(false);
         messageLabel.textProperty().bind(viewModel.messageProperty());
         viewModel.setLoggedInUser(SessionManager.getInstance().getLoggedInUser());
         User currentUser = SessionManager.getInstance().getLoggedInUser();
@@ -64,6 +69,10 @@ public class BorrowBookController {
         // Thêm hiệu ứng cho thông báo
         messageLabel.setStyle(viewModel.messageProperty().get().contains("successfully") ?
                 "-fx-text-fill: green;" : "-fx-text-fill: red;");
+        defaultImage.setVisible(false);
+        imageBorrow.setVisible(true);
+
+        label.setText("Hay tan huong cuon sach nhe");
     }
 
     public void openMyAccount() {
