@@ -16,6 +16,7 @@ import java.util.List;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+
         // Initialize database and fetch books in a background thread
         new Thread(() -> {
             try {
@@ -34,7 +35,7 @@ public class Main extends Application {
 
                 // Check the number of books in the database
                 int bookCount = BookService.countBooks();
-                if (bookCount >= 3000) {
+                if (bookCount >= 1200) {
                     System.out.println("Database already contains " + bookCount + " books. Skipping fetch to save API quota.");
                     return;
                 }
@@ -57,8 +58,9 @@ public class Main extends Application {
 
                 // Fetch books for each query, aiming for ~10,000 books
                 for (String query : queries) {
-                    BookService.fetchAndStoreBooks(query, 1000); // Limit per query to balance diversity
-                    System.out.println("Books fetched for query: " + query);
+                    System.out.println("Preparing to fetch for query: " + query);
+                    int booksAdded = BookService.fetchAndStoreBooks(query, 1000);
+                    System.out.println("Books added for query '" + query + "': " + booksAdded);
                 }
                 System.out.println("Books fetched and stored successfully!");
             } catch (Exception e) {

@@ -39,7 +39,7 @@ public class BookViewModel {
     }
 
     public Book getBookByIsbn(String isbn) {
-        return bookDAO.getBookByIsbn(isbn);
+        return bookDAO.getBookByISBN(isbn);
     }
 
 

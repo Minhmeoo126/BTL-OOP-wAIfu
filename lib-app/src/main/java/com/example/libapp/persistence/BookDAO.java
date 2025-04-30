@@ -9,6 +9,11 @@ import java.util.List;
 public class BookDAO {
 
     public void addBook(Book book) {
+        if (!isValidBook(book)) {
+            System.err.println("Dữ liệu sách không hợp lệ. Không thể thêm vào cơ sở dữ liệu.");
+            return;
+        }
+
         Connection conn = null;
         PreparedStatement pstmt = null;
 
@@ -84,55 +89,6 @@ public class BookDAO {
 
         return books;
     }
-
-    public Book getBookByISBN(String isbn) {
-        Book book = null;
-        Connection conn = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-
-        try {
-            conn = DatabaseConnection.connect();
-
-            String sql = "SELECT b.id, b.title, b.isbn, b.author_id, a.name AS author_name, " +
-                    "b.category_id, c.name AS category_name, b.total_copies, b.available_copies, b.description, b.thumbnail " +
-                    "FROM Book b " +
-                    "JOIN Author a ON b.author_id = a.id " +
-                    "JOIN Category c ON b.category_id = c.id " +
-                    "WHERE b.isbn = ?";
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, isbn);
-            rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                book = new Book();
-                book.setId(rs.getInt("id"));
-                book.setTitle(rs.getString("title"));
-                book.setIsbn(rs.getString("isbn"));
-                book.setAuthorId(rs.getInt("author_id"));
-                book.setAuthorName(rs.getString("author_name"));
-                book.setCategoryId(rs.getInt("category_id"));
-                book.setCategoryName(rs.getString("category_name"));
-                book.setTotalCopies(rs.getInt("total_copies"));
-                book.setAvailableCopies(rs.getInt("available_copies"));
-                book.setDescription(rs.getString("description"));
-                book.setThumbnail(rs.getString("thumbnail"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (pstmt != null) pstmt.close();
-                if (conn != null) conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return book;
-    }
-
 
     public Book getBookById(int bookId) {
         Book book = null;
@@ -230,7 +186,7 @@ public class BookDAO {
         return book;
     }
 
-    public Book getBookByIsbn(String isbn) {
+    public Book getBookByISBN(String isbn) {
         Book book = null;
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -279,7 +235,7 @@ public class BookDAO {
     }
 
     public void addOrUpdateBookByIsbn(Book book) {
-        Book existing = getBookByIsbn(book.getIsbn());
+        Book existing = getBookByISBN(book.getIsbn());
 
         if (existing != null) {
             int newTotal = existing.getTotalCopies() + book.getTotalCopies();
@@ -304,7 +260,7 @@ public class BookDAO {
     }
 
     public boolean deleteBookByIsbn(String isbn) {
-        Book book = getBookByIsbn(isbn);
+        Book book = getBookByISBN(isbn);
         if (book == null) return false;
 
         if (book.getAvailableCopies() < book.getTotalCopies()) {
@@ -344,4 +300,55 @@ public class BookDAO {
             }
         }
     }
+
+    public void updateBook(Book book) {
+        String sql = """
+        UPDATE Book SET
+            title = ?,
+            author_id = ?,
+            category_id = ?,
+            total_copies = ?,
+            available_copies = ?,
+            description = ?,
+            thumbnail = ?
+        WHERE isbn = ?;
+    """;
+
+        try (Connection conn = DatabaseConnection.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, book.getTitle());
+            pstmt.setInt(2, book.getAuthorId());
+            pstmt.setInt(3, book.getCategoryId());
+            pstmt.setInt(4, book.getTotalCopies());
+            pstmt.setInt(5, book.getAvailableCopies());
+            pstmt.setString(6, book.getDescription());
+            pstmt.setString(7, book.getThumbnail());
+            pstmt.setString(8, book.getIsbn());
+
+            int rowsUpdated = pstmt.executeUpdate();
+
+            if (rowsUpdated == 0) {
+                System.out.println("Không có sách nào được cập nhật với ISBN: " + book.getIsbn());
+            } else {
+                System.out.println("Cập nhật sách thành công (ISBN: " + book.getIsbn() + ")");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.err.println("Lỗi khi cập nhật sách: " + e.getMessage());
+        }
+    }
+
+    private boolean isValidBook(Book book) {
+        if (book == null) return false;
+        if (book.getTitle() == null || book.getTitle().trim().isEmpty()) return false;
+        if (book.getIsbn() == null || book.getIsbn().trim().isEmpty()) return false;
+        if (book.getAuthorId() <= 0) return false;
+        if (book.getCategoryId() <= 0) return false;
+        if (book.getTotalCopies() <= 0) return false;
+        if (book.getAvailableCopies() < 0 || book.getAvailableCopies() > book.getTotalCopies()) return false;
+        return true;
+    }
+
 }

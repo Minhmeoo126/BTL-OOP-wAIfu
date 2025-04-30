@@ -14,6 +14,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.File;
+
 public class BookInformationController {
     @FXML
     public Label BookName;
@@ -57,15 +59,32 @@ public class BookInformationController {
                 description.setText(selectedBook.getDescription());
             }
             try {
-                Image image;
-                if (selectedBook.getThumbnail() != null && !selectedBook.getThumbnail().isEmpty()) {
-                    image = new Image(selectedBook.getThumbnail(), true); // true để load nền tránh trườn hợp ảnh nặng
-                } else {
-                    System.out.println("Thumbnail rỗng cho sách: " + selectedBook.getTitle());
+                Image image = null;
+                String thumbnail = selectedBook.getThumbnail();
+
+                if (thumbnail != null && !thumbnail.isEmpty()) {
+                    if (thumbnail.startsWith("http://") || thumbnail.startsWith("https://")) {
+                        // Load từ URL
+                        image = new Image(thumbnail, true);
+                    } else {
+                        // Giả sử là đường dẫn tương đối tới thư mục self_published
+                        File imageFile = new File("self_published", thumbnail); // tự động nối thư mục và tên file
+                        if (imageFile.exists()) {
+                            image = new Image(imageFile.toURI().toString());
+                        } else {
+                            System.out.println("Không tìm thấy ảnh trong thư mục self_published: " + imageFile.getPath());
+                        }
+                    }
+                }
+
+                // Nếu không load được ảnh thì dùng mặc định
+                if (image == null || image.isError()) {
+                    System.out.println("Không thể load ảnh, dùng ảnh mặc định.");
                     image = new Image(getClass().getResourceAsStream("/com/example/libapp/image/castorice_book.png"));
                 }
 
                 bookImage.setImage(image);
+
             } catch (Exception e) {
                 System.err.println("Lỗi khi load ảnh: " + e.getMessage());
                 Image fallback = new Image(getClass().getResourceAsStream("/com/example/libapp/image/castorice_book.png"));

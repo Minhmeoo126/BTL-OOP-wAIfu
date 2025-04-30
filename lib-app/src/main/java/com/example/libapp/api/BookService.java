@@ -1,5 +1,6 @@
 package com.example.libapp.api;
 
+import com.example.libapp.model.Book;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -38,7 +39,7 @@ public class BookService {
         }
     }
 
-    public static void fetchAndStoreBooks(String query, int maxBooks) throws Exception {
+    public static int fetchAndStoreBooks(String query, int maxBooks) throws Exception {
         int startIndex = 0;
         int booksFetched = 0;
 
@@ -62,6 +63,7 @@ public class BookService {
             // Avoid overwhelming the API
             Thread.sleep(100); // Respect API rate limits
         }
+        return booksFetched;
     }
 
     private static String fetchBooksFromApi(String apiUrl) throws Exception {
@@ -74,6 +76,54 @@ public class BookService {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         return response.body();
     }
+
+    // Tim sach don le
+    public static Book fetchBookByIsbn(String isbn) {
+        try {
+            String encodedIsbn = URLEncoder.encode(isbn, StandardCharsets.UTF_8);
+            String apiUrl = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + encodedIsbn + "&key=" + API_KEY;
+
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(apiUrl))
+                    .GET()
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            String json = response.body();
+
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode root = mapper.readTree(json);
+            JsonNode items = root.path("items");
+
+            if (items.isArray() && items.size() > 0) {
+                JsonNode volumeInfo = items.get(0).path("volumeInfo");
+
+                Book book = new Book();
+                book.setIsbn(isbn);
+                book.setTitle(volumeInfo.path("title").asText("Không tiêu đề"));
+
+                JsonNode authors = volumeInfo.path("authors");
+                if (authors.isArray() && authors.size() > 0) {
+                    book.setAuthorName(authors.get(0).asText("Unknown Author"));
+                } else {
+                    book.setAuthorName("Unknown Author");
+                }
+
+                book.setDescription(volumeInfo.path("description").asText(null));
+                JsonNode imageLinks = volumeInfo.path("imageLinks");
+                if (imageLinks != null) {
+                    book.setThumbnail(imageLinks.path("thumbnail").asText(null));
+                }
+
+                return book;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     private static int parseAndStoreBooks(String jsonResponse) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
@@ -290,5 +340,8 @@ public class BookService {
         }
     }
 
-
+    // Tạo ISBN nội bộ cho sách tự xuất bản
+    public static String generateInternalIsbn() {
+        return "SB" + System.currentTimeMillis();
+    }
 }
