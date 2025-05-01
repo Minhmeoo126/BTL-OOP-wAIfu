@@ -218,5 +218,9 @@ public class AIUserController {
 
         return lines;
     }
+
+    public void goToAI() throws IOException {
+        loadView("User-Ai-view.fxml" , AI);
+    }
 }
 

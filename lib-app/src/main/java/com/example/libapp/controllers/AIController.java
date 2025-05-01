@@ -210,4 +210,8 @@ public class AIController {
 
         return lines;
     }
+
+    public void goToAI() throws IOException {
+        loadView("AI-view.fxml" ,AI);
+    }
 }

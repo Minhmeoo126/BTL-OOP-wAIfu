@@ -15,25 +15,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.AIController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.AIUserController">
     <left>
         <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="65.0" spacing="3.0" style="-fx-border-color: #F3F3E0; -fx-background-radius: 10px;" styleClass="login_bg" stylesheets="@styles.css" BorderPane.alignment="CENTER">
             <children>
-                <VBox alignment="TOP_CENTER" prefHeight="22.0" prefWidth="84.0">
-                    <children>
-                        <ImageView fitHeight="31.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../image/spell-book.png" />
-                            </image>
-                        </ImageView>
-                        <Label alignment="CENTER" prefHeight="34.0" prefWidth="84.0" text="WAIFU" textFill="WHITE">
-                            <font>
-                                <Font name="Californian FB Bold" size="23.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </VBox>
-                <Pane prefHeight="60.0" prefWidth="84.0" />
+                <Label alignment="CENTER" prefHeight="51.0" prefWidth="84.0" text="WAIFU" textFill="WHITE">
+                    <font>
+                        <Font name="Californian FB Bold" size="23.0" />
+                    </font>
+                </Label>
+                <Pane prefHeight="82.0" prefWidth="86.0" />
                 <Button fx:id="backToMain" graphicTextGap="1.0" mnemonicParsing="false" onAction="#backToMain">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
@@ -57,14 +48,15 @@
                     </graphic>
                     <styleClass>
                         <String fx:value="transperant" />
+                        <String fx:value="selected" />
                         <String fx:value="transparent" />
                     </styleClass>
                 </Button>
-                <Button fx:id="addBook" graphicTextGap="1.0" mnemonicParsing="false" onAction="#addNewBook">
+                <Button fx:id="returnBook" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openReturnBook">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                             <image>
-                                <Image url="@../image/add.png" />
+                                <Image url="@../image/return.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -73,11 +65,11 @@
                         <String fx:value="transparent" />
                     </styleClass>
                 </Button>
-                <Button fx:id="bookManage" graphicTextGap="1.0" mnemonicParsing="false" onAction="#goToBookManage">
+                <Button fx:id="borrowBooks" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openBorrowBook">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                             <image>
-                                <Image url="@../image/book.png" />
+                                <Image url="@../image/borrow.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -86,20 +78,7 @@
                         <String fx:value="transparent" />
                     </styleClass>
                 </Button>
-                <Button fx:id="userManagement" graphicTextGap="1.0" mnemonicParsing="false" onAction="#goToUserManagement">
-                    <graphic>
-                        <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
-                            <image>
-                                <Image url="@../image/group-users.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <styleClass>
-                        <String fx:value="transperant" />
-                        <String fx:value="transparent" />
-                    </styleClass>
-                </Button>
-                <Button fx:id="AI" graphicTextGap="1.0" layoutX="11.0" layoutY="222.0" mnemonicParsing="false" onAction="#openAI" style="-fx-background-color: #F3F3E0;" styleClass="transparent">
+                <Button fx:id="AI" graphicTextGap="1.0" layoutX="11.0" layoutY="222.0" mnemonicParsing="false" onAction="#goToAI">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                             <image>
@@ -107,13 +86,13 @@
                             </image>
                         </ImageView>
                     </graphic>
-                </Button>
-                <Pane prefHeight="98.0" prefWidth="87.0" />
-                <Button fx:id="logout" graphicTextGap="1.0" mnemonicParsing="false" onAction="#Logout" prefHeight="96.0" prefWidth="72.0">
                     <styleClass>
                         <String fx:value="transperant" />
                         <String fx:value="transparent" />
                     </styleClass>
+                </Button>
+                <Pane prefHeight="98.0" prefWidth="87.0" />
+                <Button fx:id="logout" graphicTextGap="1.0" layoutX="11.0" layoutY="355.0" mnemonicParsing="false" onAction="#Logout">
                     <graphic>
                         <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                             <image>
@@ -121,6 +100,10 @@
                             </image>
                         </ImageView>
                     </graphic>
+                    <styleClass>
+                        <String fx:value="transperant" />
+                        <String fx:value="transparent" />
+                    </styleClass>
                 </Button>
             </children>
         </VBox>

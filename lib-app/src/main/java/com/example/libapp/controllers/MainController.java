@@ -59,8 +59,7 @@ public class MainController {
     public GridPane bookContainer;
     @FXML
     public Pagination pagination;
-    @FXML
-    public ScrollPane pane;
+    
     @FXML
     public GridPane Box;
     @FXML
@@ -72,6 +71,7 @@ public class MainController {
     private final MainViewModel viewModel = new MainViewModel();
     private final BookDAO bookDAO = new BookDAO();
     private final List<Book> allBooks = bookDAO.getAllBooks();
+    public ScrollPane pane;
 
 
     public void initialize() {

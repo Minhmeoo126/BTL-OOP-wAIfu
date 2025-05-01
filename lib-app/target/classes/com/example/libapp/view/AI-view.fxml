@@ -34,19 +34,19 @@
                     </children>
                 </VBox>
                 <Pane prefHeight="60.0" prefWidth="84.0" />
-            <Button fx:id="backToMain" graphicTextGap="1.0" mnemonicParsing="false" onAction="#backToMain">
-               <graphic>
-                  <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/home.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <styleClass>
-                  <String fx:value="transperant" />
-                  <String fx:value="transparent" />
-               </styleClass>
-            </Button>
+                <Button fx:id="backToMain" graphicTextGap="1.0" mnemonicParsing="false" onAction="#backToMain">
+                    <graphic>
+                        <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../image/home.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <styleClass>
+                        <String fx:value="transperant" />
+                        <String fx:value="transparent" />
+                    </styleClass>
+                </Button>
                 <Button fx:id="myAccount" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openMyAccount">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
@@ -56,7 +56,7 @@
                         </ImageView>
                     </graphic>
                     <styleClass>
-                        <String fx:value="transperant" />
+                        <String fx:value="selected" />
                         <String fx:value="transparent" />
                     </styleClass>
                 </Button>
@@ -99,7 +99,7 @@
                         <String fx:value="transparent" />
                     </styleClass>
                 </Button>
-                <Button fx:id="AI" graphicTextGap="1.0" layoutX="11.0" layoutY="222.0" mnemonicParsing="false" onAction="#openAI" style="-fx-background-color: #F3F3E0;" styleClass="transparent">
+                <Button fx:id="AI" graphicTextGap="1.0" layoutX="11.0" layoutY="222.0" mnemonicParsing="false" onAction="#goToAI" styleClass="transparent">
                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                             <image>
@@ -109,19 +109,19 @@
                     </graphic>
                 </Button>
                 <Pane prefHeight="98.0" prefWidth="87.0" />
-            <Button fx:id="logout" graphicTextGap="1.0" mnemonicParsing="false" onAction="#Logout" prefHeight="96.0" prefWidth="72.0">
-               <styleClass>
-                  <String fx:value="transperant" />
-                  <String fx:value="transparent" />
-               </styleClass>
-               <graphic>
-                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
-                     <image>
-                        <Image url="@../image/exit.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
+                <Button fx:id="logout" graphicTextGap="1.0" mnemonicParsing="false" onAction="#Logout" prefHeight="96.0" prefWidth="72.0">
+                    <styleClass>
+                        <String fx:value="transperant" />
+                        <String fx:value="transparent" />
+                    </styleClass>
+                    <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                            <image>
+                                <Image url="@../image/exit.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
             </children>
         </VBox>
     </left>

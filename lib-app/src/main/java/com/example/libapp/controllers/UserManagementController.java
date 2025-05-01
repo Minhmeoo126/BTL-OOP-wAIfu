@@ -104,7 +104,7 @@ public class UserManagementController {
     private void openUserHistory(User user) {
         try {
             // Mở cửa sổ lịch sử người dùng với thông tin đúng
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/UserInformation-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/User-cell-view.fxml"));
             Parent root = loader.load();
 
             UserInformationController controller = loader.getController();

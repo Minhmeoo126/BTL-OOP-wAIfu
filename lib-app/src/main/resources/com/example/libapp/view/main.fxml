@@ -22,7 +22,10 @@
    <children>
       <ScrollPane fx:id="pane" prefHeight="200.0" prefWidth="300.0" visible="false">
          <content>
-            <GridPane fx:id="Box" />
+            <GridPane fx:id="Box" prefHeight="53.0" prefWidth="6.0">
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
+               </rowConstraints></GridPane>
          </content>
       </ScrollPane>
 

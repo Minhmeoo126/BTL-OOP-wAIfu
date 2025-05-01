@@ -16,19 +16,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 
 public class UserInformationController {
-
-    public Label BorrowedBooks;
-    public Label Role;
-    public Label nameAccount;
-    public Label UserName;
-    public Button myAccount;
+    @FXML
+    public Label BorrowedBooks,Role,nameAccount;
+    @FXML
+    public Button myAccount,back;
     @FXML public TableView<BorrowingRecord> BorrowHistoryTable;
     public TableColumn<BorrowingRecord, Integer> IDColumn;
     public TableColumn<BorrowingRecord, String> nameBookColumn, AuthorColumn, borrowDateColumn, returnDateColumn;
 
     private final MyAccountViewModel viewModel = new MyAccountViewModel();
-    public Button logout;
-    public Button backToUserManagement;
     private User user;
 
     @FXML
@@ -40,7 +36,6 @@ public class UserInformationController {
         if (user != null) {
             nameAccount.setText("Name: " + user.getUsername());
             Role.setText("Role: " + user.getRole());
-            UserName.setText(user.getUsername());
             viewModel.loadUserInfo(user);
         }
 
@@ -57,15 +52,9 @@ public class UserInformationController {
         BorrowedBooks.setText("Borrowed: " + viewModel.getRecords().size());
     }
 
-    public void openMyAccount() {
-    }
 
     public void backToUserManagement() throws IOException {
-        SceneNavigator.loadView("Usersmanagement-view.fxml", backToUserManagement);
-    }
-
-    public void Logout() throws IOException {
-        SceneNavigator.loadView("login-view.fxml" , logout);
+        SceneNavigator.loadView("Usersmanagement-view.fxml", back);
     }
 
     public void setUser(User user) {
