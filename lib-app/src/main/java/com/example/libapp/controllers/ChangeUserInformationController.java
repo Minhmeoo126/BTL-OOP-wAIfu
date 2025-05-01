@@ -41,7 +41,8 @@ public class ChangeUserInformationController {
         }
     }
 
-    public void openMyAccount(ActionEvent event) {
+    public void openMyAccount() throws IOException {
+        loadView("UserInformation-view.fxml" , myAccount);
     }
 
     public void backToUserManagement(ActionEvent event) {
@@ -90,6 +91,7 @@ public class ChangeUserInformationController {
 
                     // Cập nhật lại session với thông tin mới
                     SessionManager.getInstance().setLoggedInUser(updatedUser);
+                    UserName.setText(updatedUser.getUsername());
 
                     messageLabel.setText("Cập nhật thông tin thành công.");
                 } else {

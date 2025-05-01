@@ -1,5 +1,6 @@
 package com.example.libapp.persistence;
 
+import com.example.libapp.SessionManager;
 import com.example.libapp.model.User;
 import javafx.scene.control.Label;
 
@@ -16,6 +17,10 @@ public class UserDAO {
     private static final Logger logger = Logger.getLogger(UserDAO.class.getName());
 
     public boolean isUsernameTaken(String username) {
+        User currentUser = SessionManager.getInstance().getLoggedInUser();
+        if(username.equals(currentUser.getUsername())){
+            return false;
+        }
         try (Connection conn = DatabaseConnection.connect();
              PreparedStatement pstmt = conn.prepareStatement("SELECT 1 FROM Users WHERE username = ?")) {
             pstmt.setString(1, username);
@@ -29,6 +34,10 @@ public class UserDAO {
     }
 
     public boolean isEmailTaken(String email) {
+        User currentUser = SessionManager.getInstance().getLoggedInUser();
+        if(email.equals(currentUser.getEmail())){
+            return false;
+        }
         try (Connection conn = DatabaseConnection.connect();
              PreparedStatement pstmt = conn.prepareStatement("SELECT 1 FROM Users WHERE email = ?")) {
             pstmt.setString(1, email);
