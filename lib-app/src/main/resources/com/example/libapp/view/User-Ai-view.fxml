@@ -48,7 +48,6 @@
                     </graphic>
                     <styleClass>
                         <String fx:value="transperant" />
-                        <String fx:value="selected" />
                         <String fx:value="transparent" />
                     </styleClass>
                 </Button>
@@ -87,8 +86,9 @@
                         </ImageView>
                     </graphic>
                     <styleClass>
+                        <String fx:value="selected" />
                         <String fx:value="transperant" />
-                        <String fx:value="transparent" />
+                  <String fx:value="transparent" />
                     </styleClass>
                 </Button>
                 <Pane prefHeight="98.0" prefWidth="87.0" />
