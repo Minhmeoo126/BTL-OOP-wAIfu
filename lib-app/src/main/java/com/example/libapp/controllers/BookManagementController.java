@@ -2,11 +2,11 @@ package com.example.libapp.controllers;
 
 import com.example.libapp.SessionManager;
 import com.example.libapp.model.Book;
-import com.example.libapp.model.BorrowingRecord;
 import com.example.libapp.model.User;
 import com.example.libapp.persistence.DatabaseConnection;
 import com.example.libapp.utils.SceneNavigator;
 import com.example.libapp.viewmodel.BookViewModel;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -17,42 +17,27 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import static com.example.libapp.utils.SceneNavigator.loadView;
 
 public class BookManagementController {
-    @FXML
-    public Button AI;
-    @FXML
-    public Button myAccount;
-    @FXML
-    public Button addBook;
-    @FXML
-    public Button bookManage;
-    @FXML
-    public Button userManagement;
+    @FXML public Button AI;
+    @FXML public Button myAccount;
+    @FXML public Button addBook;
+    @FXML public Button bookManage;
+    @FXML public Button userManagement;
     public Button logout;
     public Label UserName;
-    @FXML
-    private Button backToMain;
-    @FXML
-    private TableView<Book> bookTable;
-    @FXML
-    private TableColumn<Book,Integer> IDColumn;
-    @FXML
-    private TableColumn<Book, String> isbnColumn;
-    @FXML
-    private TableColumn<Book, String> titleColumn;
-    @FXML
-    private TableColumn<Book, String> authorColumn;
-    @FXML
-    private TableColumn<Book, String> categoryColumn;
-    @FXML
-    private TableColumn<Book, Integer> totalCopiesColumn;
-    @FXML
-    private TableColumn<Book, Integer> availableCopiesColumn;
+    @FXML private Button backToMain;
+    @FXML private TableView<Book> bookTable;
+    @FXML private TableColumn<Book,Integer> IDColumn;
+    @FXML private TableColumn<Book, String> isbnColumn;
+    @FXML private TableColumn<Book, String> titleColumn;
+    @FXML private TableColumn<Book, String> authorColumn;
+    @FXML private TableColumn<Book, String> categoryColumn;
+    @FXML private TableColumn<Book, Integer> totalCopiesColumn;
+    @FXML private TableColumn<Book, Integer> availableCopiesColumn;
+    @FXML private TextField searchBookField;
 
     private final BookViewModel viewModel = new BookViewModel();
 
@@ -66,66 +51,64 @@ public class BookManagementController {
         totalCopiesColumn.setCellValueFactory(new PropertyValueFactory<>("totalCopies"));
         availableCopiesColumn.setCellValueFactory(new PropertyValueFactory<>("availableCopies"));
 
-        titleColumn.setCellFactory(column -> {
-            return new TableCell<>() {
-                private final Text text = new Text();
-
-                {
-                    text.wrappingWidthProperty().bind(titleColumn.widthProperty().subtract(10));
-                    setGraphic(text);
-                }
-
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    text.setText(empty || item == null ? "" : item);
-                }
-            };
+        titleColumn.setCellFactory(column -> new TableCell<>() {
+            private final Text text = new Text();
+            {
+                text.wrappingWidthProperty().bind(titleColumn.widthProperty().subtract(10));
+                setGraphic(text);
+            }
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                text.setText(empty || item == null ? "" : item);
+            }
         });
 
-
-        authorColumn.setCellFactory(column -> {
-            return new TableCell<>() {
-                private final Text text = new Text();
-
-                {
-                    text.wrappingWidthProperty().bind(authorColumn.widthProperty().subtract(10));
-                    setGraphic(text);
-                }
-
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    text.setText(empty || item == null ? "" : item);
-                }
-            };
+        authorColumn.setCellFactory(column -> new TableCell<>() {
+            private final Text text = new Text();
+            {
+                text.wrappingWidthProperty().bind(authorColumn.widthProperty().subtract(10));
+                setGraphic(text);
+            }
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                text.setText(empty || item == null ? "" : item);
+            }
         });
 
-        categoryColumn.setCellFactory(column -> {
-            return new TableCell<>() {
-                private final Text text = new Text();
-
-                {
-                    text.wrappingWidthProperty().bind(categoryColumn.widthProperty().subtract(10));
-                    setGraphic(text);
-                }
-
-                @Override
-                protected void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    text.setText(empty || item == null ? "" : item);
-                }
-            };
+        categoryColumn.setCellFactory(column -> new TableCell<>() {
+            private final Text text = new Text();
+            {
+                text.wrappingWidthProperty().bind(categoryColumn.widthProperty().subtract(10));
+                setGraphic(text);
+            }
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                text.setText(empty || item == null ? "" : item);
+            }
         });
 
-        bookTable.setItems(viewModel.getBooks());
+        FilteredList<Book> filteredBooks = new FilteredList<>(viewModel.getBooks(), b -> true);
+
+        searchBookField.textProperty().addListener((obs, oldVal, newVal) -> {
+            filteredBooks.setPredicate(book -> {
+                if (newVal == null || newVal.isEmpty()) return true;
+                String lower = newVal.toLowerCase();
+                return (book.getTitle() != null && book.getTitle().toLowerCase().contains(lower)) ||
+                        (book.getAuthorName() != null && book.getAuthorName().toLowerCase().contains(lower)) ||
+                        (book.getCategoryName() != null && book.getCategoryName().toLowerCase().contains(lower)) ||
+                        (book.getIsbn() != null && book.getIsbn().toLowerCase().contains(lower));
+            });
+        });
+
+        bookTable.setItems(filteredBooks);
+
         viewModel.loadBooks();
+
         User currentUser = SessionManager.getInstance().getLoggedInUser();
-        if (currentUser != null) {
-            UserName.setText(currentUser.getUsername());
-        } else {
-            UserName.setText("khong co nguoi dung");
-        }
+        UserName.setText(currentUser != null ? currentUser.getUsername() : "khong co nguoi dung");
     }
 
     @FXML
@@ -140,7 +123,7 @@ public class BookManagementController {
 
     public void addNewBook(ActionEvent event) throws IOException {
         viewModel.openAddBook();
-        loadView("add-book-view.fxml",addBook);
+        loadView("add-book-view.fxml", addBook);
     }
 
     public void goToBookManage() throws IOException {

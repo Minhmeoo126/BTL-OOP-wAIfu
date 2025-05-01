@@ -37,6 +37,9 @@ public class UserManagementController {
     @FXML
     private Label UserName;
 
+    @FXML
+    private Button deleteUser;
+
     @FXML private TableView<User> UsersTable;
     @FXML private TableColumn<User, String> nameAccountColumn;
     @FXML private TableColumn<User, String> PassWordColumn;
@@ -52,6 +55,9 @@ public class UserManagementController {
     @FXML private TextField fullNameField;
     @FXML private Label messageLabel;
 
+    @FXML
+    private TextField searchField;
+
     private final UserViewModel viewModel = new UserViewModel();
     private User selectedUser;
 
@@ -62,13 +68,14 @@ public class UserManagementController {
         EmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         fullNameColumn.setCellValueFactory(new PropertyValueFactory<>("fullName"));
 
-        addViewHistoryColumn();  // Thêm cột chứa nút "View History"
-
+        addViewHistoryColumn();
         loadUser();
         messageLabel.textProperty().bind(viewModel.messageProperty());
 
         User currentUser = SessionManager.getInstance().getLoggedInUser();
-        UserName.setText(currentUser != null ? currentUser.getUsername() : "khong co nguoi dung");
+        UserName.setText(currentUser != null ? currentUser.getUsername() : "Khong co nguoi dung");
+
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> filterUsers(newValue));
     }
 
     private void loadUser() {
@@ -83,8 +90,8 @@ public class UserManagementController {
             {
                 viewBtn.setStyle("-fx-cursor: hand;");
                 viewBtn.setOnAction(event -> {
-                    User user = getTableView().getItems().get(getIndex()); // Lấy người dùng của dòng hiện tại
-                    openUserHistory(user); // Truyền đúng user vào phương thức mở lịch sử
+                    User user = getTableView().getItems().get(getIndex());
+                    openUserHistory(user);
                 });
             }
 
@@ -103,15 +110,14 @@ public class UserManagementController {
 
     private void openUserHistory(User user) {
         try {
-            // Mở cửa sổ lịch sử người dùng với thông tin đúng
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/User-cell-view.fxml"));
             Parent root = loader.load();
 
             UserInformationController controller = loader.getController();
-            controller.setUser(user);  // Truyền đúng user vào controller
+            controller.setUser(user);
 
             Stage stage = (Stage) myAccount.getScene().getWindow();
-            stage.setTitle("User History - " + user.getUsername());  // Hiển thị đúng tên tài khoản
+            stage.setTitle("User History - " + user.getUsername());
             stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
@@ -145,7 +151,7 @@ public class UserManagementController {
             Parent root = loader.load();
 
             MyAccountController controller = loader.getController();
-            controller.setUser(currentUser);  // Truyền user hiện tại vào MyAccountController
+            controller.setUser(currentUser);
 
             Stage stage = (Stage) myAccount.getScene().getWindow();
             stage.setTitle("My Account - " + currentUser.getUsername());
@@ -155,9 +161,8 @@ public class UserManagementController {
     }
 
     public void addNewBook() throws IOException {
-        // Tùy chọn: logic thêm sách
         viewModel.openAddBook();
-        loadView("add-book-view.fxml",addBook);
+        loadView("add-book-view.fxml", addBook);
     }
 
     public void goToBookManage() throws IOException {
@@ -166,12 +171,56 @@ public class UserManagementController {
     }
 
     @FXML
+    private void handleDeleteUser(ActionEvent event) {
+        User user = UsersTable.getSelectionModel().getSelectedItem();
+        if (user == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Không có người dùng được chọn");
+            alert.setHeaderText(null);
+            alert.setContentText("Vui lòng chọn một người dùng để xóa.");
+            alert.showAndWait();
+            return;
+        }
+
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Xác nhận xóa");
+        confirmationAlert.setHeaderText("Bạn có chắc chắn muốn xóa người dùng này?");
+        confirmationAlert.setContentText("Tài khoản: " + user.getUsername());
+
+        ButtonType yesBtn = new ButtonType("Xóa", ButtonBar.ButtonData.YES);
+        ButtonType noBtn = new ButtonType("Hủy", ButtonBar.ButtonData.NO);
+
+        confirmationAlert.getButtonTypes().setAll(yesBtn, noBtn);
+
+        confirmationAlert.showAndWait().ifPresent(response -> {
+            if (response == yesBtn) {
+                UserDAO dao = new UserDAO();
+                boolean success = dao.deleteUser(user.getId());
+                if (success) {
+                    users.remove(user);
+                    Alert info = new Alert(Alert.AlertType.INFORMATION);
+                    info.setTitle("Thành công");
+                    info.setHeaderText(null);
+                    info.setContentText("Đã xóa người dùng thành công.");
+                    info.showAndWait();
+                } else {
+                    Alert error = new Alert(Alert.AlertType.ERROR);
+                    error.setTitle("Lỗi");
+                    error.setHeaderText(null);
+                    error.setContentText("Không thể xóa người dùng.");
+                    error.showAndWait();
+                }
+            }
+        });
+    }
+
+    @FXML
     private void handleViewAccount(User selectedUser) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/my-account.fxml"));
             Parent root = loader.load();
             MyAccountController controller = loader.getController();
-            controller.setUser(selectedUser);  // Truyền user được chọn từ bảng
+            controller.setUser(selectedUser);
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -181,7 +230,6 @@ public class UserManagementController {
             e.printStackTrace();
         }
     }
-
 
     public void goToUserManagement() throws IOException {
         viewModel.openUserManagement();
@@ -196,5 +244,34 @@ public class UserManagementController {
     public void Logout() throws IOException {
         viewModel.Logout();
         loadView("login-view.fxml", logout);
+    }
+
+    private void filterUsers(String keyword) {
+        if (keyword == null || keyword.isEmpty()) {
+            UsersTable.setItems(users);
+            addViewHistoryColumn();  // <-- Re-apply to fix lost buttons
+            UsersTable.refresh();
+            return;
+        }
+
+        ObservableList<User> filtered = FXCollections.observableArrayList();
+
+        for (User user : users) {
+            if (containsIgnoreCase(user.getUsername(), keyword) ||
+                    containsIgnoreCase(user.getPassword(), keyword) ||
+                    containsIgnoreCase(user.getEmail(), keyword) ||
+                    containsIgnoreCase(user.getFullName(), keyword)) {
+                filtered.add(user);
+            }
+        }
+
+        UsersTable.setItems(filtered);
+        addViewHistoryColumn();
+        UsersTable.refresh();
+    }
+
+
+    private boolean containsIgnoreCase(String source, String target) {
+        return source != null && source.toLowerCase().contains(target.toLowerCase());
     }
 }
