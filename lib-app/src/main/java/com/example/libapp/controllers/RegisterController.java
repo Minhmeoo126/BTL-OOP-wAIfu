@@ -55,7 +55,7 @@ public class RegisterController {
             }
             Parent root = loader.load();
             Stage stage = (Stage) CreateAccount.getScene().getWindow();
-            stage.setScene(new Scene(root, 900, 600));
+            stage.setScene(new Scene(root, 1100, 600));
             stage.setTitle("Login");
             stage.show();
         } catch (IOException e) {

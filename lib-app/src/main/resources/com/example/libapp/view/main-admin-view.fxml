@@ -20,14 +20,19 @@
 
 <StackPane fx:id="mainPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.MainController">
     <children>
-        <ScrollPane fx:id="pane" prefHeight="200.0" prefWidth="300.0" visible="false">
-            <content>
-                <GridPane fx:id="Box" prefHeight="53.0" prefWidth="6.0">
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                    </rowConstraints></GridPane>
-            </content>
-        </ScrollPane>
+      <Pane fx:id="searchResultBox" visible="false">
+         <children>
+              <ScrollPane fx:id="pane" layoutX="370.0" layoutY="45.0" prefHeight="200.0" prefWidth="367.0" styleClass="searchResult_css" stylesheets="@styles.css">
+                  <content>
+                      <GridPane fx:id="Box">
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                          </rowConstraints>
+                  </GridPane>
+                  </content>
+              </ScrollPane>
+         </children>
+      </Pane>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css">
           <left>
               <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="65.0" spacing="3.0" style="-fx-border-color: #F3F3E0; -fx-background-radius: 10px;" styleClass="login_bg" stylesheets="@styles.css" BorderPane.alignment="CENTER">
@@ -196,7 +201,7 @@
                                       <Font name="Gill Sans MT Bold" size="12.0" />
                                   </font>
                         </Label>
-                              <ScrollPane fitToHeight="true" hbarPolicy="ALWAYS" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" styleClass="transparent">
+                              <ScrollPane fitToHeight="true" hbarPolicy="ALWAYS" minWidth="-Infinity" prefHeight="134.0" prefWidth="1003.0" styleClass="transparent">
                                   <content>
                                       <HBox fx:id="cardLayout" alignment="CENTER" maxWidth="-Infinity" prefHeight="139.0" spacing="10.0" />
                                   </content>
@@ -206,7 +211,7 @@
                                       <Font name="Gill Sans MT Bold" size="15.0" />
                                   </font>
                         </Label>
-                              <ScrollPane prefHeight="317.0" prefWidth="1013.0">
+                              <ScrollPane prefHeight="395.0" prefWidth="1003.0">
                            <content>
                               <VBox prefHeight="0.0" prefWidth="89.0">
                                  <children>

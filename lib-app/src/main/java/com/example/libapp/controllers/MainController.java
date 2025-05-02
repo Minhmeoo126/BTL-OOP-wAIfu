@@ -14,20 +14,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.geometry.Bounds;
 import javafx.scene.control.*;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import javafx.scene.layout.*;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.libapp.utils.SceneNavigator.loadView;
@@ -59,7 +51,7 @@ public class MainController {
     public GridPane bookContainer;
     @FXML
     public Pagination pagination;
-    
+
     @FXML
     public GridPane Box;
     @FXML
@@ -67,49 +59,66 @@ public class MainController {
     @FXML
     public StackPane mainPane;
 
+    @FXML
+    private Pane searchResultBox; // Tham chiếu đến Pane bọc ScrollPane
+    @FXML
+    public ScrollPane pane; // Tham chiếu đến ScrollPane bên trong Pane
+
     public static final int BOOKS_PER_PAGE = 12;
     private final MainViewModel viewModel = new MainViewModel();
     private final BookDAO bookDAO = new BookDAO();
     private final List<Book> allBooks = bookDAO.getAllBooks();
-    public ScrollPane pane;
-
 
     public void initialize() {
         pane.setMaxWidth(400);
         pane.setMaxHeight(400);
+        searchResultBox.setVisible(false);
+
+        // Định vị searchResultBox ngay dưới TextField khi focus
         search.focusedProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal) {
-                pane.setVisible(true);
-                pane.toFront();
-                System.out.println("SearchBar focused: true → Pane visible");
+                searchResultBox.setLayoutX(400);
+                searchResultBox.setLayoutY(50);
+                searchResultBox.setPrefWidth(415.0);
+                searchResultBox.setPrefHeight(150.0);
+
+                searchResultBox.setVisible(true);
+                searchResultBox.toFront();
+                System.out.println("SearchBar focused: true → searchResultBox visible at X: " + searchResultBox.getLayoutX() + ", Y: " + searchResultBox.getLayoutY());
             } else {
                 PauseTransition pause = new PauseTransition(Duration.millis(150));
                 pause.setOnFinished(event -> {
                     if (!pane.isHover() && !search.isFocused()) {
-                        pane.setVisible(false);
-                        System.out.println("SearchBar lost focus + Pane not hovered → Pane hidden");
+                        searchResultBox.setVisible(false);
+                        System.out.println("SearchBar lost focus + searchResultBox not hovered → searchResultBox hidden");
                     }
                 });
                 pause.play();
             }
         });
 
+        // Thay đổi: Thêm sự kiện mousePressed cho searchResultBox để cho phép nhấp xuyên qua nó
+        searchResultBox.setPickOnBounds(false);
 
-        // Khi hiển thị, tự reposition
+        // Thay đổi: Cập nhật logic mousePressed trên mainPane để đảm bảo BorderPane có thể tương tác
         mainPane.setOnMousePressed(event -> {
             if (!search.isFocused()) return;
-            search.getParent().requestFocus(); // ép search mất focus
+            search.getParent().requestFocus();// ép search mất focus
+            searchResultBox.setVisible(false);
+            searchResultBox.toBack();
+            search.setText("");
         });
 
+        // Gọi Search khi nội dung TextField thay đổi
         search.textProperty().addListener((observable, oldValue, newValue) -> {
             try {
-                Search(); // gọi lại hàm Search mỗi khi thay đổi nội dung
+                Search();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
 
-        // set userInformation
+        // Set userInformation
         User currentUser = SessionManager.getInstance().getLoggedInUser();
         if (currentUser != null) {
             UserName.setText(currentUser.getUsername());
@@ -117,12 +126,12 @@ public class MainController {
             UserName.setText("khong co nguoi dung");
         }
 
-        //tinh toan so trang va hien thi cac quyen sach thanh cac trang
+        // Tính toán số trang và hiển thị sách
         int totalPages = (int) Math.ceil(allBooks.size() / (double) BOOKS_PER_PAGE);
         pagination.setPageCount(totalPages);
         pagination.setPageFactory(this::createPage);
 
-        // set recentlyAddBook;
+        // Set recentlyAddBook
         BookHBox.setUpRecentlyAddBook(cardLayout);
     }
 
@@ -143,6 +152,8 @@ public class MainController {
             Label noResultLabel = new Label("Không tìm thấy sách nào");
             noResultLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: grey;");
             Box.add(noResultLabel, 0, 0);
+            // Thay đổi: Hiển thị searchResultBox mà không gọi toFront()
+            searchResultBox.setVisible(true);
             return;
         }
 
@@ -152,11 +163,9 @@ public class MainController {
             Button viewAllButton = new Button("Xem tất cả");
             viewAllButton.setStyle("-fx-font-size: 14px; -fx-text-fill: blue;");
 
-            // Xử lý sự kiện khi nhấn vào button
             viewAllButton.setOnAction(e -> {
-                // Tạo một màn hình mới hoặc hiển thị tất cả các kết quả tìm kiếm
                 try {
-                    showAllBooks(searchBook);  // Hàm để hiển thị tất cả các sách tìm được
+                    showAllBooks(searchBook);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -164,10 +173,13 @@ public class MainController {
 
             Box.add(viewAllButton, 0, 11);
         }
+
+        // Thay đổi: Hiển thị searchResultBox mà không gọi toFront()
+        searchResultBox.setVisible(true);
     }
 
     private void showAllBooks(ObservableList<Book> searchBook) throws IOException {
-        loadView("add-book-view.fxml" , myAccount);
+        loadView("add-book-view.fxml", myAccount);
     }
 
     @FXML

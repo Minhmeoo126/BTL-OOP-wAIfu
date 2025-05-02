@@ -14,9 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.util.Duration;
 import java.io.IOException;
 import java.util.List;
@@ -51,7 +49,10 @@ public class MainUserController {
     @FXML
     public ScrollPane pane;
     @FXML
-    public BorderPane mainPane;
+    private Pane searchResultBox; // Tham chiếu đến Pane bọc ScrollPane
+    @FXML
+    public StackPane mainPane;
+
 
     private static final int BOOKS_PER_PAGE = 12;
     private final MainViewModel viewModel = new MainViewModel();
@@ -61,16 +62,21 @@ public class MainUserController {
     public void initialize() {
         pane.setMaxWidth(400);
         pane.setMaxHeight(400);
+        searchResultBox.setVisible(false);
         search.focusedProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal) {
-                pane.setVisible(true);
-                pane.toFront();
-                System.out.println("SearchBar focused: true → Pane visible");
+                searchResultBox.setLayoutX(400);
+                searchResultBox.setLayoutY(50);
+                searchResultBox.setPrefWidth(415.0);
+                searchResultBox.setPrefHeight(150.0);
+
+                searchResultBox.setVisible(true);
+                searchResultBox.toFront();
             } else {
                 PauseTransition pause = new PauseTransition(Duration.millis(150));
                 pause.setOnFinished(event -> {
-                    if (!pane.isHover() && !search.isFocused()) {
-                        pane.setVisible(false);
+                    if (!searchResultBox.isHover() && !search.isFocused()) {
+                        searchResultBox.setVisible(false);
                         System.out.println("SearchBar lost focus + Pane not hovered → Pane hidden");
                     }
                 });
@@ -82,7 +88,10 @@ public class MainUserController {
         // Khi hiển thị, tự reposition
         mainPane.setOnMousePressed(event -> {
             if (!search.isFocused()) return;
-            search.getParent().requestFocus(); // ép search mất focus
+            search.getParent().requestFocus();// ép search mất focus
+            searchResultBox.setVisible(false);
+            searchResultBox.toBack();
+            search.setText("");
         });
 
         search.textProperty().addListener((observable, oldValue, newValue) -> {

@@ -90,15 +90,22 @@
 .image-border {
     -fx-border-color: #133E87;
     -fx-border-width: 10;
-    -fx-border-radius: 8;
-    -fx-background-radius: 8;
+    -fx-border-radius: 5;
+    -fx-background-radius: 15;
 }
 .selected {
      -fx-background-color:#F3F3E0 ;
      -fx-border-color: #F3F3E0;
 }
 
-
+.searchResult_css {
+    -fx-background-color:#F3F3E0;
+    -fx-border-color: #133E87;
+    -fx-border-radius: 8px;
+    -fx-border-width: 5px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0.1, 0, 2);
+}
 
 
 .table-view {
