@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
@@ -23,15 +24,15 @@ import static com.example.libapp.utils.SceneNavigator.loadView;
 
 public class addBookController {
     @FXML
-    public Button AI,backToMain,myAccount,addBook,bookManagement,userManagement;
+    public Button AI, backToMain, myAccount, addBook, bookManagement, userManagement;
     @FXML
-    public Button logout,chooseImageButton;
+    public Button logout, chooseImageButton;
     @FXML
-    public Label UserName,messageLabel;
+    public Label UserName, messageLabel;
     @FXML
     public ImageView image;
     @FXML
-    public TextField category,isbnField,thumbnail,bookName,AuthorName;
+    public TextField category, isbnField, thumbnail, bookName, AuthorName;
     @FXML
     public TextArea description;
 
@@ -69,8 +70,8 @@ public class addBookController {
                 fetchedBook.setTotalCopies(5);
                 fetchedBook.setAvailableCopies(5);
 
-                AuthorAndCategoryInDatabase.checkAndAddIfAuthorNotInDataBase(fetchedBook.getAuthorName(),messageLabel,fetchedBook);
-                AuthorAndCategoryInDatabase.checkAndAddIfCategoryNotInDataBase(fetchedBook.getCategoryName(),messageLabel,fetchedBook);
+                AuthorAndCategoryInDatabase.checkAndAddIfAuthorNotInDataBase(fetchedBook.getAuthorName(), messageLabel, fetchedBook);
+                AuthorAndCategoryInDatabase.checkAndAddIfCategoryNotInDataBase(fetchedBook.getCategoryName(), messageLabel, fetchedBook);
 
                 bookDAO.addBook(fetchedBook);
                 messageLabel.setText("Đã thêm sách từ Google Books API.");
@@ -117,14 +118,38 @@ public class addBookController {
         image.setImage(newimage);
         newBook.setThumbnail(newBookThumbnail);
 
-        AuthorAndCategoryInDatabase.checkAndAddIfAuthorNotInDataBase(newBookAuthor,messageLabel,newBook);
-        AuthorAndCategoryInDatabase.checkAndAddIfCategoryNotInDataBase(newBookCategory,messageLabel,newBook);
+        AuthorAndCategoryInDatabase.checkAndAddIfAuthorNotInDataBase(newBookAuthor, messageLabel, newBook);
+        AuthorAndCategoryInDatabase.checkAndAddIfCategoryNotInDataBase(newBookCategory, messageLabel, newBook);
 
-        newBook.setTotalCopies(5);
-        newBook.setAvailableCopies(5);
 
-        bookDAO.addBook(newBook);
-        messageLabel.setText("Thêm sách tự xuất bản thành công.");
+        Book checkBook = bookDAO.getBookByTitle(newBookName);
+
+
+        if (checkBook != null) {
+            if (checkBook.getThumbnail().equals(newBook.getThumbnail())) {
+                if (checkBook.getDescription().equals(newBook.getDescription())
+                        && checkBook.getAuthorName().equals(newBook.getAuthorName())
+                        && checkBook.getCategoryId() == newBook.getCategoryId()) {
+
+                    System.out.println("Sách đã tồn tại");
+                    System.out.println("Số lượng sách hiện tại: " + checkBook.getTotalCopies());
+
+                    bookDAO.updateBookCopies(checkBook.getId(), checkBook.getTotalCopies() + 1, checkBook.getAvailableCopies() + 1);
+                    messageLabel.setText("Đã cập nhật số lượng bản sao sách tự xuất bản.");
+                    return;
+                }
+            }else{
+                newBook.setAvailableCopies(5);
+                newBook.setTotalCopies(5);
+                bookDAO.addBook(newBook);
+                messageLabel.setText("Thêm sách tự xuất bản thành công.");
+            }
+        } else {
+            newBook.setAvailableCopies(5);
+            newBook.setTotalCopies(5);
+            bookDAO.addBook(newBook);
+            messageLabel.setText("Thêm sách tự xuất bản thành công.");
+        }
     }
 
     public void backToMain() {
@@ -220,8 +245,8 @@ public class addBookController {
             fetchedBook.setTotalCopies(5);
             fetchedBook.setAvailableCopies(5);
 
-            AuthorAndCategoryInDatabase.checkAndAddIfAuthorNotInDataBase(fetchedBook.getAuthorName(),messageLabel,fetchedBook);
-            AuthorAndCategoryInDatabase.checkAndAddIfCategoryNotInDataBase(fetchedBook.getCategoryName(), messageLabel,fetchedBook);
+            AuthorAndCategoryInDatabase.checkAndAddIfAuthorNotInDataBase(fetchedBook.getAuthorName(), messageLabel, fetchedBook);
+            AuthorAndCategoryInDatabase.checkAndAddIfCategoryNotInDataBase(fetchedBook.getCategoryName(), messageLabel, fetchedBook);
 
             bookDAO.addBook(fetchedBook);
             messageLabel.setText("Đã thêm sách từ Google Books API.");
