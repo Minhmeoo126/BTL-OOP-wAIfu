@@ -133,7 +133,7 @@ public class addBookController {
 
                     System.out.println("Sách đã tồn tại");
                     System.out.println("Số lượng sách hiện tại: " + checkBook.getTotalCopies());
-
+                    if (!confirmAction("Sách đã tồn tại xác nhận thêm số luợng ?")) return;
                     bookDAO.updateBookCopies(checkBook.getId(), checkBook.getTotalCopies() + 1, checkBook.getAvailableCopies() + 1);
                     messageLabel.setText("Đã cập nhật số lượng bản sao sách tự xuất bản.");
                     return;
