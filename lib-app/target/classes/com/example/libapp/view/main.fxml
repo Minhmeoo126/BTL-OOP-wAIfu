@@ -137,7 +137,10 @@
                            <children>
                               <VBox prefHeight="32.0" prefWidth="374.0">
                                  <children>
-                                    <TextField fx:id="search" onAction="#Search" />
+                                    <TextField fx:id="search" onAction="#Search" promptText="Search">
+                                       <font>
+                                          <Font name="Gill Sans MT" size="14.0" />
+                                       </font></TextField>
                                  </children>
                               </VBox>
                               <ImageView fitHeight="28.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">

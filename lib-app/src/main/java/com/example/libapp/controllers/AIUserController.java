@@ -2,12 +2,19 @@ package com.example.libapp.controllers;
 
 import com.example.libapp.SessionManager;
 import com.example.libapp.api.AIService;
+import com.example.libapp.model.Book;
 import com.example.libapp.model.User;
+import com.example.libapp.persistence.BookDAO;
+import com.example.libapp.utils.BookGridPane;
 import com.example.libapp.utils.SceneNavigator;
+import com.example.libapp.utils.SearchFunction;
 import com.example.libapp.viewmodel.MainViewModel;
 import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -15,8 +22,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
@@ -29,37 +35,78 @@ import static com.example.libapp.utils.SceneNavigator.loadView;
 
 public class AIUserController {
     @FXML
-    public Button AI;
-    @FXML
-    public Button myAccount;
-    @FXML
-    public Button addBook;
-    @FXML
-    public Button userManagement;
-    @FXML
-    public Button logout;
-    @FXML
-    public Button backToMain;
-    @FXML
-    public Button returnBook;
-    @FXML
-    public Button borrowBooks;
+    public Button AI, myAccount, addBook, userManagement, logout, backToMain, returnBook,borrowBooks, sendButton;
     @FXML
     public Label UserName;
     @FXML
-    private TextField promptField;
-
+    public TextField search;
     @FXML
-    private Button sendButton;
-
+    public StackPane mainPane;
+    @FXML
+    public Pane searchResultBox;
+    @FXML
+    public ScrollPane pane;
+    @FXML
+    public GridPane Box;
+    @FXML
+    private TextField promptField;
     @FXML
     private VBox chatBox;
 
     private AIService aiService;
 
     private final MainViewModel viewModel = new MainViewModel();
+    private final BookDAO bookDAO = new BookDAO();
+    private final List<Book> allBooks = bookDAO.getAllBooks();
 
     public void initialize() {
+        pane.setMaxWidth(400);
+        pane.setMaxHeight(400);
+        searchResultBox.setVisible(false);
+
+        // Định vị searchResultBox ngay dưới TextField khi focus
+        search.focusedProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal) {
+                searchResultBox.setLayoutX(400);
+                searchResultBox.setLayoutY(50);
+                searchResultBox.setPrefWidth(415.0);
+                searchResultBox.setPrefHeight(150.0);
+
+                searchResultBox.setVisible(true);
+                searchResultBox.toFront();
+                System.out.println("SearchBar focused: true → searchResultBox visible at X: " + searchResultBox.getLayoutX() + ", Y: " + searchResultBox.getLayoutY());
+            } else {
+                PauseTransition pause = new PauseTransition(Duration.millis(150));
+                pause.setOnFinished(event -> {
+                    if (!pane.isHover() && !search.isFocused()) {
+                        searchResultBox.setVisible(false);
+                        System.out.println("SearchBar lost focus + searchResultBox not hovered → searchResultBox hidden");
+                    }
+                });
+                pause.play();
+            }
+        });
+
+        // Thay đổi: Thêm sự kiện mousePressed cho searchResultBox để cho phép nhấp xuyên qua nó
+        searchResultBox.setPickOnBounds(false);
+
+        // Thay đổi: Cập nhật logic mousePressed trên mainPane để đảm bảo BorderPane có thể tương tác
+        mainPane.setOnMousePressed(event -> {
+            if (!search.isFocused()) return;
+            search.getParent().requestFocus();// ép search mất focus
+            searchResultBox.setVisible(false);
+            searchResultBox.toBack();
+            search.setText("");
+        });
+
+        // Gọi Search khi nội dung TextField thay đổi
+        search.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                Search();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
         User currentUser = SessionManager.getInstance().getLoggedInUser();
         if (currentUser != null) {
             UserName.setText(currentUser.getUsername());
@@ -221,6 +268,45 @@ public class AIUserController {
 
     public void goToAI() throws IOException {
         loadView("User-Ai-view.fxml" , AI);
+    }
+
+    public void Search() throws IOException {
+        String keyWord = search.getText();
+        Box.getChildren().clear();
+        ObservableList<Book> searchBook = SearchFunction.searchFunction(FXCollections.observableArrayList(allBooks), keyWord);
+
+        if (searchBook.isEmpty()) {
+            Label noResultLabel = new Label("Không tìm thấy sách nào");
+            noResultLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: grey;");
+            Box.add(noResultLabel, 0, 0);
+            // Thay đổi: Hiển thị searchResultBox mà không gọi toFront()
+            searchResultBox.setVisible(true);
+            return;
+        }
+
+        BookGridPane.makeGridPaneForHBox(searchBook, 0, Math.min(10, searchBook.size()), Box, 1);
+
+        if (searchBook.size() > 10) {
+            Button viewAllButton = new Button("Xem tất cả");
+            viewAllButton.setStyle("-fx-font-size: 14px; -fx-text-fill: blue;");
+
+            viewAllButton.setOnAction(e -> {
+                try {
+                    showAllBooks(searchBook);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+
+            Box.add(viewAllButton, 0, 11);
+        }
+
+        // Thay đổi: Hiển thị searchResultBox mà không gọi toFront()
+        searchResultBox.setVisible(true);
+    }
+
+    private void showAllBooks(ObservableList<Book> searchBook) throws IOException {
+        loadView("add-book-view.fxml", myAccount);
     }
 }
 
