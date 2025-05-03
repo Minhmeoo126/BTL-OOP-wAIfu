@@ -6,39 +6,106 @@ import com.example.libapp.model.Book;
 import com.example.libapp.model.User;
 import com.example.libapp.persistence.BookDAO;
 import com.example.libapp.utils.AuthorAndCategoryInDatabase;
+import com.example.libapp.utils.BookGridPane;
 import com.example.libapp.utils.SceneNavigator;
+import com.example.libapp.utils.SearchFunction;
 import com.example.libapp.viewmodel.MainViewModel;
+import javafx.animation.PauseTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
+
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.io.IOException;
+import java.util.List;
 
 import static com.example.libapp.utils.SceneNavigator.loadView;
 
 public class addBookController {
     @FXML
-    public Button AI,backToMain,myAccount,addBook,bookManagement,userManagement;
+    public Button AI, backToMain, myAccount, addBook, bookManagement, userManagement;
     @FXML
-    public Button logout,chooseImageButton;
+    public Button logout, chooseImageButton;
     @FXML
-    public Label UserName,messageLabel;
+    public Label UserName, messageLabel;
     @FXML
     public ImageView image;
     @FXML
-    public TextField category,isbnField,thumbnail,bookName,AuthorName;
+    public TextField category, isbnField, thumbnail, bookName, AuthorName,search;
     @FXML
     public TextArea description;
+    @FXML
+    public Pane searchResultBox;
+    @FXML
+    public ScrollPane pane;
+    @FXML
+    public GridPane Box;
+    @FXML
+    public StackPane mainPane;
 
     private final BookDAO bookDAO = new BookDAO();
+    private final List<Book> allBooks = bookDAO.getAllBooks();
     private final MainViewModel viewModel = new MainViewModel();
 
     public void initialize() {
+        pane.setMaxWidth(400);
+        pane.setMaxHeight(400);
+        searchResultBox.setVisible(false);
+
+        // Định vị searchResultBox ngay dưới TextField khi focus
+        search.focusedProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal) {
+                searchResultBox.setLayoutX(400);
+                searchResultBox.setLayoutY(50);
+                searchResultBox.setPrefWidth(415.0);
+                searchResultBox.setPrefHeight(150.0);
+
+                searchResultBox.setVisible(true);
+                searchResultBox.toFront();
+                System.out.println("SearchBar focused: true → searchResultBox visible at X: " + searchResultBox.getLayoutX() + ", Y: " + searchResultBox.getLayoutY());
+            } else {
+                PauseTransition pause = new PauseTransition(Duration.millis(150));
+                pause.setOnFinished(event -> {
+                    if (!pane.isHover() && !search.isFocused()) {
+                        searchResultBox.setVisible(false);
+                        System.out.println("SearchBar lost focus + searchResultBox not hovered → searchResultBox hidden");
+                    }
+                });
+                pause.play();
+            }
+        });
+
+        // Thay đổi: Thêm sự kiện mousePressed cho searchResultBox để cho phép nhấp xuyên qua nó
+        searchResultBox.setPickOnBounds(false);
+
+        // Thay đổi: Cập nhật logic mousePressed trên mainPane để đảm bảo BorderPane có thể tương tác
+        mainPane.setOnMousePressed(event -> {
+            if (!search.isFocused()) return;
+            search.getParent().requestFocus();// ép search mất focus
+            searchResultBox.setVisible(false);
+            searchResultBox.toBack();
+            search.setText("");
+        });
+
+        // Gọi Search khi nội dung TextField thay đổi
+        search.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                Search();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
         User currentUser = SessionManager.getInstance().getLoggedInUser();
         if (currentUser != null) {
             UserName.setText(currentUser.getUsername());
@@ -69,8 +136,8 @@ public class addBookController {
                 fetchedBook.setTotalCopies(5);
                 fetchedBook.setAvailableCopies(5);
 
-                AuthorAndCategoryInDatabase.checkAndAddIfAuthorNotInDataBase(fetchedBook.getAuthorName(),messageLabel,fetchedBook);
-                AuthorAndCategoryInDatabase.checkAndAddIfCategoryNotInDataBase(fetchedBook.getCategoryName(),messageLabel,fetchedBook);
+                AuthorAndCategoryInDatabase.checkAndAddIfAuthorNotInDataBase(fetchedBook.getAuthorName(), messageLabel, fetchedBook);
+                AuthorAndCategoryInDatabase.checkAndAddIfCategoryNotInDataBase(fetchedBook.getCategoryName(), messageLabel, fetchedBook);
 
                 bookDAO.addBook(fetchedBook);
                 messageLabel.setText("Đã thêm sách từ Google Books API.");
@@ -117,14 +184,38 @@ public class addBookController {
         image.setImage(newimage);
         newBook.setThumbnail(newBookThumbnail);
 
-        AuthorAndCategoryInDatabase.checkAndAddIfAuthorNotInDataBase(newBookAuthor,messageLabel,newBook);
-        AuthorAndCategoryInDatabase.checkAndAddIfCategoryNotInDataBase(newBookCategory,messageLabel,newBook);
+        AuthorAndCategoryInDatabase.checkAndAddIfAuthorNotInDataBase(newBookAuthor, messageLabel, newBook);
+        AuthorAndCategoryInDatabase.checkAndAddIfCategoryNotInDataBase(newBookCategory, messageLabel, newBook);
 
-        newBook.setTotalCopies(5);
-        newBook.setAvailableCopies(5);
 
-        bookDAO.addBook(newBook);
-        messageLabel.setText("Thêm sách tự xuất bản thành công.");
+        Book checkBook = bookDAO.getBookByTitle(newBookName);
+
+
+        if (checkBook != null) {
+            if (checkBook.getThumbnail().equals(newBook.getThumbnail())) {
+                if (checkBook.getDescription().equals(newBook.getDescription())
+                        && checkBook.getAuthorName().equals(newBook.getAuthorName())
+                        && checkBook.getCategoryId() == newBook.getCategoryId()) {
+
+                    System.out.println("Sách đã tồn tại");
+                    System.out.println("Số lượng sách hiện tại: " + checkBook.getTotalCopies());
+                    if (!confirmAction("Sách đã tồn tại xác nhận thêm số luợng ?")) return;
+                    bookDAO.updateBookCopies(checkBook.getId(), checkBook.getTotalCopies() + 1, checkBook.getAvailableCopies() + 1);
+                    messageLabel.setText("Đã cập nhật số lượng bản sao sách tự xuất bản.");
+                    return;
+                }
+            }else{
+                newBook.setAvailableCopies(5);
+                newBook.setTotalCopies(5);
+                bookDAO.addBook(newBook);
+                messageLabel.setText("Thêm sách tự xuất bản thành công.");
+            }
+        } else {
+            newBook.setAvailableCopies(5);
+            newBook.setTotalCopies(5);
+            bookDAO.addBook(newBook);
+            messageLabel.setText("Thêm sách tự xuất bản thành công.");
+        }
     }
 
     public void backToMain() {
@@ -220,8 +311,8 @@ public class addBookController {
             fetchedBook.setTotalCopies(5);
             fetchedBook.setAvailableCopies(5);
 
-            AuthorAndCategoryInDatabase.checkAndAddIfAuthorNotInDataBase(fetchedBook.getAuthorName(),messageLabel,fetchedBook);
-            AuthorAndCategoryInDatabase.checkAndAddIfCategoryNotInDataBase(fetchedBook.getCategoryName(), messageLabel,fetchedBook);
+            AuthorAndCategoryInDatabase.checkAndAddIfAuthorNotInDataBase(fetchedBook.getAuthorName(), messageLabel, fetchedBook);
+            AuthorAndCategoryInDatabase.checkAndAddIfCategoryNotInDataBase(fetchedBook.getCategoryName(), messageLabel, fetchedBook);
 
             bookDAO.addBook(fetchedBook);
             messageLabel.setText("Đã thêm sách từ Google Books API.");
@@ -240,5 +331,44 @@ public class addBookController {
         return alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK;
     }
 
+
+    public void Search() throws IOException {
+        String keyWord = search.getText();
+        Box.getChildren().clear();
+        ObservableList<Book> searchBook = SearchFunction.searchFunction(FXCollections.observableArrayList(allBooks), keyWord);
+
+        if (searchBook.isEmpty()) {
+            Label noResultLabel = new Label("Không tìm thấy sách nào");
+            noResultLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: grey;");
+            Box.add(noResultLabel, 0, 0);
+            // Thay đổi: Hiển thị searchResultBox mà không gọi toFront()
+            searchResultBox.setVisible(true);
+            return;
+        }
+
+        BookGridPane.makeGridPaneForHBox(searchBook, 0, Math.min(10, searchBook.size()), Box, 1);
+
+        if (searchBook.size() > 10) {
+            Button viewAllButton = new Button("Xem tất cả");
+            viewAllButton.setStyle("-fx-font-size: 14px; -fx-text-fill: blue;");
+
+            viewAllButton.setOnAction(e -> {
+                try {
+                    showAllBooks(searchBook);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+
+            Box.add(viewAllButton, 0, 11);
+        }
+
+        // Thay đổi: Hiển thị searchResultBox mà không gọi toFront()
+        searchResultBox.setVisible(true);
+    }
+
+    private void showAllBooks(ObservableList<Book> searchBook) throws IOException {
+        loadView("add-book-view.fxml", myAccount);
+    }
 }
 

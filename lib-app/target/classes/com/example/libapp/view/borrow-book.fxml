@@ -4,207 +4,233 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.BorrowBookController">
-    <left>
-        <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="65.0" spacing="3.0" style="-fx-border-color: #F3F3E0; -fx-background-radius: 10px;" styleClass="login_bg" stylesheets="@styles.css" BorderPane.alignment="CENTER">
-            <children>
-                <Label alignment="CENTER" prefHeight="51.0" prefWidth="84.0" text="WAIFU" textFill="WHITE">
-                    <font>
-                        <Font name="Californian FB Bold" size="23.0" />
-                    </font>
-                </Label>
-                <Pane prefHeight="82.0" prefWidth="86.0" />
-            <Button fx:id="backToMain" graphicTextGap="1.0" mnemonicParsing="false" onAction="#backToMain">
-               <graphic>
-                  <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/home.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <styleClass>
-                  <String fx:value="transperant" />
-                  <String fx:value="transparent" />
-               </styleClass>
-            </Button>
-                <Button fx:id="myAccount" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openMyAccount">
-                    <graphic>
+
+<StackPane fx:id="mainPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.BorrowBookController">
+   <children>
+      <Pane fx:id="searchResultBox" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <ScrollPane fx:id="pane" layoutX="366.0" layoutY="43.0" prefHeight="258.0" prefWidth="416.0">
+               <content>
+                  <GridPane fx:id="Box">
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </Pane>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css">
+          <left>
+              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="65.0" spacing="3.0" style="-fx-border-color: #F3F3E0; -fx-background-radius: 10px;" styleClass="login_bg" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+                  <children>
+                      <Label alignment="CENTER" prefHeight="51.0" prefWidth="84.0" text="WAIFU" textFill="WHITE">
+                          <font>
+                              <Font name="Californian FB Bold" size="23.0" />
+                          </font>
+                      </Label>
+                      <Pane prefHeight="82.0" prefWidth="86.0" />
+                  <Button fx:id="backToMain" graphicTextGap="1.0" mnemonicParsing="false" onAction="#backToMain">
+                     <graphic>
                         <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../image/user.png" />
-                            </image>
+                           <image>
+                              <Image url="@../image/home.png" />
+                           </image>
                         </ImageView>
-                    </graphic>
-                    <styleClass>
+                     </graphic>
+                     <styleClass>
                         <String fx:value="transperant" />
                         <String fx:value="transparent" />
-                    </styleClass>
-                </Button>
-                <Button fx:id="returnBook" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openReturnBook">
-                    <graphic>
-                        <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
-                            <image>
-                                <Image url="@../image/return.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <styleClass>
-                        <String fx:value="transperant" />
+                     </styleClass>
+                  </Button>
+                      <Button fx:id="myAccount" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openMyAccount">
+                          <graphic>
+                              <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../image/user.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <styleClass>
+                              <String fx:value="transperant" />
+                              <String fx:value="transparent" />
+                          </styleClass>
+                      </Button>
+                      <Button fx:id="returnBook" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openReturnBook">
+                          <graphic>
+                              <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                                  <image>
+                                      <Image url="@../image/return.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <styleClass>
+                              <String fx:value="transperant" />
+                              <String fx:value="transparent" />
+                          </styleClass>
+                      </Button>
+                      <Button fx:id="borrowBooks" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openBorrowBook">
+                          <graphic>
+                              <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                                  <image>
+                                      <Image url="@../image/borrow.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <styleClass>
+                              <String fx:value="transperant" />
+                              <String fx:value="selected" />
                         <String fx:value="transparent" />
-                    </styleClass>
-                </Button>
-                <Button fx:id="borrowBooks" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openBorrowBook">
-                    <graphic>
-                        <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
-                            <image>
-                                <Image url="@../image/borrow.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <styleClass>
-                        <String fx:value="transperant" />
-                        <String fx:value="selected" />
-                  <String fx:value="transparent" />
-                    </styleClass>
-                </Button>
-                <Button fx:id="AI" graphicTextGap="1.0" layoutX="11.0" layoutY="222.0" mnemonicParsing="false" onAction="#openAI">
-                    <graphic>
-                        <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
-                            <image>
-                                <Image url="@../image/artificial-intelligence.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <styleClass>
-                        <String fx:value="transperant" />
-                        <String fx:value="transparent" />
-                    </styleClass>
-                </Button>
-                <Pane prefHeight="98.0" prefWidth="87.0" />
-                <Button fx:id="logout" graphicTextGap="1.0" layoutX="11.0" layoutY="355.0" mnemonicParsing="false" onAction="#Logout">
-                    <graphic>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
-                            <image>
-                                <Image url="@../image/exit.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <styleClass>
-                        <String fx:value="transperant" />
-                        <String fx:value="transparent" />
-                    </styleClass>
-                </Button>
-            </children>
-        </VBox>
-    </left>
-    <center>
-        <VBox prefHeight="600.0" prefWidth="1022.0" BorderPane.alignment="CENTER">
-            <children>
-                <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="1014.0">
-                    <children>
-                        <Pane prefHeight="38.0" prefWidth="278.0" />
-                        <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="38.0" prefWidth="415.0" spacing="5.0" styleClass="search-container" stylesheets="@styles.css">
-                            <children>
-                                <TextField prefHeight="31.0" prefWidth="358.0" promptText="Search" styleClass="transparent" stylesheets="@styles.css">
-                                    <font>
-                                        <Font name="Gill Sans MT" size="14.0" />
-                                    </font>
-                                </TextField>
-                                <ImageView fitHeight="28.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../image/loupe.png" />
-                                    </image>
-                                </ImageView>
-                            </children>
-                            <padding>
-                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                            </padding>
-                        </HBox>
-                        <Pane prefHeight="38.0" prefWidth="114.0" />
-                        <HBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="190.0" spacing="10.0" styleClass="Hbox_border">
-                            <children>
-                                <Label fx:id="UserName" alignment="CENTER" prefHeight="31.0" prefWidth="105.0" styleClass="tag-gerne" text="USERNAME">
-                                    <font>
-                                        <Font name="Gill Sans MT Bold" size="16.0" />
-                                    </font>
-                                </Label>
-                                <ImageView fitHeight="28.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../image/user.png" />
-                                    </image>
-                                </ImageView>
-                            </children>
-                            <padding>
-                                <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
-                            </padding>
-                        </HBox>
-                    </children>
-                    <VBox.margin>
-                        <Insets bottom="9.0" top="2.0" />
-                    </VBox.margin>
-                </HBox>
-            <Pane prefHeight="549.0" prefWidth="1013.0">
-               <children>
-                  <ImageView fx:id="defaultImage" fitHeight="414.0" fitWidth="326.0" layoutX="701.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/Borrow%20(2).png" />
-                     </image>
-                  </ImageView>
-                  <AnchorPane layoutX="153.0" layoutY="96.0" prefHeight="315.0" prefWidth="547.0" style="-fx-background-color: #F7F7F7;" styleClass="search-container">
+                          </styleClass>
+                      </Button>
+                      <Button fx:id="AI" graphicTextGap="1.0" layoutX="11.0" layoutY="222.0" mnemonicParsing="false" onAction="#openAI">
+                          <graphic>
+                              <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                                  <image>
+                                      <Image url="@../image/artificial-intelligence.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <styleClass>
+                              <String fx:value="transperant" />
+                              <String fx:value="transparent" />
+                          </styleClass>
+                      </Button>
+                      <Pane prefHeight="98.0" prefWidth="87.0" />
+                      <Button fx:id="logout" graphicTextGap="1.0" layoutX="11.0" layoutY="355.0" mnemonicParsing="false" onAction="#Logout">
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                                  <image>
+                                      <Image url="@../image/exit.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <styleClass>
+                              <String fx:value="transperant" />
+                              <String fx:value="transparent" />
+                          </styleClass>
+                      </Button>
+                  </children>
+              </VBox>
+          </left>
+          <center>
+              <VBox prefHeight="600.0" prefWidth="1022.0" BorderPane.alignment="CENTER">
+                  <children>
+                      <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="1014.0">
+                          <children>
+                              <Pane prefHeight="38.0" prefWidth="278.0" />
+                              <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="38.0" prefWidth="415.0" spacing="5.0" styleClass="search-container" stylesheets="@styles.css">
+                                  <children>
+                              <VBox>
+                                 <children>
+                                            <TextField fx:id="search" onAction="#Search" prefHeight="31.0" prefWidth="358.0" promptText="Search" styleClass="transparent" stylesheets="@styles.css">
+                                                <font>
+                                                    <Font name="Gill Sans MT" size="14.0" />
+                                                </font>
+                                            </TextField>
+                                 </children>
+                              </VBox>
+                                      <ImageView fitHeight="28.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                              <Image url="@../image/loupe.png" />
+                                          </image>
+                                      </ImageView>
+                                  </children>
+                                  <padding>
+                                      <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                  </padding>
+                              </HBox>
+                              <Pane prefHeight="38.0" prefWidth="114.0" />
+                              <HBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="190.0" spacing="10.0" styleClass="Hbox_border">
+                                  <children>
+                                      <Label fx:id="UserName" alignment="CENTER" prefHeight="31.0" prefWidth="105.0" styleClass="tag-gerne" text="USERNAME">
+                                          <font>
+                                              <Font name="Gill Sans MT Bold" size="16.0" />
+                                          </font>
+                                      </Label>
+                                      <ImageView fitHeight="28.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                              <Image url="@../image/user.png" />
+                                          </image>
+                                      </ImageView>
+                                  </children>
+                                  <padding>
+                                      <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+                                  </padding>
+                              </HBox>
+                          </children>
+                          <VBox.margin>
+                              <Insets bottom="9.0" top="2.0" />
+                          </VBox.margin>
+                      </HBox>
+                  <Pane prefHeight="549.0" prefWidth="1013.0">
                      <children>
-                        <Label layoutX="253.0" layoutY="25.0" />
-                        <HBox alignment="CENTER" layoutX="6.0" layoutY="30.0" prefHeight="54.0" prefWidth="521.0" spacing="10.0">
+                        <ImageView fx:id="defaultImage" fitHeight="414.0" fitWidth="326.0" layoutX="701.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/Borrow%20(2).png" />
+                           </image>
+                        </ImageView>
+                        <AnchorPane layoutX="153.0" layoutY="96.0" prefHeight="315.0" prefWidth="547.0" style="-fx-background-color: #F7F7F7;" styleClass="search-container">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="103.0" text="By ISBN">
+                              <Label layoutX="253.0" layoutY="25.0" />
+                              <HBox alignment="CENTER" layoutX="6.0" layoutY="30.0" prefHeight="54.0" prefWidth="521.0" spacing="10.0">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="103.0" text="By ISBN">
+                                       <font>
+                                          <Font name="Gill Sans MT Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="bookIdField" alignment="CENTER" prefHeight="32.0" prefWidth="379.0" styleClass="search-container" />
+                                 </children>
+                              </HBox>
+                              <Label alignment="CENTER" layoutX="294.0" layoutY="86.0" prefHeight="49.0" prefWidth="52.0" text="or">
                                  <font>
-                                    <Font name="Gill Sans MT Bold" size="14.0" />
+                                    <Font name="Gill Sans MT Bold" size="26.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="bookIdField" alignment="CENTER" prefHeight="32.0" prefWidth="379.0" styleClass="search-container" />
+                              <HBox alignment="CENTER" layoutX="6.0" layoutY="134.0" prefHeight="54.0" prefWidth="521.0" spacing="10.0">
+                                 <children>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="102.0" text="By title">
+                                       <font>
+                                          <Font name="Gill Sans MT Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="bookNameField" alignment="CENTER" prefHeight="32.0" prefWidth="378.0" styleClass="search-container" />
+                                 </children>
+                              </HBox>
+                              <Button layoutX="218.0" layoutY="246.0" mnemonicParsing="false" onAction="#handleBorrow" styleClass="Btn_login" text="Borrow" />
+                              <Label fx:id="messageLabel" layoutX="39.0" layoutY="206.0" prefHeight="29.0" prefWidth="490.0" />
                            </children>
-                        </HBox>
-                        <Label alignment="CENTER" layoutX="294.0" layoutY="86.0" prefHeight="49.0" prefWidth="52.0" text="or">
+                        </AnchorPane>
+                        <Label fx:id="label" alignment="CENTER" layoutX="742.0" layoutY="107.0" prefHeight="46.0" prefWidth="242.0" styleClass="rice_message" text="Choose your book wisely!!">
                            <font>
-                              <Font name="Gill Sans MT Bold" size="26.0" />
+                              <Font name="Californian FB" size="19.0" />
                            </font>
                         </Label>
-                        <HBox alignment="CENTER" layoutX="6.0" layoutY="134.0" prefHeight="54.0" prefWidth="521.0" spacing="10.0">
-                           <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="102.0" text="By title">
-                                 <font>
-                                    <Font name="Gill Sans MT Bold" size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextField fx:id="bookNameField" alignment="CENTER" prefHeight="32.0" prefWidth="378.0" styleClass="search-container" />
-                           </children>
-                        </HBox>
-                        <Button layoutX="218.0" layoutY="246.0" mnemonicParsing="false" onAction="#handleBorrow" styleClass="Btn_login" text="Borrow" />
-                        <Label fx:id="messageLabel" layoutX="39.0" layoutY="206.0" prefHeight="29.0" prefWidth="490.0" />
+                        <ImageView fx:id="imageBorrow" fitHeight="355.0" fitWidth="419.0" layoutX="633.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@../image/CasAndDragon.png" />
+                           </image>
+                        </ImageView>
                      </children>
-                  </AnchorPane>
-                  <Label fx:id="label" alignment="CENTER" layoutX="742.0" layoutY="107.0" prefHeight="46.0" prefWidth="242.0" styleClass="rice_message" text="Choose your book wisely!!">
-                     <font>
-                        <Font name="Californian FB" size="19.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="imageBorrow" fitHeight="355.0" fitWidth="419.0" layoutX="633.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                     <image>
-                        <Image url="@../image/CasAndDragon.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            </children>
-        </VBox>
-    </center>
-</BorderPane>
+                  </Pane>
+                  </children>
+              </VBox>
+          </center>
+      </BorderPane>
+   </children>
+</StackPane>

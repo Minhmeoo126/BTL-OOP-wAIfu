@@ -351,4 +351,28 @@ public class BookDAO {
         return true;
     }
 
+
+    public void updateBookCopies(int bookId, int newTotalCopies , int newAvailableCopies) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            conn = DatabaseConnection.connect();
+            String sql = "UPDATE Book SET total_copies = ?,available_copies = ? WHERE id = ?";
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1,newTotalCopies);
+            pstmt.setInt(2, newAvailableCopies);
+            pstmt.setInt(3, bookId);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) pstmt.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

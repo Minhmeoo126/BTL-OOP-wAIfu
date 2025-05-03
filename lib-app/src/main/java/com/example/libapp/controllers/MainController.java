@@ -26,39 +26,19 @@ import static com.example.libapp.utils.SceneNavigator.loadView;
 
 public class MainController {
     @FXML
-    public Button AI;
-    @FXML
-    public Button myAccount;
-    @FXML
-    public Button returnBook;
-    @FXML
-    public Button Logout;
-    @FXML
-    public Button addBook;
-    @FXML
-    public Button logout;
-    @FXML
-    public Button bookManagement;
-    @FXML
-    public Button userManagement;
-    @FXML
-    public Button backToMain;
+    public Button AI,myAccount, returnBook,Logout,addBook,logout,bookManagement,userManagement,backToMain;
     @FXML
     public Label UserName;
     @FXML
     public HBox cardLayout;
     @FXML
-    public GridPane bookContainer;
+    public GridPane bookContainer, Box;
     @FXML
     public Pagination pagination;
-
-    @FXML
-    public GridPane Box;
     @FXML
     public TextField search;
     @FXML
     public StackPane mainPane;
-
     @FXML
     private Pane searchResultBox; // Tham chiếu đến Pane bọc ScrollPane
     @FXML
