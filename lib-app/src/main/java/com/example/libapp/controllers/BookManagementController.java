@@ -5,6 +5,7 @@ import com.example.libapp.model.Book;
 import com.example.libapp.model.User;
 import com.example.libapp.persistence.BookDAO;
 import com.example.libapp.persistence.DatabaseConnection;
+import com.example.libapp.persistence.UserDAO;
 import com.example.libapp.utils.BookGridPane;
 import com.example.libapp.utils.SceneNavigator;
 import com.example.libapp.utils.SearchFunction;
@@ -15,12 +16,17 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -33,7 +39,7 @@ import static com.example.libapp.utils.SceneNavigator.loadView;
 
 public class BookManagementController {
     @FXML
-    public Button AI, myAccount, addBook, bookManage,userManagement,logout ,backToMain;
+    public Button AI, myAccount, addBook, bookManage, userManagement, logout, backToMain;
     @FXML
     public Label UserName;
     @FXML
@@ -47,19 +53,32 @@ public class BookManagementController {
     @FXML
     public GridPane Box;
 
-    @FXML private TableView<Book> bookTable;
-    @FXML private TableColumn<Book,Integer> IDColumn;
-    @FXML private TableColumn<Book, String> isbnColumn;
-    @FXML private TableColumn<Book, String> titleColumn;
-    @FXML private TableColumn<Book, String> authorColumn;
-    @FXML private TableColumn<Book, String> categoryColumn;
-    @FXML private TableColumn<Book, Integer> totalCopiesColumn;
-    @FXML private TableColumn<Book, Integer> availableCopiesColumn;
-    @FXML private TextField searchBookField;
+
+    @FXML
+    private TableView<Book> bookTable;
+    @FXML
+    private TableColumn<Book, Integer> IDColumn;
+    @FXML
+    private TableColumn<Book, String> isbnColumn;
+    @FXML
+    private TableColumn<Book, String> titleColumn;
+    @FXML
+    private TableColumn<Book, String> authorColumn;
+    @FXML
+    private TableColumn<Book, String> categoryColumn;
+    @FXML
+    private TableColumn<Book, Integer> totalCopiesColumn;
+    @FXML
+    private TableColumn<Book, Integer> availableCopiesColumn;
+    @FXML
+    private TableColumn<Book, Void> changeBookInformationColumn;
+    @FXML
+    private TextField searchBookField;
 
     private final BookViewModel viewModel = new BookViewModel();
     private final BookDAO bookDAO = new BookDAO();
     private final List<Book> allBooks = bookDAO.getAllBooks();
+    private final ObservableList<Book> books = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -120,10 +139,12 @@ public class BookManagementController {
 
         titleColumn.setCellFactory(column -> new TableCell<>() {
             private final Text text = new Text();
+
             {
                 text.wrappingWidthProperty().bind(titleColumn.widthProperty().subtract(10));
                 setGraphic(text);
             }
+
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
@@ -133,10 +154,12 @@ public class BookManagementController {
 
         authorColumn.setCellFactory(column -> new TableCell<>() {
             private final Text text = new Text();
+
             {
                 text.wrappingWidthProperty().bind(authorColumn.widthProperty().subtract(10));
                 setGraphic(text);
             }
+
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
@@ -146,10 +169,12 @@ public class BookManagementController {
 
         categoryColumn.setCellFactory(column -> new TableCell<>() {
             private final Text text = new Text();
+
             {
                 text.wrappingWidthProperty().bind(categoryColumn.widthProperty().subtract(10));
                 setGraphic(text);
             }
+
             @Override
             protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
@@ -169,6 +194,8 @@ public class BookManagementController {
                         (book.getIsbn() != null && book.getIsbn().toLowerCase().contains(lower));
             });
         });
+        addViewChangeColumn();
+        loadBook();
 
         bookTable.setItems(filteredBooks);
 
@@ -297,5 +324,60 @@ public class BookManagementController {
 
     private void showAllBooks(ObservableList<Book> searchBook) throws IOException {
         SceneNavigator.loadSearchResult(search);
+    }
+
+    private void addViewChangeColumn() {
+        changeBookInformationColumn.setCellFactory(param -> new TableCell<>() {
+            private final Button viewBtn = new Button("View");
+
+            {
+                viewBtn.setStyle("-fx-cursor: hand;");
+                viewBtn.setOnAction(event -> {
+                    Book book = getTableView().getItems().get(getIndex());
+                    if (book != null) {
+                        openBookInformation(book);
+                    } else {
+                        System.out.println("khong co sach duoc chon");
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    HBox box = new HBox(5, viewBtn);
+                    setGraphic(box);
+                }
+            }
+        });
+    }
+
+    public void openBookInformation(Book book) {
+        try {
+            System.out.println("sach duoc chon la" + book.getTitle());
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/changeBookInformation-view.fxml"));
+            Parent root = loader.load();
+            System.out.println("sach duoc chon la  " + book.getTitle());
+            ChangeBookInformationController controller = loader.getController();
+            controller.setBook(book);
+
+
+            Stage stage = (Stage) myAccount.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void loadBook() {
+        BookDAO bookDao = new BookDAO();
+        books.setAll(bookDao.getAllBooks());
+        bookTable.setItems(books);
     }
 }

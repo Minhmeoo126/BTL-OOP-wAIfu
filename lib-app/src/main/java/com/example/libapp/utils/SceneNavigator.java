@@ -51,6 +51,7 @@ public class SceneNavigator {
     }
 
     public static void loadSearchResult(TextField search) throws IOException {
+        try{
         FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/SearchResults-view.fxml"));
         Parent root = loader.load();
 
@@ -59,6 +60,9 @@ public class SceneNavigator {
 
         Stage stage = (Stage) search.getScene().getWindow();
         stage.setScene(new Scene(root, 1100, 600));
-        stage.show();
+        stage.show();}
+        catch(IOException e){
+            e.printStackTrace();
+        }
     }
 }

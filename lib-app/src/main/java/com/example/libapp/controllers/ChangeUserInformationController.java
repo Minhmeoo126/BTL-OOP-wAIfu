@@ -72,6 +72,8 @@ public class ChangeUserInformationController {
             if(FullName.getText().isEmpty()){
                 newFullName = currentUser.getFullName();
             }
+
+            // check va update thong tin nguoi dung
             if(userDAO.isUsernameTaken(newNameAccount)){
                 messageLabel.setText("ten nguoi dung da ton tai");
 
@@ -99,6 +101,5 @@ public class ChangeUserInformationController {
                 }
             }
         }
-
     }
 }

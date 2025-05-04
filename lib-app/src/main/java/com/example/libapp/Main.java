@@ -75,7 +75,7 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1100, 600);
         stage.setTitle("Library Management App");
         stage.setScene(scene);
-        //stage.setResizable(false);
+        stage.setResizable(false);
         stage.show();
     }
 

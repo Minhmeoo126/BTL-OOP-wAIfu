@@ -196,19 +196,7 @@ public class UserManagementController {
 
     @FXML
     public void openMyAccount() throws IOException {
-        User currentUser = SessionManager.getInstance().getLoggedInUser();
-        if (currentUser != null) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/my-account.fxml"));
-            Parent root = loader.load();
-
-            MyAccountController controller = loader.getController();
-            controller.setUser(currentUser);
-
-            Stage stage = (Stage) myAccount.getScene().getWindow();
-            stage.setTitle("My Account - " + currentUser.getUsername());
-            stage.setScene(new Scene(root));
-            stage.show();
-        }
+        SceneNavigator.loadView("my-account.fxml",myAccount);
     }
 
     public void addNewBook() throws IOException {

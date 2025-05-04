@@ -19,7 +19,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane fx:id="mainPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.BookManagementController">
    <children>
       <Pane fx:id="searchResultBox" prefHeight="200.0" prefWidth="200.0">
@@ -205,11 +204,12 @@
                              <columns>
                                  <TableColumn fx:id="isbnColumn" prefWidth="120.0" text="ISBN" />
                                  <TableColumn fx:id="IDColumn" prefWidth="75.0" text="ID" />
-                                 <TableColumn fx:id="titleColumn" prefWidth="212.8" text="Title" />
-                                 <TableColumn fx:id="authorColumn" prefWidth="226.4" text="AuthorName" />
-                                 <TableColumn fx:id="categoryColumn" prefWidth="165.6" text="Category" />
-                                 <TableColumn fx:id="totalCopiesColumn" prefWidth="128.8" text="Total Copies" />
-                                 <TableColumn fx:id="availableCopiesColumn" prefWidth="159.2" text="Available Copies" />
+                                 <TableColumn fx:id="titleColumn" prefWidth="191.99998474121094" text="Title" />
+                                 <TableColumn fx:id="authorColumn" prefWidth="120.80001831054688" text="AuthorName" />
+                                 <TableColumn fx:id="categoryColumn" prefWidth="116.0" text="Category" />
+                                 <TableColumn fx:id="totalCopiesColumn" minWidth="0.0" prefWidth="108.0" text="Total Copies" />
+                                 <TableColumn fx:id="availableCopiesColumn" prefWidth="144.0" text="Available Copies" />
+                              <TableColumn fx:id="changeBookInformationColumn" prefWidth="88.80010986328125" text="Change" />
                              </columns>
                          </TableView>
                          <Button layoutX="850.0" layoutY="459.0" mnemonicParsing="false" onAction="#deleteSelectedBook" styleClass="Btn_login" stylesheets="@styles.css" text="Delete" />

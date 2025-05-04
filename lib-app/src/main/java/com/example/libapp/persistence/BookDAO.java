@@ -1,6 +1,7 @@
 package com.example.libapp.persistence;
 
 import com.example.libapp.model.Book;
+import javafx.scene.control.Label;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -373,6 +374,42 @@ public class BookDAO {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public static boolean updateBookInfo(int bookID ,String thumbnail, String title, int category_id, int author_id, String description, Label messageLabel) {
+        // Câu lệnh SQL để cập nhật thông tin người dùng
+        String sql = "UPDATE Book SET title = ?, category_id = ?, author_id = ?, description = ? WHERE id = ?";
+
+        try (Connection conn = DatabaseConnection.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            // Thiết lập các tham số cho câu lệnh SQL
+            stmt.setString(1, title);
+            stmt.setInt(2, category_id);
+            stmt.setInt(3, author_id);
+            stmt.setString(4, description);
+            stmt.setInt(5, bookID);
+            stmt.executeUpdate();
+            // Thực thi câu lệnh SQL
+            int rowsUpdated = stmt.executeUpdate();
+
+            // Cập nhật giao diện người dùng sau khi cập nhật cơ sở dữ liệu
+            if (rowsUpdated > 0) {
+                System.out.println("Success");
+                messageLabel.setText("Success");
+                return true;
+            } else {
+                System.out.println("Fail");
+                messageLabel.setText("Fail");
+                return false;
+            }
+
+        } catch (SQLException e) {
+            // Xử lý lỗi nếu có
+            e.printStackTrace();
+            messageLabel.setText("Lỗi khi cập nhật thông tin");
+            return false;
         }
     }
 }
