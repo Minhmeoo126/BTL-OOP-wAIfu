@@ -62,19 +62,7 @@
                 <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="1014.0">
                     <children>
                         <Pane prefHeight="38.0" prefWidth="278.0" />
-                        <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="38.0" prefWidth="415.0" spacing="5.0" styleClass="search-container" stylesheets="@styles.css">
-                            <children>
-                                <ImageView fitHeight="28.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../image/loupe.png" />
-                                    </image>
-                                </ImageView>
-                            </children>
-                            <padding>
-                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                            </padding>
-                        </HBox>
-                        <Pane prefHeight="38.0" prefWidth="114.0" />
+                        <Pane prefHeight="54.0" prefWidth="122.0" />
                         <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="190.0" spacing="10.0" styleClass="Hbox_border">
                             <children>
                                 <Label fx:id="UserName" alignment="CENTER" prefHeight="31.0" prefWidth="105.0" styleClass="tag-gerne" text="USERNAME">
@@ -91,6 +79,9 @@
                             <padding>
                                 <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
                             </padding>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
                         </HBox>
                     </children>
                     <VBox.margin>
@@ -103,38 +94,43 @@
                             <children>
                                 <StackPane layoutX="17.0" layoutY="11.0" prefHeight="520.0" prefWidth="983.0" style="-fx-background-color: #F5F5F5;" styleClass="image-border" stylesheets="@styles.css">
                                     <children>
-                                        <VBox prefHeight="500.0" prefWidth="380.0" spacing="10.0">
-                                            <children>
-                                    <HBox prefHeight="501.0" prefWidth="963.0">
-                                       <children>
-                                          <Pane prefHeight="500.0" prefWidth="234.0" />
-                                          <VBox>
+                              <Pane styleClass="MAIN_bg">
+                                 <children>
+                                              <VBox prefHeight="500.0" prefWidth="963.0" spacing="10.0">
+                                                  <children>
+                                          <HBox prefHeight="501.0" prefWidth="963.0">
                                              <children>
-                                                <Pane prefHeight="42.0" prefWidth="476.0" />
-                                                <Label text="Name Account" />
-                                                <TextField fx:id="NameAccount" prefHeight="44.0" prefWidth="476.0" />
-                                                <Pane prefHeight="91.0" prefWidth="476.0" />
-                                                <Label text="PassWord" />
-                                                <TextField fx:id="PassWord" prefHeight="55.0" prefWidth="476.0" />
-                                                <Pane prefHeight="74.0" prefWidth="476.0" />
-                                                <Label text="Email" />
-                                                <TextField fx:id="Email" />
-                                                <Pane prefHeight="82.0" prefWidth="476.0" />
-                                                <Label text="Full Name" />
-                                                <TextField fx:id="FullName" prefHeight="51.0" prefWidth="476.0" />
-                                                <Pane prefHeight="85.0" prefWidth="476.0">
+                                                <Pane prefHeight="500.0" prefWidth="234.0" />
+                                                <VBox spacing="15.0">
                                                    <children>
-                                                      <Button fx:id="SaveUserInformation" layoutX="186.0" layoutY="22.0" mnemonicParsing="false" onAction="#Save" text="Save" />
-                                                      <Label fx:id="messageLabel" layoutX="21.0" layoutY="34.0" prefHeight="17.0" prefWidth="191.0" />
+                                                      <Pane prefHeight="42.0" prefWidth="476.0" />
+                                                      <Label text="Name Account">
+                                                         <font>
+                                                            <Font name="Californian FB Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="NameAccount" prefHeight="37.0" prefWidth="476.0" />
+                                                      <Label text="PassWord" />
+                                                      <TextField fx:id="PassWord" prefHeight="37.0" prefWidth="476.0" />
+                                                      <Label prefHeight="18.0" prefWidth="42.0" text="Email" />
+                                                      <TextField fx:id="Email" prefHeight="37.0" />
+                                                      <Label text="Full Name" />
+                                                      <TextField fx:id="FullName" prefHeight="37.0" prefWidth="476.0" />
+                                                      <VBox alignment="CENTER" spacing="5.0">
+                                                         <children>
+                                                            <Label fx:id="messageLabel" alignment="CENTER" prefHeight="17.0" prefWidth="191.0" textAlignment="CENTER" textFill="#5dbf18" />
+                                                            <Button fx:id="SaveUserInformation" mnemonicParsing="false" onAction="#Save" prefHeight="48.0" prefWidth="94.0" styleClass="Btn_login" text="Save" />
+                                                         </children>
+                                                      </VBox>
                                                    </children>
-                                                </Pane>
+                                                </VBox>
+                                                <Pane prefHeight="200.0" prefWidth="200.0" />
                                              </children>
-                                          </VBox>
-                                          <Pane prefHeight="200.0" prefWidth="200.0" />
-                                       </children>
-                                    </HBox>
-                                            </children>
-                                        </VBox>
+                                          </HBox>
+                                                  </children>
+                                              </VBox>
+                                 </children>
+                              </Pane>
                                     </children>
                                 </StackPane>
                             </children>

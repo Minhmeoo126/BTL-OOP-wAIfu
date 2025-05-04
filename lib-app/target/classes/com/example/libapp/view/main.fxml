@@ -183,7 +183,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <ScrollPane prefHeight="185.0" prefWidth="1013.0">
+                        <ScrollPane prefHeight="207.0" prefWidth="1013.0">
                            <content>
                               <HBox fx:id="cardLayout" maxWidth="-Infinity" prefHeight="139.0" />
                            </content>
