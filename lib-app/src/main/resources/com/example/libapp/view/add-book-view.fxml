@@ -22,7 +22,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane fx:id="mainPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.addBookController">
    <children>
       <Pane fx:id="searchResultBox" prefHeight="200.0" prefWidth="200.0">
@@ -289,7 +288,7 @@
                                  </children>
                               </VBox>
                               <Line endX="6.13336181640625" endY="484.1119689941406" layoutX="864.0" layoutY="25.0" startX="6.13336181640625" startY="8.666675567626953" stroke="#133e87" strokeWidth="5.0" />
-                              <Label fx:id="messageLabel" layoutX="75.0" layoutY="495.0" prefHeight="28.0" prefWidth="236.0">
+                              <Label fx:id="messageLabel" layoutX="75.0" layoutY="478.0" prefHeight="62.0" prefWidth="286.0" textFill="#ff0400" wrapText="true">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
