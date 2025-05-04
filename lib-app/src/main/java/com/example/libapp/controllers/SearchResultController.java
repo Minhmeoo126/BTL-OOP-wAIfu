@@ -63,6 +63,7 @@ public class SearchResultController {
             Label noResultLabel = new Label("Không tìm thấy sách nào");
             noResultLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: grey;");
             bookContainer.add(noResultLabel, 0, 0);
+            pagination.setVisible(false);
         } else {
             int totalPages = (int) Math.ceil(searchBook.size() / (double) BOOKS_PER_PAGE);
             pagination.setPageCount(totalPages);
