@@ -65,6 +65,7 @@ public class SearchResultController {
             bookContainer.add(noResultLabel, 0, 0);
             pagination.setVisible(false);
         } else {
+            pagination.setVisible(true);
             int totalPages = (int) Math.ceil(searchBook.size() / (double) BOOKS_PER_PAGE);
             pagination.setPageCount(totalPages);
 
