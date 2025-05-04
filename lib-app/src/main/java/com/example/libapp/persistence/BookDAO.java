@@ -379,7 +379,7 @@ public class BookDAO {
 
     public static boolean updateBookInfo(int bookID ,String thumbnail, String title, int category_id, int author_id, String description, Label messageLabel) {
         // Câu lệnh SQL để cập nhật thông tin người dùng
-        String sql = "UPDATE Book SET title = ?, category_id = ?, author_id = ?, description = ? WHERE id = ?";
+        String sql = "UPDATE Book SET title = ?, category_id = ?, author_id = ?, description = ? , thumbnail = ? WHERE id = ?";
 
         try (Connection conn = DatabaseConnection.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -389,7 +389,8 @@ public class BookDAO {
             stmt.setInt(2, category_id);
             stmt.setInt(3, author_id);
             stmt.setString(4, description);
-            stmt.setInt(5, bookID);
+            stmt.setString(5,thumbnail);
+            stmt.setInt(6 ,bookID);
             stmt.executeUpdate();
             // Thực thi câu lệnh SQL
             int rowsUpdated = stmt.executeUpdate();

@@ -45,8 +45,7 @@ public class ChangeBookInformationController {
         } else {
             Image bookImage;
 
-            if (Objects.equals(book.getThumbnail(), "")) {
-
+            if (book.getThumbnail() == "") {
                 bookImage = new Image(getClass().getResourceAsStream("/com/example/libapp/image/castorice_book.png"));
             } else {
                 try {
@@ -54,6 +53,7 @@ public class ChangeBookInformationController {
                     if (bookImage.isError()) throw new IllegalArgumentException();
                 } catch (Exception e) {
                     bookImage = new Image(getClass().getResourceAsStream("/com/example/libapp/image/castorice_book.png"));
+                    System.out.println("khong the load");
                 }
             }
             image.setImage(bookImage);
@@ -118,6 +118,7 @@ public class ChangeBookInformationController {
         } else{
             categoryID = AuthorAndCategoryInDatabase.checkAndAddCategory(newCategory,messageLabel);
         }
+        if(!confirmAction("bạn có muốn sửa thông tin sách không ?")) return;
         boolean isUpdate = BookDAO.updateBookInfo(book.getId(),newThumbnail,newTitle,categoryID,authorID,newDescription,messageLabel);
         if(isUpdate){
             messageLabel.setText("success");
