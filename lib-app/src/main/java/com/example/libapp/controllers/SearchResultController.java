@@ -21,27 +21,19 @@ public class SearchResultController {
     @FXML
     public Pagination pagination1, pagination2, pagination3;
     @FXML
-    public TextField search;
-    @FXML
     public Button backToMain;
 
     private final BookDAO bookDAO = new BookDAO();
     private final List<Book> allBooks = bookDAO.getAllBooks();
     public static final int BOOKS_PER_PAGE = 4;
-
+    private String keyword;
 
     public void initialize() {
-        search.textProperty().addListener((observable, oldValue, newValue) -> {
-            try {
-                Search();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
     }
 
     public void Search() throws IOException {
-        String keyWord = search.getText();
+        String keyWord = getSearchKeyword();
+        System.out.println(keyWord);
 
         ObservableList<Book> searchTitleBook = SearchFunction.searchTitleFunction(FXCollections.observableArrayList(allBooks), keyWord);
 
@@ -82,11 +74,15 @@ public class SearchResultController {
     }
 
 
-    // dùng để set up search ban đầu
+    // lấy keyword từ main
     public void setSearchKeyword(String keyword) throws IOException {
-        search.setText(keyword);
+        this.keyword = keyword;
         Search();
     }
+    public String getSearchKeyword() {
+        return keyword;
+    }
+
 
 
     public void backToMain() {

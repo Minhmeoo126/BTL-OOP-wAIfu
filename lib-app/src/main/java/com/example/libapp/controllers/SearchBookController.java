@@ -20,7 +20,7 @@ public class SearchBookController {
     @FXML
     private Button backToMain;
     @FXML
-    private TextField searchField;
+    protected TextField searchField;
     @FXML
     private TableView<Book> bookTable;
     @FXML
