@@ -20,7 +20,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane fx:id="mainPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.MyAccountController">
    <children>
       <Pane fx:id="searchResultBox" prefHeight="200.0" prefWidth="200.0">
@@ -214,7 +213,7 @@
                                                       </Label>
                                           <Pane prefHeight="212.0" prefWidth="306.0">
                                              <children>
-                                                <Button fx:id="change" layoutX="66.0" layoutY="75.0" mnemonicParsing="false" onAction="#changeInformation" text="Change Information" />
+                                                <Button fx:id="change" layoutX="27.0" layoutY="75.0" mnemonicParsing="false" onAction="#changeInformation" styleClass="Btn_login" text="Change Information" />
                                              </children>
                                           </Pane>
                                                   </children>

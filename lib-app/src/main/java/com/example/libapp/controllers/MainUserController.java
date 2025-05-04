@@ -160,7 +160,7 @@ public class MainUserController {
     }
 
     private void showAllBooks(ObservableList<Book> searchBook) throws IOException {
-        loadView("add-book-view.fxml" , myAccount);
+        SceneNavigator.loadSearchResult(search);
     }
 
     public void backToMain() {
