@@ -32,14 +32,13 @@ public class SearchResultController {
     }
 
     public void Search() throws IOException {
-        String keyWord = getSearchKeyword();
-        System.out.println(keyWord);
 
-        ObservableList<Book> searchTitleBook = SearchFunction.searchTitleFunction(FXCollections.observableArrayList(allBooks), keyWord);
 
-        ObservableList<Book> searchIDBook = SearchFunction.searchIDFunction(FXCollections.observableArrayList(allBooks), keyWord);
+        ObservableList<Book> searchTitleBook = SearchFunction.searchTitleFunction(FXCollections.observableArrayList(allBooks), keyword);
 
-        ObservableList<Book> searchAuthorBook = SearchFunction.searchAuthorFunction(FXCollections.observableArrayList(allBooks), keyWord);
+        ObservableList<Book> searchIDBook = SearchFunction.searchIDFunction(FXCollections.observableArrayList(allBooks), keyword);
+
+        ObservableList<Book> searchAuthorBook = SearchFunction.searchAuthorFunction(FXCollections.observableArrayList(allBooks), keyword);
 
         SearchForEach(searchTitleBook, bookContainer1, pagination1);
         SearchForEach(searchIDBook, bookContainer2, pagination2);

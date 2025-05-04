@@ -43,18 +43,27 @@ public class ChangeBookInformationController {
         if (book == null) {
             return;
         } else {
-            Image bookImage;
+            Image bookImage = null;
 
             if (book.getThumbnail() == "") {
                 bookImage = new Image(getClass().getResourceAsStream("/com/example/libapp/image/castorice_book.png"));
             } else {
-                try {
+                if (book.getThumbnail().startsWith("http://") ||book.getThumbnail().startsWith("https://")) {
+                    // Load từ URL
                     bookImage = new Image(book.getThumbnail(), true);
-                    if (bookImage.isError()) throw new IllegalArgumentException();
-                } catch (Exception e) {
-                    bookImage = new Image(getClass().getResourceAsStream("/com/example/libapp/image/castorice_book.png"));
-                    System.out.println("khong the load");
+                } else {
+                    // Giả sử là đường dẫn tương đối tới thư mục self_published
+                    File imageFile = new File("self_published", book.getThumbnail()); // tự động nối thư mục và tên file
+                    if (imageFile.exists()) {
+                        bookImage = new Image(imageFile.toURI().toString());
+                    } else {
+                        System.out.println("Không tìm thấy ảnh trong thư mục self_published: " + imageFile.getPath());
+                    }
                 }
+            }
+            if (bookImage == null || bookImage.isError()) {
+                System.out.println("Không thể load ảnh, dùng ảnh mặc định.");
+                bookImage = new Image(getClass().getResourceAsStream("/com/example/libapp/image/castorice_book.png"));
             }
             image.setImage(bookImage);
             thumbnail.setText(book.getThumbnail());
