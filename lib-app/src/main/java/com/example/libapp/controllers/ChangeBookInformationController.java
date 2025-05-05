@@ -8,6 +8,8 @@ import com.example.libapp.persistence.BookDAO;
 import com.example.libapp.persistence.CategoryDAO;
 import com.example.libapp.persistence.UserDAO;
 import com.example.libapp.utils.AuthorAndCategoryInDatabase;
+import com.example.libapp.utils.ChooseImageFromSystem;
+import com.example.libapp.utils.LoadImage;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -43,29 +45,7 @@ public class ChangeBookInformationController {
         if (book == null) {
             return;
         } else {
-            Image bookImage = null;
-
-            if (book.getThumbnail() == "") {
-                bookImage = new Image(getClass().getResourceAsStream("/com/example/libapp/image/castorice_book.png"));
-            } else {
-                if (book.getThumbnail().startsWith("http://") ||book.getThumbnail().startsWith("https://")) {
-                    // Load từ URL
-                    bookImage = new Image(book.getThumbnail(), true);
-                } else {
-                    // Giả sử là đường dẫn tương đối tới thư mục self_published
-                    File imageFile = new File("self_published", book.getThumbnail()); // tự động nối thư mục và tên file
-                    if (imageFile.exists()) {
-                        bookImage = new Image(imageFile.toURI().toString());
-                    } else {
-                        System.out.println("Không tìm thấy ảnh trong thư mục self_published: " + imageFile.getPath());
-                    }
-                }
-            }
-            if (bookImage == null || bookImage.isError()) {
-                System.out.println("Không thể load ảnh, dùng ảnh mặc định.");
-                bookImage = new Image(getClass().getResourceAsStream("/com/example/libapp/image/castorice_book.png"));
-            }
-            image.setImage(bookImage);
+            image.setImage(LoadImage.loadImage(book));
             thumbnail.setText(book.getThumbnail());
             AuthorName.setText(book.getAuthorName());
             bookName.setText(book.getTitle());
@@ -79,20 +59,7 @@ public class ChangeBookInformationController {
     }
 
     public void goToChangeBook(ActionEvent event) throws IOException {
-        Image bookImage;
-
-        if (Objects.equals(book.getThumbnail(), "")) {
-
-            bookImage = new Image(getClass().getResourceAsStream("/com/example/libapp/image/castorice_book.png"));
-        } else {
-            try {
-                bookImage = new Image(book.getThumbnail(), true);
-                if (bookImage.isError()) throw new IllegalArgumentException();
-            } catch (Exception e) {
-                bookImage = new Image(getClass().getResourceAsStream("/com/example/libapp/image/castorice_book.png"));
-            }
-        }
-        image.setImage(bookImage);
+        image.setImage(LoadImage.loadImage(book));
         thumbnail.setText(book.getThumbnail());
         AuthorName.setText(book.getAuthorName());
         bookName.setText(book.getTitle());
@@ -137,37 +104,7 @@ public class ChangeBookInformationController {
     }
 
     public void chooseImageFromFileSystem(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Chọn ảnh thumbnail");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
-        );
-        File selectedFile = fileChooser.showOpenDialog(chooseImageButton.getScene().getWindow());
-
-        if (selectedFile != null) {
-            try {
-                // Đường dẫn đích: lib-app/self_published/
-                File destDir = new File("self_published");
-                if (!destDir.exists()) destDir.mkdirs();
-
-                // Tên file giữ nguyên
-                File destFile = new File(destDir, selectedFile.getName());
-
-                // Sao chép file
-                Files.copy(selectedFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-                // Preview ảnh
-                Image newImage = new Image(destFile.toURI().toString());
-                image.setImage(newImage);
-
-                // Lưu đường dẫn tương đối
-                thumbnail.setText(selectedFile.getName());
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                messageLabel.setText("Không thể tải ảnh");
-            }
-        }
+        ChooseImageFromSystem.chooseImage(chooseImageButton,image,thumbnail,messageLabel);
     }
 
     private boolean confirmAction(String content) {

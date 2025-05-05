@@ -5,10 +5,7 @@ import com.example.libapp.api.BookService;
 import com.example.libapp.model.Book;
 import com.example.libapp.model.User;
 import com.example.libapp.persistence.BookDAO;
-import com.example.libapp.utils.AuthorAndCategoryInDatabase;
-import com.example.libapp.utils.BookGridPane;
-import com.example.libapp.utils.SceneNavigator;
-import com.example.libapp.utils.SearchFunction;
+import com.example.libapp.utils.*;
 import com.example.libapp.viewmodel.MainViewModel;
 import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
@@ -168,21 +165,8 @@ public class addBookController {
         newBook.setDescription(newBookDescription);
 
         String newBookThumbnail = thumbnail.getText().trim();
-        Image newimage;
-
-        if (newBookThumbnail.isEmpty()) {
-            newBookThumbnail = "";
-            newimage = new Image(getClass().getResourceAsStream("/com/example/libapp/image/castorice_book.png"));
-        } else {
-            try {
-                newimage = new Image(newBookThumbnail, true);
-                if (newimage.isError()) throw new IllegalArgumentException();
-            } catch (Exception e) {
-                newimage = new Image(getClass().getResourceAsStream("/com/example/libapp/image/castorice_book.png"));
-            }
-        }
-        image.setImage(newimage);
         newBook.setThumbnail(newBookThumbnail);
+        image.setImage(LoadImage.loadImage(newBook));
 
         AuthorAndCategoryInDatabase.checkAndAddIfAuthorNotInDataBase(newBookAuthor, messageLabel, newBook);
         AuthorAndCategoryInDatabase.checkAndAddIfCategoryNotInDataBase(newBookCategory, messageLabel, newBook);
@@ -262,37 +246,7 @@ public class addBookController {
     }
 
     public void chooseImageFromFileSystem(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Chọn ảnh thumbnail");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
-        );
-        File selectedFile = fileChooser.showOpenDialog(chooseImageButton.getScene().getWindow());
-
-        if (selectedFile != null) {
-            try {
-                // Đường dẫn đích: lib-app/self_published/
-                File destDir = new File("self_published");
-                if (!destDir.exists()) destDir.mkdirs();
-
-                // Tên file giữ nguyên
-                File destFile = new File(destDir, selectedFile.getName());
-
-                // Sao chép file
-                Files.copy(selectedFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-
-                // Preview ảnh
-                Image newImage = new Image(destFile.toURI().toString());
-                image.setImage(newImage);
-
-                // Lưu đường dẫn tương đối
-                thumbnail.setText(selectedFile.getName());
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                messageLabel.setText("Không thể tải ảnh");
-            }
-        }
+        ChooseImageFromSystem.chooseImage(chooseImageButton,image,thumbnail,messageLabel);
     }
 
     private boolean handleAddBookByIsbn(String isbn) {
@@ -334,42 +288,7 @@ public class addBookController {
 
 
     public void Search() throws IOException {
-        String keyWord = search.getText();
-        Box.getChildren().clear();
-        ObservableList<Book> searchBook = SearchFunction.searchFunction(FXCollections.observableArrayList(allBooks), keyWord);
-
-        if (searchBook.isEmpty()) {
-            Label noResultLabel = new Label("Không tìm thấy sách nào");
-            noResultLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: grey;");
-            Box.add(noResultLabel, 0, 0);
-            // Thay đổi: Hiển thị searchResultBox mà không gọi toFront()
-            searchResultBox.setVisible(true);
-            return;
-        }
-
-        BookGridPane.makeGridPaneForHBox(searchBook, 0, Math.min(10, searchBook.size()), Box, 1);
-
-        if (searchBook.size() > 10) {
-            Button viewAllButton = new Button("Xem tất cả");
-            viewAllButton.setStyle("-fx-font-size: 14px; -fx-text-fill: blue;");
-
-            viewAllButton.setOnAction(e -> {
-                try {
-                    showAllBooks(searchBook);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
-
-            Box.add(viewAllButton, 0, 11);
-        }
-
-        // Thay đổi: Hiển thị searchResultBox mà không gọi toFront()
-        searchResultBox.setVisible(true);
-    }
-
-    private void showAllBooks(ObservableList<Book> searchBook) throws IOException {
-        SceneNavigator.loadSearchResult(search);
+        SearchFunction.Search(search,Box,searchResultBox);
     }
 }
 

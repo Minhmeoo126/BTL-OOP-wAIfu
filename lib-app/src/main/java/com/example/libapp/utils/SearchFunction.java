@@ -1,8 +1,17 @@
 package com.example.libapp.utils;
 
 import com.example.libapp.model.Book;
+import com.example.libapp.persistence.BookDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+
+import java.io.IOException;
+import java.util.List;
 
 public class SearchFunction {
 
@@ -70,5 +79,46 @@ public class SearchFunction {
             }
         }
         return filteredBooklist;
+    }
+
+    public static void Search(TextField search , GridPane Box , Pane searchResultBox) throws IOException {
+        BookDAO bookDAO = new BookDAO();
+        List<Book> allBooks = bookDAO.getAllBooks();
+        String keyWord = search.getText();
+        Box.getChildren().clear();
+        ObservableList<Book> searchBook = SearchFunction.searchFunction(FXCollections.observableArrayList(allBooks), keyWord);
+
+        if (searchBook.isEmpty()) {
+            Label noResultLabel = new Label("Không tìm thấy sách nào");
+            noResultLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: grey;");
+            Box.add(noResultLabel, 0, 0);
+            // Thay đổi: Hiển thị searchResultBox mà không gọi toFront()
+            searchResultBox.setVisible(true);
+            return;
+        }
+
+        BookGridPane.makeGridPaneForHBox(searchBook, 0, Math.min(10, searchBook.size()), Box, 1);
+
+        if (searchBook.size() > 10) {
+            Button viewAllButton = new Button("Xem tất cả");
+            viewAllButton.setStyle("-fx-font-size: 14px; -fx-text-fill: blue;");
+
+            viewAllButton.setOnAction(e -> {
+                try {
+                    showAllBooks(searchBook , search);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+
+            Box.add(viewAllButton, 0, 11);
+        }
+
+        // Thay đổi: Hiển thị searchResultBox mà không gọi toFront()
+        searchResultBox.setVisible(true);
+    }
+
+    private static void showAllBooks(ObservableList<Book> searchBook, TextField search) throws IOException {
+        SceneNavigator.loadSearchResult(search);
     }
 }

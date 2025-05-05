@@ -189,25 +189,7 @@ public class UserManagementController {
                 "-fx-text-fill: green;" : "-fx-text-fill: red;");
     }
 
-    @FXML
-    private void backToMain() {
-        SceneNavigator.backToMain(backToMain);
-    }
 
-    @FXML
-    public void openMyAccount() throws IOException {
-        SceneNavigator.loadView("my-account.fxml",myAccount);
-    }
-
-    public void addNewBook() throws IOException {
-        viewModel.openAddBook();
-        loadView("add-book-view.fxml", addBook);
-    }
-
-    public void goToBookManage() throws IOException {
-        viewModel.openBookManage();
-        loadView("bookmanagement-view.fxml", bookManage);
-    }
 
     @FXML
     private void handleDeleteUser(ActionEvent event) {
@@ -270,20 +252,7 @@ public class UserManagementController {
         }
     }
 
-    public void goToUserManagement() throws IOException {
-        viewModel.openUserManagement();
-        loadView("Usersmanagement-view.fxml", userManagement);
-    }
 
-    public void goToAI() throws IOException {
-        viewModel.openAI();
-        loadView("AI-view.fxml", AI);
-    }
-
-    public void Logout() throws IOException {
-        viewModel.Logout();
-        loadView("login-view.fxml", logout);
-    }
 
     private void filterUsers(String keyword) {
         if (keyword == null || keyword.isEmpty()) {
@@ -315,41 +284,41 @@ public class UserManagementController {
     }
 
     public void Search() throws IOException {
-        String keyWord = search.getText();
-        Box.getChildren().clear();
-        ObservableList<Book> searchBook = SearchFunction.searchFunction(FXCollections.observableArrayList(allBooks), keyWord);
-
-        if (searchBook.isEmpty()) {
-            Label noResultLabel = new Label("Không tìm thấy sách nào");
-            noResultLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: grey;");
-            Box.add(noResultLabel, 0, 0);
-            // Thay đổi: Hiển thị searchResultBox mà không gọi toFront()
-            searchResultBox.setVisible(true);
-            return;
-        }
-
-        BookGridPane.makeGridPaneForHBox(searchBook, 0, Math.min(10, searchBook.size()), Box, 1);
-
-        if (searchBook.size() > 10) {
-            Button viewAllButton = new Button("Xem tất cả");
-            viewAllButton.setStyle("-fx-font-size: 14px; -fx-text-fill: blue;");
-
-            viewAllButton.setOnAction(e -> {
-                try {
-                    showAllBooks(searchBook);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
-
-            Box.add(viewAllButton, 0, 11);
-        }
-
-        // Thay đổi: Hiển thị searchResultBox mà không gọi toFront()
-        searchResultBox.setVisible(true);
+        SearchFunction.Search(search, Box, searchResultBox);
     }
 
-    private void showAllBooks(ObservableList<Book> searchBook) throws IOException {
-        SceneNavigator.loadSearchResult(search);
+    public void goToUserManagement() throws IOException {
+        viewModel.openUserManagement();
+        loadView("Usersmanagement-view.fxml", userManagement);
+    }
+
+    public void goToAI() throws IOException {
+        viewModel.openAI();
+        loadView("AI-view.fxml", AI);
+    }
+
+    public void Logout() throws IOException {
+        viewModel.Logout();
+        loadView("login-view.fxml", logout);
+    }
+
+    @FXML
+    private void backToMain() {
+        SceneNavigator.backToMain(backToMain);
+    }
+
+    @FXML
+    public void openMyAccount() throws IOException {
+        SceneNavigator.loadView("my-account.fxml",myAccount);
+    }
+
+    public void addNewBook() throws IOException {
+        viewModel.openAddBook();
+        loadView("add-book-view.fxml", addBook);
+    }
+
+    public void goToBookManage() throws IOException {
+        viewModel.openBookManage();
+        loadView("bookmanagement-view.fxml", bookManage);
     }
 }

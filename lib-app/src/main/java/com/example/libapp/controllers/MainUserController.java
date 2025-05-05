@@ -128,39 +128,7 @@ public class MainUserController {
     }
 
     public void Search() throws IOException {
-        String keyWord = search.getText();
-        Box.getChildren().clear();
-        ObservableList<Book> searchBook = SearchFunction.searchFunction(FXCollections.observableArrayList(allBooks), keyWord);
-
-        if (searchBook.isEmpty()) {
-            Label noResultLabel = new Label("Không tìm thấy sách nào");
-            noResultLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: grey;");
-            Box.add(noResultLabel, 0, 0);
-            return;
-        }
-
-        BookGridPane.makeGridPaneForHBox(searchBook, 0, Math.min(10, searchBook.size()), Box, 1);
-
-        if (searchBook.size() > 10) {
-            Button viewAllButton = new Button("Xem tất cả");
-            viewAllButton.setStyle("-fx-font-size: 14px; -fx-text-fill: blue;");
-
-            // Xử lý sự kiện khi nhấn vào button
-            viewAllButton.setOnAction(e -> {
-                // Tạo một màn hình mới hoặc hiển thị tất cả các kết quả tìm kiếm
-                try {
-                    showAllBooks(searchBook);  // Hàm để hiển thị tất cả các sách tìm được
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-            });
-
-            Box.add(viewAllButton, 0, 11);
-        }
-    }
-
-    private void showAllBooks(ObservableList<Book> searchBook) throws IOException {
-        SceneNavigator.loadSearchResult(search);
+        SearchFunction.Search(search, Box, searchResultBox);
     }
 
     public void backToMain() {

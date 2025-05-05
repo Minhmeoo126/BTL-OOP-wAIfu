@@ -1,6 +1,7 @@
 package com.example.libapp.utils;
 
 import com.example.libapp.SessionManager;
+import com.example.libapp.controllers.BookInformationController;
 import com.example.libapp.controllers.SearchResultController;
 import com.example.libapp.model.Book;
 import com.example.libapp.model.User;
@@ -13,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class SceneNavigator {
@@ -65,4 +67,5 @@ public class SceneNavigator {
             e.printStackTrace();
         }
     }
+
 }

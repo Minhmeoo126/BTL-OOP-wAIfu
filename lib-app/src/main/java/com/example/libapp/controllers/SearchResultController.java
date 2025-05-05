@@ -7,7 +7,6 @@ import com.example.libapp.utils.SceneNavigator;
 import com.example.libapp.utils.SearchFunction;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -32,8 +31,6 @@ public class SearchResultController {
     }
 
     public void Search() throws IOException {
-
-
         ObservableList<Book> searchTitleBook = SearchFunction.searchTitleFunction(FXCollections.observableArrayList(allBooks), keyword);
 
         ObservableList<Book> searchIDBook = SearchFunction.searchIDFunction(FXCollections.observableArrayList(allBooks), keyword);
@@ -78,12 +75,6 @@ public class SearchResultController {
         this.keyword = keyword;
         Search();
     }
-    public String getSearchKeyword() {
-        return keyword;
-    }
-
-
-
     public void backToMain() {
         SceneNavigator.backToMain(backToMain);
     }

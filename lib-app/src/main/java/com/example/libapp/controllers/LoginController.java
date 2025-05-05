@@ -17,31 +17,15 @@ import java.io.IOException;
 
 public class LoginController {
     @FXML
-    private TextField adminUsername;
+    private TextField adminUsername,userUsername;
     @FXML
-    private PasswordField adminPassword;
+    private PasswordField adminPassword, userPassword;
     @FXML
-    private TextField userUsername;
-    @FXML
-    private PasswordField userPassword;
-    @FXML
-    private Label loginlabel;
-    @FXML
-    private Label userloginlabel;
+    private Label loginlabel, userloginlabel, lblStatus;
     @FXML
     private TabPane tabPaneLogin;
     @FXML
-    private Tab tabAdmin;
-    @FXML
-    private Tab tabUser;
-    @FXML
-    private Label lblAdmin;
-    @FXML
-    private Label lblUser;
-    @FXML
-    private Label lblStatus;
-    @FXML
-    private Pane slidingPane;
+    private Tab tabAdmin, tabUser;
 
     private final LoginViewModel viewModel = new LoginViewModel();
 

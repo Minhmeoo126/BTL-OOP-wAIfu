@@ -70,7 +70,7 @@
                                           </PasswordField>
                                        </children>
                                     </HBox>
-                                    <Button layoutX="63.0" layoutY="167.0" mnemonicParsing="false" onAction="#adminlogin" prefHeight="40.0" prefWidth="250.0" styleClass="Btn_login" stylesheets="@styles.css" text="LOGIN">
+                                    <Button fx:id="loginForAdmin" layoutX="63.0" layoutY="167.0" mnemonicParsing="false" onAction="#adminlogin" prefHeight="40.0" prefWidth="250.0" styleClass="Btn_login" stylesheets="@styles.css" text="LOGIN">
                                        <font>
                                           <Font name="Californian FB Bold" size="24.0" />
                                        </font>
@@ -124,7 +124,7 @@
                                           </PasswordField>
                                        </children>
                                     </HBox>
-                                    <Button layoutX="63.0" layoutY="167.0" mnemonicParsing="false" onAction="#userlogin" prefHeight="40.0" prefWidth="250.0" styleClass="Btn_login" stylesheets="@styles.css" text="LOGIN">
+                                    <Button fx:id="loginForUser" layoutX="63.0" layoutY="167.0" mnemonicParsing="false" onAction="#userlogin" prefHeight="40.0" prefWidth="250.0" styleClass="Btn_login" stylesheets="@styles.css" text="LOGIN">
                                        <font>
                                           <Font name="Californian FB Bold" size="24.0" />
                                        </font>
