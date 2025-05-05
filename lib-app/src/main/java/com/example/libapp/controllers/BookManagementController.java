@@ -309,6 +309,7 @@ public class BookManagementController {
 
     }
 
+    @FXML
     private void backToMain() {
         SceneNavigator.backToMain(backToMain);
     }

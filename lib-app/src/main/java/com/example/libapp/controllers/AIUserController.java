@@ -48,6 +48,7 @@ public class AIUserController {
     public ScrollPane pane;
     @FXML
     public GridPane Box;
+    public ScrollPane chatScroll;
     @FXML
     private TextField promptField;
     @FXML
@@ -237,34 +238,45 @@ public class AIUserController {
                     lineIndex[0]++;
                     charIndex[0] = 0;
                 }
+                Platform.runLater(() -> {
+                    chatScroll.layout();
+                    chatScroll.setVvalue(1.0);
+                });
             }
         }));
 
         timeline.setCycleCount(message.length());
+        timeline.setOnFinished(event -> {
+            // Cuộn xuống dưới sau khi hiệu ứng gõ chữ hoàn tất
+            Platform.runLater(() -> {
+                chatScroll.layout();
+                chatScroll.setVvalue(1.0);
+            });
+        });
         timeline.play();
     }
 
-    // Hàm chia nhỏ tin nhắn thành các dòng, mỗi dòng tối đa maxLength ký tự
-    private List<String> splitMessageIntoLines(String message, int maxLength) {
-        List<String> lines = new ArrayList<>();
-        StringBuilder currentLine = new StringBuilder();
+// Hàm chia nhỏ tin nhắn thành các dòng, mỗi dòng tối đa maxLength ký tự
+private List<String> splitMessageIntoLines(String message, int maxLength) {
+    List<String> lines = new ArrayList<>();
+    StringBuilder currentLine = new StringBuilder();
 
-        for (int i = 0; i < message.length(); i++) {
-            currentLine.append(message.charAt(i));
+    for (int i = 0; i < message.length(); i++) {
+        currentLine.append(message.charAt(i));
 
-            // Nếu đạt đến maxLength, thêm dòng vào danh sách và reset currentLine
-            if (currentLine.length() >= maxLength && (message.charAt(i) == ' ' || i == message.length() - 1)) {
-                lines.add(currentLine.toString().trim());
-                currentLine = new StringBuilder();
-            }
-        }
-
-        // Thêm dòng cuối cùng nếu còn nội dung
-        if (!currentLine.isEmpty()) {
+        // Nếu đạt đến maxLength, thêm dòng vào danh sách và reset currentLine
+        if (currentLine.length() >= maxLength && (message.charAt(i) == ' ' || i == message.length() - 1)) {
             lines.add(currentLine.toString().trim());
+            currentLine = new StringBuilder();
         }
-
-        return lines;
     }
+
+    // Thêm dòng cuối cùng nếu còn nội dung
+    if (!currentLine.isEmpty()) {
+        lines.add(currentLine.toString().trim());
+    }
+
+    return lines;
+}
 }
 
