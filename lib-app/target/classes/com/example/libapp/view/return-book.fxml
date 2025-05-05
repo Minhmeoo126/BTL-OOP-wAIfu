@@ -18,12 +18,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane fx:id="mainPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.ReturnBookController">
    <children>
       <Pane fx:id="searchResultBox" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <ScrollPane fx:id="pane" layoutX="366.0" layoutY="44.0" prefHeight="209.0" prefWidth="416.0">
+            <ScrollPane fx:id="pane" layoutX="366.0" layoutY="44.0" prefHeight="209.0" prefWidth="416.0" styleClass="searchResult_css" stylesheets="@styles.css">
                <content>
                   <GridPane fx:id="Box">
                     <rowConstraints>
@@ -213,7 +212,7 @@
                                  </children>
                               </HBox>
                               <Button layoutX="218.0" layoutY="246.0" mnemonicParsing="false" onAction="#handleReturn" styleClass="Btn_login" text="Return" />
-                              <Label fx:id="messageLabel" layoutX="39.0" layoutY="206.0" prefHeight="29.0" prefWidth="490.0" />
+                              <Label fx:id="messageLabel" alignment="CENTER" layoutX="39.0" layoutY="206.0" prefHeight="29.0" prefWidth="490.0" />
                            </children>
                         </AnchorPane>
                         <Label alignment="CENTER" layoutX="86.0" layoutY="59.0" prefHeight="41.0" prefWidth="177.0" styleClass="rice_message" text="Return my book !!">

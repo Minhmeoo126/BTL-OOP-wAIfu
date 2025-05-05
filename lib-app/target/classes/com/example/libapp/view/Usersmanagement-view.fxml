@@ -24,7 +24,7 @@
    <children>
       <Pane fx:id="searchResultBox" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <ScrollPane fx:id="pane" layoutX="364.0" layoutY="46.0" prefHeight="199.0" prefWidth="418.0">
+            <ScrollPane fx:id="pane" layoutX="364.0" layoutY="46.0" prefHeight="199.0" prefWidth="418.0" styleClass="searchResult_css" stylesheets="@styles.css">
                <content>
                   <GridPane fx:id="Box">
                     <rowConstraints>
