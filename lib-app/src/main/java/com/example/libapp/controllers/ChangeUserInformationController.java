@@ -5,6 +5,7 @@ import com.example.libapp.model.User;
 import com.example.libapp.persistence.UserDAO;
 import com.example.libapp.utils.SceneNavigator;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -15,18 +16,14 @@ import java.sql.SQLException;
 import static com.example.libapp.utils.SceneNavigator.loadView;
 
 public class ChangeUserInformationController {
+    @FXML
+    public Label UserName, messageLabel;
+    @FXML
+    public TextField NameAccount, PassWord, Email, FullName;
+    @FXML
+    public Button SaveUserInformation, myAccount, backToMain, logout;
 
-    public Label UserName;
-    public TextField NameAccount;
-    public TextField PassWord;
-    public TextField Email;
-    public TextField FullName;
-    public Button SaveUserInformation;
-    public Button myAccount;
-    public Button backToUserManagement;
-    public Button logout;
     private final UserDAO userDAO = new UserDAO();
-    public Label messageLabel;
 
     public void initialize(){
         User currentUser = SessionManager.getInstance().getLoggedInUser();
@@ -39,18 +36,6 @@ public class ChangeUserInformationController {
             Email.setText(currentUser.getEmail());
             FullName.setText(currentUser.getFullName());
         }
-    }
-
-    public void openMyAccount() throws IOException {
-        loadView("UserInformation-view.fxml" , myAccount);
-    }
-
-    public void backToUserManagement(ActionEvent event) {
-        SceneNavigator.backToMain(myAccount);
-    }
-
-    public void Logout() throws IOException {
-        loadView("login-view.fxml" , logout);
     }
 
     public void Save() throws SQLException {
@@ -101,5 +86,16 @@ public class ChangeUserInformationController {
                 }
             }
         }
+    }
+    public void openMyAccount() throws IOException {
+        loadView("UserInformation-view.fxml" , myAccount);
+    }
+
+    public void backToMain() {
+        SceneNavigator.backToMain(backToMain);
+    }
+
+    public void Logout() throws IOException {
+        loadView("login-view.fxml" , logout);
     }
 }

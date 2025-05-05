@@ -46,10 +46,8 @@ public class ReturnBookController {
     public ScrollPane pane;
     @FXML
     public GridPane Box;
-    @FXML
+
     private final ReturnBookViewModel viewModel = new ReturnBookViewModel();
-    private final BookDAO bookDAO = new BookDAO();
-    private final List<Book> allBooks = bookDAO.getAllBooks();
 
     @FXML
     public void initialize() {
@@ -121,26 +119,8 @@ public class ReturnBookController {
                 "-fx-text-fill: green;" : "-fx-text-fill: red;");
     }
 
-    public void openMyAccount(ActionEvent event) {
-        try {
-            User currentUser = SessionManager.getInstance().getLoggedInUser();
-            String role = currentUser.getRole();
-            if (role.equals("ADMIN")) {
-                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/my-account.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) myAccount.getScene().getWindow();
-                stage.setScene(new Scene(root, 1100, 600));
-                stage.show();
-            } else {
-                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/User-my-account-view.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) myAccount.getScene().getWindow();
-                stage.setScene(new Scene(root, 1100, 600));
-                stage.show();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void openMyAccount() throws IOException {
+        loadView("User-my-account-view.fxml" , myAccount);
     }
 
     public void openReturnBook() throws IOException {
@@ -153,26 +133,8 @@ public class ReturnBookController {
         loadView("borrow-book.fxml", borrowBooks);
     }
 
-    public void openAI(ActionEvent event) {
-        try {
-            User currentUser = SessionManager.getInstance().getLoggedInUser();
-            String role = currentUser.getRole();
-            if (role.equals("ADMIN")) {
-                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/AI-view.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) AI.getScene().getWindow();
-                stage.setScene(new Scene(root, 1100, 600));
-                stage.show();
-            } else {
-                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/User-Ai-view.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) AI.getScene().getWindow();
-                stage.setScene(new Scene(root, 1100, 600));
-                stage.show();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void openAI() throws IOException {
+        loadView("User-Ai-view.fxml" ,AI);
     }
 
     public void Logout() throws IOException {

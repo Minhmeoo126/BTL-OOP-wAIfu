@@ -205,39 +205,39 @@ public class BookManagementController {
         UserName.setText(currentUser != null ? currentUser.getUsername() : "khong co nguoi dung");
     }
 
-    @FXML
-    private void backToMain() {
-        SceneNavigator.backToMain(backToMain);
+    private void loadBook() {
+        BookDAO bookDao = new BookDAO();
+        books.setAll(bookDao.getAllBooks());
+        bookTable.setItems(books);
     }
 
-    public void openMyAccount(ActionEvent event) throws IOException {
-        viewModel.openMyAccount();
-        loadView("my-account.fxml", myAccount);
-    }
+    private void addViewChangeColumn() {
+        changeBookInformationColumn.setCellFactory(param -> new TableCell<>() {
+            private final Button viewBtn = new Button("View");
 
-    public void addNewBook(ActionEvent event) throws IOException {
-        viewModel.openAddBook();
-        loadView("add-book-view.fxml", addBook);
-    }
+            {
+                viewBtn.setStyle("-fx-cursor: hand;");
+                viewBtn.setOnAction(event -> {
+                    Book book = getTableView().getItems().get(getIndex());
+                    if (book != null) {
+                        openBookInformation(book);
+                    } else {
+                        System.out.println("khong co sach duoc chon");
+                    }
+                });
+            }
 
-    public void goToBookManage() throws IOException {
-        viewModel.openBookManage();
-        loadView("bookmanagement-view.fxml", bookManage);
-    }
-
-    public void goToUserManagement() throws IOException {
-        viewModel.openUserManage();
-        loadView("Usersmanagement-view.fxml", userManagement);
-    }
-
-    public void goToAI() throws IOException {
-        viewModel.openAI();
-        loadView("AI-view.fxml", AI);
-    }
-
-    public void Logout() throws IOException {
-        viewModel.logout();
-        loadView("login-view.fxml", logout);
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    HBox box = new HBox(5, viewBtn);
+                    setGraphic(box);
+                }
+            }
+        });
     }
 
     @FXML
@@ -291,45 +291,14 @@ public class BookManagementController {
         SearchFunction.Search(search,Box,searchResultBox);
     }
 
-    private void addViewChangeColumn() {
-        changeBookInformationColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button viewBtn = new Button("View");
-
-            {
-                viewBtn.setStyle("-fx-cursor: hand;");
-                viewBtn.setOnAction(event -> {
-                    Book book = getTableView().getItems().get(getIndex());
-                    if (book != null) {
-                        openBookInformation(book);
-                    } else {
-                        System.out.println("khong co sach duoc chon");
-                    }
-                });
-            }
-
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    HBox box = new HBox(5, viewBtn);
-                    setGraphic(box);
-                }
-            }
-        });
-    }
-
     public void openBookInformation(Book book) {
         try {
-            System.out.println("sach duoc chon la" + book.getTitle());
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/changeBookInformation-view.fxml"));
             Parent root = loader.load();
-            System.out.println("sach duoc chon la  " + book.getTitle());
+
             ChangeBookInformationController controller = loader.getController();
             controller.setBook(book);
-
 
             Stage stage = (Stage) myAccount.getScene().getWindow();
             stage.setScene(new Scene(root));
@@ -340,9 +309,38 @@ public class BookManagementController {
 
     }
 
-    private void loadBook() {
-        BookDAO bookDao = new BookDAO();
-        books.setAll(bookDao.getAllBooks());
-        bookTable.setItems(books);
+    private void backToMain() {
+        SceneNavigator.backToMain(backToMain);
     }
+
+    public void openMyAccount(ActionEvent event) throws IOException {
+        viewModel.openMyAccount();
+        loadView("my-account.fxml", myAccount);
+    }
+
+    public void addNewBook(ActionEvent event) throws IOException {
+        viewModel.openAddBook();
+        loadView("add-book-view.fxml", addBook);
+    }
+
+    public void goToBookManage() throws IOException {
+        viewModel.openBookManage();
+        loadView("bookmanagement-view.fxml", bookManage);
+    }
+
+    public void goToUserManagement() throws IOException {
+        viewModel.openUserManage();
+        loadView("Usersmanagement-view.fxml", userManagement);
+    }
+
+    public void goToAI() throws IOException {
+        viewModel.openAI();
+        loadView("AI-view.fxml", AI);
+    }
+
+    public void Logout() throws IOException {
+        viewModel.logout();
+        loadView("login-view.fxml", logout);
+    }
+
 }

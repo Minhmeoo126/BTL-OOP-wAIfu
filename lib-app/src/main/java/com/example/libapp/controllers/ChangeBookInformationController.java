@@ -40,11 +40,14 @@ public class ChangeBookInformationController {
     private Book book;
     private final AuthorDAO authorDAO = new AuthorDAO();
     private final CategoryDAO categoryDAO = new CategoryDAO();
+    private User currentUser = SessionManager.getInstance().getLoggedInUser();
 
     public void initialize() {
+        UserName.setText(currentUser.getUsername());
         if (book == null) {
             return;
         } else {
+
             image.setImage(LoadImage.loadImage(book));
             thumbnail.setText(book.getThumbnail());
             AuthorName.setText(book.getAuthorName());

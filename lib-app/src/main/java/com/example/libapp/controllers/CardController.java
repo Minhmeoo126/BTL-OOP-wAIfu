@@ -42,7 +42,6 @@ public class CardController {
         AuthorName.setText(newBook.getAuthorName());
     }
 
-
     public void goToBookView() throws IOException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/libapp/view/book-view.fxml"));

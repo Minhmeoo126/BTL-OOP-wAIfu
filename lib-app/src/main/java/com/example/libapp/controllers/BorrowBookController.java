@@ -131,26 +131,8 @@ public class BorrowBookController {
         }
     }
 
-    public void openMyAccount() {
-        try {
-            User currentUser = SessionManager.getInstance().getLoggedInUser();
-            String role = currentUser.getRole();
-            if (role.equals("ADMIN")) {
-                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/my-account.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) myAccount.getScene().getWindow();
-                stage.setScene(new Scene(root, 1100, 600));
-                stage.show();
-            } else {
-                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/User-my-account-view.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) myAccount.getScene().getWindow();
-                stage.setScene(new Scene(root, 1100, 600));
-                stage.show();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void openMyAccount() throws IOException {
+        loadView("User-my-account-view.fxml" ,myAccount);
     }
 
     public void openReturnBook() throws IOException {
@@ -163,26 +145,8 @@ public class BorrowBookController {
         loadView("borrow-book.fxml", borrowBooks);
     }
 
-    public void openAI() {
-        try {
-            User currentUser = SessionManager.getInstance().getLoggedInUser();
-            String role = currentUser.getRole();
-            if (role.equals("ADMIN")) {
-                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/AI-view.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) AI.getScene().getWindow();
-                stage.setScene(new Scene(root, 1100, 600));
-                stage.show();
-            } else {
-                FXMLLoader loader = new FXMLLoader(SceneNavigator.class.getResource("/com/example/libapp/view/User-Ai-view.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) AI.getScene().getWindow();
-                stage.setScene(new Scene(root, 1100, 600));
-                stage.show();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void openAI() throws IOException {
+        loadView("User-Ai-view.fxml" , AI);
     }
 
     public void Logout() throws IOException {

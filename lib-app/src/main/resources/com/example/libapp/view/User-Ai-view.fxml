@@ -17,7 +17,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane fx:id="mainPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.AIUserController">
    <children>
       <Pane fx:id="searchResultBox" prefHeight="200.0" prefWidth="200.0">
@@ -161,7 +160,7 @@
                                               <Font name="Gill Sans MT Bold" size="16.0" />
                                           </font>
                                       </Label>
-                                      <ImageView fitHeight="28.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                      <ImageView fx:id="userImage" fitHeight="28.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                           <image>
                                               <Image url="@../image/user.png" />
                                           </image>

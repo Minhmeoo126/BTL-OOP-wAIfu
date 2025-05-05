@@ -56,8 +56,6 @@ public class AIUserController {
     private AIService aiService;
 
     private final MainViewModel viewModel = new MainViewModel();
-    private final BookDAO bookDAO = new BookDAO();
-    private final List<Book> allBooks = bookDAO.getAllBooks();
 
     public void initialize() {
         pane.setMaxWidth(400);

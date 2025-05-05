@@ -18,8 +18,6 @@ import java.io.IOException;
 
 public class BorrowingHistoryController {
     @FXML
-    private Button backToMain;
-    @FXML
     private TableView<BorrowingRecord> historyTable;
     @FXML
     private TableColumn<BorrowingRecord, Integer> bookIdColumn;
@@ -45,10 +43,5 @@ public class BorrowingHistoryController {
         historyTable.setItems(viewModel.getRecords());
         viewModel.setLoggedInUser(SessionManager.getInstance().getLoggedInUser());
         viewModel.loadHistory();
-    }
-
-    @FXML
-    private void backToMain() {
-        SceneNavigator.backToMain(backToMain);
     }
 }

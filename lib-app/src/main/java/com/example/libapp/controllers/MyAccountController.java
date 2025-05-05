@@ -134,27 +134,17 @@ public class MyAccountController {
         loadBorrowHistory();
     }
 
+    public void setUser(User user) {
+        this.user = user;
+        initialize();
+    }
+
     private void loadBorrowHistory() {
         viewModel.loadHistory(user);
         BorrowHistoryTable.setItems(viewModel.getRecords());
         BorrowedBooks.setText("Borrowed: " + viewModel.getRecords().stream()
                 .filter(record -> record.getReturnDate() == null || record.getReturnDate().isEmpty())
                 .count() + "");
-    }
-
-    public void addNewBook() throws IOException {
-        viewModel.openAddBook();
-        loadView("add-book-view.fxml", addBook);
-    }
-
-    public void goToBookManage(ActionEvent event) throws IOException {
-        viewModel.openBookMangagement();
-        loadView("bookmanagement-view.fxml", bookManage);
-    }
-
-    public void goToUserManagement() throws IOException {
-        viewModel.openUserManagement();
-        loadView("Usersmanagement-view.fxml", userManagement);
     }
 
     public void openMyAccount() {
@@ -198,36 +188,7 @@ public class MyAccountController {
         }
     }
 
-    public void Logout() throws IOException {
-        SessionManager.getInstance().clearSession();
-        loadView("login-view.fxml", logout);
-    }
 
-    @FXML
-    public void closeAccountWindow() {
-        SessionManager.getInstance().clearSession();
-        Stage stage = (Stage) myAccount.getScene().getWindow();
-        stage.close();
-    }
-
-    public void backToMain() {
-        SceneNavigator.backToMain(backToMain);
-    }
-
-    public void openReturnBook() throws IOException {
-        viewModel.openReturnBook();
-        loadView("return-book.fxml", returnBook);
-    }
-
-    public void openBorrowBook() throws IOException {
-        viewModel.openBorrowBook();
-        loadView("borrow-book.fxml", borrowBooks);
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-        initialize();
-    }
 
     @FXML
     public void returnSelectedBook() {
@@ -287,4 +248,40 @@ public class MyAccountController {
     public void Search() throws IOException {
         SearchFunction.Search(search,Box,searchResultBox);
     }
+
+    public void addNewBook() throws IOException {
+        viewModel.openAddBook();
+        loadView("add-book-view.fxml", addBook);
+    }
+
+    public void goToBookManage(ActionEvent event) throws IOException {
+        viewModel.openBookMangagement();
+        loadView("bookmanagement-view.fxml", bookManage);
+    }
+
+    public void goToUserManagement() throws IOException {
+        viewModel.openUserManagement();
+        loadView("Usersmanagement-view.fxml", userManagement);
+    }
+
+    public void Logout() throws IOException {
+        SessionManager.getInstance().clearSession();
+        loadView("login-view.fxml", logout);
+    }
+
+    public void backToMain() {
+        SceneNavigator.backToMain(backToMain);
+    }
+
+    public void openReturnBook() throws IOException {
+        viewModel.openReturnBook();
+        loadView("return-book.fxml", returnBook);
+    }
+
+    public void openBorrowBook() throws IOException {
+        viewModel.openBorrowBook();
+        loadView("borrow-book.fxml", borrowBooks);
+    }
+
+
 }

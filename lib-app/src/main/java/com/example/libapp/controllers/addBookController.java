@@ -52,7 +52,6 @@ public class addBookController {
     public StackPane mainPane;
 
     private final BookDAO bookDAO = new BookDAO();
-    private final List<Book> allBooks = bookDAO.getAllBooks();
     private final MainViewModel viewModel = new MainViewModel();
 
     public void initialize() {

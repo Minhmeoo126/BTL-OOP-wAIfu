@@ -19,24 +19,13 @@ import java.io.File;
 
 public class BookInformationController {
     @FXML
-    public Label BookName;
-    @FXML
-    public Label AuthorName;
-    @FXML
-    public Label description;
-    @FXML
-    public Label bookAvailable;
+    public Label BookName, AuthorName, description, bookAvailable, messagelabel, categoryName;
     @FXML
     public ImageView bookImage;
     @FXML
     public Button backToMain;
-    @FXML
-    private Label messagelabel;
-    @FXML
-    private Book selectedBook;
-    @FXML
-    private Label categoryName;
 
+    private Book selectedBook;
     private final BorrowBookViewModel viewModel = new BorrowBookViewModel();
 
     @FXML
