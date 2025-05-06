@@ -18,7 +18,7 @@ public class UserDAO {
 
     public boolean isUsernameTaken(String username) {
         User currentUser = SessionManager.getInstance().getLoggedInUser();
-        if(username.equals(currentUser.getUsername())){
+        if(currentUser != null && username.equals(currentUser.getUsername())){
             return false;
         }
         try (Connection conn = DatabaseConnection.connect();
@@ -35,7 +35,7 @@ public class UserDAO {
 
     public boolean isEmailTaken(String email) {
         User currentUser = SessionManager.getInstance().getLoggedInUser();
-        if(email.equals(currentUser.getEmail())){
+        if(currentUser != null && email.equals(currentUser.getEmail())){
             return false;
         }
         try (Connection conn = DatabaseConnection.connect();
