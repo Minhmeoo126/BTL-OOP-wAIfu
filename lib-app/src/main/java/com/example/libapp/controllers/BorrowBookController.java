@@ -8,6 +8,7 @@ import com.example.libapp.utils.SearchFunction;
 import com.example.libapp.viewmodel.BorrowBookViewModel;
 import com.example.libapp.SessionManager;
 import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -160,5 +161,40 @@ public class BorrowBookController {
 
     public void Search() throws IOException {
         SearchFunction.Search(search,Box,searchResultBox);
+    }
+
+    @FXML
+    public void scanAndBorrowISBN(ActionEvent event) {
+        // Cập nhật UI: đang quét
+        viewModel.messageProperty().set("Đang quét ISBN từ webcam...");
+
+        Thread cameraThread = new Thread(() -> {
+            String scannedIsbn = com.example.libapp.api.ISBNScannerWindow.launchAndScan();
+
+            Platform.runLater(() -> {
+                if (scannedIsbn != null && !scannedIsbn.isEmpty()) {
+                    bookIdField.setText(scannedIsbn); // Cập nhật vào TextField
+
+                    // Gọi ViewModel xử lý mượn
+                    viewModel.borrowBookByISBN(scannedIsbn);
+
+                    // Cập nhật UI theo kết quả
+                    String msg = viewModel.messageProperty().get();
+                    boolean success = msg.contains("successfully");
+
+                    messageLabel.setText(msg);
+                    messageLabel.setStyle(success ? "-fx-text-fill: green;" : "-fx-text-fill: red;");
+                    imageBorrow.setVisible(success);
+                    defaultImage.setVisible(!success);
+                    label.setText(success ? "Hãy tận hưởng cuốn sách nhé!" : "");
+                } else {
+                    viewModel.messageProperty().set("Không quét được mã ISBN.");
+                    messageLabel.setStyle("-fx-text-fill: red;");
+                }
+            });
+        });
+
+        cameraThread.setDaemon(true);
+        cameraThread.start();
     }
 }

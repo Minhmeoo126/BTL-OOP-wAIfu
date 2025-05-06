@@ -1,6 +1,7 @@
 module com.example.libapp {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.swing;
     requires java.sql;
 
     requires org.controlsfx.controls;
@@ -10,6 +11,12 @@ module com.example.libapp {
     requires java.net.http;
     requires com.fasterxml.jackson.databind;
     requires java.desktop;
+
+    requires com.google.zxing;
+    requires com.google.zxing.javase;
+
+    requires opencv;
+
 
     opens com.example.libapp to javafx.fxml;
     exports com.example.libapp;
