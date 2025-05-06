@@ -37,14 +37,14 @@ public class BookInformationController {
     public void loadBookData(Book selectedBook) {
         this.selectedBook = selectedBook;
         if (selectedBook == null) {
-            System.err.println("chua co sach duoc chon");
+            System.err.println(" Select your book, please!!");
         } else {
             BookName.setText(selectedBook.getTitle());
             AuthorName.setText(selectedBook.getAuthorName());
             categoryName.setText(selectedBook.getCategoryName());
             bookAvailable.setText("Số lượng sách còn lại là: " + selectedBook.getAvailableCopies());
             if (selectedBook.getDescription() == null) {
-                description.setText("ko co description");
+                description.setText(" No Description");
             } else {
                 description.setText(selectedBook.getDescription());
             }

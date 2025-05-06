@@ -110,7 +110,7 @@ public class BorrowBookController {
         if (currentUser != null) {
             UserName.setText(currentUser.getUsername());
         } else {
-            UserName.setText("khong co nguoi dung");
+            UserName.setText("User not found !!");
         }
     }
 
@@ -127,7 +127,7 @@ public class BorrowBookController {
         if (viewModel.messageProperty().get().contains("successfully")) {
             defaultImage.setVisible(false);
             imageBorrow.setVisible(true);
-            label.setText("Hay tan huong cuon sach nhe");
+            label.setText("Enjoying my books, my master!!");
         }
     }
 

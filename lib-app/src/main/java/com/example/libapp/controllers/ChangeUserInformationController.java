@@ -28,7 +28,7 @@ public class ChangeUserInformationController {
     public void initialize(){
         User currentUser = SessionManager.getInstance().getLoggedInUser();
         if(currentUser == null){
-            UserName.setText("khong co ng dung");
+            UserName.setText("User not found!!");
         } else{
             UserName.setText(currentUser.getUsername());
             NameAccount.setText(currentUser.getUsername());

@@ -228,7 +228,7 @@ public class MyAccountController {
                 stage.setScene(new Scene(root, 1100, 600));
                 stage.show();
             } else {
-                System.out.println("Không có người dùng đăng nhập!");
+                System.out.println("User login not found!!");
             }
         } catch (IOException e) {
             e.printStackTrace();

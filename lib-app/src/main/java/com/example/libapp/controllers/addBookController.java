@@ -106,7 +106,7 @@ public class addBookController {
         if (currentUser != null) {
             UserName.setText(currentUser.getUsername());
         } else {
-            UserName.setText("khong co nguoi dung");
+            UserName.setText("User not found!!");
         }
     }
 

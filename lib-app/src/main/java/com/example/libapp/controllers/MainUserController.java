@@ -107,7 +107,7 @@ public class MainUserController {
         if (currentUser != null) {
             UserName.setText(currentUser.getUsername());
         } else {
-            UserName.setText("khong co nguoi dung");
+            UserName.setText("User not found!!");
         }
 
         //tinh toan so trang va hien thi cac quyen sach thanh cac trang

@@ -102,7 +102,7 @@ public class ReturnBookController {
         if (currentUser != null) {
             UserName.setText(currentUser.getUsername());
         } else {
-            UserName.setText("khong co nguoi dung");
+            UserName.setText("User not found!!");
         }
         messageLabel.textProperty().bind(viewModel.messageProperty());
         viewModel.setLoggedInUser(SessionManager.getInstance().getLoggedInUser());
