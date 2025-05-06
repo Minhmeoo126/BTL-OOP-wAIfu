@@ -29,12 +29,13 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import static com.example.libapp.utils.SceneNavigator.loadView;
 
 public class AIController {
 
     @FXML
-    public Button AI,myAccount,addBook,bookManage,userManagement,logout,backToMain,sendButton;
+    public Button AI, myAccount, addBook, bookManage, userManagement, logout, backToMain, sendButton;
     @FXML
     public Label UserName;
     @FXML
@@ -57,6 +58,13 @@ public class AIController {
     private final MainViewModel viewModel = new MainViewModel();
 
     public void initialize() {
+        Platform.runLater(() -> {
+            String defaultMessage =
+                    "🌙 Chào mừng đến với thư viện Waifu... Tôi là Castorice — người giữ những câu chuyện đã ngủ quên trong tĩnh lặng. "
+                            + "📖 Trong từng trang sách, có thể bạn sẽ tìm thấy một điều đã đánh rơi: một ký ức, một cảm xúc, hay một giấc mơ chưa nói thành lời. "
+                            + "🦋 Nếu bạn muốn... tôi sẽ cùng bạn mở ra thế giới ấy, từng chút một.";
+            addMessageWithTypingEffect(defaultMessage, true);  // true để AI là người gửi
+        });
         pane.setMaxWidth(400);
         pane.setMaxHeight(400);
         searchResultBox.setVisible(false);
@@ -150,11 +158,11 @@ public class AIController {
     }
 
     public void goToAI() throws IOException {
-        loadView("AI-view.fxml" ,AI);
+        loadView("AI-view.fxml", AI);
     }
 
     public void Search() throws IOException {
-        SearchFunction.Search(search,Box,searchResultBox);
+        SearchFunction.Search(search, Box, searchResultBox);
     }
 
     @FXML
@@ -179,6 +187,7 @@ public class AIController {
         for (String line : messageLines) {
             Label label = new Label();
             label.setFont(Font.font("Arial", 18));
+            label.setWrapText(true);
             messageLabels.add(label);
         }
 
@@ -198,10 +207,10 @@ public class AIController {
 
         HBox messageBox;
         if (isAI) {
-            messageBox = new HBox(10, avatar, textContainer);
+            messageBox = new HBox(15, avatar, textContainer);
             messageBox.setAlignment(Pos.CENTER_LEFT);
         } else {
-            messageBox = new HBox(10, textContainer, avatar);
+            messageBox = new HBox(15, textContainer, avatar);
             messageBox.setAlignment(Pos.CENTER_RIGHT);
         }
         messageBox.setPadding(new Insets(10));
@@ -225,10 +234,6 @@ public class AIController {
                     lineIndex[0]++;
                     charIndex[0] = 0;
                 }
-                Platform.runLater(() -> {
-                    chatScroll.layout();
-                    chatScroll.setVvalue(1.0);
-                });
             }
         }));
 
