@@ -235,6 +235,7 @@
                               <Image url="@../image/16ac61de561d1c3bf1d3a8be5e89a606-removebg-preview.png" />
                            </image>
                         </ImageView>
+                        <Button layoutX="169.0" layoutY="457.0" mnemonicParsing="false" onAction="#scanAndReturnISBN" text="Scan ISBN" />
                      </children>
                   </Pane>
                   </children>

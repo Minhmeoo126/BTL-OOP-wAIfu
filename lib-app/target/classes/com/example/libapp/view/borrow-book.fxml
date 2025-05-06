@@ -178,7 +178,7 @@
                       </HBox>
                   <Pane prefHeight="549.0" prefWidth="1013.0">
                      <children>
-                        <ImageView fx:id="defaultImage" fitHeight="414.0" fitWidth="326.0" layoutX="701.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="defaultImage" fitHeight="414.0" fitWidth="326.0" layoutX="742.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../image/Borrow%20(2).png" />
                            </image>
@@ -211,7 +211,7 @@
                                     <TextField fx:id="bookNameField" alignment="CENTER" prefHeight="32.0" prefWidth="378.0" styleClass="search-container" />
                                  </children>
                               </HBox>
-                              <Button layoutX="218.0" layoutY="246.0" mnemonicParsing="false" onAction="#handleBorrow" styleClass="Btn_login" text="Borrow" />
+                              <Button layoutX="178.0" layoutY="245.0" mnemonicParsing="false" onAction="#handleBorrow" styleClass="Btn_login" text="Borrow" />
                               <Label fx:id="messageLabel" alignment="CENTER" layoutX="39.0" layoutY="206.0" prefHeight="29.0" prefWidth="490.0" />
                            </children>
                         </AnchorPane>
@@ -220,12 +220,27 @@
                               <Font name="Californian FB" size="19.0" />
                            </font>
                         </Label>
-                        <ImageView fx:id="imageBorrow" fitHeight="355.0" fitWidth="419.0" layoutX="633.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                        <ImageView fx:id="imageBorrow" fitHeight="355.0" fitWidth="419.0" layoutX="762.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" visible="false">
                            <image>
-                              <Image url="@../image/CasAndDragon.png" />
+                              <Image url="@../image/c5c3bbbdef921fc0e5b4c37bb49d4689-removebg-preview.png" />
                            </image>
                         </ImageView>
-                        <Button layoutX="45.0" layoutY="37.0" mnemonicParsing="false" onAction="#scanAndBorrowISBN" text="Scan ISBN" />
+                        <Button layoutX="593.0" layoutY="45.0" mnemonicParsing="false" onAction="#scanAndBorrowISBN" text="Scan ISBN" />
+                        <ImageView fitHeight="234.0" fitWidth="246.0" layoutX="45.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/7ef2aea833230d9893e5effea68c2c06-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="258.0" fitWidth="220.0" layoutX="523.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/e5c9a131c65f18e8ee81d1acfeb34d83-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="230.0" fitWidth="162.0" layoutX="32.0" layoutY="-45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/1f4269c052098855452d7ce2be81387c-removebg-preview%20(1).png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </Pane>
                   </children>
