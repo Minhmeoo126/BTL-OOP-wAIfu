@@ -57,7 +57,7 @@ public class ChangeBookInformationController {
         }
     }
 
-    public void goToBookManagement(ActionEvent event) throws IOException {
+    public void goToBookManagement() throws IOException {
         loadView("bookmanagement-view.fxml", backToBookManagement);
     }
 
