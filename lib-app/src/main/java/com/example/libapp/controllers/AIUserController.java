@@ -59,6 +59,13 @@ public class AIUserController {
     private final MainViewModel viewModel = new MainViewModel();
 
     public void initialize() {
+        Platform.runLater(() -> {
+            String defaultMessage =
+                    "🌙 Chào mừng đến với thư viện Waifu... Tôi là Castorice — người giữ những câu chuyện đã ngủ quên trong tĩnh lặng. "
+                            + "📖 Trong từng trang sách, có thể bạn sẽ tìm thấy một điều đã đánh rơi: một ký ức, một cảm xúc, hay một giấc mơ chưa nói thành lời. "
+                            + "🦋 Nếu bạn muốn... tôi sẽ cùng bạn mở ra thế giới ấy, từng chút một.";
+            addMessageWithTypingEffect(defaultMessage, true);  // true để AI là người gửi
+        });
         pane.setMaxWidth(400);
         pane.setMaxHeight(400);
         searchResultBox.setVisible(false);
