@@ -18,12 +18,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane fx:id="mainPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.BorrowBookController">
    <children>
       <Pane fx:id="searchResultBox" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <ScrollPane fx:id="pane" layoutX="366.0" layoutY="43.0" prefHeight="258.0" prefWidth="416.0">
+            <ScrollPane fx:id="pane" layoutX="366.0" layoutY="43.0" prefHeight="258.0" prefWidth="416.0" styleClass="searchResult_css" stylesheets="@styles.css">
                <content>
                   <GridPane fx:id="Box">
                     <rowConstraints>
