@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.regex.Pattern;
 
 import static com.example.libapp.utils.SceneNavigator.loadView;
 
@@ -24,12 +25,14 @@ public class ChangeUserInformationController {
     public Button SaveUserInformation, myAccount, backToMain, logout;
 
     private final UserDAO userDAO = new UserDAO();
+    private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+    private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
 
-    public void initialize(){
+    public void initialize() {
         User currentUser = SessionManager.getInstance().getLoggedInUser();
-        if(currentUser == null){
+        if (currentUser == null) {
             UserName.setText("khong co ng dung");
-        } else{
+        } else {
             UserName.setText(currentUser.getUsername());
             NameAccount.setText(currentUser.getUsername());
             PassWord.setText(currentUser.getPassword());
@@ -40,34 +43,32 @@ public class ChangeUserInformationController {
 
     public void Save() throws SQLException {
         User currentUser = SessionManager.getInstance().getLoggedInUser();
-        if(currentUser != null) {
+        if (currentUser != null) {
             String newNameAccount = NameAccount.getText().trim();
             String newPassWord = PassWord.getText().trim();
             String newEmail = Email.getText().trim();
             String newFullName = FullName.getText().trim();
-            if(NameAccount.getText().isEmpty()){
-                newNameAccount = currentUser.getUsername();
-            }
-            if(PassWord.getText().isEmpty()){
-                newPassWord = currentUser.getPassword();
-            }
-            if(Email.getText().isEmpty()){
-                newEmail = currentUser.getEmail();
-            }
-            if(FullName.getText().isEmpty()){
-                newFullName = currentUser.getFullName();
+            if(NameAccount.getText().isEmpty() || PassWord.getText().isEmpty() || Email.getText().isEmpty() || FullName.getText().isEmpty()){
+                messageLabel.setText("Xin vui lòng nhập đầy đủ thông tin");
+                messageLabel.setStyle("-fx-text-fill: red;");
+                return;
             }
 
             // check va update thong tin nguoi dung
-            if(userDAO.isUsernameTaken(newNameAccount)){
-                messageLabel.setText("ten nguoi dung da ton tai");
+            if (userDAO.isUsernameTaken(newNameAccount)) {
+                messageLabel.setText("Tên người dùng đã tồn tại");
+                messageLabel.setStyle("-fx-text-fill: red;");
 
-            } else if(userDAO.isEmailTaken(newEmail)){
-                messageLabel.setText("email da ton tai");
+            } else if (!isValidEmail(newEmail)) {
+                messageLabel.setText("Sai định dạng email");
+                messageLabel.setStyle("-fx-text-fill: red;");
 
-            } else{
-                boolean isUpdate = UserDAO.updateUserInfo(userDAO.getUserIdByName(currentUser.getUsername()),newNameAccount,newPassWord,newEmail,newFullName,messageLabel);
-                if(isUpdate){
+            } else if (userDAO.isEmailTaken(newEmail)) {
+                messageLabel.setText("Email đã tồn tại");
+                messageLabel.setStyle("-fx-text-fill: red;");
+            } else {
+                boolean isUpdate = UserDAO.updateUserInfo(userDAO.getUserIdByName(currentUser.getUsername()), newNameAccount, newPassWord, newEmail, newFullName, messageLabel);
+                if (isUpdate) {
                     User updatedUser = new User();
                     updatedUser.setId(currentUser.getId());
                     updatedUser.setUsername(newNameAccount);
@@ -81,14 +82,18 @@ public class ChangeUserInformationController {
                     UserName.setText(updatedUser.getUsername());
 
                     messageLabel.setText("Cập nhật thông tin thành công.");
+                    messageLabel.setStyle("-fx-text-fill: green;");
+
                 } else {
                     messageLabel.setText("Cập nhật thất bại.");
+                    messageLabel.setStyle("-fx-text-fill: red;");
                 }
             }
         }
     }
+
     public void openMyAccount() throws IOException {
-        loadView("UserInformation-view.fxml" , myAccount);
+        loadView("UserInformation-view.fxml", myAccount);
     }
 
     public void backToMain() {
@@ -96,6 +101,13 @@ public class ChangeUserInformationController {
     }
 
     public void Logout() throws IOException {
-        loadView("login-view.fxml" , logout);
+        loadView("login-view.fxml", logout);
+    }
+
+    private boolean isValidEmail(String email) {
+        if (email == null || email.trim().isEmpty()) {
+            return false;
+        }
+        return EMAIL_PATTERN.matcher(email.trim()).matches();
     }
 }

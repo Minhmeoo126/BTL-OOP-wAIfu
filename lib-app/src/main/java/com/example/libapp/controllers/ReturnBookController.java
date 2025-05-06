@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -49,6 +50,8 @@ public class ReturnBookController {
     public GridPane Box;
 
     private final ReturnBookViewModel viewModel = new ReturnBookViewModel();
+    public ImageView defautImage;
+    public ImageView returnImage;
 
     @FXML
     public void initialize() {
@@ -118,6 +121,11 @@ public class ReturnBookController {
         }
         messageLabel.setStyle(viewModel.messageProperty().get().contains("successfully") ?
                 "-fx-text-fill: green;" : "-fx-text-fill: red;");
+        if (viewModel.messageProperty().get().contains("successfully")) {
+            defautImage.setVisible(false);
+            returnImage.setVisible(true);
+            messageLabel.setText("Hay tan huong cuon sach nhe");
+        }
     }
 
     public void openMyAccount() throws IOException {

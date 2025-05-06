@@ -100,7 +100,19 @@
                                                   <children>
                                           <HBox prefHeight="501.0" prefWidth="963.0">
                                              <children>
-                                                <Pane prefHeight="500.0" prefWidth="234.0" />
+                                                <Pane prefHeight="500.0" prefWidth="234.0">
+                                                   <children>
+                                                      <ImageView fitHeight="245.0" fitWidth="219.0" layoutX="36.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../image/4576fb6b51b2bb22aa7d97a2c7d2aaa2-removebg-preview.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="214.0" fitWidth="202.0" layoutX="36.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../image/9b24070ba410d9090af5df8fb70ca7d3__1_-removebg-preview.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children></Pane>
                                                 <VBox spacing="15.0">
                                                    <children>
                                                       <Pane prefHeight="42.0" prefWidth="476.0" />
@@ -124,7 +136,19 @@
                                                       </VBox>
                                                    </children>
                                                 </VBox>
-                                                <Pane prefHeight="200.0" prefWidth="200.0" />
+                                                <Pane prefHeight="500.0" prefWidth="255.0">
+                                                   <children>
+                                                      <ImageView fitHeight="278.0" fitWidth="192.0" layoutX="32.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../image/0a0b8ae2cbd674202d929801606177de-removebg-preview.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <ImageView fitHeight="223.0" fitWidth="223.0" layoutX="51.0" layoutY="263.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../image/258737f7e7ab16d509cf0e712ae7db3c-removebg-preview.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children></Pane>
                                              </children>
                                           </HBox>
                                                   </children>

@@ -178,7 +178,7 @@
                       </HBox>
                   <Pane prefHeight="549.0" prefWidth="1013.0">
                      <children>
-                        <ImageView fitHeight="479.0" fitWidth="442.0" layoutX="66.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="defautImage" fitHeight="479.0" fitWidth="442.0" layoutX="67.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../image/AI.png" />
                            </image>
@@ -220,7 +220,21 @@
                               <Font name="Californian FB" size="19.0" />
                            </font>
                         </Label>
-                        <Button layoutX="381.0" layoutY="52.0" mnemonicParsing="false" onAction="#scanAndReturnISBN" text="Scan ISBN" />
+                        <ImageView fitHeight="151.0" fitWidth="314.0" layoutX="724.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/6ee800c95d2658bd2179f3b0e246c771-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="219.0" fitWidth="230.0" layoutX="356.0" layoutY="-30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../image/89be869b8760080556cd0ef430c772d7-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="returnImage" fitHeight="428.0" fitWidth="296.0" layoutX="76.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@../image/16ac61de561d1c3bf1d3a8be5e89a606-removebg-preview.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </Pane>
                   </children>
