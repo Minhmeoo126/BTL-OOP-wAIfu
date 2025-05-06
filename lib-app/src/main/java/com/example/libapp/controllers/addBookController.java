@@ -1,13 +1,16 @@
 package com.example.libapp.controllers;
 
 import com.example.libapp.SessionManager;
+import com.example.libapp.api.BookScanner;
 import com.example.libapp.api.BookService;
+import com.example.libapp.api.ISBNScannerWindow;
 import com.example.libapp.model.Book;
 import com.example.libapp.model.User;
 import com.example.libapp.persistence.BookDAO;
 import com.example.libapp.utils.*;
 import com.example.libapp.viewmodel.MainViewModel;
 import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -236,14 +239,6 @@ public class addBookController {
         loadView("login-view.fxml", logout);
     }
 
-    private void showAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
-
     public void chooseImageFromFileSystem(ActionEvent event) {
         ChooseImageFromSystem.chooseImage(chooseImageButton,image,thumbnail,messageLabel);
     }
@@ -289,5 +284,36 @@ public class addBookController {
     public void Search() throws IOException {
         SearchFunction.Search(search,Box,searchResultBox);
     }
+
+    public void scanAndAddISBN(ActionEvent event) {
+        messageLabel.setText("Đang quét ISBN từ webcam...");
+
+        // Tạo thread mới để chạy camera feed và quét ISBN
+        Thread cameraThread = new Thread(() -> {
+            // Quá trình quét ISBN
+            String scannedIsbn = ISBNScannerWindow.launchAndScan();  // Quét ISBN
+
+            // Cập nhật lại giao diện chính khi có kết quả ISBN
+            Platform.runLater(() -> {
+                if (scannedIsbn != null) {
+                    isbnField.setText(scannedIsbn);  // Cập nhật trường ISBN
+
+                    // Xử lý thêm sách vào hệ thống (hoặc cập nhật)
+                    boolean success = handleAddBookByIsbn(scannedIsbn);
+                    if (success) {
+                        messageLabel.setText("Đã thêm sách hoặc cập nhật bản sao thành công.");
+                    } else {
+                        messageLabel.setText("Không tìm thấy sách với ISBN đã quét.");
+                    }
+                } else {
+                    messageLabel.setText("Không quét được mã ISBN.");
+                }
+            });
+        });
+
+        cameraThread.setDaemon(true);  // Đảm bảo thread tự tắt khi ứng dụng đóng
+        cameraThread.start();
+    }
+
 }
 

@@ -9,6 +9,7 @@ import com.example.libapp.utils.SearchFunction;
 import com.example.libapp.viewmodel.ReturnBookViewModel;
 import com.example.libapp.SessionManager;
 import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -149,4 +150,33 @@ public class ReturnBookController {
     public void Search() throws IOException {
         SearchFunction.Search(search,Box,searchResultBox);
     }
+
+    @FXML
+    public void scanAndReturnISBN(ActionEvent event) {
+        viewModel.messageProperty().set("Đang quét ISBN từ webcam...");
+
+        Thread cameraThread = new Thread(() -> {
+            String scannedIsbn = com.example.libapp.api.ISBNScannerWindow.launchAndScan();
+
+            Platform.runLater(() -> {
+                if (scannedIsbn != null && !scannedIsbn.isEmpty()) {
+                    ISBNField.setText(scannedIsbn);
+                    viewModel.returnBookByISBN(scannedIsbn);
+
+                    String msg = viewModel.messageProperty().get();
+                    boolean success = msg.contains("successfully");
+
+                    messageLabel.setText(msg);
+                    messageLabel.setStyle(success ? "-fx-text-fill: green;" : "-fx-text-fill: red;");
+                } else {
+                    viewModel.messageProperty().set("Không quét được mã ISBN.");
+                    messageLabel.setStyle("-fx-text-fill: red;");
+                }
+            });
+        });
+
+        cameraThread.setDaemon(true);
+        cameraThread.start();
+    }
+
 }

@@ -220,6 +220,7 @@
                               <Font name="Californian FB" size="19.0" />
                            </font>
                         </Label>
+                        <Button layoutX="381.0" layoutY="52.0" mnemonicParsing="false" onAction="#scanAndReturnISBN" text="Scan ISBN" />
                      </children>
                   </Pane>
                   </children>

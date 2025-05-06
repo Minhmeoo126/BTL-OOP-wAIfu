@@ -293,6 +293,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
+                              <Button layoutX="67.0" layoutY="25.0" mnemonicParsing="false" onAction="#scanAndAddISBN" text="Scan ISBN" />
                            </children>
                         </Pane>
                      </children>
