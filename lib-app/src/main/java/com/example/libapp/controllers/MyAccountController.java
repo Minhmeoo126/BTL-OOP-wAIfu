@@ -23,6 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -129,6 +130,69 @@ public class MyAccountController {
         AuthorColumn.setCellValueFactory(new PropertyValueFactory<>("AuthorName"));
         borrowDateColumn.setCellValueFactory(new PropertyValueFactory<>("borrowDate"));
         returnDateColumn.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
+
+
+        nameBookColumn.setCellFactory(column -> new TableCell<>() {
+            private final Text text = new Text();
+
+            {
+                nameBookColumn.setPrefWidth(300);
+                text.wrappingWidthProperty().bind(nameBookColumn.widthProperty().subtract(10));
+                setGraphic(text);
+            }
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                text.setText(empty || item == null ? "" : item);
+            }
+        });
+
+        returnDateColumn.setCellFactory(column -> new TableCell<>() {
+            private final Text text = new Text();
+
+            {
+                text.wrappingWidthProperty().bind(returnDateColumn.widthProperty().subtract(10));
+                setGraphic(text);
+            }
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                text.setText(empty || item == null ? "" : item);
+            }
+        });
+        AuthorColumn.setCellFactory(column -> new TableCell<>() {
+            private final Text text = new Text();
+
+            {
+                AuthorColumn.setPrefWidth(300);
+                text.wrappingWidthProperty().bind(AuthorColumn.widthProperty().subtract(10));
+                setGraphic(text);
+            }
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                text.setText(empty || item == null ? "" : item);
+            }
+        });
+
+        borrowDateColumn.setCellFactory(column -> new TableCell<>() {
+            private final Text text = new Text();
+
+            {
+                text.wrappingWidthProperty().bind(borrowDateColumn.widthProperty().subtract(10));
+                setGraphic(text);
+            }
+
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                text.setText(empty || item == null ? "" : item);
+            }
+        });
+
 
         // Load dữ liệu
         loadBorrowHistory();

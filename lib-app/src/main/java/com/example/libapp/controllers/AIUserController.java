@@ -161,12 +161,12 @@ public class AIUserController {
 
             User currentUser = SessionManager.getInstance().getLoggedInUser();
             if (currentUser != null) {
-                // Lấy phản hồi từ AI
-                String aiResponse = aiService.getAIResponse(currentUser.getId(), prompt);
-                System.out.println("AI Response: " + aiResponse);  // In ra phản hồi của AI
+                new Thread(() -> {
+                    String aiResponse = aiService.getAIResponse(currentUser.getId(), prompt);
+                    System.out.println("AI Response: " + aiResponse);
+                    Platform.runLater(() -> addMessageWithTypingEffect(aiResponse, true));
+                }).start();
 
-                // Thêm phản hồi AI
-                addMessageWithTypingEffect(aiResponse, true);  // true vì đây là phản hồi từ AI
             }
         }
     }
@@ -179,7 +179,7 @@ public class AIUserController {
         List<Label> messageLabels = new ArrayList<>();
         for (String line : messageLines) {
             Label label = new Label();
-            label.setFont(Font.font("Californian FB", 18));
+            label.setFont(Font.font("Arial", 18));
             messageLabels.add(label);
         }
 
@@ -198,23 +198,23 @@ public class AIUserController {
         }
         avatar.setFitHeight(45);
         avatar.setFitWidth(45);
-
-        // Tạo HBox để chứa avatar và textContainer
         HBox messageBox;
+        // Người dùng: Nội dung bên trái, avatar bên phải
+        messageBox = new HBox(10, textContainer, avatar);
+        messageBox.setAlignment(Pos.CENTER_RIGHT);
+        // Tạo HBox để chứa avatar và textContainer
+
         if (isAI) {
             // AI: Avatar bên trái, nội dung bên phải
             messageBox = new HBox(10, avatar, textContainer);
             messageBox.setAlignment(Pos.CENTER_LEFT);
-        } else {
-            // Người dùng: Nội dung bên trái, avatar bên phải
-            messageBox = new HBox(10, textContainer, avatar);
-            messageBox.setAlignment(Pos.CENTER_RIGHT);
         }
         messageBox.setPadding(new Insets(10));
 
         // Thêm vào chatBox
+        HBox finalMessageBox = messageBox;
         Platform.runLater(() -> {
-            chatBox.getChildren().add(messageBox);
+            chatBox.getChildren().add(finalMessageBox);
             // Tự động cuộn xuống tin nhắn mới nhất
             if (chatBox.getParent() instanceof ScrollPane scrollPane) {
                 scrollPane.setVvalue(1.0);

@@ -161,14 +161,16 @@ public class AIController {
     private void handleSendMessage() {
         String prompt = promptField.getText().trim();
         if (!prompt.isEmpty()) {
-            addMessageWithTypingEffect(prompt, false);
+            addMessageWithTypingEffect(prompt, false); // Hiển thị ngay lập tức
             promptField.clear();
 
             User currentUser = SessionManager.getInstance().getLoggedInUser();
             if (currentUser != null) {
-                String aiResponse = aiService.getAIResponse(currentUser.getId(), prompt);
-                System.out.println("AI Response: " + aiResponse);
-                addMessageWithTypingEffect(aiResponse, true);
+                new Thread(() -> {
+                    String aiResponse = aiService.getAIResponse(currentUser.getId(), prompt);
+                    System.out.println("AI Response: " + aiResponse);
+                    Platform.runLater(() -> addMessageWithTypingEffect(aiResponse, true)); // gọi lại trên UI thread
+                }).start(); //  Chạy AI ở luồng khác
             }
         }
     }
