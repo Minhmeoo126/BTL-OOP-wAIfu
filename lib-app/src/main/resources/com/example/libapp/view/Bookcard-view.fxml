@@ -22,7 +22,7 @@
       </Button>
       <VBox prefHeight="100.0" prefWidth="155.0" spacing="1.0">
          <children>
-            <Label fx:id="bookName" prefHeight="70.0" prefWidth="155.0" text="My sister can't be this cute" wrapText="true">
+            <Label fx:id="bookName" prefHeight="62.0" prefWidth="155.0" text="My sister can't be this cute" wrapText="true">
                <font>
                   <Font name="Arial Bold" size="14.0" />
                </font>
@@ -32,16 +32,6 @@
                   <Font name="Arial Bold" size="12.0" />
                </font>
             </Label>
-            <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="150.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="54.0" text="5.0/5.0" underline="true" wrapText="true" />
-                  <ImageView fitHeight="21.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/star.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
             <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="17.0" prefWidth="150.0" text="&lt;&lt; click the image" textFill="#3d5c61">
                <font>
                   <Font name="Gill Sans MT Bold" size="12.0" />

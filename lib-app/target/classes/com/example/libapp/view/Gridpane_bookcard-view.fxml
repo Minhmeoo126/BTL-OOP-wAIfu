@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -25,28 +24,21 @@
             <String fx:value="button" />
          </styleClass>
       </Button>
-        <Label fx:id="bookName" prefHeight="44.0" prefWidth="142.0" text="My sister can't be this cute" wrapText="true">
+        <Label fx:id="bookName" prefHeight="34.0" prefWidth="142.0" text="My sister can't be this cute" wrapText="true">
             <font>
-                <Font name="Arial Bold" size="12.0" />
+                <Font name="Arial Bold" size="14.0" />
             </font>
+         <padding>
+            <Insets left="3.0" />
+         </padding>
         </Label>
-        <Label fx:id="AuthorName" prefHeight="17.0" prefWidth="150.0" text=" Author: Tsukasa Fushimi">
+        <Label fx:id="AuthorName" prefHeight="22.0" prefWidth="144.0" text=" Author: Tsukasa Fushimi">
             <font>
-                <Font name="Arial Bold" size="8.0" />
+                <Font name="Arial Bold" size="10.0" />
             </font>
+         <padding>
+            <Insets left="3.0" />
+         </padding>
         </Label>
-        <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="150.0">
-            <children>
-                <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="54.0" text="5.0/5.0" />
-                <ImageView fitHeight="16.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../image/star.png" />
-                    </image>
-                </ImageView>
-            </children>
-            <VBox.margin>
-                <Insets right="10.0" />
-            </VBox.margin>
-        </HBox>
     </children>
 </VBox>

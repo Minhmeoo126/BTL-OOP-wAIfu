@@ -1,64 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Line?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="login_bg" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.BookInformationController">
    <children>
-      <Pane layoutX="274.0" layoutY="49.0" prefHeight="501.0" prefWidth="738.0" style="-fx-background-radius: 10;" styleClass="MAIN_bg" stylesheets="@styles.css">
+      <Pane layoutX="274.0" layoutY="49.0" prefHeight="501.0" prefWidth="783.0" style="-fx-background-radius: 10;" styleClass="MAIN_bg" stylesheets="@styles.css">
          <children>
-            <Label fx:id="BookName" layoutX="64.0" layoutY="56.0" prefHeight="77.0" prefWidth="660.0" text="My sister can't be this cute" wrapText="true">
-               <font>
-                  <Font name="Arial Bold" size="49.0" />
-               </font>
-            </Label>
-            <Label fx:id="AuthorName" layoutX="79.0" layoutY="158.0" prefHeight="31.0" prefWidth="377.0" text="Author : Tsukasa Fushimi (伏見 つかさ)">
-               <font>
-                  <Font size="23.0" />
-               </font>
-            </Label>
-            <Label fx:id="description" alignment="TOP_LEFT" layoutX="79.0" layoutY="192.0" prefHeight="119.0" prefWidth="601.0" text="&quot;Oreimo&quot; kể về Kyousuke – một nam sinh trung học phát hiện em gái mình, Kirino, tuy ngoài đời hoàn hảo nhưng thật ra là một otaku cuồng anime và game về &quot;em gái moe&quot;. Bị kéo vào thế giới otaku của Kirino, Kyousuke dần giúp em giải quyết các rắc rối, từ đó cả hai trở nên thân thiết hơn theo cách... không ai ngờ tới." wrapText="true">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="categoryName" alignment="CENTER" layoutX="84.0" layoutY="319.0" prefHeight="31.0" prefWidth="240.0" styleClass="tag-gerne" stylesheets="@styles.css" text="Romcom">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <HBox layoutX="332.0" layoutY="317.0" prefHeight="31.0" prefWidth="137.0" spacing="5.0">
+            <VBox layoutX="104.0" layoutY="2.0" prefHeight="491.0" prefWidth="663.0" spacing="20.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="45.0" prefWidth="89.0" text="5.0 / 5.0">
+                  <Label fx:id="BookName" prefHeight="220.0" prefWidth="653.0" text="My sister can't be this cute" wrapText="true">
                      <font>
-                        <Font name="Gill Sans MT" size="23.0" />
+                        <Font name="Arial Bold" size="36.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="32.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../image/star.png" />
-                     </image>
-                  </ImageView>
+                  <HBox>
+                     <children>
+                        <Label fx:id="AuthorName1" prefHeight="34.0" prefWidth="91.0" text="Author :">
+                           <font>
+                              <Font size="23.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="AuthorName" prefHeight="34.0" prefWidth="337.0" text="Tsukasa Fushimi (伏見 つかさ)">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <ScrollPane prefWidth="653.0">
+                     <content>
+                        <Label fx:id="description" alignment="TOP_LEFT" prefHeight="216.0" prefWidth="658.0" styleClass="scrollpane_css" text="&quot;Oreimo&quot; kể về Kyousuke – một nam sinh trung học phát hiện em gái mình, Kirino, tuy ngoài đời hoàn hảo nhưng thật ra là một otaku cuồng anime và game về &quot;em gái moe&quot;. Bị kéo vào thế giới otaku của Kirino, Kyousuke dần giúp em giải quyết các rắc rối, từ đó cả hai trở nên thân thiết hơn theo cách... không ai ngờ tới." wrapText="true">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="3.0" left="3.0" right="4.0" top="3.0" />
+                           </padding>
+                        </Label>
+                     </content>
+                  </ScrollPane>
+                  <Label fx:id="categoryName" alignment="CENTER" prefHeight="31.0" prefWidth="240.0" styleClass="tag-gerne" stylesheets="@styles.css" text="Romcom">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="messagelabel" prefHeight="17.0" prefWidth="400.0" />
+                  <HBox spacing="30.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#BorrowBook" prefHeight="35.0" prefWidth="119.0" styleClass="Btn_login" stylesheets="@styles.css" text="Borrow" textFill="WHITE" />
+                        <Label fx:id="bookAvailable" prefHeight="53.0" prefWidth="475.0" text="Còn lại 5 bản" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="21.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
-            <Button layoutX="98.0" layoutY="385.0" mnemonicParsing="false" onAction="#BorrowBook" prefHeight="35.0" prefWidth="119.0" styleClass="Btn_login" stylesheets="@styles.css" text="Borrow" textFill="WHITE" />
-            <Line endX="-7.5333251953125" layoutX="457.0" layoutY="349.0" startX="-116.3333740234375" />
-            <Label fx:id="bookAvailable" layoutX="255.0" layoutY="388.0" prefHeight="44.0" prefWidth="475.0" text="Còn lại 5 bản" textAlignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="21.0" />
-               </font>
-            </Label>
-            <Label fx:id="messagelabel" layoutX="87.0" layoutY="360.0" prefHeight="17.0" prefWidth="400.0" />
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </VBox>
          </children>
       </Pane>
-      <StackPane layoutX="36.0" layoutY="92.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #ffff;" styleClass="image-border" stylesheets="@styles.css">
+      <StackPane layoutX="64.0" layoutY="100.0" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #ffff;" styleClass="image-border" stylesheets="@styles.css">
          <children>
             <ImageView fx:id="bookImage" fitHeight="419.0" fitWidth="272.0" pickOnBounds="true" preserveRatio="true" styleClass="image-border">
                <image>
