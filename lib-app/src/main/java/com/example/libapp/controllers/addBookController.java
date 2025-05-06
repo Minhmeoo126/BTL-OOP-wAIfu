@@ -301,12 +301,12 @@ public class addBookController {
                     // Xử lý thêm sách vào hệ thống (hoặc cập nhật)
                     boolean success = handleAddBookByIsbn(scannedIsbn);
                     if (success) {
-                        messageLabel.setText("📚 Đã thêm sách hoặc cập nhật bản sao thành công.");
+                        messageLabel.setText("Đã thêm sách hoặc cập nhật bản sao thành công.");
                     } else {
-                        messageLabel.setText("❌ Không tìm thấy sách với ISBN đã quét.");
+                        messageLabel.setText("Không tìm thấy sách với ISBN đã quét.");
                     }
                 } else {
-                    messageLabel.setText("❌ Không quét được mã ISBN.");
+                    messageLabel.setText("Không quét được mã ISBN.");
                 }
             });
         });

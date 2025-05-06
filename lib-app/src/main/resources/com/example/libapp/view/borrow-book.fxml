@@ -18,7 +18,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane fx:id="mainPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.BorrowBookController">
    <children>
       <Pane fx:id="searchResultBox" prefHeight="200.0" prefWidth="200.0">
@@ -226,6 +225,7 @@
                               <Image url="@../image/CasAndDragon.png" />
                            </image>
                         </ImageView>
+                        <Button layoutX="45.0" layoutY="37.0" mnemonicParsing="false" onAction="#scanAndBorrowISBN" text="Scan ISBN" />
                      </children>
                   </Pane>
                   </children>
