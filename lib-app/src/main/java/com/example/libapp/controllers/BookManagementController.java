@@ -222,7 +222,7 @@ public class BookManagementController {
                     if (book != null) {
                         openBookInformation(book);
                     } else {
-                        System.out.println("khong co sach duoc chon");
+                        System.out.println("Select your book!!");
                     }
                 });
             }

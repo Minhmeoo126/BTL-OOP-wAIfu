@@ -48,7 +48,7 @@ public class SearchResultController {
         pagination.setPageCount(1);
 
         if (searchBook.isEmpty()) {
-            Label noResultLabel = new Label("Không tìm thấy sách nào");
+            Label noResultLabel = new Label("No Result!!");
             noResultLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: grey;");
             bookContainer.add(noResultLabel, 0, 0);
             pagination.setVisible(false);

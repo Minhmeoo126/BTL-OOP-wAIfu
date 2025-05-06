@@ -124,7 +124,7 @@ public class UserManagementController {
         messageLabel.textProperty().bind(viewModel.messageProperty());
 
         User currentUser = SessionManager.getInstance().getLoggedInUser();
-        UserName.setText(currentUser != null ? currentUser.getUsername() : "Khong co nguoi dung");
+        UserName.setText(currentUser != null ? currentUser.getUsername() : "User not found!!");
 
         searchField.textProperty().addListener((observable, oldValue, newValue) -> filterUsers(newValue));
     }
