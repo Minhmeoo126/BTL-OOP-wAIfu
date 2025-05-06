@@ -31,11 +31,11 @@ public class SearchResultController {
     }
 
     public void Search() throws IOException {
-        ObservableList<Book> searchTitleBook = SearchFunction.searchTitleFunction(FXCollections.observableArrayList(allBooks), keyword);
+        ObservableList<Book> searchTitleBook = SearchFunction.searchForEachFunction(FXCollections.observableArrayList(allBooks), keyword, "Title");
 
-        ObservableList<Book> searchIDBook = SearchFunction.searchIDFunction(FXCollections.observableArrayList(allBooks), keyword);
+        ObservableList<Book> searchIDBook = SearchFunction.searchForEachFunction(FXCollections.observableArrayList(allBooks), keyword,"ID");
 
-        ObservableList<Book> searchAuthorBook = SearchFunction.searchAuthorFunction(FXCollections.observableArrayList(allBooks), keyword);
+        ObservableList<Book> searchAuthorBook = SearchFunction.searchForEachFunction(FXCollections.observableArrayList(allBooks), keyword,"Author");
 
         SearchForEach(searchTitleBook, bookContainer1, pagination1);
         SearchForEach(searchIDBook, bookContainer2, pagination2);

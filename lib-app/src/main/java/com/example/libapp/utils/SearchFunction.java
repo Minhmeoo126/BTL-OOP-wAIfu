@@ -33,55 +33,45 @@ public class SearchFunction {
         return filteredBooklist;
     }
 
-    public static ObservableList<Book> searchTitleFunction(ObservableList<Book> booklist, String keyword) {
+    public static ObservableList<Book> searchForEachFunction(ObservableList<Book> booklist, String keyword, String nameForEach) {
         // Dam bao so sach tuong duong vs table view
         ObservableList<Book> filteredBooklist = FXCollections.observableArrayList();
         if (keyword == null || keyword.trim().isEmpty()) {
             return filteredBooklist;//tra ve toan bo sach
         } else {
-            String filter = keyword.toLowerCase();
-            for (Book book : booklist) {
-                if (book.getTitle().toLowerCase().startsWith(filter)) {
-                    filteredBooklist.add(book);
-                }
+            String filter;
+            switch (nameForEach) {
+                case ("Title"):
+                    filter = keyword.toLowerCase();
+                    for (Book book : booklist) {
+                        if (book.getTitle().toLowerCase().startsWith(filter)) {
+                            filteredBooklist.add(book);
+                        }
+                    }
+                    break;
+                case ("ID"):
+                    filter = keyword.toLowerCase();
+                    for (Book book : booklist) {
+                        if (String.valueOf(book.getId()).startsWith(filter)) {
+                            filteredBooklist.add(book);
+                        }
+                    }
+                    break;
+                case ("Author"):
+                    filter = keyword.toLowerCase();
+                    for (Book book : booklist) {
+                        if (book.getAuthorName().toLowerCase().startsWith(filter)) {
+                            filteredBooklist.add(book);
+                        }
+                    }
+                    break;
             }
         }
         return filteredBooklist;
     }
 
-    public static ObservableList<Book> searchIDFunction(ObservableList<Book> booklist, String keyword) {
-        // Dam bao so sach tuong duong vs table view
-        ObservableList<Book> filteredBooklist = FXCollections.observableArrayList();
-        if (keyword == null || keyword.trim().isEmpty()) {
-            return filteredBooklist;//tra ve toan bo sach
-        } else {
-            String filter = keyword.toLowerCase();
-            for (Book book : booklist) {
-                if (String.valueOf(book.getId()).startsWith(filter)) {
-                    filteredBooklist.add(book);
-                }
-            }
-        }
-        return filteredBooklist;
-    }
 
-    public static ObservableList<Book> searchAuthorFunction(ObservableList<Book> booklist, String keyword) {
-        // Dam bao so sach tuong duong vs table view
-        ObservableList<Book> filteredBooklist = FXCollections.observableArrayList();
-        if (keyword == null || keyword.trim().isEmpty()) {
-            return filteredBooklist;//tra ve toan bo sach
-        } else {
-            String filter = keyword.toLowerCase();
-            for (Book book : booklist) {
-                if (book.getAuthorName().toLowerCase().startsWith(filter)) {
-                    filteredBooklist.add(book);
-                }
-            }
-        }
-        return filteredBooklist;
-    }
-
-    public static void Search(TextField search , GridPane Box , Pane searchResultBox) throws IOException {
+    public static void Search(TextField search, GridPane Box, Pane searchResultBox) throws IOException {
         BookDAO bookDAO = new BookDAO();
         List<Book> allBooks = bookDAO.getAllBooks();
         String keyWord = search.getText();
@@ -105,7 +95,7 @@ public class SearchFunction {
 
             viewAllButton.setOnAction(e -> {
                 try {
-                    showAllBooks(searchBook , search);
+                    showAllBooks(searchBook, search);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
