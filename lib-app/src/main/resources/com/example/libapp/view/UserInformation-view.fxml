@@ -102,12 +102,12 @@
                                              <children>
                                                 <Pane prefHeight="500.0" prefWidth="234.0">
                                                    <children>
-                                                      <ImageView fitHeight="245.0" fitWidth="219.0" layoutX="36.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fitHeight="245.0" fitWidth="219.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../image/4576fb6b51b2bb22aa7d97a2c7d2aaa2-removebg-preview.png" />
                                                          </image>
                                                       </ImageView>
-                                                      <ImageView fitHeight="214.0" fitWidth="202.0" layoutX="36.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
+                                                      <ImageView fitHeight="214.0" fitWidth="202.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
                                                             <Image url="@../image/9b24070ba410d9090af5df8fb70ca7d3__1_-removebg-preview.png" />
                                                          </image>
