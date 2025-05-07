@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+// nguồn tham khảo https://www.youtube.com/@mahmoudhamwi4550(JavaFX UI: Library Design & Dynamic HBox and GridPane)
 public class BookHBox {
 
     private static final BookDAO bookDAO = new BookDAO();

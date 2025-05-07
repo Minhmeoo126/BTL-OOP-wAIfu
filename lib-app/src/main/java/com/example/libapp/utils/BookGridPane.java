@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.util.List;
 
+// nguồn tham khảo https://www.youtube.com/@mahmoudhamwi4550(JavaFX UI: Library Design & Dynamic HBox and GridPane)
 public class BookGridPane {
 
     public static void makeGridPaneForVBox(List<Book> allBooks, int start, int end, GridPane bookGridPane , int maxCol) {

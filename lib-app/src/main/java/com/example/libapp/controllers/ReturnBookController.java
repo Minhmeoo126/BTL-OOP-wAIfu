@@ -37,7 +37,7 @@ public class ReturnBookController {
     @FXML
     public Button AI,myAccount,returnBook,borrowBooks,logout,backToMain;
     @FXML
-    public Label UserName, messageLabel;
+    public Label UserName, messageLabel, label;
     @FXML
     public TextField bookNameField,search,ISBNField;
     @FXML
@@ -124,7 +124,7 @@ public class ReturnBookController {
         if (viewModel.messageProperty().get().contains("successfully")) {
             defautImage.setVisible(false);
             returnImage.setVisible(true);
-            messageLabel.setText("Hay tan huong cuon sach nhe");
+            label.setText("Hope to see you again soon!");
         }
     }
 

@@ -52,10 +52,15 @@ public class AuthorAndCategoryInDatabase {
     public static void checkAndAddIfCategoryNotInDataBase(String category, Label messageLabel, Book newBook) {
         Integer categoryID = null;
         try {
+            if(category == null){
+                category = "General";
+            }
             // Kiểm tra xem tác giả đã tồn tại trong cơ sở dữ liệu chưa
             categoryID = categoryDAO.getCategoryIdByName(category);
             if (categoryID != null) {
                 System.out.println("Category đã tồn tại với ID: " + categoryID);
+            } else{
+                System.out.println("category không tồn tại " + category);
             }
         } catch (SQLException e) {
             messageLabel.setText("Không thể xác định Category.");

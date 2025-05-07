@@ -42,7 +42,7 @@ public class addBookController {
     @FXML
     public ImageView image;
     @FXML
-    public TextField category, isbnField, thumbnail, bookName, AuthorName,search;
+    public TextField category, isbnField, thumbnail, bookName, AuthorName, search;
     @FXML
     public TextArea description;
     @FXML
@@ -132,8 +132,8 @@ public class addBookController {
             if (fetchedBook != null) {
                 if (!confirmAction("Xác nhận thêm sách \"" + fetchedBook.getTitle() + "\" từ Google Books?")) return;
 
-                fetchedBook.setTotalCopies(5);
-                fetchedBook.setAvailableCopies(5);
+                fetchedBook.setTotalCopies(1);
+                fetchedBook.setAvailableCopies(1);
 
                 AuthorAndCategoryInDatabase.checkAndAddIfAuthorNotInDataBase(fetchedBook.getAuthorName(), messageLabel, fetchedBook);
                 AuthorAndCategoryInDatabase.checkAndAddIfCategoryNotInDataBase(fetchedBook.getCategoryName(), messageLabel, fetchedBook);
@@ -153,7 +153,7 @@ public class addBookController {
         String newBookDescription = description.getText().trim();
         String newBookCategory = category.getText().trim();
 
-        if (newBookName.isEmpty() || newBookAuthor.isEmpty() || newBookDescription.isEmpty()) {
+        if (newBookName.isEmpty() || newBookAuthor.isEmpty() || newBookDescription.isEmpty() || newBookCategory.isEmpty()) {
             messageLabel.setText("Vui lòng nhập đầy đủ thông tin cho sách tự xuất bản.");
             return;
         }
@@ -178,27 +178,27 @@ public class addBookController {
 
 
         if (checkBook != null) {
-            if (checkBook.getThumbnail().equals(newBook.getThumbnail())) {
-                if (checkBook.getDescription().equals(newBook.getDescription())
-                        && checkBook.getAuthorName().equals(newBook.getAuthorName())
-                        && checkBook.getCategoryId() == newBook.getCategoryId()) {
+            if (checkBook.getThumbnail().equals(newBook.getThumbnail())
+                    && checkBook.getDescription().equals(newBook.getDescription())
+                    && checkBook.getAuthorName().equals(newBook.getAuthorName())
+                    && checkBook.getCategoryId() == newBook.getCategoryId()) {
 
-                    System.out.println("Sách đã tồn tại");
-                    System.out.println("Số lượng sách hiện tại: " + checkBook.getTotalCopies());
-                    if (!confirmAction("Sách đã tồn tại xác nhận thêm số luợng ?")) return;
-                    bookDAO.updateBookCopies(checkBook.getId(), checkBook.getTotalCopies() + 1, checkBook.getAvailableCopies() + 1);
-                    messageLabel.setText("Đã cập nhật số lượng bản sao sách tự xuất bản.");
-                    return;
-                }
-            }else{
-                newBook.setAvailableCopies(5);
-                newBook.setTotalCopies(5);
+                System.out.println("Sách đã tồn tại");
+                System.out.println("Số lượng sách hiện tại: " + checkBook.getTotalCopies());
+                if (!confirmAction("Sách đã tồn tại xác nhận thêm số luợng ?")) return;
+                bookDAO.updateBookCopies(checkBook.getId(), checkBook.getTotalCopies() + 1, checkBook.getAvailableCopies() + 1);
+                messageLabel.setText("Đã cập nhật số lượng bản sao sách tự xuất bản.");
+                return;
+
+            } else {
+                newBook.setAvailableCopies(1);
+                newBook.setTotalCopies(1);
                 bookDAO.addBook(newBook);
                 messageLabel.setText("Thêm sách tự xuất bản thành công.");
             }
         } else {
-            newBook.setAvailableCopies(5);
-            newBook.setTotalCopies(5);
+            newBook.setAvailableCopies(1);
+            newBook.setTotalCopies(1);
             bookDAO.addBook(newBook);
             messageLabel.setText("Thêm sách tự xuất bản thành công.");
         }
@@ -240,7 +240,7 @@ public class addBookController {
     }
 
     public void chooseImageFromFileSystem(ActionEvent event) {
-        ChooseImageFromSystem.chooseImage(chooseImageButton,image,thumbnail,messageLabel);
+        ChooseImageFromSystem.chooseImage(chooseImageButton, image, thumbnail, messageLabel);
     }
 
     private boolean handleAddBookByIsbn(String isbn) {
@@ -282,7 +282,7 @@ public class addBookController {
 
 
     public void Search() throws IOException {
-        SearchFunction.Search(search,Box,searchResultBox);
+        SearchFunction.Search(search, Box, searchResultBox);
     }
 
     public void scanAndAddISBN(ActionEvent event) {
