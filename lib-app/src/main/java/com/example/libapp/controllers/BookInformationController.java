@@ -37,7 +37,7 @@ public class BookInformationController {
     public void loadBookData(Book selectedBook) {
         this.selectedBook = selectedBook;
         if (selectedBook == null) {
-            System.err.println(" Select your book, please!!");
+            System.err.println(" Select your book, please!");
         } else {
             BookName.setText(selectedBook.getTitle());
             AuthorName.setText(selectedBook.getAuthorName());

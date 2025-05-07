@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -108,5 +110,14 @@ public class BorrowingRecordDAO {
         }
     }
 
-
+    public List<BorrowingRecord> getBorrowingRecordsByUserId(int id) {
+        List<BorrowingRecord> userBorrow = new ArrayList<>() ;
+        List<BorrowingRecord> allRecord = getAllBorrowingRecords();
+        for(BorrowingRecord record : allRecord){
+            if(record.getUserId() == id ){
+                userBorrow.add(record);
+            }
+        }
+        return userBorrow;
+    }
 }

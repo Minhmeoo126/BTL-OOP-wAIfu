@@ -35,6 +35,7 @@ public class BorrowBookViewModel {
                 return;
             }
 
+
             // Find the book by ISBN in the database
             Book book = bookDAO.getBookByISBN(isbn);
             if (book == null) {
@@ -45,6 +46,15 @@ public class BorrowBookViewModel {
             if (book.getAvailableCopies() <= 0) {
                 message.set("This book is currently unavailable.");
                 return;
+            }
+
+            List<BorrowingRecord> existingRecords = borrowingRecordDAO.getBorrowingRecordsByUserId(loggedInUser.getId());
+            for (BorrowingRecord record : existingRecords) {
+                if (record.getBookId() == book.getId() && record.getReturnDate() == null) {
+                    // Nếu người dùng đã mượn sách và chưa trả lại, không cho phép mượn
+                    message.set("You have already borrowed this book and haven't returned it.");
+                    return;
+                }
             }
 
             // Create a new BorrowingRecord for the book and user
@@ -74,6 +84,7 @@ public class BorrowBookViewModel {
                 return;
             }
 
+
             // Find the book by title in the database
             Book book = bookDAO.getBookByTitle(bookTitle.trim());
             if (book == null) {
@@ -84,6 +95,15 @@ public class BorrowBookViewModel {
             if (book.getAvailableCopies() <= 0) {
                 message.set("This book is currently unavailable.");
                 return;
+            }
+
+            // Nếu người dùng đã mượn sách và chưa trả lại, không cho phép mượn
+            List<BorrowingRecord> existingRecords = borrowingRecordDAO.getBorrowingRecordsByUserId(loggedInUser.getId());
+            for (BorrowingRecord record : existingRecords) {
+                if (record.getBookId() == book.getId() && record.getReturnDate() == null) {
+                    message.set("You have already borrowed this book and haven't returned it.");
+                    return;
+                }
             }
 
             // Create a new BorrowingRecord for the book and user
@@ -120,6 +140,14 @@ public class BorrowBookViewModel {
             if (book.getAvailableCopies() <= 0) {
                 message.set("This book is currently unavailable.");
                 return;
+            }
+            // Nếu người dùng đã mượn sách và chưa trả lại, không cho phép mượn
+            List<BorrowingRecord> existingRecords = borrowingRecordDAO.getBorrowingRecordsByUserId(loggedInUser.getId());
+            for (BorrowingRecord record : existingRecords) {
+                if (record.getBookId() == book.getId() && record.getReturnDate() == null) {
+                    message.set("You have already borrowed this book and haven't returned it.");
+                    return;
+                }
             }
 
             // Create a new BorrowingRecord for the book and user
