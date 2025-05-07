@@ -22,7 +22,7 @@
    <children>
       <Pane fx:id="searchResultBox" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <ScrollPane fx:id="pane" layoutX="366.0" layoutY="43.0" prefHeight="258.0" prefWidth="416.0" styleClass="searchResult_css" stylesheets="@styles.css">
+            <ScrollPane fx:id="pane" layoutX="366.0" layoutY="55.0" prefHeight="246.0" prefWidth="416.0" styleClass="searchResult_css" stylesheets="@styles.css">
                <content>
                   <GridPane fx:id="Box">
                     <rowConstraints>
@@ -134,15 +134,7 @@
                               <Pane prefHeight="38.0" prefWidth="278.0" />
                               <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="38.0" prefWidth="415.0" spacing="5.0" styleClass="search-container" stylesheets="@styles.css">
                                   <children>
-                              <VBox>
-                                 <children>
-                                            <TextField fx:id="search" onAction="#Search" prefHeight="31.0" prefWidth="358.0" promptText="Search" styleClass="transparent" stylesheets="@styles.css">
-                                                <font>
-                                                    <Font name="Gill Sans MT" size="14.0" />
-                                                </font>
-                                            </TextField>
-                                 </children>
-                              </VBox>
+                              <TextField fx:id="search" onAction="#Search" prefHeight="32.0" prefWidth="353.0" promptText="Search" />
                                       <ImageView fitHeight="28.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                                           <image>
                                               <Image url="@../image/loupe.png" />
@@ -236,7 +228,7 @@
                               <Image url="@../image/e5c9a131c65f18e8ee81d1acfeb34d83-removebg-preview.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="230.0" fitWidth="162.0" layoutX="32.0" layoutY="-45.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="230.0" fitWidth="162.0" layoutX="22.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../image/1f4269c052098855452d7ce2be81387c-removebg-preview%20(1).png" />
                            </image>
