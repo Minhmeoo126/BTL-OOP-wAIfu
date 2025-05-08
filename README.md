@@ -44,7 +44,7 @@ Dự án **Library Management System wAIfu** là một hệ thống quản lý t
 ## Thiết kế hệ thống và Cơ sở dữ liệu của dự án
 
 **Thiết kế hệ thống**  
-![Mô tả hình ảnh](/com/example/libapp/README_IMG/ULM.png)
+![Mô tả hình ảnh](/src/main/resources/com/example/libapp/README_IMG/ULM.png)
 
 **Cơ sở dữ liệu**  
 ![Mô tả hình ảnh](com/example/libapp/README_IMG/DataBase.png)
