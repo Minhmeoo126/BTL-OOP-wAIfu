@@ -190,6 +190,7 @@ public class BorrowBookController {
                     String msg = viewModel.messageProperty().get();
                     boolean success = msg.contains("successfully");
 
+                    messageLabel.textProperty().unbind();
                     messageLabel.setText(msg);
                     messageLabel.setStyle(success ? "-fx-text-fill: green;" : "-fx-text-fill: red;");
                     imageBorrow.setVisible(success);
