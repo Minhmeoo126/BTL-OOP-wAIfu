@@ -114,13 +114,6 @@ public class ReturnBookController {
 
     @FXML
     private void handleReturn() {
-        label.setText("Return my book!!");
-        label.setStyle("-fx-text-fill: black;");
-        if(!bookNameField.getText().isEmpty() && !ISBNField.getText().isEmpty()){
-            label.setText("Please!! just choose one");
-            label.setStyle("-fx-text-fill: red;");
-            return;
-        }
         if(bookNameField.getText().isEmpty()){
             viewModel.returnBookByISBN(ISBNField.getText());
         }else{
@@ -132,7 +125,6 @@ public class ReturnBookController {
             defautImage.setVisible(false);
             returnImage.setVisible(true);
             label.setText("Hope to see you again soon!");
-            label.setStyle("-fx-text-fill: black;");
         }
     }
 

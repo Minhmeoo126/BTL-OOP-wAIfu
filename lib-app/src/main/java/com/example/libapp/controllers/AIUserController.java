@@ -245,6 +245,10 @@ public class AIUserController {
                     lineIndex[0]++;
                     charIndex[0] = 0;
                 }
+                Platform.runLater(() -> {
+                    chatScroll.layout();
+                    chatScroll.setVvalue(1.0);
+                });
             }
         }));
 

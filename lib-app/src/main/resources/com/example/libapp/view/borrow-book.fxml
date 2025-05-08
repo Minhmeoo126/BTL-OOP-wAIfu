@@ -207,7 +207,7 @@
                               <Label fx:id="messageLabel" alignment="CENTER" layoutX="39.0" layoutY="206.0" prefHeight="29.0" prefWidth="490.0" />
                            </children>
                         </AnchorPane>
-                        <Label fx:id="label" alignment="CENTER" layoutX="710.0" layoutY="107.0" prefHeight="46.0" prefWidth="300.0" styleClass="rice_message" text="Choose your book wisely!!">
+                        <Label fx:id="label" alignment="CENTER" layoutX="742.0" layoutY="107.0" prefHeight="46.0" prefWidth="242.0" styleClass="rice_message" text="Choose your book wisely!!">
                            <font>
                               <Font name="Californian FB" size="19.0" />
                            </font>
