@@ -117,6 +117,13 @@ public class BorrowBookController {
 
     @FXML
     private void handleBorrow() {
+        label.setText("Choose your book wisely!!");
+        label.setStyle("-fx-text-fill: black;");
+        if(!bookNameField.getText().isEmpty() && !bookIdField.getText().isEmpty()){
+            label.setText("Please!! just choose one");
+            label.setStyle("-fx-text-fill: red;");
+            return;
+        }
         if (bookNameField.getText().isEmpty()) {
             viewModel.borrowBookByISBN(bookIdField.getText());
         } else {
@@ -129,6 +136,7 @@ public class BorrowBookController {
             defaultImage.setVisible(false);
             imageBorrow.setVisible(true);
             label.setText("Enjoying my books, my master!!");
+            label.setStyle("-fx-text-fill: black;");
         }
     }
 
