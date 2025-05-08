@@ -125,6 +125,7 @@ public class addBookController {
                 existing.setAvailableCopies(existing.getAvailableCopies() + 1);
                 bookDAO.updateBook(existing);
                 messageLabel.setText("Đã cập nhật số lượng bản sao.");
+                messageLabel.setStyle("-fx-text-fill: green;");
                 return;
             }
 
@@ -140,10 +141,12 @@ public class addBookController {
 
                 bookDAO.addBook(fetchedBook);
                 messageLabel.setText("Đã thêm sách từ Google Books API.");
+                messageLabel.setStyle("-fx-text-fill: green;");
                 return;
             }
 
             messageLabel.setText("Không tìm thấy sách với ISBN này.");
+            messageLabel.setStyle("-fx-text-fill: red;");
             return;
         }
 
@@ -155,6 +158,7 @@ public class addBookController {
 
         if (newBookName.isEmpty() || newBookAuthor.isEmpty() || newBookDescription.isEmpty() || newBookCategory.isEmpty()) {
             messageLabel.setText("Vui lòng nhập đầy đủ thông tin cho sách tự xuất bản.");
+            messageLabel.setStyle("-fx-text-fill: red;");
             return;
         }
 
@@ -167,6 +171,9 @@ public class addBookController {
         newBook.setDescription(newBookDescription);
 
         String newBookThumbnail = thumbnail.getText().trim();
+        if (thumbnail.getText().trim().isEmpty()) {
+            newBookThumbnail = "";
+        }
         newBook.setThumbnail(newBookThumbnail);
         image.setImage(LoadImage.loadImage(newBook));
 
@@ -174,34 +181,51 @@ public class addBookController {
         AuthorAndCategoryInDatabase.checkAndAddIfCategoryNotInDataBase(newBookCategory, messageLabel, newBook);
 
 
-        Book checkBook = bookDAO.getBookByTitle(newBookName);
+        List<Book> books = bookDAO.getListBookByTitle(newBookName);
 
+        boolean isDuplicate = false;
 
-        if (checkBook != null) {
-            if (checkBook.getThumbnail().equals(newBook.getThumbnail())
-                    && checkBook.getDescription().equals(newBook.getDescription())
-                    && checkBook.getAuthorName().equals(newBook.getAuthorName())
-                    && checkBook.getCategoryId() == newBook.getCategoryId()) {
+        for (Book checkBook : books) {
+            boolean isSame =
+                    checkBook.getThumbnail().equals(newBook.getThumbnail()) &&
+                            checkBook.getDescription().equals(newBook.getDescription()) &&
+                            checkBook.getAuthorName().equals(newBook.getAuthorName()) &&
+                            checkBook.getCategoryId() == newBook.getCategoryId();
+            System.out.println(isSame);
+            System.out.println("check Book " + checkBook.getThumbnail());
+            System.out.println("book " + newBook.getThumbnail());
+            System.out.println("check Book " + checkBook.getDescription());
+            System.out.println("Book " + newBook.getDescription());
+            System.out.println("check Book " + checkBook.getAuthorName());
+            System.out.println(" Book " + checkBook.getAuthorName());
+            System.out.println("check Book " + checkBook.getCategoryId());
+            System.out.println("Book " + checkBook.getCategoryId());
 
+            if (isSame) {
                 System.out.println("Sách đã tồn tại");
-                System.out.println("Số lượng sách hiện tại: " + checkBook.getTotalCopies());
-                if (!confirmAction("Sách đã tồn tại xác nhận thêm số luợng ?")) return;
-                bookDAO.updateBookCopies(checkBook.getId(), checkBook.getTotalCopies() + 1, checkBook.getAvailableCopies() + 1);
-                messageLabel.setText("Đã cập nhật số lượng bản sao sách tự xuất bản.");
-                return;
+                System.out.println("Số lượng hiện tại: " + checkBook.getTotalCopies());
 
-            } else {
-                newBook.setAvailableCopies(1);
-                newBook.setTotalCopies(1);
-                bookDAO.addBook(newBook);
-                messageLabel.setText("Thêm sách tự xuất bản thành công.");
+                if (!confirmAction("Sách đã tồn tại. Xác nhận thêm số lượng?")) return;
+
+                bookDAO.updateBookCopies(checkBook.getId(),
+                        checkBook.getTotalCopies() + 1,
+                        checkBook.getAvailableCopies() + 1);
+
+                messageLabel.setText("Đã cập nhật số lượng bản sao sách tự xuất bản.");
+                messageLabel.setStyle("-fx-text-fill: green;");
+                isDuplicate = true;
+                break;
             }
-        } else {
+        }
+
+        if (!isDuplicate) {
             newBook.setAvailableCopies(1);
             newBook.setTotalCopies(1);
             bookDAO.addBook(newBook);
             messageLabel.setText("Thêm sách tự xuất bản thành công.");
+            messageLabel.setStyle("-fx-text-fill: green;");
         }
+
     }
 
     public void backToMain() {

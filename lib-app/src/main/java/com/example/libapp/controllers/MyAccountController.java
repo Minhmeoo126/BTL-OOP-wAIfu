@@ -60,8 +60,6 @@ public class MyAccountController {
     private User user;
 
     private final MyAccountViewModel viewModel = new MyAccountViewModel();
-    private final BookDAO bookDAO = new BookDAO();
-    private final List<Book> allBooks = bookDAO.getAllBooks();
 
     @FXML
     public void initialize() {

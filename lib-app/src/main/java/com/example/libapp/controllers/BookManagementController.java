@@ -76,8 +76,6 @@ public class BookManagementController {
     private TextField searchBookField;
 
     private final BookViewModel viewModel = new BookViewModel();
-    private final BookDAO bookDAO = new BookDAO();
-    private final List<Book> allBooks = bookDAO.getAllBooks();
     private final ObservableList<Book> books = FXCollections.observableArrayList();
 
     @FXML

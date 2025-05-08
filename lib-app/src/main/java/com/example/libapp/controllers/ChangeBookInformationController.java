@@ -71,43 +71,44 @@ public class ChangeBookInformationController {
     }
 
     public void changeBookInformation() throws SQLException {
-        String newThumbnail = thumbnail.getText();
-        String newTitle = bookName.getText();
-        String newAuthor = AuthorName.getText();
-        String newCategory = category.getText();
-        String newDescription = description.getText();
-        int authorID = authorDAO.getAuthorIdByName(book.getAuthorName());
-        int categoryID = categoryDAO.getCategoryIdByName(book.getCategoryName());
-        if(thumbnail.getText().isEmpty()){
-            newThumbnail = book.getThumbnail();
+        if (thumbnail.getText().trim().isEmpty() || bookName.getText().trim().isEmpty() || AuthorName.getText().trim().isEmpty()
+                || category.getText().trim().isEmpty() || description.getText().trim().isEmpty()) {
+            messageLabel.setText("Hãy nhập đầy đủ thông tin sách");
+            messageLabel.setStyle("-fx-text-fill: red;");
+            return;
         }
-        if(bookName.getText().isEmpty()){
-            newTitle = book.getTitle();
+        String newThumbnail = thumbnail.getText().trim();
+        String newTitle = bookName.getText().trim();
+        String newAuthor = AuthorName.getText().trim();
+        String newCategory = category.getText().trim();
+        String newDescription = description.getText().trim();
+
+
+        int authorID = book.getAuthorId();
+        if (!newAuthor.equals(book.getAuthorName())) {
+            authorID = AuthorAndCategoryInDatabase.checkAndAddAuthor(newAuthor, messageLabel);
         }
-        if(AuthorName.getText().isEmpty()){
-            newAuthor = book.getAuthorName();
-        } else{
-            authorID = AuthorAndCategoryInDatabase.checkAndAddAuthor(newAuthor,messageLabel);
+
+        int categoryID = book.getCategoryId();
+        if (!newCategory.equals(book.getCategoryName())) {
+            categoryID = AuthorAndCategoryInDatabase.checkAndAddCategory(newCategory, messageLabel);
         }
-        if(description.getText().isEmpty()){
-            newDescription = book.getDescription();
-        }
-        if(category.getText().isEmpty()){
-            newCategory = book.getCategoryName();
-        } else{
-            categoryID = AuthorAndCategoryInDatabase.checkAndAddCategory(newCategory,messageLabel);
-        }
-        if(!confirmAction("bạn có muốn sửa thông tin sách không ?")) return;
-        boolean isUpdate = BookDAO.updateBookInfo(book.getId(),newThumbnail,newTitle,categoryID,authorID,newDescription,messageLabel);
-        if(isUpdate){
-            messageLabel.setText("success");
-        } else{
-            messageLabel.setText("error");
+
+        if (!confirmAction("Bạn có muốn sửa thông tin sách không?")) return;
+
+        boolean isUpdate = BookDAO.updateBookInfo(book.getId(), newThumbnail, newTitle, categoryID, authorID, newDescription, messageLabel);
+
+        if (isUpdate) {
+            messageLabel.setText("Thông tin sách đã được cập nhật.");
+            messageLabel.setStyle("-fx-text-fill: green;");
+        } else {
+            messageLabel.setText("Có lỗi xảy ra khi cập nhật thông tin sách.");
+            messageLabel.setStyle("-fx-text-fill: red;");
         }
     }
 
     public void chooseImageFromFileSystem(ActionEvent event) {
-        ChooseImageFromSystem.chooseImage(chooseImageButton,image,thumbnail,messageLabel);
+        ChooseImageFromSystem.chooseImage(chooseImageButton, image, thumbnail, messageLabel);
     }
 
     private boolean confirmAction(String content) {

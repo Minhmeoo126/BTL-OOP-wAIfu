@@ -49,7 +49,9 @@ public class UserInformationController {
         // Load lịch sử mượn sách cho user
         viewModel.loadHistory(user);
         BorrowHistoryTable.setItems(viewModel.getRecords());
-        BorrowedBooks.setText("Borrowed: " + viewModel.getRecords().size());
+        BorrowedBooks.setText("Borrowing: " + viewModel.getRecords().stream()
+                .filter(record -> record.getReturnDate() == null || record.getReturnDate().isEmpty())
+                .count() + "");
     }
 
 

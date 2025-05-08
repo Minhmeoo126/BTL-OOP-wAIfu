@@ -10,7 +10,6 @@ public class LoadImage {
 
         try {
             Image image = null;
-
             if (book.getThumbnail() != null && !book.getThumbnail().isEmpty()) {
                 if (book.getThumbnail().startsWith("http://") || book.getThumbnail().startsWith("https://")) {
                     // Load từ URL
@@ -25,7 +24,6 @@ public class LoadImage {
                     }
                 }
             }
-
             // Nếu không load được ảnh thì dùng mặc định
             if (image == null || image.isError()) {
                 System.out.println("Không thể load ảnh, dùng ảnh mặc định.");
