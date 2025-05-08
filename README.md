@@ -1,120 +1,125 @@
+# 📚 Library Management System wAIfu
 
-# Library Management System wAIfu
+> Một hệ thống quản lý thư viện hiện đại, thân thiện, có tích hợp AI để hỗ trợ người dùng và thủ thư thông minh!
 
-## 📖 Mô tả
-Dự án **Library Management System wAIfu** là một hệ thống quản lý thư viện, giúp quản lý sách, người dùng, và các giao dịch mượn trả sách, hỗ trợ AI tâm sự, phân tích văn.
+---
 
-## 📝 Nhóm tác giả:
-1. **Trưởng nhóm**: Dương Quang Minh - 24022401
-2. **Thành viên**: Lê Thanh Lâm - 24022377
-3. **Thành viên**: Nguyễn Tân Hoàng Minh - 24022407
+## 👨‍💻 Nhóm tác giả:
 
-## Tính năng
+| Vai trò       | Họ và Tên                      | Mã sinh viên |
+|---------------|-------------------------------|--------------|
+| Trưởng nhóm   | Dương Quang Minh               | 24022401     |
+| Thành viên    | Lê Thanh Lâm                   | 24022377     |
+| Thành viên    | Nguyễn Tân Hoàng Minh          | 24022407     |
 
-### Login mutil-user: Admin | User
-- **Tìm kiếm sách**: Tìm kiếm sách theo từ khóa.
-- **Chi tiết sách**: Xem thông tin chi tiết về sách đã chọn, bao gồm:
-    - Tiêu đề.
-    - Tác giả(s).
-    - Mô tả.
-    - Bìa sách.
-- **Mượn sách**: Mượn sách theo id hoặc name hoặc mượn nhanh bằng button.
-- **Trả sách**: Trả sách theo id hoặc name hoặc trả nhanh bằng button.
-- **AI**: Tâm sự và bàn luận về các cuốn sách.
+---
 
-### **Quản lý thư viện <Admin>**
-- Thêm sách vào thư viện bằng scan.
-- Xóa sách khỏi thư viện.
-- Quản lí người dùng.
-- Quản lí sách.
+## 🌟 Tính năng chính
 
-### **Giao diện người dùng tương tác**:
-- Xây dựng bằng JavaFX và FXML cho giao diện người dùng dễ sử dụng.
+### 👥 Đăng nhập đa người dùng: **Admin / User**
 
-## Công nghệ sử dụng
+- 🔍 Tìm kiếm sách theo từ khóa.
+- 📘 Xem chi tiết sách: tiêu đề, tác giả, mô tả, ảnh bìa.
+- 📥 Mượn sách qua ID, tên, hoặc nút "Mượn nhanh".
+- 📤 Trả sách tương tự.
+- 🤖 AI: Tâm sự và bàn luận về sách cùng thủ thư AI.
 
-- **Java**: Logic cốt lõi và tích hợp API.
-- **JavaFX**: Phát triển giao diện người dùng và xử lý sự kiện.
-- **CSS**: Tùy chỉnh giao diện của các thành phần JavaFX.
-- **Google Books API**: Dùng để lấy dữ liệu sách.
-- **OPEN CV + Zxing**: Dùng Scan mã vạch lấy ISBN.
-- **OPENAI API model gpt-4o**: Trợ lí ảo thủ thư viện.
-- **FXML**: Tách biệt giao diện người dùng khỏi mã Java.
+### 🔧 Tính năng cho Admin:
 
-## Thiết kế hệ thống và Cơ sở dữ liệu của dự án
+- 📚 Thêm sách (hỗ trợ scan mã vạch).
+- 🗑️ Xoá sách.
+- 👤 Quản lý người dùng.
+- 🛠️ Quản lý toàn bộ kho sách.
 
-**Thiết kế hệ thống**  
-![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/ULM.png)
+### 🖥️ Giao diện người dùng:
 
-**Cơ sở dữ liệu**  
-![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/DataBase.png)
+- Xây dựng bằng **JavaFX + FXML**.
+- Giao diện hiện đại, dễ sử dụng.
 
-## Giới thiệu về ứng dụng
+---
 
-### **ĐĂNG NHẬP**: Đăng nhập và đăng ký
-![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/Login.png)
-![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/register.png)
+## 💻 Công nghệ sử dụng
 
-### **DashBoard**: Tổng quan về ứng dụng
-- Ngăn sách mới thêm vào, Kệ sách của thư viện.
-  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/dashboard.png)
-- Tra cứu bằng searchBar
-   ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/bar.png)
-- Hiển thị kết quả tìm kiếm phân loại theo tên sách, ID, Tác giả.
-  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/search_Result.png)
+- `Java`: Xử lý logic và backend.
+- `JavaFX`: Giao diện người dùng.
+- `CSS`: Tùy chỉnh UI.
+- `Google Books API`: Lấy dữ liệu sách.
+- `OpenCV + ZXing`: Scan mã vạch lấy ISBN.
+- `OpenAI API (GPT-4o)`: Tạo trợ lý ảo thông minh.
+- `FXML`: Tách biệt giao diện khỏi logic Java.
 
-### **SÁCH**: thêm sách mới vào thư viện, và xem trước sách
-- Quản lý sách đã thêm vào thư viện:  
-  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/bookMANA.png)
--Chỉnh sửa thông tin sách đã thêm vào thư viện.
-  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/changebook.png)
-- Thêm sách vào thư viện thông qua name,ID hoặc scan.
-  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/addbook.png)
-- Xem trước sách, và mượn nhanh qua button Borrow:  
-  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/book_view.png)
+---
 
-### **THÀNH VIÊN**: Xem thông tin thành viên, số lượng sách đã mượn, chỉnh sửa thành viên
--Hiển thị danh sách sách đã mượn.
- ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/account.png)
-- Danh sách thành viên, thêm,xóa và chỉnh sửa thành viên.
-  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/USERMANA.png)
-- Chỉnh sửa thông tin user.
-  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/changeuser.png)
+## 🧠 Thiết kế hệ thống & CSDL
 
-### **MƯỢN và TRẢ SÁCH**: Thông qua Name hoặc scan.  
-  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/borrowBook.png)
+### 📌 Thiết kế hệ thống
+![Thiết kế hệ thống](lib-app/src/main/resources/com/example/libapp/README_IMG/ULM.png)
 
-  
-  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/returnbook.png)
+### 🗃️ Cơ sở dữ liệu
+![Cơ sở dữ liệu](lib-app/src/main/resources/com/example/libapp/README_IMG/DataBase.png)
 
-### ****: Thông qua Name hoặc scan.  
-  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/borrowBook.png)
+---
 
-  
-  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/returnbook.png)
+## 🔐 Đăng nhập & Đăng ký
 
-### ****: Bé Thủ thư AI đáng yêu lắng nghe những thắc mắc tâm tư tình cảm của bạn. Nhưng đừng tỏ tình ẻm sẽ từ chối bạn.  
-  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/AI.png)
+| Đăng nhập | Đăng ký |
+|----------|---------|
+| ![Login](lib-app/src/main/resources/com/example/libapp/README_IMG/Login.png) | ![Register](lib-app/src/main/resources/com/example/libapp/README_IMG/register.png) |
 
+---
 
-## Cài đặt
+## 🧾 DashBoard
 
-### Yêu cầu:
+- Tóm tắt sách mới, kệ sách.
+- Tìm kiếm nâng cao.
+- Hiển thị kết quả theo tên sách, ID, tác giả.
+
+| DashBoard | Thanh tìm kiếm | Kết quả tìm kiếm |
+|-----------|----------------|------------------|
+| ![Dashboard](lib-app/src/main/resources/com/example/libapp/README_IMG/dashboard.png) | ![SearchBar](lib-app/src/main/resources/com/example/libapp/README_IMG/bar.png) | ![Search Result](lib-app/src/main/resources/com/example/libapp/README_IMG/search_Result.png) |
+
+---
+
+## 📚 Quản lý Sách
+
+| Quản lý sách | Sửa sách | Thêm sách | Xem sách |
+|--------------|----------|-----------|----------|
+| ![Book MANA](lib-app/src/main/resources/com/example/libapp/README_IMG/bookMANA.png) | ![Change Book](lib-app/src/main/resources/com/example/libapp/README_IMG/changebook.png) | ![Add Book](lib-app/src/main/resources/com/example/libapp/README_IMG/addbook.png) | ![Book View](lib-app/src/main/resources/com/example/libapp/README_IMG/book_view.png) |
+
+---
+
+## 👥 Quản lý Thành viên
+
+| Mượn sách | Trả sách | Thành viên | Sửa thông tin |
+|-----------|----------|------------|----------------|
+| ![Borrow](lib-app/src/main/resources/com/example/libapp/README_IMG/borrowBook.png) | ![Return](lib-app/src/main/resources/com/example/libapp/README_IMG/returnbook.png) | ![User List](lib-app/src/main/resources/com/example/libapp/README_IMG/USERMANA.png) | ![Change User](lib-app/src/main/resources/com/example/libapp/README_IMG/changeuser.png) |
+
+---
+
+## 🤖 Thủ thư AI
+
+> Một thủ thư AI dễ thương sẵn sàng tâm sự với bạn. Nhưng đừng tỏ tình, vì em ấy sẽ từ chối 😢
+
+![AI Assistant](lib-app/src/main/resources/com/example/libapp/README_IMG/AI.png)
+
+---
+
+## 🛠️ Cài đặt
+
+### ✅ Yêu cầu:
+
 - Java 8+
-- JavaFX 8+ (nếu không được tích hợp trong JDK của bạn)
+- JavaFX 8+ (nếu chưa tích hợp sẵn trong JDK)
 
-### Các bước cài đặt:
+### 🔧 Cách cài đặt:
 
 ```bash
 # Clone dự án
 git clone https://github.com/username/BTL-OOP-wAIfu.git
 
-# Di chuyển vào thư mục dự án
-cd BTL-OOP-wAIfU
+# Di chuyển vào thư mục
+cd BTL-OOP-wAIfu
 
-# Cài đặt các dependencies (nếu có)
-# Đảm bảo rằng JavaFX được cấu hình đúng trong IDE của bạn
-# Yêu cầu với scan book:Tạo VM option"Link hướng dẫn ="https://drive.google.com/file/d/1MjGbADu2TV6_5MTC0u4CHGjI2yxbBgT8/view?fbclid=IwZXh0bgNhZW0CMTEAAR7jY6kXp3Qjc7r3ULnCaw8hT_GUnn0npdP5kn9c4lZu0qx14FWIPq_NVIkDYQ_aem_oRKUgJKBGxMHZdkMOGe8Ww" + paste"-Djava.library.path=D:/BTL-OOP-wAIfu/lib-app/native"
-
-# Chạy dự án
-# Trong IDE của bạn, chạy lớp `Main.java` để khởi động ứng dụng
+# Cài đặt thư viện & cấu hình VM options nếu dùng tính năng scan
+# Tạo config với VM option sau:
+# -Djava.library.path=D:/BTL-OOP-wAIfu/lib-app/native
