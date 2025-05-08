@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="mainPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.UserManagementController">
+   <children>
+      <Pane fx:id="searchResultBox" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <ScrollPane fx:id="pane" layoutX="364.0" layoutY="46.0" prefHeight="199.0" prefWidth="418.0" styleClass="searchResult_css" stylesheets="@styles.css">
+               <content>
+                  <GridPane fx:id="Box">
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </Pane>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" styleClass="MAIN_bg" stylesheets="@styles.css">
+          <left>
+              <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="65.0" spacing="3.0" style="-fx-border-color: #F3F3E0; -fx-background-radius: 10px;" styleClass="login_bg" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+                  <children>
+                      <VBox alignment="TOP_CENTER" prefHeight="22.0" prefWidth="84.0">
+                          <children>
+                              <ImageView fitHeight="31.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../image/spell-book.png" />
+                                  </image>
+                              </ImageView>
+                              <Label alignment="CENTER" prefHeight="34.0" prefWidth="84.0" text="WAIFU" textFill="WHITE">
+                                  <font>
+                                      <Font name="Californian FB Bold" size="23.0" />
+                                  </font>
+                              </Label>
+                          </children>
+                      </VBox>
+                      <Pane prefHeight="60.0" prefWidth="84.0" />
+                      <Button fx:id="backToMain" graphicTextGap="1.0" mnemonicParsing="false" onAction="#backToMain">
+                          <graphic>
+                              <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../image/home.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <styleClass>
+                              <String fx:value="transperant" />
+                              <String fx:value="transparent" />
+                          </styleClass>
+                      </Button>
+                      <Button fx:id="myAccount" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openMyAccount">
+                          <graphic>
+                              <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../image/user.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <styleClass>
+                              <String fx:value="transperant" />
+                              <String fx:value="transparent" />
+                          </styleClass>
+                      </Button>
+                      <Button fx:id="addBook" graphicTextGap="1.0" mnemonicParsing="false" onAction="#addNewBook">
+                          <graphic>
+                              <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                                  <image>
+                                      <Image url="@../image/add.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <styleClass>
+                              <String fx:value="transperant" />
+                              <String fx:value="transparent" />
+                          </styleClass>
+                      </Button>
+                      <Button fx:id="bookManage" graphicTextGap="1.0" mnemonicParsing="false" onAction="#goToBookManage" styleClass="transparent">
+                          <graphic>
+                              <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                                  <image>
+                                      <Image url="@../image/book.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                      </Button>
+                      <Button fx:id="userManagement" graphicTextGap="1.0" mnemonicParsing="false" onAction="#goToUserManagement">
+                          <graphic>
+                              <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                                  <image>
+                                      <Image url="@../image/group-users.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <styleClass>
+                              <String fx:value="selected" />
+                              <String fx:value="transparent" />
+                          </styleClass>
+                      </Button>
+                      <Button fx:id="AI" graphicTextGap="1.0" layoutX="11.0" layoutY="222.0" mnemonicParsing="false" onAction="#goToAI">
+                          <graphic>
+                              <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                                  <image>
+                                      <Image url="@../image/artificial-intelligence.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <styleClass>
+                              <String fx:value="transperant" />
+                              <String fx:value="transparent" />
+                          </styleClass>
+                      </Button>
+                      <Pane prefHeight="98.0" prefWidth="87.0" />
+                      <Button fx:id="logout" graphicTextGap="1.0" mnemonicParsing="false" onAction="#Logout" prefHeight="96.0" prefWidth="72.0">
+                          <styleClass>
+                              <String fx:value="transperant" />
+                              <String fx:value="transparent" />
+                          </styleClass>
+                          <graphic>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
+                                  <image>
+                                      <Image url="@../image/exit.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                      </Button>
+                  </children>
+              </VBox>
+          </left>
+          <center>
+              <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                  <children>
+                      <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="1014.0">
+                          <children>
+                              <Pane prefHeight="38.0" prefWidth="278.0">
+                                  <children>
+                                      <Label fx:id="messageLabel" layoutX="76.0" layoutY="5.0" />
+                                  </children>
+                              </Pane>
+                              <HBox alignment="CENTER" prefHeight="38.0" prefWidth="415.0" spacing="5.0" styleClass="search-container" stylesheets="@styles.css">
+                                  <children>
+                              <VBox>
+                                 <children>
+                                            <TextField fx:id="search" onAction="#Search" prefHeight="31.0" prefWidth="358.0" promptText="Search" styleClass="transparent" stylesheets="@styles.css">
+                                                <font>
+                                                    <Font name="Gill Sans MT" size="14.0" />
+                                                </font>
+                                            </TextField>
+                                 </children>
+                              </VBox>
+                                      <ImageView fitHeight="28.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                              <Image url="@../image/loupe.png" />
+                                          </image>
+                                      </ImageView>
+                                  </children>
+                                  <padding>
+                                      <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                  </padding>
+                              </HBox>
+                              <Pane prefHeight="38.0" prefWidth="114.0" />
+                              <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="190.0" spacing="10.0" styleClass="Hbox_border">
+                                  <children>
+                                      <Label fx:id="UserName" alignment="CENTER" prefHeight="28.0" prefWidth="135.0" styleClass="tag-gerne" text="ADMINNAME" wrapText="true">
+                                          <font>
+                                              <Font name="Gill Sans MT Bold" size="16.0" />
+                                          </font>
+                                      </Label>
+                                      <ImageView fitHeight="28.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                              <Image url="@../image/user.png" />
+                                          </image>
+                                      </ImageView>
+                                  </children>
+                                  <padding>
+                                      <Insets bottom="5.0" left="5.0" right="10.0" top="5.0" />
+                                  </padding>
+                              </HBox>
+                          </children>
+                          <VBox.margin>
+                              <Insets bottom="9.0" top="2.0" />
+                          </VBox.margin>
+                      </HBox>
+                      <AnchorPane prefHeight="443.0" prefWidth="1013.0">
+                          <children>
+                              <TableView fx:id="UsersTable" layoutX="19.0" prefHeight="446.0" prefWidth="968.0">
+                                  <columns>
+                                      <TableColumn fx:id="nameAccountColumn" prefWidth="140.8" text="NameAccount" />
+                                      <TableColumn fx:id="PassWordColumn" prefWidth="130.4" text="PassWord" />
+                                      <TableColumn fx:id="EmailColumn" prefWidth="365.6" text="Email" />
+                                      <TableColumn fx:id="fullNameColumn" prefWidth="225.6" text="FullName" />
+                                      <TableColumn fx:id="actionColumn" prefWidth="106.0" text="History" />
+                                  </columns>
+                              </TableView>
+                              <Button fx:id="deleteUser" layoutX="875.0" layoutY="462.0" mnemonicParsing="false" onAction="#handleDeleteUser" styleClass="Btn_login" stylesheets="@styles.css" text="Delete" />
+                        <HBox layoutX="15.0" layoutY="475.0">
+                           <children>
+                                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="32.0" prefWidth="64.0" text="Search">
+                                   <font>
+                                      <Font name="System Bold" size="18.0" />
+                                   </font>
+                                </Label>
+                              <TextField fx:id="searchField" prefHeight="32.0" prefWidth="403.0" />
+                           </children>
+                        </HBox>
+                          </children>
+                      </AnchorPane>
+                  </children>
+              </VBox>
+          </center>
+      </BorderPane>
+   </children>
+</StackPane>

@@ -8,7 +8,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -18,11 +17,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="mainPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.BorrowBookController">
+<StackPane fx:id="mainPane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libapp.controllers.AIUserController">
    <children>
       <Pane fx:id="searchResultBox" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <ScrollPane fx:id="pane" layoutX="366.0" layoutY="55.0" prefHeight="246.0" prefWidth="416.0" styleClass="searchResult_css" stylesheets="@styles.css">
+            <ScrollPane fx:id="pane" layoutX="366.0" layoutY="42.0" prefHeight="208.0" prefWidth="416.0" styleClass="searchResult_css" stylesheets="@styles.css">
                <content>
                   <GridPane fx:id="Box">
                     <rowConstraints>
@@ -43,19 +42,19 @@
                           </font>
                       </Label>
                       <Pane prefHeight="82.0" prefWidth="86.0" />
-                  <Button fx:id="backToMain" graphicTextGap="1.0" mnemonicParsing="false" onAction="#backToMain">
-                     <graphic>
-                        <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../image/home.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <styleClass>
-                        <String fx:value="transperant" />
-                        <String fx:value="transparent" />
-                     </styleClass>
-                  </Button>
+                      <Button fx:id="backToMain" graphicTextGap="1.0" mnemonicParsing="false" onAction="#backToMain">
+                          <graphic>
+                              <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                  <image>
+                                      <Image url="@../image/home.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                          <styleClass>
+                              <String fx:value="transperant" />
+                              <String fx:value="transparent" />
+                          </styleClass>
+                      </Button>
                       <Button fx:id="myAccount" graphicTextGap="1.0" mnemonicParsing="false" onAction="#openMyAccount">
                           <graphic>
                               <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
@@ -92,11 +91,10 @@
                           </graphic>
                           <styleClass>
                               <String fx:value="transperant" />
-                              <String fx:value="selected" />
-                        <String fx:value="transparent" />
+                              <String fx:value="transparent" />
                           </styleClass>
                       </Button>
-                      <Button fx:id="AI" graphicTextGap="1.0" layoutX="11.0" layoutY="222.0" mnemonicParsing="false" onAction="#openAI">
+                      <Button fx:id="AI" graphicTextGap="1.0" layoutX="11.0" layoutY="222.0" mnemonicParsing="false" onAction="#goToAI">
                           <graphic>
                               <ImageView fitHeight="97.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="transparent">
                                   <image>
@@ -105,8 +103,9 @@
                               </ImageView>
                           </graphic>
                           <styleClass>
+                              <String fx:value="selected" />
                               <String fx:value="transperant" />
-                              <String fx:value="transparent" />
+                        <String fx:value="transparent" />
                           </styleClass>
                       </Button>
                       <Pane prefHeight="98.0" prefWidth="87.0" />
@@ -127,14 +126,22 @@
               </VBox>
           </left>
           <center>
-              <VBox prefHeight="600.0" prefWidth="1022.0" BorderPane.alignment="CENTER">
+              <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                   <children>
                       <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="1014.0">
                           <children>
                               <Pane prefHeight="38.0" prefWidth="278.0" />
                               <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="38.0" prefWidth="415.0" spacing="5.0" styleClass="search-container" stylesheets="@styles.css">
                                   <children>
-                              <TextField fx:id="search" onAction="#Search" prefHeight="32.0" prefWidth="353.0" promptText="Search" />
+                              <VBox>
+                                 <children>
+                                            <TextField fx:id="search" onAction="#Search" prefHeight="31.0" prefWidth="358.0" promptText="Search" styleClass="transparent" stylesheets="@styles.css">
+                                                <font>
+                                                    <Font name="Gill Sans MT" size="14.0" />
+                                                </font>
+                                            </TextField>
+                                 </children>
+                              </VBox>
                                       <ImageView fitHeight="28.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                                           <image>
                                               <Image url="@../image/loupe.png" />
@@ -148,12 +155,12 @@
                               <Pane prefHeight="38.0" prefWidth="114.0" />
                               <HBox alignment="CENTER_RIGHT" prefHeight="44.0" prefWidth="190.0" spacing="10.0" styleClass="Hbox_border">
                                   <children>
-                                      <Label fx:id="UserName" alignment="CENTER" prefHeight="31.0" prefWidth="105.0" styleClass="tag-gerne" text="USERNAME">
+                                      <Label fx:id="UserName" alignment="CENTER" prefHeight="28.0" prefWidth="135.0" styleClass="tag-gerne" text="ADMINNAME" wrapText="true">
                                           <font>
                                               <Font name="Gill Sans MT Bold" size="16.0" />
                                           </font>
                                       </Label>
-                                      <ImageView fitHeight="28.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                      <ImageView fx:id="userImage" fitHeight="28.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                           <image>
                                               <Image url="@../image/user.png" />
                                           </image>
@@ -168,73 +175,56 @@
                               <Insets bottom="9.0" top="2.0" />
                           </VBox.margin>
                       </HBox>
-                  <Pane prefHeight="549.0" prefWidth="1013.0">
-                     <children>
-                        <ImageView fx:id="defaultImage" fitHeight="414.0" fitWidth="326.0" layoutX="742.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../image/Borrow%20(2).png" />
-                           </image>
-                        </ImageView>
-                        <AnchorPane layoutX="153.0" layoutY="96.0" prefHeight="315.0" prefWidth="547.0" style="-fx-background-color: #F7F7F7;" styleClass="search-container">
-                           <children>
-                              <Label layoutX="253.0" layoutY="25.0" />
-                              <HBox alignment="CENTER" layoutX="6.0" layoutY="30.0" prefHeight="54.0" prefWidth="521.0" spacing="10.0">
-                                 <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="103.0" text="By ISBN">
-                                       <font>
-                                          <Font name="Gill Sans MT Bold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="bookIdField" alignment="CENTER" prefHeight="32.0" prefWidth="379.0" styleClass="search-container" />
-                                 </children>
+                      <Pane prefHeight="530.0" prefWidth="977.0" style="-fx-border-color: #213448; -fx-border-width: 3;">
+                          <VBox.margin>
+                              <Insets left="19.0" />
+                          </VBox.margin>
+                          <children>
+                              <StackPane layoutX="91.0" layoutY="48.0" prefHeight="384.0" prefWidth="795.0" styleClass="image-border">
+                                  <children>
+                                      <ScrollPane fx:id="chatScroll" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" pannable="true">
+                                          <content>
+                                              <HBox>
+                                                  <children>
+                                                      <VBox fx:id="chatBox" prefWidth="780.0" spacing="10.0">
+                                                          <padding>
+                                                              <Insets bottom="10" left="10" right="10" top="10" />
+                                                          </padding>
+                                                          <children>
+                                                              <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="70.0" prefWidth="500.0" />
+                                                          </children>
+                                                      </VBox>
+                                                  </children>
+                                              </HBox>
+                                          </content>
+                                      </ScrollPane>
+                                  </children>
+                              </StackPane>
+                              <Pane layoutX="750.0" layoutY="11.0" prefHeight="529.0" prefWidth="376.0">
+                                  <children>
+                                      <ImageView fitHeight="531.0" fitWidth="366.0" layoutX="-35.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                                          <image>
+                                              <Image url="@../image/Ai (2).png" />
+                                          </image>
+                                      </ImageView>
+                                  </children>
+                              </Pane>
+                              <HBox alignment="CENTER" layoutX="214.0" layoutY="452.0" prefHeight="0.0" prefWidth="550.0" spacing="5.0" styleClass="search-container">
+                                  <children>
+                                      <TextField fx:id="promptField" onAction="#handleSendMessage" prefHeight="39.0" prefWidth="448.0" promptText="Send your problems!!" />
+                                      <Button fx:id="sendButton" mnemonicParsing="false" onAction="#handleSendMessage" prefHeight="40.0" prefWidth="41.0" styleClass="transparent">
+                                          <graphic>
+                                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                                  <image>
+                                                      <Image url="@../image/paper-plane.png" />
+                                                  </image>
+                                              </ImageView>
+                                          </graphic>
+                                      </Button>
+                                  </children>
                               </HBox>
-                              <Label alignment="CENTER" layoutX="294.0" layoutY="86.0" prefHeight="49.0" prefWidth="52.0" text="or">
-                                 <font>
-                                    <Font name="Gill Sans MT Bold" size="26.0" />
-                                 </font>
-                              </Label>
-                              <HBox alignment="CENTER" layoutX="6.0" layoutY="134.0" prefHeight="54.0" prefWidth="521.0" spacing="10.0">
-                                 <children>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="102.0" text="By title">
-                                       <font>
-                                          <Font name="Gill Sans MT Bold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="bookNameField" alignment="CENTER" prefHeight="32.0" prefWidth="378.0" styleClass="search-container" />
-                                 </children>
-                              </HBox>
-                              <Button layoutX="178.0" layoutY="245.0" mnemonicParsing="false" onAction="#handleBorrow" styleClass="Btn_login" text="Borrow" />
-                              <Label fx:id="messageLabel" alignment="CENTER" layoutX="39.0" layoutY="206.0" prefHeight="29.0" prefWidth="490.0" />
-                           </children>
-                        </AnchorPane>
-                        <Label fx:id="label" alignment="CENTER" layoutX="710.0" layoutY="107.0" prefHeight="46.0" prefWidth="300.0" styleClass="rice_message" text="Choose your book wisely!!">
-                           <font>
-                              <Font name="Californian FB" size="19.0" />
-                           </font>
-                        </Label>
-                        <ImageView fx:id="imageBorrow" fitHeight="355.0" fitWidth="419.0" layoutX="762.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                           <image>
-                              <Image url="@../image/c5c3bbbdef921fc0e5b4c37bb49d4689-removebg-preview.png" />
-                           </image>
-                        </ImageView>
-                        <Button layoutX="593.0" layoutY="45.0" mnemonicParsing="false" onAction="#scanAndBorrowISBN" text="Scan ISBN" />
-                        <ImageView fitHeight="234.0" fitWidth="246.0" layoutX="45.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../image/7ef2aea833230d9893e5effea68c2c06-removebg-preview.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="258.0" fitWidth="220.0" layoutX="523.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../image/e5c9a131c65f18e8ee81d1acfeb34d83-removebg-preview.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="230.0" fitWidth="162.0" layoutX="22.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../image/1f4269c052098855452d7ce2be81387c-removebg-preview%20(1).png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
+                          </children>
+                      </Pane>
                   </children>
               </VBox>
           </center>
