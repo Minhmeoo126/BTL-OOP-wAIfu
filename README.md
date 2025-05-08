@@ -70,8 +70,8 @@
 
 ## 🧾 DashBoard
 
-- Tóm tắt sách mới, kệ sách.
-- Tìm kiếm nâng cao.
+- Hiển thị list sách mới, kệ sách chứa toàn bộ sách thư viện.
+- Thanh tìm kiếm của thư viện.
 - Hiển thị kết quả theo tên sách, ID, tác giả.
 
 | DashBoard | Thanh tìm kiếm | Kết quả tìm kiếm |
