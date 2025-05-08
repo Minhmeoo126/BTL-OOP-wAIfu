@@ -206,7 +206,7 @@ public class MyAccountController {
     private void loadBorrowHistory() {
         viewModel.loadHistory(user);
         BorrowHistoryTable.setItems(viewModel.getRecords());
-        BorrowedBooks.setText("Borrowed: " + viewModel.getRecords().stream()
+        BorrowedBooks.setText("Borrowing: " + viewModel.getRecords().stream()
                 .filter(record -> record.getReturnDate() == null || record.getReturnDate().isEmpty())
                 .count() + "");
     }
