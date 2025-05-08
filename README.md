@@ -44,79 +44,77 @@ Dự án **Library Management System wAIfu** là một hệ thống quản lý t
 ## Thiết kế hệ thống và Cơ sở dữ liệu của dự án
 
 **Thiết kế hệ thống**  
-![Mô tả hình ảnh](/src/main/resources/com/example/libapp/README_IMG/ULM.png)
+![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/ULM.png)
 
 **Cơ sở dữ liệu**  
-![Mô tả hình ảnh](com/example/libapp/README_IMG/DataBase.png)
+![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/DataBase.png)
 
 ## Giới thiệu về ứng dụng
 
 ### **ĐĂNG NHẬP**: Đăng nhập và đăng ký
-![Mô tả hình ảnh](./imageforreadme/Signin.png)  
-![Mô tả hình ảnh](./imageforreadme/Signup.png)
+![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/Login.png)
+![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/register.png)
 
-### **BẢNG TIN**: Tổng quan về ứng dụng
-- Sách mượn nhiều nhất, thu nhập, số lần mượn  
-  ![Mô tả hình ảnh](./imageforreadme/Dashboard.png)
-- Cài đặt âm nhạc  
-  ![Mô tả hình ảnh](./imageforreadme/MusicSetting.png)
-- Thông báo  
-  ![Mô tả hình ảnh](./imageforreadme/Notification.png)
-- Chỉnh sửa thông tin Admin, thay đổi avatar  
-  ![Mô tả hình ảnh](./imageforreadme/Edit_Admin.png)
+### **DashBoard**: Tổng quan về ứng dụng
+- Ngăn sách mới thêm vào, Kệ sách của thư viện.
+  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/dashboard.png)
+- Tra cứu bằng searchBar
+   ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/bar.png)
+- Hiển thị kết quả tìm kiếm phân loại theo tên sách, ID, Tác giả.
+  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/search_Result.png)
 
-### **SÁCH**: Thanh tìm kiếm, thêm sách mới vào thư viện, và xem trước sách
-- Danh sách sách:  
-  ![Mô tả hình ảnh](./imageforreadme/Book.png)
-- Tìm kiếm sách:  
-  ![Mô tả hình ảnh](./imageforreadme/Search_book.png)
-- Xem trước sách, thêm sách vào thư viện, lấy mã QR sách:  
-  ![Mô tả hình ảnh](./imageforreadme/View_book.png)
+### **SÁCH**: thêm sách mới vào thư viện, và xem trước sách
+- Quản lý sách đã thêm vào thư viện:  
+  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/bookMANA.png)
+-Chỉnh sửa thông tin sách đã thêm vào thư viện.
+  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/changebook.png)
+- Thêm sách vào thư viện thông qua name,ID hoặc scan.
+  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/addbook.png)
+- Xem trước sách, và mượn nhanh qua button Borrow:  
+  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/book_view.png)
 
 ### **THÀNH VIÊN**: Xem thông tin thành viên, số lượng sách đã mượn, chỉnh sửa thành viên
-- Danh sách thành viên, thêm và chỉnh sửa thành viên:  
-  ![Mô tả hình ảnh](./imageforreadme/List_Member.png)
-- Hiển thị thông tin thành viên khi nhấp vào dòng, tìm kiếm theo bộ lọc:  
-  ![Mô tả hình ảnh](./imageforreadme/Information.png)
-- Thêm thành viên mới và xóa thành viên đã thêm:  
-  ![Mô tả hình ảnh](./imageforreadme/Add_Member.png)  
-  ![Mô tả hình ảnh](./imageforreadme/Remove_Member.png)
-- Chỉnh sửa thành viên đã thêm:  
-  ![Mô tả hình ảnh](./imageforreadme/Edit_Member.png)
+-Hiển thị danh sách sách đã mượn.
+ ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/account.png)
+- Danh sách thành viên, thêm,xóa và chỉnh sửa thành viên.
+  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/USERMANA.png)
+- Chỉnh sửa thông tin user.
+  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/changeuser.png)
 
-### **MƯỢN SÁCH**: Hiển thị thông tin sách đang mượn
-- Danh sách sách mượn, thêm mượn mới, lọc:  
-  ![Mô tả hình ảnh](./imageforreadme/List_Borrow.png)
-- Thêm mượn mới và quy tắc mượn:  
-  ![Mô tả hình ảnh](./imageforreadme/Add_Borrow.png)
+### **MƯỢN và TRẢ SÁCH**: Thông qua Name hoặc scan.  
+  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/borrowBook.png)
 
-### **THU NHẬP**: Hiển thị thông tin giao dịch
-- Danh sách giao dịch, thêm giao dịch mới, lọc:  
-  ![Mô tả hình ảnh](./imageforreadme/List_transaction.png)
-- Thêm giao dịch mới:  
-  ![Mô tả hình ảnh](./imageforreadme/add_transaction.png)
+  
+  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/returnbook.png)
 
-### **ĐĂNG XUẤT**: Quay lại trang đăng nhập
-![Mô tả hình ảnh](./imageforreadme/Logout.png)
+### ****: Thông qua Name hoặc scan.  
+  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/borrowBook.png)
+
+  
+  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/returnbook.png)
+
+### ****: Bé Thủ thư AI đáng yêu lắng nghe những thắc mắc tâm tư tình cảm của bạn. Nhưng đừng tỏ tình ẻm sẽ từ chối bạn.  
+  ![Mô tả hình ảnh](lib-app/src/main/resources/com/example/libapp/README_IMG/AI.png)
+
 
 ## Cài đặt
 
 ### Yêu cầu:
 - Java 8+
 - JavaFX 8+ (nếu không được tích hợp trong JDK của bạn)
-- Google Books API key (tùy chọn, nhưng cần thiết cho chức năng tìm kiếm sách)
 
 ### Các bước cài đặt:
 
 ```bash
 # Clone dự án
-git clone https://github.com/username/library-management-system-html.git
+git clone https://github.com/username/BTL-OOP-wAIfu.git
 
 # Di chuyển vào thư mục dự án
-cd library-management-system-html
+cd BTL-OOP-wAIfU
 
 # Cài đặt các dependencies (nếu có)
 # Đảm bảo rằng JavaFX được cấu hình đúng trong IDE của bạn
+# Yêu cầu với scan book:Tạo VM option"Link hướng dẫn ="https://drive.google.com/file/d/1MjGbADu2TV6_5MTC0u4CHGjI2yxbBgT8/view?fbclid=IwZXh0bgNhZW0CMTEAAR7jY6kXp3Qjc7r3ULnCaw8hT_GUnn0npdP5kn9c4lZu0qx14FWIPq_NVIkDYQ_aem_oRKUgJKBGxMHZdkMOGe8Ww" + paste"-Djava.library.path=D:/BTL-OOP-wAIfu/lib-app/native"
 
 # Chạy dự án
 # Trong IDE của bạn, chạy lớp `Main.java` để khởi động ứng dụng
