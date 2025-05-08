@@ -195,7 +195,8 @@ public class BorrowBookController {
                     messageLabel.setStyle(success ? "-fx-text-fill: green;" : "-fx-text-fill: red;");
                     imageBorrow.setVisible(success);
                     defaultImage.setVisible(!success);
-                    label.setText(success ? "Hãy tận hưởng cuốn sách nhé!" : "");
+                    label.setText(success ? "Enjoying my books, my master!!" : "");
+                    label.setStyle("-fx-text-fill: black;");
                 } else {
                     viewModel.messageProperty().set("Không quét được mã ISBN.");
                     messageLabel.setStyle("-fx-text-fill: red;");

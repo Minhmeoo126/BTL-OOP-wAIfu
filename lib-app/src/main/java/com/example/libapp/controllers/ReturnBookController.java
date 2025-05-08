@@ -185,6 +185,10 @@ public class ReturnBookController {
                     messageLabel.textProperty().unbind();
                     messageLabel.setText(msg);
                     messageLabel.setStyle(success ? "-fx-text-fill: green;" : "-fx-text-fill: red;");
+                    label.setText(success ? "Hope to see you again soon!" : "");
+                    label.setStyle("-fx-text-fill: black;");
+                    defautImage.setVisible(false);
+                    returnImage.setVisible(true);
                 } else {
                     viewModel.messageProperty().set("Không quét được mã ISBN.");
                     messageLabel.setStyle("-fx-text-fill: red;");

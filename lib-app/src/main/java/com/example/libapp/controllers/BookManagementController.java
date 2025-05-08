@@ -82,17 +82,17 @@ public class BookManagementController {
 
     @FXML
     public void initialize() {
-        //pane.setMaxWidth(400);
-        //pane.setMaxHeight(400);
+        pane.setMaxWidth(400);
+        pane.setMaxHeight(400);
         searchResultBox.setVisible(false);
 
         // Định vị searchResultBox ngay dưới TextField khi focus
         search.focusedProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal) {
-                //searchResultBox.setLayoutX(400);
-                //searchResultBox.setLayoutY(50);
-                //searchResultBox.setPrefWidth(415.0);
-                //searchResultBox.setPrefHeight(150.0);
+                searchResultBox.setLayoutX(400);
+                searchResultBox.setLayoutY(50);
+                searchResultBox.setPrefWidth(415.0);
+                searchResultBox.setPrefHeight(150.0);
 
                 searchResultBox.setVisible(true);
                 searchResultBox.toFront();
