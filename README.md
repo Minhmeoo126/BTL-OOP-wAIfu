@@ -82,8 +82,8 @@
 
 ## 📚 Quản lý Sách
 
-| Quản lý sách | Sửa sách | Thêm sách | Xem sách |
-|--------------|----------|-----------|----------|
+| Quản lý sách | Sửa thông tin sách | Thêm sách | Xem sách |
+|--------------|--------------------|-----------|----------|
 | ![Book MANA](lib-app/src/main/resources/com/example/libapp/README_IMG/bookMANA.png) | ![Change Book](lib-app/src/main/resources/com/example/libapp/README_IMG/changebook.png) | ![Add Book](lib-app/src/main/resources/com/example/libapp/README_IMG/addbook.png) | ![Book View](lib-app/src/main/resources/com/example/libapp/README_IMG/book_view.png) |
 
 ---
