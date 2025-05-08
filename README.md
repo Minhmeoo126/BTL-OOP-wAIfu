@@ -105,6 +105,12 @@
 ![AI Assistant](lib-app/src/main/resources/com/example/libapp/README_IMG/AI.png)
 
 ---
+## Các nguồn tham khảo:
+- Javajx Mutil User Login: https://www.youtube.com/watch?v=cgTSGIYSCpU&t=1692s&ab_channel=DanMlayah
+- Dynamic Hbox and GridPane : https://youtu.be/L3PLDAZWU9s?si=9BYHCNfZDc_-hSHc
+- SQLite DataBase : https://youtu.be/jM4KnPiedK0?si=LVr-vi85fnW1CWUn
+- OpenAI + ChatgptAPI : https://youtu.be/5QLzUxQDOos?si=XrbR4QCetLEnB6-g
+- OpenCV : https://stackoverflow.com/questions/19874557/read-barcode-from-an-image-in-java?fbclid=IwZXh0bgNhZW0CMTEAAR6KjJM8LnJhPak64SjAUbjp3kmYPuDR1EkCmeRVNnHEIMulV2m2ldjLpTuuHQ_aem_A0n7PcRp07K6XA6sFK9ppg
 
 ## 🛠️ Cài đặt
 
