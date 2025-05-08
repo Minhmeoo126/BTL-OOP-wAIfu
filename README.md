@@ -20,7 +20,7 @@
 
 - 🔍 Tìm kiếm sách theo từ khóa.
 - 📘 Xem chi tiết sách: tiêu đề, tác giả, mô tả, ảnh bìa.
-- 📥 Mượn sách qua ID, tên, hoặc nút "Mượn nhanh".
+- 📥 Mượn sách qua ID, tên, hoặc nút "Borrow".
 - 📤 Trả sách tương tự.
 - 🤖 AI: Tâm sự và bàn luận về sách cùng thủ thư AI.
 
@@ -90,9 +90,11 @@
 
 ## 👥 Quản lý Thành viên
 
-| Mượn sách | Trả sách | Thành viên | Sửa thông tin |
-|-----------|----------|------------|----------------|
-| ![Borrow](lib-app/src/main/resources/com/example/libapp/README_IMG/borrowBook.png) | ![Return](lib-app/src/main/resources/com/example/libapp/README_IMG/returnbook.png) | ![User List](lib-app/src/main/resources/com/example/libapp/README_IMG/USERMANA.png) | ![Change User](lib-app/src/main/resources/com/example/libapp/README_IMG/changeuser.png) |
+-Account cho phép trả sách nhanh qua nút return.
+
+| Mượn sách | Trả sách | Quản lí Thành viên | Sửa thông tin  | Account của user |
+|-----------|----------|--------------------|----------------|------------------|
+| ![Borrow](lib-app/src/main/resources/com/example/libapp/README_IMG/borrowBook.png) | ![Return](lib-app/src/main/resources/com/example/libapp/README_IMG/returnbook.png) | ![User List](lib-app/src/main/resources/com/example/libapp/README_IMG/USERMANA.png) | ![Change User](lib-app/src/main/resources/com/example/libapp/README_IMG/changeuser.png) |![Change User](lib-app/src/main/resources/com/example/libapp/README_IMG/account.png)
 
 ---
 
